@@ -1,0 +1,25 @@
+(gdb) start
+Breakpoint 1 at 0x8048415: file main.c, line 5.
+Starting program: /home/akaedu/a.out 
+main () at main.c:5
+5	{
+(gdb) n
+6		char str[] = "root:x::0:root:/root:/bin/bash:";
+(gdb) 
+9		token = strtok(str, ":");
+(gdb) display str
+1: str = "root:x::0:root:/root:/bin/bash:"
+(gdb) n
+10		printf("%s\n", token);
+1: str = "root\000x::0:root:/root:/bin/bash:"
+(gdb) 
+root
+11		while ( (token = strtok(NULL, ":")) != NULL)
+1: str = "root\000x::0:root:/root:/bin/bash:"
+(gdb) 
+12			printf("%s\n", token);
+1: str = "root\000x\000:0:root:/root:/bin/bash:"
+(gdb) 
+x
+11		while ( (token = strtok(NULL, ":")) != NULL)
+1: str = "root\000x\000:0:root:/root:/bin/bash:"

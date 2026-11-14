@@ -1,0 +1,40 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}errno.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdarg.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}string.h\BKZgt{}}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define MAXLINE 80}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{err\BKZus{}sys}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{fmt}\BK{p}{,}\BK{+w}{ }\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{err}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{errno}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{buf}\BK{p}{[}\BK{n}{MAXLINE}\BK{o}{+}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{va\BKZus{}list}\BK{+w}{ }\BK{n}{ap}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{va\BKZus{}start}\BK{p}{(}\BK{n}{ap}\BK{p}{,}\BK{+w}{ }\BK{n}{fmt}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{vsnprintf}\BK{p}{(}\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{n}{MAXLINE}\BK{p}{,}\BK{+w}{ }\BK{n}{fmt}\BK{p}{,}\BK{+w}{ }\BK{n}{ap}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{snprintf}\BK{p}{(}\BK{n}{buf}\BK{o}{+}\BK{n}{strlen}\BK{p}{(}\BK{n}{buf}\BK{p}{)}\BK{p}{,}\BK{+w}{ }\BK{n}{MAXLINE}\BK{o}{\BKZhy{}}\BK{n}{strlen}\BK{p}{(}\BK{n}{buf}\BK{p}{)}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{: \BKZpc{}s}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{strerror}\BK{p}{(}\BK{n}{err}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{strcat}\BK{p}{(}\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{fputs}\BK{p}{(}\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{n}{stderr}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{va\BKZus{}end}\BK{p}{(}\BK{n}{ap}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{argc}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{argv}\BK{p}{[}\BK{p}{]}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{FILE}\BK{+w}{ }\BK{o}{*}\BK{n}{fp}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{argc}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{fputs}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Usage: ./a.out pathname}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{stderr}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{fp}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{fopen}\BK{p}{(}\BK{n}{argv}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{r}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{fp}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}
+\BK{+w}{		}\BK{n}{err\BKZus{}sys}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Line \BKZpc{}d \BKZhy{} Open file \BKZpc{}s}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{\BKZus{}\BKZus{}LINE\BKZus{}\BKZus{}}\BK{p}{,}\BK{+w}{ }\BK{n}{argv}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Open \BKZpc{}s OK}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{argv}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{fclose}\BK{p}{(}\BK{n}{fp}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

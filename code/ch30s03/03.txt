@@ -1,0 +1,10 @@
+$ ./a.out 
+This is the child
+This is the parent
+This is the child
+This is the parent
+This is the child
+This is the parent
+This is the child
+$ This is the child
+This is the child

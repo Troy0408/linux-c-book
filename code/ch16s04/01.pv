@@ -1,0 +1,4 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{sum}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{16}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{	}\BK{n}{sum}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{sum}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{l+m+mi}{1U}\BK{o}{\BKZlt{}}\BK{o}{\BKZlt{}}\BK{n}{i}\BK{p}{;}

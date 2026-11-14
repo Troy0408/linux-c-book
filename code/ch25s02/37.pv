@@ -1,0 +1,3 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{day}\BK{p}{,}\BK{+w}{ }\BK{n}{month}\BK{p}{,}\BK{+w}{ }\BK{n}{year}\BK{p}{;}
+
+\BK{n}{scanf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d/\BKZpc{}d/\BKZpc{}d}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{month}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{day}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{year}\BK{p}{)}\BK{p}{;}

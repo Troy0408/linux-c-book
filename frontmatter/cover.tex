@@ -1,0 +1,35 @@
+\begin{titlepage}
+\thispagestyle{empty}
+\pdfbookmark[0]{封面}{cover}
+\begin{tikzpicture}[remember picture, overlay]
+  % Full-bleed deep matte charcoal-slate cover
+  \fill[BookCoverBg] (current page.south west) rectangle (current page.north east);
+  % Refined double-hairline editorial frame
+  \draw[BookCoverGold!45!BookCoverBg, line width=0.5pt]
+    ([xshift=14mm,yshift=-14mm]current page.north west) rectangle ([xshift=-14mm,yshift=14mm]current page.south east);
+  \draw[BookCoverGold!22!BookCoverBg, line width=0.35pt]
+    ([xshift=16mm,yshift=-16mm]current page.north west) rectangle ([xshift=-16mm,yshift=16mm]current page.south east);
+\end{tikzpicture}
+
+\raggedright
+\hspace*{4mm}\begin{minipage}{\dimexpr\linewidth-8mm\relax}
+\vspace*{28mm}
+{\sffamily\small\color{BookCoverGold} 开源经典技术教材\quad\textperiodcentered\quad 全本精排电子版\par}
+\vspace{16mm}
+{\sffamily\bfseries\color{BookCoverText}\fontsize{40}{48}\selectfont Linux C 编程\par\vspace{4mm}一站式学习\par}
+\vspace{8mm}
+{\color{BookCoverGold}\rule{3.5em}{1.2pt}\par}
+\vspace{8mm}
+{\sffamily\color{BookCoverMuted}\Large 从 C 语言基础、体系结构到 Linux 系统编程\par}
+\vspace{38mm}
+{\sffamily\large\color{BookCoverText}\textbf{宋劲杉}\quad 著\par}
+\vspace{3mm}
+{\sffamily\normalsize\color{BookCoverMuted}北京亚嵌教育研究中心\quad 原出版\par}
+\end{minipage}
+
+\vfill
+\hspace*{4mm}\begin{minipage}{\dimexpr\linewidth-8mm\relax}
+{\footnotesize\sffamily\color{BookCoverMuted}LaTeX 排版整理版\quad\textperiodcentered\quad 版本 \EditionVersion\quad\textperiodcentered\quad \EditionDate\quad\textperiodcentered\quad GNU Free Documentation License 1.3\par}
+\end{minipage}
+\vspace*{6mm}
+\end{titlepage}

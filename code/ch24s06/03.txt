@@ -1,0 +1,7 @@
+     myprintf("c\ts\n", '1', "hello");
+ 80484c5:	c7 44 24 08 b0 85 04 	movl   $0x80485b0,0x8(%esp)
+ 80484cc:	08 
+ 80484cd:	c7 44 24 04 31 00 00 	movl   $0x31,0x4(%esp)
+ 80484d4:	00 
+ 80484d5:	c7 04 24 b6 85 04 08 	movl   $0x80485b6,(%esp)
+ 80484dc:	e8 43 ff ff ff       	call   8048424 <myprintf>

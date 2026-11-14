@@ -1,0 +1,18 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{print\BKZus{}day}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{day}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{days}\BK{p}{[}\BK{l+m+mi}{8}\BK{p}{]}\BK{p}{[}\BK{l+m+mi}{10}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Monday}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Tuesday}\BK{l+s}{\BKZdq{}}\BK{p}{,}
+\BK{+w}{			     }\BK{l+s}{\BKZdq{}}\BK{l+s}{Wednesday}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Thursday}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Friday}\BK{l+s}{\BKZdq{}}\BK{p}{,}
+\BK{+w}{			     }\BK{l+s}{\BKZdq{}}\BK{l+s}{Saturday}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Sunday}\BK{l+s}{\BKZdq{}}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{day}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{+w}{ }\BK{o}{|}\BK{o}{|}\BK{+w}{ }\BK{n}{day}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{l+m+mi}{7}\BK{p}{)}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Illegal day number!}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}s}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{days}\BK{p}{[}\BK{n}{day}\BK{p}{]}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{print\BKZus{}day}\BK{p}{(}\BK{l+m+mi}{2}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

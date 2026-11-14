@@ -1,0 +1,23 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{add\BKZus{}complex}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z1}\BK{p}{,}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z2}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{make\BKZus{}from\BKZus{}real\BKZus{}img}\BK{p}{(}\BK{n}{real\BKZus{}part}\BK{p}{(}\BK{n}{z1}\BK{p}{)}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{real\BKZus{}part}\BK{p}{(}\BK{n}{z2}\BK{p}{)}\BK{p}{,}
+\BK{+w}{				  }\BK{n}{img\BKZus{}part}\BK{p}{(}\BK{n}{z1}\BK{p}{)}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{img\BKZus{}part}\BK{p}{(}\BK{n}{z2}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{sub\BKZus{}complex}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z1}\BK{p}{,}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z2}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{make\BKZus{}from\BKZus{}real\BKZus{}img}\BK{p}{(}\BK{n}{real\BKZus{}part}\BK{p}{(}\BK{n}{z1}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{n}{real\BKZus{}part}\BK{p}{(}\BK{n}{z2}\BK{p}{)}\BK{p}{,}
+\BK{+w}{				  }\BK{n}{img\BKZus{}part}\BK{p}{(}\BK{n}{z1}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{n}{img\BKZus{}part}\BK{p}{(}\BK{n}{z2}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{mul\BKZus{}complex}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z1}\BK{p}{,}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z2}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{make\BKZus{}from\BKZus{}mag\BKZus{}ang}\BK{p}{(}\BK{n}{magnitude}\BK{p}{(}\BK{n}{z1}\BK{p}{)}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{magnitude}\BK{p}{(}\BK{n}{z2}\BK{p}{)}\BK{p}{,}
+\BK{+w}{				 }\BK{n}{angle}\BK{p}{(}\BK{n}{z1}\BK{p}{)}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{angle}\BK{p}{(}\BK{n}{z2}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{div\BKZus{}complex}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z1}\BK{p}{,}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z2}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{make\BKZus{}from\BKZus{}mag\BKZus{}ang}\BK{p}{(}\BK{n}{magnitude}\BK{p}{(}\BK{n}{z1}\BK{p}{)}\BK{+w}{ }\BK{o}{/}\BK{+w}{ }\BK{n}{magnitude}\BK{p}{(}\BK{n}{z2}\BK{p}{)}\BK{p}{,}
+\BK{+w}{				 }\BK{n}{angle}\BK{p}{(}\BK{n}{z1}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{n}{angle}\BK{p}{(}\BK{n}{z2}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

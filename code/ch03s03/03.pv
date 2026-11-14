@@ -1,0 +1,2 @@
+\BK{k+kt}{double}\BK{+w}{ }\BK{n}{pi}\BK{o}{=}\BK{l+m+mf}{3.1416}\BK{p}{;}
+\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{pi}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}

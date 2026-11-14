@@ -1,0 +1,1 @@
+printf("character: %c\ninteger: %d\nfloating point: %f\n", '}', 34, 3.14);

@@ -1,0 +1,14 @@
+$ objdump -dS a.out
+...
+        char b[]="Hello world";
+ 8048430:       c7 45 ec 48 65 6c 6c    movl   $0x6c6c6548,-0x14(%ebp)
+ 8048437:       c7 45 f0 6f 20 77 6f    movl   $0x6f77206f,-0x10(%ebp)
+ 804843e:       c7 45 f4 72 6c 64 00    movl   $0x646c72,-0xc(%ebp)
+        register int c = 50;
+ 8048445:       b8 32 00 00 00          mov    $0x32,%eax
+
+        printf("Hello world %d\n", c);
+ 804844a:       89 44 24 04             mov    %eax,0x4(%esp)
+ 804844e:       c7 04 24 44 85 04 08    movl   $0x8048544,(%esp)
+ 8048455:       e8 e6 fe ff ff          call   8048340 <printf@plt>
+...

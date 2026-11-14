@@ -1,0 +1,6 @@
+$ vi hello
+（编辑该文件的内容为“hello”）
+$ od -tx1 -tc hello 
+0000000 68 65 6c 6c 6f 0a
+          h   e   l   l   o  \n
+0000006

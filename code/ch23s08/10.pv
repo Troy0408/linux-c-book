@@ -1,0 +1,7 @@
+\BK{k+kt}{double}\BK{+w}{ }\BK{n+nf}{real\BKZus{}part}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{z}\BK{p}{.}\BK{n}{t}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{RECTANGULAR}\BK{p}{)}
+\BK{+w}{		}\BK{k}{return}\BK{+w}{ }\BK{n}{z}\BK{p}{.}\BK{n}{a}\BK{p}{;}
+\BK{+w}{	}\BK{k}{else}
+\BK{+w}{		}\BK{k}{return}\BK{+w}{ }\BK{n}{z}\BK{p}{.}\BK{n}{a}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{cos}\BK{p}{(}\BK{n}{z}\BK{p}{.}\BK{n}{b}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,4 @@
+\BK{k+kt}{char}\BK{+w}{ }\BK{n}{d}\BK{p}{[}\BK{l+m+mi}{10}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{foo}\BK{l+s}{\BKZdq{}}\BK{p}{;}
+\BK{k+kt}{char}\BK{+w}{ }\BK{n}{s}\BK{p}{[}\BK{l+m+mi}{10}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{bar}\BK{l+s}{\BKZdq{}}\BK{p}{;}
+\BK{n}{strcat}\BK{p}{(}\BK{n}{d}\BK{p}{,}\BK{+w}{ }\BK{n}{s}\BK{p}{)}\BK{p}{;}
+\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}s \BKZpc{}s}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{d}\BK{p}{,}\BK{+w}{ }\BK{n}{s}\BK{p}{)}\BK{p}{;}

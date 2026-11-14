@@ -1,0 +1,5 @@
+	return e;
+ 80483a5:	8b 45 fc             	mov    -0x4(%ebp),%eax
+}
+ 80483a8:	c9                   	leave  
+ 80483a9:	c3                   	ret

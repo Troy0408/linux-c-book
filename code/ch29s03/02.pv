@@ -1,0 +1,26 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/stat.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}fcntl.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}string.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{save\BKZus{}fd}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{msg}\BK{p}{[}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{This is a test}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{fd}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{open}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{somefile}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{O\BKZus{}RDWR}\BK{o}{|}\BK{n}{O\BKZus{}CREAT}\BK{p}{,}\BK{+w}{ }\BK{n}{S\BKZus{}IRUSR}\BK{o}{|}\BK{n}{S\BKZus{}IWUSR}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{p}{(}\BK{n}{fd}\BK{o}{\BKZlt{}}\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{open}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{save\BKZus{}fd}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{dup}\BK{p}{(}\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{dup2}\BK{p}{(}\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{close}\BK{p}{(}\BK{n}{fd}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{write}\BK{p}{(}\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{,}\BK{+w}{ }\BK{n}{msg}\BK{p}{,}\BK{+w}{ }\BK{n}{strlen}\BK{p}{(}\BK{n}{msg}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{dup2}\BK{p}{(}\BK{n}{save\BKZus{}fd}\BK{p}{,}\BK{+w}{ }\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{write}\BK{p}{(}\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{,}\BK{+w}{ }\BK{n}{msg}\BK{p}{,}\BK{+w}{ }\BK{n}{strlen}\BK{p}{(}\BK{n}{msg}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{close}\BK{p}{(}\BK{n}{save\BKZus{}fd}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

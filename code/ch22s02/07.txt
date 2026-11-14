@@ -1,0 +1,6 @@
+$ which cc
+/usr/bin/cc
+$ ls -l /usr/bin/cc
+lrwxrwxrwx 1 root root 20 2008-07-04 05:59 /usr/bin/cc -> /etc/alternatives/cc
+$ ls -l /etc/alternatives/cc
+lrwxrwxrwx 1 root root 12 2008-11-01 09:10 /etc/alternatives/cc -> /usr/bin/gcc

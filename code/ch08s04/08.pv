@@ -1,0 +1,1 @@
+\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{string: \BKZpc{}s}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Hello}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}

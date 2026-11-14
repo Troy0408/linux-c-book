@@ -1,0 +1,2 @@
+\BK{k+kt}{char}\BK{+w}{ }\BK{n}{buf}\BK{p}{[}\BK{l+m+mi}{10}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{abcdefghij}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{str}\BK{p}{[}\BK{l+m+mi}{4}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{hell}\BK{l+s}{\BKZdq{}}\BK{p}{;}
+\BK{n}{strcpy}\BK{p}{(}\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{n}{str}\BK{p}{)}\BK{p}{;}

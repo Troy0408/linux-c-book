@@ -1,0 +1,4 @@
+$ gcc main.c -lm
+$ ./a.out
+sin(pi/2)=1.000000
+ln1=0.000000

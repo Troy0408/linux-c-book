@@ -1,0 +1,3 @@
+\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{p}{,}\BK{+w}{ }\BK{n}{mask}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1U}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{6}\BK{p}{;}
+\BK{n}{a}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mh}{0x12345678}\BK{p}{;}
+\BK{n}{b}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{a}\BK{+w}{ }\BK{o}{\BKZca{}}\BK{+w}{ }\BK{n}{mask}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* flip the 6th bit */}

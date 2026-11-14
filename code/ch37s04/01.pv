@@ -1,0 +1,26 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stddef.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/socket.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/un.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{size}\BK{p}{;}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr\BKZus{}un}\BK{+w}{ }\BK{n}{un}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{memset}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{un}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{un}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}family}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{AF\BKZus{}UNIX}\BK{p}{;}
+\BK{+w}{	}\BK{n}{strcpy}\BK{p}{(}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}path}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{foo.socket}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{p}{(}\BK{n}{fd}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{socket}\BK{p}{(}\BK{n}{AF\BKZus{}UNIX}\BK{p}{,}\BK{+w}{ }\BK{n}{SOCK\BKZus{}STREAM}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{socket error}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{size}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{offsetof}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr\BKZus{}un}\BK{p}{,}\BK{+w}{ }\BK{n}{sun\BKZus{}path}\BK{p}{)}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{strlen}\BK{p}{(}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}path}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{bind}\BK{p}{(}\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{o}{\BKZam{}}\BK{n}{un}\BK{p}{,}\BK{+w}{ }\BK{n}{size}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{bind error}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{UNIX domain socket bound}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

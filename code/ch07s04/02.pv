@@ -1,0 +1,1 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{segment}\BK{+w}{ }\BK{n}{s}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{p}{\BKZob{}}\BK{+w}{ }\BK{l+m+mf}{1.0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mf}{2.0}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{l+m+mf}{4.0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mf}{6.0}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{\BKZcb{}}\BK{p}{;}

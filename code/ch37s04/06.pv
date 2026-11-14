@@ -1,0 +1,51 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stddef.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/stat.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/socket.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/un.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}errno.h\BKZgt{}}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define CLI\BKZus{}PATH    \BKZdq{}}\BK{c+cp}{/}\BK{c+cp}{var}\BK{c+cp}{/}\BK{c+cp}{tmp}\BK{c+cp}{/}\BK{c+cp}{\BKZdq{}      }\BK{c+cm}{/* +5 for pid = 14 chars */}
+
+\BK{c+cm}{/*}
+\BK{c+cm}{ * Create a client endpoint and connect to a server.}
+\BK{c+cm}{ * Returns fd if all OK, \BKZlt{}0 on error.}
+\BK{c+cm}{ */}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{cli\BKZus{}conn}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{name}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{                }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{len}\BK{p}{,}\BK{+w}{ }\BK{n}{err}\BK{p}{,}\BK{+w}{ }\BK{n}{rval}\BK{p}{;}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr\BKZus{}un}\BK{+w}{ }\BK{n}{un}\BK{p}{;}
+
+\BK{+w}{	}\BK{c+cm}{/* create a UNIX domain stream socket */}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{p}{(}\BK{n}{fd}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{socket}\BK{p}{(}\BK{n}{AF\BKZus{}UNIX}\BK{p}{,}\BK{+w}{ }\BK{n}{SOCK\BKZus{}STREAM}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{		}\BK{k}{return}\BK{p}{(}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{c+cm}{/* fill socket address structure with our address */}
+\BK{+w}{	}\BK{n}{memset}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{un}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{un}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}family}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{AF\BKZus{}UNIX}\BK{p}{;}
+\BK{+w}{	}\BK{n}{sprintf}\BK{p}{(}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}path}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}s\BKZpc{}05d}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{CLI\BKZus{}PATH}\BK{p}{,}\BK{+w}{ }\BK{n}{getpid}\BK{p}{(}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{len}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{offsetof}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr\BKZus{}un}\BK{p}{,}\BK{+w}{ }\BK{n}{sun\BKZus{}path}\BK{p}{)}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{strlen}\BK{p}{(}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}path}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{unlink}\BK{p}{(}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}path}\BK{p}{)}\BK{p}{;}\BK{+w}{        }\BK{c+cm}{/* in case it already exists */}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{bind}\BK{p}{(}\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{o}{\BKZam{}}\BK{n}{un}\BK{p}{,}\BK{+w}{ }\BK{n}{len}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{rval}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}2}\BK{p}{;}
+\BK{+w}{		}\BK{k}{goto}\BK{+w}{ }\BK{n}{errout}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+
+\BK{+w}{	}\BK{c+cm}{/* fill socket address structure with server\BKZsq{}s address */}
+\BK{+w}{	}\BK{n}{memset}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{un}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{un}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}family}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{AF\BKZus{}UNIX}\BK{p}{;}
+\BK{+w}{	}\BK{n}{strcpy}\BK{p}{(}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}path}\BK{p}{,}\BK{+w}{ }\BK{n}{name}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{len}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{offsetof}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr\BKZus{}un}\BK{p}{,}\BK{+w}{ }\BK{n}{sun\BKZus{}path}\BK{p}{)}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{strlen}\BK{p}{(}\BK{n}{name}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{connect}\BK{p}{(}\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{o}{\BKZam{}}\BK{n}{un}\BK{p}{,}\BK{+w}{ }\BK{n}{len}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{rval}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}4}\BK{p}{;}
+\BK{+w}{		}\BK{k}{goto}\BK{+w}{ }\BK{n}{errout}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{return}\BK{p}{(}\BK{n}{fd}\BK{p}{)}\BK{p}{;}
+
+\BK{n+nl}{errout}\BK{p}{:}
+\BK{+w}{	}\BK{n}{err}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{errno}\BK{p}{;}
+\BK{+w}{	}\BK{n}{close}\BK{p}{(}\BK{n}{fd}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{errno}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{err}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{p}{(}\BK{n}{rval}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

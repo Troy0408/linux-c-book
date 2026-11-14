@@ -1,0 +1,4 @@
+$ ./a.out
+fd 0: /dev/pts/0
+fd 1: /dev/pts/0
+fd 2: /dev/pts/0

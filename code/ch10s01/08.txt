@@ -1,0 +1,9 @@
+(gdb) （直接回车）
+11	int main(void)
+12	{
+13		int result[100];
+14		result[0] = add_range(1, 10);
+15		result[1] = add_range(1, 100);
+16		printf("result[0]=%d\nresult[1]=%d\n", result[0], result[1]);
+17		return 0;
+18

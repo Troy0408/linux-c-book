@@ -1,0 +1,8 @@
+\BK{c+cm}{/* pop.c */}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{stack}\BK{p}{[}\BK{l+m+mi}{512}\BK{p}{]}\BK{p}{;}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{top}\BK{p}{;}
+
+\BK{k+kt}{char}\BK{+w}{ }\BK{n+nf}{pop}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{stack}\BK{p}{[}\BK{n}{top}\BK{o}{\BKZhy{}}\BK{o}{\BKZhy{}}\BK{p}{]}\BK{p}{;}
+\BK{p}{\BKZcb{}}

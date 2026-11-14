@@ -1,0 +1,15 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i1}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// definition, external linkage}
+\BK{k}{static}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i2}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// definition, internal linkage}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i3}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{3}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// definition, external linkage}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i4}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// tentative definition, external linkage}
+\BK{k}{static}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i5}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// tentative definition, internal linkage}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i1}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// valid tentative definition, refers to previous}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i2}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// 6.2.2 renders undefined, linkage disagreement}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i3}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// valid tentative definition, refers to previous}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i4}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// valid tentative definition, refers to previous}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i5}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// 6.2.2 renders undefined, linkage disagreement}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i1}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// refers to previous, whose linkage is external}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i2}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// refers to previous, whose linkage is internal}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i3}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// refers to previous, whose linkage is external}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i4}\BK{p}{;}\BK{+w}{ }\BK{c+c1}{// refers to previous, whose linkage is external}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i5}\BK{p}{;}\BK{+w}{ }\BK{o}{/}\BK{o}{/}\BK{+w}{ }\BK{n}{refers}\BK{+w}{ }\BK{n}{to}\BK{+w}{ }\BK{n}{previous}\BK{p}{,}\BK{+w}{ }\BK{n}{whose}\BK{+w}{ }\BK{n}{linkage}\BK{+w}{ }\BK{n}{is}\BK{+w}{ }\BK{n}{internal}

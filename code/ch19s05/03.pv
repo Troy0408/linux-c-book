@@ -1,0 +1,15 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{p}{)}\BK{+w}{ }
+\BK{p}{\BKZob{}}
+\BK{+w}{        }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{a}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{10}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{\BKZus{}\BKZus{}asm\BKZus{}\BKZus{}}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{movl \BKZpc{}1, \BKZpc{}\BKZpc{}eax}\BK{l+s+se}{\BKZbs{}n}\BK{l+s+se}{\BKZbs{}t}\BK{l+s}{\BKZdq{}}
+\BK{+w}{		}\BK{l+s}{\BKZdq{}}\BK{l+s}{movl \BKZpc{}\BKZpc{}eax, \BKZpc{}0}\BK{l+s+se}{\BKZbs{}n}\BK{l+s+se}{\BKZbs{}t}\BK{l+s}{\BKZdq{}}
+\BK{+w}{		}\BK{o}{:}\BK{l+s}{\BKZdq{}}\BK{l+s}{=r}\BK{l+s}{\BKZdq{}}\BK{p}{(}\BK{n}{b}\BK{p}{)}\BK{+w}{        }\BK{c+cm}{/* output */}
+\BK{+w}{		}\BK{o}{:}\BK{l+s}{\BKZdq{}}\BK{l+s}{r}\BK{l+s}{\BKZdq{}}\BK{p}{(}\BK{n}{a}\BK{p}{)}\BK{+w}{         }\BK{c+cm}{/* input */}
+\BK{+w}{		}\BK{o}{:}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}eax}\BK{l+s}{\BKZdq{}}\BK{+w}{         }\BK{c+cm}{/* clobbered register */}
+\BK{+w}{		}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Result: \BKZpc{}d, \BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

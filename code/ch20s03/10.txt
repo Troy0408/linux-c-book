@@ -1,0 +1,2 @@
+$ ar r libstack.a stack.o push.o pop.o is_empty.o
+$ ranlib libstack.a

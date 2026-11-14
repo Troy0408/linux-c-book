@@ -1,0 +1,4 @@
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{recurse}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{factorial}\BK{p}{(}\BK{n}{n}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{result}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{n}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{recurse}\BK{p}{;}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}

@@ -1,0 +1,2 @@
+\BK{+w}{ }\BK{n+nf}{movl}\BK{+w}{ }\BK{n+nv}{\BKZpc{}eax}\BK{p}{,}\BK{+w}{ }\BK{n+nv}{\BKZpc{}ebx}
+\BK{+w}{ }\BK{n+nf}{jmp}\BK{+w}{ }\BK{n+no}{start\BKZus{}loop}

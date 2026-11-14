@@ -1,0 +1,5 @@
+$ ldd main
+	linux-gate.so.1 =>  (0xb809c000)
+	libstack.so => /home/akaedu/somedir/libstack.so (0xb806a000)
+	libc.so.6 => /lib/tls/i686/cmov/libc.so.6 (0xb7f0c000)
+	/lib/ld-linux.so.2 (0xb8082000)

@@ -1,0 +1,8 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{absolute\BKZus{}value}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{x}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{x}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k}{return}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{n}{x}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}\BK{+w}{ }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{x}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k}{return}\BK{+w}{ }\BK{n}{x}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}

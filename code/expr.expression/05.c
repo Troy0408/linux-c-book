@@ -1,0 +1,1 @@
+printf("%d:%d is %d minutes after 00:00\n", hour, minute, total_minute = hour * 60 + minute);

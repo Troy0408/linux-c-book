@@ -1,0 +1,4 @@
+$ make clean 
+cleanning project
+rm main *.o
+clean completed

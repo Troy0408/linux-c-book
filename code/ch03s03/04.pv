@@ -1,0 +1,11 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{print\BKZus{}time}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{hour}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{minute}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d:\BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{hour}\BK{p}{,}\BK{+w}{ }\BK{n}{minute}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{h}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{23}\BK{p}{,}\BK{+w}{ }\BK{n}{m}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{59}\BK{p}{;}
+\BK{+w}{	}\BK{n}{print\BKZus{}time}\BK{p}{(}\BK{n}{h}\BK{p}{,}\BK{+w}{ }\BK{n}{m}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

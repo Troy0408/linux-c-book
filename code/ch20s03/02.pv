@@ -1,0 +1,8 @@
+\BK{c+cm}{/* push.c */}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{stack}\BK{p}{[}\BK{l+m+mi}{512}\BK{p}{]}\BK{p}{;}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{top}\BK{p}{;}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{push}\BK{p}{(}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{c}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{stack}\BK{p}{[}\BK{o}{+}\BK{o}{+}\BK{n}{top}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{c}\BK{p}{;}
+\BK{p}{\BKZcb{}}

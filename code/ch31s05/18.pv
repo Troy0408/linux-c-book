@@ -1,0 +1,10 @@
+\BK{c+ch}{\BKZsh{}! /bin/sh}
+
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{l+s+s2}{The program }\BK{n+nv}{\BKZdl{}0}\BK{l+s+s2}{ is now running}\BK{l+s+s2}{\BKZdq{}}
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{l+s+s2}{The first parameter is }\BK{n+nv}{\BKZdl{}1}\BK{l+s+s2}{\BKZdq{}}
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{l+s+s2}{The second parameter is }\BK{n+nv}{\BKZdl{}2}\BK{l+s+s2}{\BKZdq{}}
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{l+s+s2}{The parameter list is }\BK{n+nv}{\BKZdl{}@}\BK{l+s+s2}{\BKZdq{}}
+\BK{n+nb}{shift}
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{l+s+s2}{The first parameter is }\BK{n+nv}{\BKZdl{}1}\BK{l+s+s2}{\BKZdq{}}
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{l+s+s2}{The second parameter is }\BK{n+nv}{\BKZdl{}2}\BK{l+s+s2}{\BKZdq{}}
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{l+s+s2}{The parameter list is }\BK{n+nv}{\BKZdl{}@}\BK{l+s+s2}{\BKZdq{}}

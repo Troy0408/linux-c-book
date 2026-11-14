@@ -1,0 +1,4 @@
+\BK{n+nf}{main.o}\BK{o}{:}\BK{+w}{ }\BK{n}{main}.\BK{n}{c} \BK{n}{main}.\BK{n}{h} \BK{n}{stack}.\BK{n}{h} \BK{n}{maze}.\BK{n}{h}
+\BK{n+nf}{\BKZpc{}.o}\BK{o}{:}\BK{+w}{ }\BKZpc{}.\BK{n}{c}
+\BK{c}{\BKZsh{}  commands to execute (built\BKZhy{}in):}
+\BK{+w}{        }\BK{k}{\BKZdl{}(}\BK{n+nv}{COMPILE.c}\BK{k}{)}\BK{+w}{ }\BK{k}{\BKZdl{}(}\BK{n+nv}{OUTPUT\BKZus{}OPTION}\BK{k}{)}\BK{+w}{ }\BK{k}{\BKZdl{}\BKZlt{}}

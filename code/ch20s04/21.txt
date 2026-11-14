@@ -1,0 +1,10 @@
+(gdb) si
+0x080483de in push@plt ()
+(gdb) si
+0x080483e3 in push@plt ()
+(gdb) si
+0x080483a8 in ?? ()
+(gdb) si
+0x080483ae in ?? ()
+(gdb) si
+0xb806a080 in ?? () from /lib/ld-linux.so.2

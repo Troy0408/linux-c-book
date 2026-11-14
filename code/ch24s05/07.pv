@@ -1,0 +1,8 @@
+\BK{c+cm}{/* registry.h */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifndef REGISTRY\BKZus{}H}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define REGISTRY\BKZus{}H}
+
+\BK{k}{typedef}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{registry\BKZus{}t}\BK{p}{)}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{;}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{register\BKZus{}func}\BK{p}{(}\BK{n}{registry\BKZus{}t}\BK{p}{)}\BK{p}{;}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

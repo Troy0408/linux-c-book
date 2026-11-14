@@ -1,0 +1,321 @@
+
+% https://akaedu.github.io/book/ch07.html
+
+\chapter{结构体}
+\BookAnchor{db.ch07}\BookAnchor{db.ch07.id2730134}%
+
+
+\BookNav{\hyperlink{db.ch06s06}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt01}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch07s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch07s01.html
+
+\section{复合类型与结构体}
+\BookAnchor{db.ch07s01}\BookAnchor{db.ch07s01.id2730146}%
+在编程语言中，最基本的、不可再分的数据类型称为基本类型（Primitive Type）\BookAnchor{db.ch07s01.id2729520}，例如整型、浮点型；根据语法规则由基本类型组合而成的类型称为复合类型（Compound Type）\BookAnchor{db.ch07s01.id2729529}，例如字符串是由很多字符组成的。有些场合下要把复合类型当作一个整体来用，而另外一些场合下需要分解组成这个复合类型的各种基本类型，复合类型的这种两面性为数据抽象（Data Abstraction）\BookAnchor{db.ch07s01.id2729540}奠定了基础。\hyperlink{db.bi01.bibli.sicp}{[SICP]}指出，在学习一门编程语言时要特别注意以下三个方面：
+
+
+\begin{enumerate}
+
+\item 这门语言提供了哪些Primitive，比如基本类型，比如基本运算符、表达式和语句。
+
+\item 这门语言提供了哪些组合规则，比如基本类型如何组成复合类型，比如简单的表达式和语句如何组成复杂的表达式和语句。
+
+\item 这门语言提供了哪些抽象机制，包括数据抽象和过程抽象（Procedure Abstraction）\BookAnchor{db.ch07s01.id2730187}。
+\end{enumerate}
+
+
+本章以结构体为例讲解数据类型的组合和数据抽象。至于过程抽象，我们在\hyperlink{db.ch04s02.id2718511}{第 2 节 “if/\BookSplit{}else语句”}已经见过最简单的形式，就是把一组语句用一个函数名封装起来，当作一个整体使用，本章将介绍更复杂的过程抽象。
+
+
+
+现在我们用C语言表示一个复数。从直角座标系来看，复数由实部和虚部组成，从极座标系来看，复数由模和辐角组成，两种座标系可以相互转换，如下图所示：
+
+
+\BookFigure{复数}{\BookImage{images/struct.complex.png}{0.532}}{\BookAnchor{db.ch07s01.id2730217}}
+
+
+如果用实部和虚部表示一个复数，我们可以写成由两个\BookCode{double}型组成的结构体：
+
+
+\BookSource{numbers=none}{code/ch07s01/01.pv}{5}{3}
+
+
+这一句定义了标识符\BookCode{complex\_\BookSplit{}struct}（同样遵循标识符的命名规则），这种标识符在C语言中称为Tag\BookAnchor{db.ch07s01.id2730254}，\BookCode{struct complex\_\BookSplit{}struct \{ doubl\BookSplit{}e x,\BookSplit{} y;\BookSplit{} \}}整个可以看作一个类型名\BookAnchor{db.ch07s01.id2730268}\footnote[12]{\BookAnchor{db.ch07s01.ftn.id2730268}\BookFootnoteBack{db.ch07s01.id2730268}其实C99已经定义了复数类型\BookCode{\_\BookSplit{}Complex}。如果包含C标准库的头文件\BookCode{complex.\BookSplit{}h}，也可以用\BookCode{complex}做类型名。当然，只要不包含头文件\BookCode{complex.\BookSplit{}h}就可以自己定义标识符\BookCode{complex}，但为了尽量减少混淆，本章的示例代码都用\BookCode{complex\_\BookSplit{}struct}做标识符而不用\BookCode{complex}。}，就像\BookCode{int}或\BookCode{double}一样，只不过它是一个复合类型，如果用这个类型名来定义变量，可以这样写：
+
+
+\BookSource{numbers=none}{code/ch07s01/02.pv}{5}{3}
+
+
+这样\BookCode{z1}和\BookCode{z2}就是两个变量名，变量定义后面带个;号是我们早就习惯的。但即使像先前的例子那样只定义了\BookCode{complex\_\BookSplit{}struct}这个Tag而不定义变量，\}后面的;号也不能少。这点一定要注意，类型定义也是一种声明，声明都要以;号结尾，结构体类型定义的\}后面少;号是初学者常犯的错误。不管是用上面两种形式的哪一种定义了\BookCode{complex\_\BookSplit{}struct}这个Tag，以后都可以直接用\BookCode{struct complex\_\BookSplit{}struct}来代替类型名了。例如可以这样定义另外两个复数变量：
+
+
+\BookSource{numbers=none}{code/ch07s01/03.pv}{3}{1}
+
+
+如果在定义结构体类型的同时定义了变量，也可以不必写Tag，例如：
+
+
+\BookSource{numbers=none}{code/ch07s01/04.pv}{5}{3}
+
+
+但这样就没办法再次引用这个结构体类型了，因为它没有名字。每个复数变量都有两个成员（Member）\BookAnchor{db.ch07s01.id2730396}x和y，可以用.运算符（.号，Period）\BookAnchor{db.ch07s01.id2730404}来访问，这两个成员的存储空间是相邻的\BookAnchor{db.ch07s01.id2730413}\footnote[13]{\BookAnchor{db.ch07s01.ftn.id2730413}\BookFootnoteBack{db.ch07s01.id2730413}我们在\hyperlink{db.ch19s04.id2779313}{第 4 节 “结构体和联合体”}会看到，结构体成员之间也可能有若干个填充字节。}，合在一起组成复数变量的存储空间。看下面的例子：
+
+
+\BookExampleTitle{定义和访问结构体}\BookAnchor{db.ch07s01.id2730428}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch07s01/05.pv}{9}{15}
+
+
+注意上例中变量\BookCode{x}和变量\BookCode{z}的成员\BookCode{x}的名字并不冲突，因为变量\BookCode{z}的成员\BookCode{x}只能通过表达式\BookCode{z.\BookSplit{}x}来访问，编译器可以从语法上区分哪个\BookCode{x}是变量\BookCode{x}，哪个\BookCode{x}是变量\BookCode{z}的成员\BookCode{x}，\hyperlink{db.ch19s03.id2777491}{第 3 节 “变量的存储布局”}会讲到这两个标识符\BookCode{x}属于不同的命名空间。结构体Tag也可以定义在全局作用域中，这样定义的Tag在其定义之后的各函数中都可以使用。例如：
+
+
+\BookSource{numbers=none}{code/ch07s01/06.pv}{9}{7}
+
+
+结构体变量也可以在定义时初始化，例如：
+
+
+\BookSource{numbers=none}{code/ch07s01/07.pv}{3}{1}
+
+
+Initializer中的数据依次赋给结构体的各成员。如果Initializer中的数据比结构体的成员多，编译器会报错，但如果只是末尾多个逗号则不算错。如果Initializer中的数据比结构体的成员少，未指定的成员将用0来初始化，就像未初始化的全局变量一样。例如以下几种形式的初始化都是合法的：
+
+
+\BookSource{numbers=none}{code/ch07s01/08.pv}{6}{4}
+
+
+注意，\BookCode{z1}必须是局部变量才能用另一个变量\BookCode{x}的值来初始化它的成员，如果是全局变量就只能用常量表达式来初始化。这也是C99的新特性，C89只允许在\{\}中使用常量表达式来初始化，无论是初始化全局变量还是局部变量。
+
+
+
+\{\}这种语法不能用于结构体的赋值，例如这样是错误的：
+
+
+\BookSource{numbers=none}{code/ch07s01/09.pv}{4}{2}
+
+
+以前我们初始化基本类型的变量所使用的Initializer都是表达式，表达式当然也可以用来赋值，但现在这种由\{\}括起来的Initializer并不是表达式，所以不能用来赋值\BookAnchor{db.ch07s01.id2730593}\footnote[14]{\BookAnchor{db.ch07s01.ftn.id2730593}\BookFootnoteBack{db.ch07s01.id2730593}C99引入一种新的表达式语法Compound Literal\BookAnchor{db.ch07s01.id2730598}可以用来赋值，例如\BookCode{z1 =\BookSplit{} (\BookSplit{}struct complex\_\BookSplit{}struct)\BookSplit{}\{ 3.\BookSplit{}0,\BookSplit{} 4.\BookSplit{}0 \};\BookSplit{}}，本书不使用这种新语法。}。Initializer的语法总结如下：
+
+
+\begin{BookLiteral}
+\BookLiteralLine{Initializer \BookSymbol{→} 表达式}
+\BookLiteralLine{Initializer \BookSymbol{→} \{ 初始化列表 \} }
+\BookLiteralLine{初始化列表 \BookSymbol{→} Designated-Initializer, Designated-Initializer, ...}
+\BookLiteralLine{（最后一个Designated-Initializer末尾可以有一个多余的,号）}
+\BookLiteralLine{Designated-Initializer \BookSymbol{→} Initializer}
+\BookLiteralLine{Designated-Initializer \BookSymbol{→} .标识符 = Initializer}
+\BookLiteralLine{Designated-Initializer \BookSymbol{→} [常量表达式] = Initializer}
+\end{BookLiteral}
+
+
+Designated Initializer\BookAnchor{db.ch07s01.id2730636}是C99引入的新特性，用于初始化稀疏（Sparse）\BookAnchor{db.ch07s01.id2730644}结构体和稀疏数组很方便。有些时候结构体或数组中只有某一个或某几个成员需要初始化，其它成员都用0初始化即可，用Designated Initializer语法可以针对每个成员做初始化（Memberwise Initialization）\BookAnchor{db.ch07s01.id2730654}，很方便。例如：
+
+
+\BookSource{numbers=none}{code/ch07s01/10.pv}{3}{1}
+
+
+数组的Memberwise Initialization语法将在下一章介绍。
+
+
+
+结构体类型用在表达式中有很多限制，不像基本类型那么自由，比如+ - * /等算术运算符和\&\& || !等逻辑运算符都不能作用于结构体类型，\BookCode{if}语句、\BookCode{while}语句中的控制表达式的值也不能是结构体类型。严格来说，可以做算术运算的类型称为算术类型（Arithmetic Type）\BookAnchor{db.ch07s01.id2730692}，算术类型包括整型和浮点型。可以表示零和非零，可以参与逻辑与、或、非运算或者做控制表达式的类型称为标量类型（Scalar Type）\BookAnchor{db.ch07s01.id2730702}，标量类型包括算术类型和以后要讲的指针类型，详见\hyperlink{db.ch23s09.id2814014}{图 23.\BookSplit{}5 “C语言类型总结”}。
+
+
+
+结构体变量之间使用赋值运算符是允许的，用一个结构体变量初始化另一个结构体变量也是允许的，例如：
+
+
+\BookSource{numbers=none}{code/ch07s01/11.pv}{5}{3}
+
+
+同样地，\BookCode{z2}必须是局部变量才能用变量\BookCode{z1}的值来初始化。既然结构体变量之间可以相互赋值和初始化，也就可以当作函数的参数和返回值来传递：
+
+
+\BookSource{numbers=none}{code/ch07s01/12.pv}{8}{6}
+
+
+这个函数实现了两个复数相加，如果在\BookCode{main}函数中这样调用：
+
+
+\BookSource{numbers=none}{code/ch07s01/13.pv}{4}{2}
+
+
+那么调用传参的过程如下图所示：
+
+
+\BookFigure{结构体传参}{\BookImage{images/struct.parameter.png}{0.342}}{\BookAnchor{db.ch07s01.id2730772}}
+
+
+变量\BookCode{z}在\BookCode{main}函数的栈帧上，参数\BookCode{z1}和\BookCode{z2}在\BookCode{add\_\BookSplit{}complex}函数的栈帧上，\BookCode{z}的值分别赋给\BookCode{z1}和\BookCode{z2}。在这个函数里，\BookCode{z2}的实部和虚部被累加到\BookCode{z1}中，然后\BookCode{return z1;\BookSplit{}}可以看成是：
+
+
+\begin{enumerate}
+
+\item 用\BookCode{z1}初始化一个临时变量。
+
+\item 函数返回并释放栈帧。
+
+\item 把临时变量的值赋给变量\BookCode{z}，释放临时变量。
+\end{enumerate}
+
+
+由.运算符组成的表达式能不能做左值取决于.运算符左边的表达式能不能做左值。在上面的例子中，\BookCode{z}是一个变量，可以做左值，因此表达式\BookCode{z.\BookSplit{}x}也可以做左值，但表达式\BookCode{add\_\BookSplit{}complex(\BookSplit{}z,\BookSplit{} z)\BookSplit{}.\BookSplit{}x}只能做右值而不能做左值，因为表达式\BookCode{add\_\BookSplit{}complex(\BookSplit{}z,\BookSplit{} z)\BookSplit{}}不能做左值。
+
+\BookNav{\hyperlink{db.ch07}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch07}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch07s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch07s02.html
+
+\section{数据抽象}
+\BookAnchor{db.ch07s02}\BookAnchor{db.ch07s02.id2730921}%
+现在我们来实现一个完整的复数运算程序。在上一节我们已经定义了复数的结构体类型，现在需要围绕它定义一些函数。复数可以用直角座标或极座标表示，直角座标做加减法比较方便，极座标做乘除法比较方便。如果我们定义的复数结构体是直角座标的，那么应该提供极座标的转换函数，以便在需要的时候可以方便地取它的模和辐角：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch07s02/01.pv}{9}{25}
+
+
+此外，我们还提供两个函数用来构造复数变量，既可以提供直角座标也可以提供极座标，在函数中自动做相应的转换然后返回构造的复数变量：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch07s02/02.pv}{9}{15}
+
+
+在此基础上就可以实现复数的加减乘除运算了：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch07s02/03.pv}{9}{23}
+
+
+可以看出，复数加减乘除运算的实现并没有直接访问结构体\BookCode{complex\_\BookSplit{}struct}的成员\BookCode{x}和\BookCode{y}，而是把它看成一个整体，通过调用相关函数来取它的直角座标和极座标。这样就可以非常方便地替换掉结构体\BookCode{complex\_\BookSplit{}struct}的存储表示，例如改为用极座标来存储：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch07s02/04.pv}{9}{40}
+
+
+虽然结构体\BookCode{complex\_\BookSplit{}struct}的存储表示做了这样的改动，\BookCode{add\_\BookSplit{}complex}、\BookCode{sub\_\BookSplit{}complex}、\BookCode{mul\_\BookSplit{}complex}、\BookCode{div\_\BookSplit{}complex}这几个复数运算的函数却不需要做任何改动，仍然可以用，原因在于这几个函数只把结构体\BookCode{complex\_\BookSplit{}struct}当作一个整体来使用，而没有直接访问它的成员，因此也不依赖于它有哪些成员。我们结合下图具体分析一下。
+
+
+\BookFigure{数据抽象}{\BookImage{images/struct.abstraction.png}{0.702}}{\BookAnchor{db.ch07s02.id2731079}}
+
+
+这里是一种抽象的思想。其实“抽象”这个概念并没有那么抽象，简单地说就是“提取公因式”：ab+\BookSplit{}ac=\BookSplit{}a(b+\BookSplit{}c)。如果a变了，ab和ac这两项都需要改，但如果写成a(b+\BookSplit{}c)的形式就只需要改其中一个因子。
+
+
+
+在我们的复数运算程序中，复数有可能用直角座标或极座标来表示，我们把这个有可能变动的因素提取出来组成复数存储表示层：\BookCode{real\_\BookSplit{}part}、\BookCode{img\_\BookSplit{}part}、\BookCode{magnitude}、\BookCode{angle}、\BookCode{make\_\BookSplit{}from\_\BookSplit{}real\_\BookSplit{}img}、\BookCode{make\_\BookSplit{}from\_\BookSplit{}mag\_\BookSplit{}ang}。这一层看到的数据是结构体的两个成员\BookCode{x}和\BookCode{y}，或者\BookCode{r}和\BookCode{A}，如果改变了结构体的实现就要改变这一层函数的实现，但函数接口不改变，因此调用这一层函数接口的复数运算层也不需要改变。复数运算层看到的数据只是一个抽象的“复数”的概念，知道它有直角座标和极座标，可以调用复数存储表示层的函数得到这些座标。再往上看，其它使用复数运算的程序看到的数据是一个更为抽象的“复数”的概念，只知道它是一个数，像整数、小数一样可以加减乘除，甚至连它有直角座标和极座标也不需要知道。
+
+
+
+这里的复数存储表示层和复数运算层称为抽象层（Abstraction Layer）\BookAnchor{db.ch07s02.id2731193}，从底层往上层来看，复数越来越抽象了，把所有这些层组合在一起就是一个完整的系统。\emph{组合使得系统可以任意复杂，而抽象使得系统的复杂性是可以控制的，任何改动都只局限在某一层，而不会波及整个系统}。著名的计算机科学家Butler Lampson说过：“All problems in computer science can be solved by another level of indirection.\BookSplit{}”这里的indirection其实就是abstraction的意思。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch07s02.id2731216}%
+
+
+1、在本节的基础上实现一个打印复数的函数，打印的格式是x+\BookSplit{}yi，如果实部或虚部为0则省略，例如：1.\BookSplit{}0、-2.\BookSplit{}0i、-1.\BookSplit{}0+\BookSplit{}2.\BookSplit{}0i、1.\BookSplit{}0-2.\BookSplit{}0i。最后编写一个\BookCode{main}函数测试本节的所有代码。想一想这个打印函数应该属于上图中的哪一层？
+
+
+
+2、实现一个用分子分母的格式来表示有理数的结构体\BookCode{rational}以及相关的函数，\BookCode{rational}结构体之间可以做加减乘除运算，运算的结果仍然是\BookCode{rational}。测试代码如下：
+
+
+\BookSource{numbers=none}{code/ch07s02/05.pv}{9}{11}
+
+
+注意要约分为最简分数，例如1/\BookSplit{}8和-1/\BookSplit{}8相减的打印结果应该是1/\BookSplit{}4而不是2/\BookSplit{}8，可以利用\hyperlink{db.ch05s03.id2722951}{第 3 节 “递归”}练习题中的Euclid算法来约分。在动手编程之前先思考一下这个问题实现了什么样的数据抽象，抽象层应该由哪些函数组成。
+
+\BookNav{\hyperlink{db.ch07s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch07}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch07s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch07s03.html
+
+\section{数据类型标志}
+\BookAnchor{db.ch07s03}\BookAnchor{db.ch07s03.id2731288}%
+在上一节中，我们通过一个复数存储表示抽象层把\BookCode{complex\_\BookSplit{}struct}结构体的存储格式和上层的复数运算函数隔开，\BookCode{complex\_\BookSplit{}struct}结构体既可以采用直角座标也可以采用极座标存储。但有时候需要同时支持两种存储格式，比如先前已经采集了一些数据存在计算机中，有些数据是以极座标存储的，有些数据是以直角座标存储的，如果要把这些数据都存到\BookCode{complex\_\BookSplit{}struct}结构体中怎么办？一种办法是规定\BookCode{complex\_\BookSplit{}struct}结构体采用直角座标格式，直角座标的数据可以直接存入\BookCode{complex\_\BookSplit{}struct}结构体，而极座标的数据先转成直角座标再存，但由于浮点数的精度有限，转换总是会损失精度的。这里介绍另一种办法，\BookCode{complex\_\BookSplit{}struct}结构体由一个数据类型标志和两个浮点数组成，如果数据类型标志为0，那么两个浮点数就表示直角座标，如果数据类型标志为1，那么两个浮点数就表示极座标。这样，直角座标和极座标的数据都可以适配（Adapt）\BookAnchor{db.ch07s03.id2731350}到\BookCode{complex\_\BookSplit{}struct}结构体中，无需转换和损失精度：
+
+
+\BookSource{numbers=none}{code/ch07s03/01.pv}{7}{5}
+
+
+\BookCode{enum}关键字的作用和\BookCode{struct}关键字类似，把\BookCode{coordinate\_\BookSplit{}type}这个标识符定义为一个Tag，\BookCode{struct complex\_\BookSplit{}struct}表示一个结构体类型，而\BookCode{enum coordinat\BookSplit{}e\_\BookSplit{}type}表示一个枚举（Enumeration）\BookAnchor{db.ch07s03.id2731404}类型。枚举类型的成员是常量，它们的值由编译器自动分配，例如定义了上面的枚举类型之后，\BookCode{RECTANGULAR}就表示常量0，\BookCode{POLAR}表示常量1。如果不希望从0开始分配，可以这样定义：
+
+
+\BookPlain{code/ch07s03/02.txt}{3}{1}
+
+
+这样，\BookCode{RECTANGULAR}就表示常量1，而\BookCode{POLAR}表示常量2。枚举常量也是一种整型，其值在编译时确定，因此也可以出现在常量表达式中，可以用于初始化全局变量或者作为\BookCode{case}分支的判断条件。
+
+
+
+有一点需要注意，虽然结构体的成员名和变量名不在同一命名空间中，但枚举的成员名却和变量名在同一命名空间中，所以会出现命名冲突。例如这样是不合法的：
+
+
+\BookSource{numbers=none}{code/ch07s03/03.pv}{9}{7}
+
+
+\BookCode{complex\_\BookSplit{}struct}结构体的格式变了，就需要修改复数存储表示层的函数，但只要保持函数接口不变就不会影响到上层函数。例如：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch07s03/04.pv}{9}{17}
+
+\subsection*{习题}
+\BookAnchor{db.ch07s03.id2731481}%
+
+
+1、本节只给出了\BookCode{make\_\BookSplit{}from\_\BookSplit{}real\_\BookSplit{}img}和\BookCode{make\_\BookSplit{}from\_\BookSplit{}mag\_\BookSplit{}ang}函数的实现，请读者自己实现\BookCode{real\_\BookSplit{}part}、\BookCode{img\_\BookSplit{}part}、\BookCode{magnitude}、\BookCode{angle}这些函数。
+
+
+
+2、编译运行下面这段程序：
+
+
+\BookSource{numbers=none}{code/ch07s03/05.pv}{9}{10}
+
+
+结果是什么？并解释一下为什么是这样的结果。
+
+\BookNav{\hyperlink{db.ch07s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch07}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch07s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch07s04.html
+
+\section{嵌套结构体}
+\BookAnchor{db.ch07s04}\BookAnchor{db.ch07s04.id2731550}%
+结构体也是一种递归定义：结构体的成员具有某种数据类型，而结构体本身也是一种数据类型。换句话说，结构体的成员可以是另一个结构体，即结构体可以嵌套定义。例如我们在复数的基础上定义复平面上的线段：
+
+
+\BookSource{numbers=none}{code/ch07s04/01.pv}{6}{4}
+
+
+从\hyperlink{db.ch07s01.id2730146}{第 1 节 “复合类型与结构体”}讲的Initializer的语法可以看出，Initializer也可以嵌套，因此嵌套结构体可以嵌套地初始化，例如：
+
+
+\BookSource{numbers=none}{code/ch07s04/02.pv}{3}{1}
+
+
+也可以平坦（Flat）\BookAnchor{db.ch07s04.id2731587}地初始化。例如：
+
+
+\BookSource{numbers=none}{code/ch07s04/03.pv}{3}{1}
+
+
+甚至可以把两种方式混合使用（这样可读性很差，应该避免）：
+
+
+\BookSource{numbers=none}{code/ch07s04/04.pv}{3}{1}
+
+
+利用C99的新特性也可以做Memberwise Initialization，例如\BookAnchor{db.ch07s04.id2731613}\footnote[15]{\BookAnchor{db.ch07s04.ftn.id2731613}\BookFootnoteBack{db.ch07s04.id2731613}为了便于理解，\hyperlink{db.ch07s01.id2730146}{第 1 节 “复合类型与结构体”}讲的Initializer语法并没有描述这种复杂的用法。}：
+
+
+\BookSource{numbers=none}{code/ch07s04/05.pv}{3}{1}
+
+
+访问嵌套结构体的成员要用到多个.运算符，例如：
+
+
+\BookPlain{code/ch07s04/06.txt}{5}{3}
+
+\BookNav{\hyperlink{db.ch07s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch07}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch08}{下一页}}

@@ -1,0 +1,14 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{cond}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* bool variable indicating error condition */}
+\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{出现错误条件}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{			}\BK{n}{cond}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{			}\BK{k}{break}\BK{p}{;}
+\BK{+w}{		}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{cond}\BK{p}{)}
+\BK{+w}{		}\BK{k}{break}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{cond}\BK{p}{)}
+\BK{+w}{	}\BK{n}{出错处理}\BK{p}{;}

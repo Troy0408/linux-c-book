@@ -1,0 +1,27 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{binarysearch}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{number}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{mid}\BK{p}{,}\BK{+w}{ }\BK{n}{start}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{n}{end}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{LEN}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+
+\BK{+w}{	}\BK{c+cm}{/* 假定a是排好序的 */}
+\BK{+w}{	}\BK{c+cm}{/* mustbe(start, end, number)，因为a[start..end]就是整个数组a[0..LEN\BKZhy{}1] */}
+\BK{+w}{	}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{start}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{o}{=}\BK{+w}{ }\BK{n}{end}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{c+cm}{/* mustbe(start, end, number)，因为一开始进入循环时是正确的，每次循环也都维护了这个条件 */}
+\BK{+w}{		}\BK{n}{mid}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{(}\BK{n}{start}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{end}\BK{p}{)}\BK{+w}{ }\BK{o}{/}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{;}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{a}\BK{p}{[}\BK{n}{mid}\BK{p}{]}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{number}\BK{p}{)}
+\BK{+w}{			}\BK{c+cm}{/* 既然a是排好序的，a[start..mid]应该都比number小，所以mustbe(mid+1, end, number) */}
+\BK{+w}{			}\BK{n}{start}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{mid}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{			}\BK{c+cm}{/* 维护了mustbe(start, end, number) */}
+\BK{+w}{		}\BK{k}{else}\BK{+w}{ }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{a}\BK{p}{[}\BK{n}{mid}\BK{p}{]}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{n}{number}\BK{p}{)}
+\BK{+w}{			}\BK{c+cm}{/* 既然a是排好序的，a[mid..end]应该都比number大，所以mustbe(start, mid\BKZhy{}1, number) */}
+\BK{+w}{			}\BK{n}{end}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{mid}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{			}\BK{c+cm}{/* 维护了mustbe(start, end, number) */}
+\BK{+w}{		}\BK{k}{else}
+\BK{+w}{			}\BK{c+cm}{/* a[mid] == number，说明找到了 */}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BK{n}{mid}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{c+cm}{/* }
+\BK{c+cm}{	 * mustbe(start, end, number)一直被循环维护着，到这里应该仍然成立，在a[start..end]范围之外一定不存在number，}
+\BK{c+cm}{	 * 但现在a[start..end]是空序列，在这个范围之外的正是整个数组a，因此整个数组a中都不存在number}
+\BK{c+cm}{	 */}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}1}\BK{p}{;}
+\BK{p}{\BKZcb{}}

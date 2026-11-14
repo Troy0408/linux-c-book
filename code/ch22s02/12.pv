@@ -1,0 +1,5 @@
+\BK{n+nf}{target1}\BK{o}{:}\BK{+w}{ }\BK{n}{prerequisite}1 \BK{n}{prerequisite}2
+\BK{+w}{	}\BK{n+nb}{command}\BK{+w}{ }prerequisite1\BK{+w}{ }\BKZhy{}o\BK{+w}{ }target1
+
+\BK{n+nf}{target2}\BK{o}{:}\BK{+w}{ }\BK{n}{prerequisite}1 \BK{n}{prerequisite}2
+\BK{+w}{	}\BK{err}{c}\BK{err}{o}\BK{err}{m}\BK{err}{m}\BK{err}{a}\BK{err}{n}\BK{err}{d}\BK{+w}{ }\BK{err}{p}\BK{err}{r}\BK{err}{e}\BK{err}{r}\BK{err}{e}\BK{err}{q}\BK{err}{u}\BK{err}{i}\BK{err}{s}\BK{err}{i}\BK{err}{t}\BK{err}{e}\BK{err}{1}\BK{+w}{ }\BK{err}{\BKZhy{}}\BK{err}{o}\BK{+w}{ }\BK{err}{t}\BK{err}{a}\BK{err}{r}\BK{err}{g}\BK{err}{e}\BK{err}{t}\BK{err}{2}

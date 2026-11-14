@@ -1,0 +1,37 @@
+$ gcc -shared -o libstack.so stack.o push.o pop.o is_empty.o
+$ objdump -dS libstack.so
+...
+0000047c <push>:
+/* push.c */
+extern char stack[512];
+extern int top;
+
+void push(char c)
+{
+ 47c:	55                   	push   %ebp
+ 47d:	89 e5                	mov    %esp,%ebp
+ 47f:	53                   	push   %ebx
+ 480:	83 ec 04             	sub    $0x4,%esp
+ 483:	e8 ef ff ff ff       	call   477 <__i686.get_pc_thunk.bx>
+ 488:	81 c3 6c 1b 00 00    	add    $0x1b6c,%ebx
+ 48e:	8b 45 08             	mov    0x8(%ebp),%eax
+ 491:	88 45 f8             	mov    %al,-0x8(%ebp)
+	stack[++top] = c;
+ 494:	8b 83 f4 ff ff ff    	mov    -0xc(%ebx),%eax
+ 49a:	8b 00                	mov    (%eax),%eax
+ 49c:	8d 50 01             	lea    0x1(%eax),%edx
+ 49f:	8b 83 f4 ff ff ff    	mov    -0xc(%ebx),%eax
+ 4a5:	89 10                	mov    %edx,(%eax)
+ 4a7:	8b 83 f4 ff ff ff    	mov    -0xc(%ebx),%eax
+ 4ad:	8b 08                	mov    (%eax),%ecx
+ 4af:	8b 93 f8 ff ff ff    	mov    -0x8(%ebx),%edx
+ 4b5:	0f b6 45 f8          	movzbl -0x8(%ebp),%eax
+ 4b9:	88 04 0a             	mov    %al,(%edx,%ecx,1)
+}
+ 4bc:	83 c4 04             	add    $0x4,%esp
+ 4bf:	5b                   	pop    %ebx
+ 4c0:	5d                   	pop    %ebp
+ 4c1:	c3                   	ret    
+ 4c2:	90                   	nop    
+ 4c3:	90                   	nop    
+...

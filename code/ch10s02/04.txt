@@ -1,0 +1,9 @@
+(gdb) display sum
+1: sum = -1208103488
+(gdb) n
+9			scanf("%s", input);
+1: sum = 0
+(gdb) 
+123
+10			for (i = 0; input[i] != '\0'; i++)
+1: sum = 0

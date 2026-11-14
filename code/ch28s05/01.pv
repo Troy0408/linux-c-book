@@ -1,0 +1,4 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/types.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+
+\BK{k+kt}{off\BKZus{}t}\BK{+w}{ }\BK{n+nf}{lseek}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{off\BKZus{}t}\BK{+w}{ }\BK{n}{offset}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{whence}\BK{p}{)}\BK{p}{;}

@@ -1,0 +1,10 @@
+__pycache__/
+.venv/
+output/.build/
+main.aux
+main.fdb_latexmk
+main.fls
+main.log
+main.synctex*
+main.toc
+missfont.log

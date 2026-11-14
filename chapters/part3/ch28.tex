@@ -1,0 +1,608 @@
+
+% https://akaedu.github.io/book/ch28.html
+
+\chapter{文件与I/O}
+\BookAnchor{db.ch28}\BookAnchor{db.ch28.id2850161}%
+从本章开始学习各种Linux系统函数，这些函数的用法必须结合Linux内核的工作原理来理解，因为系统函数正是内核提供给应用程序的接口，而要理解内核的工作原理，必须熟练掌握C语言，因为内核也是用C语言写的，我们在描述内核工作原理时必然要用“指针”、“结构体”、“链表”这些名词来组织语言，就像只有掌握了英语才能看懂英文书一样，只有学好了C语言才能看懂我描述的内核工作原理。读者看到这里应该已经熟练掌握了C语言了，所以应该有一个很好的起点了。我们在介绍C标准库时并不试图把所有库函数讲一遍，而是通过介绍一部分常用函数让读者把握库函数的基本用法，在掌握了方法之后，书上没讲的库函数读者应该自己查Man Page学会使用。同样，本书的第三部分也并不试图把所有的系统函数讲一遍，而是通过介绍一部分系统函数让读者理解操作系统各部分的工作原理，在有了这个基础之后就应该能够看懂Man Page学习其它系统函数的用法。
+
+
+
+读者可以结合\hyperlink{db.bi01.bibli.apue}{[APUE2e]}学习本书的第三部分，该书在讲解系统函数方面更加全面，但对于内核工作原理涉及得不够深入，而且假定读者具有一定的操作系统基础知识，所以并不适合初学者。该书还有一点非常不适合初学者，作者不辞劳苦，在N多种UNIX系统上做了实验，分析了它们的内核代码，把每个系统函数在各种UNIX系统上的不兼容特性总结得非常详细，很多开发者需要编写可移植的应用程序，一定爱死他了，但初学者看了大段大段的这种描述（某某函数在4.\BookSplit{}2BSD上怎么样，到4.\BookSplit{}4BSD又改成怎么样了，在SVR4上怎么样，到Solaris又改成怎么样了，现在POSIX标准是怎么统一的，还有哪些系统没有完全遵守POSIX标准）只会一头雾水，不看倒还明白，越看越不明白了。也正因为该书要兼顾各种UNIX系统，所以没法深入讲解内核的工作原理，因为每种UNIX系统的内核都不一样。而本书的侧重点则不同，只讲Linux平台的特性，只讲Linux内核的工作原理，涉及体系结构时只讲x86平台，对于初学者来说，绑定到一个明确的平台上学习就不会觉得太抽象了。当然本书的代码也会尽量兼顾可移植性，避免依赖于Linux平台特有的一些特性。
+
+\BookNav{\hyperlink{db.pt03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt03}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch28s01.html
+
+\section{汇编程序的Hello world}
+\BookAnchor{db.ch28s01}\BookAnchor{db.ch28s01.id2850246}%
+之前我们学习了如何用C标准I/\BookSplit{}O库读写文件，本章详细讲解这些I/\BookSplit{}O操作是怎么实现的。所有I/\BookSplit{}O操作最终都是在内核中做的，以前我们用的C标准I/\BookSplit{}O库函数最终也是通过系统调用把I/\BookSplit{}O操作从用户空间传给内核，然后让内核去做I/\BookSplit{}O操作，本章和下一章会介绍内核中I/\BookSplit{}O子系统的工作原理。首先看一个打印Hello world的汇编程序，了解I/\BookSplit{}O操作是怎样通过系统调用传给内核的。
+
+
+\BookExampleTitle{汇编程序的Hello world}\BookAnchor{db.ch28s01.id2850272}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch28s01/01.pv}{9}{27}
+
+
+像以前一样，汇编、链接、运行：
+
+
+\BookTerminal{code/ch28s01/02.txt}{6}{4}
+
+
+这段汇编相当于以下C代码：
+
+
+\BookSource{numbers=none}{code/ch28s01/03.pv}{9}{10}
+
+
+\BookCode{.\BookSplit{}data}段有一个标号\BookCode{msg}，代表字符串\BookCode{\BookQuoteChar{}Hello,\BookSplit{} world!\textbackslash{}n\BookQuoteChar{}}的首地址，相当于C程序的一个全局变量。注意在C语言中字符串的末尾隐含有一个\BookCode{'\textbackslash{}0'}，而汇编指示\BookCode{.\BookSplit{}ascii}定义的字符串末尾没有隐含的\BookCode{'\textbackslash{}0'}。汇编程序中的\BookCode{len}代表一个常量，它的值由当前地址减去符号\BookCode{msg}所代表的地址得到，换句话说就是字符串\BookCode{\BookQuoteChar{}Hello,\BookSplit{} world!\textbackslash{}n\BookQuoteChar{}}的长度。现在解释一下这行代码中的“.”，汇编器总是从前到后把汇编代码转换成目标文件，在这个过程中维护一个地址计数器，当处理到每个段的开头时把地址计数器置成0，然后每处理一条汇编指示或指令就把地址计数器增加相应的字节数，在汇编程序中用“.”可以取出当前地址计数器的值，该值是一个常量。
+
+
+
+在\BookCode{\_\BookSplit{}start}中调了两个系统调用，第一个是\BookCode{write}系统调用，第二个是以前讲过的\BookCode{\_\BookSplit{}exit}系统调用。在调\BookCode{write}系统调用时，\BookCode{eax}寄存器保存着\BookCode{write}的系统调用号4，\BookCode{ebx}、\BookCode{ecx}、\BookCode{edx}寄存器分别保存着\BookCode{write}系统调用需要的三个参数。\BookCode{ebx}保存着文件描述符，进程中每个打开的文件都用一个编号来标识，称为文件描述符，文件描述符1表示标准输出，对应于C标准I/\BookSplit{}O库的\BookCode{stdout}。\BookCode{ecx}保存着输出缓冲区的首地址。\BookCode{edx}保存着输出的字节数。\BookCode{write}系统调用把从\BookCode{msg}开始的\BookCode{len}个字节写到标准输出。
+
+
+
+C代码中的\BookCode{write}函数是系统调用的包装函数，其内部实现就是把传进来的三个参数分别赋给\BookCode{ebx}、\BookCode{ecx}、\BookCode{edx}寄存器，然后执行\BookCode{movl \$4,\BookSplit{}\%eax}和\BookCode{int \$0x80}两条指令。这个函数不可能完全用C代码来写，因为任何C代码都不会编译生成\BookCode{int}指令，所以这个函数有可能是完全用汇编写的，也可能是用C内联汇编写的，甚至可能是一个宏定义（省了参数入栈出栈的步骤）。\BookCode{\_\BookSplit{}exit}函数也是如此，我们讲过这些系统调用的包装函数位于Man Page的第2个Section。
+
+\BookNav{\hyperlink{db.ch28}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch28s02.html
+
+\section{C标准I/O库函数与Unbuffered I/O函数}
+\BookAnchor{db.ch28s02}\BookAnchor{db.ch28s02.id2850574}%
+现在看看C标准I/\BookSplit{}O库函数是如何用系统调用实现的。
+
+
+\begin{description}
+\item[{\BookCode{fopen(\BookSplit{}3)\BookSplit{}}}]
+
+
+调用\BookCode{open(\BookSplit{}2)\BookSplit{}}打开指定的文件，返回一个文件描述符（就是一个\BookCode{int}类型的编号），分配一个\BookCode{FILE}结构体，其中包含该文件的描述符、I/\BookSplit{}O缓冲区和当前读写位置等信息，返回这个\BookCode{FILE}结构体的地址。
+
+\item[{\BookCode{fgetc(\BookSplit{}3)\BookSplit{}}}]
+
+
+通过传入的\BookCode{FILE *}参数找到该文件的描述符、I/\BookSplit{}O缓冲区和当前读写位置，判断能否从I/\BookSplit{}O缓冲区中读到下一个字符，如果能读到就直接返回该字符，否则调用\BookCode{read(\BookSplit{}2)\BookSplit{}}，把文件描述符传进去，让内核读取该文件的数据到I/\BookSplit{}O缓冲区，然后返回下一个字符。注意，对于C标准I/\BookSplit{}O库来说，打开的文件由\BookCode{FILE *}指针标识，而对于内核来说，打开的文件由文件描述符标识，文件描述符从\BookCode{open}系统调用获得，在使用\BookCode{read}、\BookCode{write}、\BookCode{close}系统调用时都需要传文件描述符。
+
+\item[{\BookCode{fputc(\BookSplit{}3)\BookSplit{}}}]
+
+
+判断该文件的I/\BookSplit{}O缓冲区是否有空间再存放一个字符，如果有空间则直接保存在I/\BookSplit{}O缓冲区中并返回，如果I/\BookSplit{}O缓冲区已满就调用\BookCode{write(\BookSplit{}2)\BookSplit{}}，让内核把I/\BookSplit{}O缓冲区的内容写回文件。
+
+\item[{\BookCode{fclose(\BookSplit{}3)\BookSplit{}}}]
+
+
+如果I/\BookSplit{}O缓冲区中还有数据没写回文件，就调用\BookCode{write(\BookSplit{}2)\BookSplit{}}写回文件，然后调用\BookCode{close(\BookSplit{}2)\BookSplit{}}关闭文件，释放\BookCode{FILE}结构体和I/\BookSplit{}O缓冲区。
+
+
+\end{description}
+
+
+以写文件为例，C标准I/\BookSplit{}O库函数（\BookCode{printf(\BookSplit{}3)\BookSplit{}}、\BookCode{putchar(\BookSplit{}3)\BookSplit{}}、\BookCode{fputs(\BookSplit{}3)\BookSplit{}}）与系统调用\BookCode{write(\BookSplit{}2)\BookSplit{}}的关系如下图所示。
+
+
+\BookFigure{库函数与系统调用的层次关系}{\BookImage{images/io.syscall.png}{0.455}}{\BookAnchor{db.ch28s02.id2850782}}
+
+
+\BookCode{open}、\BookCode{read}、\BookCode{write}、\BookCode{close}等系统函数称为无缓冲I/\BookSplit{}O（Unbuffered I/\BookSplit{}O）\BookAnchor{db.ch28s02.id2850820}函数，因为它们位于C标准库的I/\BookSplit{}O缓冲区的底层\BookAnchor{db.ch28s02.id2850829}\footnote[36]{\BookAnchor{db.ch28s02.ftn.id2850829}\BookFootnoteBack{db.ch28s02.id2850829}事实上Unbuffered I/O这个名词是有些误导的，虽然\BookCode{write}系统调用位于C标准库I/O缓冲区的底层，但在\BookCode{write}的底层也可以分配一个内核I/O缓冲区，所以\BookCode{write}也不一定是直接写到文件的，也可能写到内核I/O缓冲区中，至于究竟写到了文件中还是内核缓冲区中对于进程来说是没有差别的，如果进程A和进程B打开同一文件，进程A写到内核I/O缓冲区中的数据从进程B也能读到，而C标准库的I/O缓冲区则不具有这一特性（想一想为什么）。}。用户程序在读写文件时既可以调用C标准I/\BookSplit{}O库函数，也可以直接调用底层的Unbuffered I/\BookSplit{}O函数，那么用哪一组函数好呢？
+
+
+\begin{itemize}
+
+\item 用Unbuffered I/\BookSplit{}O函数每次读写都要进内核，调一个系统调用比调一个用户空间的函数要慢很多，所以在用户空间开辟I/\BookSplit{}O缓冲区还是必要的，用C标准I/\BookSplit{}O库函数就比较方便，省去了自己管理I/\BookSplit{}O缓冲区的麻烦。
+
+\item 用C标准I/\BookSplit{}O库函数要时刻注意I/\BookSplit{}O缓冲区和实际文件有可能不一致，在必要时需调用\BookCode{fflush(\BookSplit{}3)\BookSplit{}}。
+
+\item 我们知道UNIX的传统是Everything is a file，I/\BookSplit{}O函数不仅用于读写常规文件，也用于读写设备，比如终端或网络设备。在读写设备时通常是不希望有缓冲的，例如向代表网络设备的文件写数据就是希望数据通过网络设备发送出去，而不希望只写到缓冲区里就算完事儿了，当网络设备接收到数据时应用程序也希望第一时间被通知到，所以网络编程通常直接调用Unbuffered I/\BookSplit{}O函数。
+\end{itemize}
+
+
+C标准库函数是C标准的一部分，而Unbuffered I/\BookSplit{}O函数是UNIX标准的一部分，在所有支持C语言的平台上应该都可以用C标准库函数（除了有些平台的C编译器没有完全符合C标准之外），而只有在UNIX平台上才能使用Unbuffered I/\BookSplit{}O函数，所以C标准I/\BookSplit{}O库函数在头文件\BookCode{stdio.\BookSplit{}h}中声明，而\BookCode{read}、\BookCode{write}等函数在头文件\BookCode{unistd.\BookSplit{}h}中声明。在支持C语言的非UNIX操作系统上，标准I/\BookSplit{}O库的底层可能由另外一组系统函数支持，例如Windows系统的底层是Win32 API，其中读写文件的系统函数是\BookCode{ReadFile}、\BookCode{WriteFile}。
+
+
+\begin{BookNote}
+\BookNoteTitle{关于UNIX标准}
+
+
+POSIX（Portable Operating System Interface）\BookAnchor{db.ch28s02.id2850084}是由IEEE制定的标准，致力于统一各种UNIX系统的接口，促进各种UNIX系统向互相兼容的发向发展。IEEE 1003.\BookSplit{}1\BookAnchor{db.ch28s02.id2850095}（也称为POSIX.\BookSplit{}1\BookAnchor{db.ch28s02.id2850105}）定义了UNIX系统的函数接口，既包括C标准库函数，也包括系统调用和其它UNIX库函数。POSIX.\BookSplit{}1只定义接口而不定义实现，所以并不区分一个函数是库函数还是系统调用，至于哪些函数在用户空间实现，哪些函数在内核中实现，由操作系统的开发者决定，各种UNIX系统都不太一样。IEEE 1003.\BookSplit{}2定义了Shell的语法和各种基本命令的选项等。本书的第三部分不仅讲解基本的系统函数接口，也顺带讲解Shell、基本命令、帐号和权限以及系统管理的基础知识，这些内容合在一起定义了UNIX系统的基本特性。
+
+
+
+在UNIX的发展历史上主要分成BSD和SYSV两个派系，各自实现了很多不同的接口，比如BSD的网络编程接口是socket，而SYSV的网络编程接口是基于STREAMS的TLI。POSIX在统一接口的过程中，有些接口借鉴BSD的，有些接口借鉴SYSV的，还有些接口既不是来自BSD也不是来自SYSV，而是凭空发明出来的（例如本书要讲的pthread库就属于这种情况），通过Man Page的\emph{COMFORMING TO}部分可以看出来一个函数接口属于哪种情况。Linux的源代码是完全从头编写的，并不继承BSD或SYSV的源代码，没有历史的包袱，所以能比较好地遵照POSIX标准实现，既有BSD的特性也有SYSV的特性，此外还有一些Linux特有的特性，比如\BookCode{epoll(\BookSplit{}7)\BookSplit{}}，依赖于这些接口的应用程序是不可移植的，但在Linux系统上运行效率很高。
+
+
+
+POSIX定义的接口有些规定是必须实现的，而另外一些是可以选择实现的。有些非UNIX系统也实现了POSIX中必须实现的部分，那么也可以声称自己是POSIX兼容的，然而要想声称自己是UNIX，还必须要实现一部分在POSIX中规定为可选实现的接口，这由另外一个标准SUS（Single UNIX Specification）\BookAnchor{db.ch28s02.id2851208}规定。SUS是POSIX的超集，一部分在POSIX中规定为可选实现的接口在SUS中规定为必须实现，完整实现了这些接口的系统称为XSI（X/\BookSplit{}Open System Interface）\BookAnchor{db.ch28s02.id2851219}兼容的。SUS标准由The Open Group\BookAnchor{db.ch28s02.id2851228}维护，该组织拥有UNIX的注册商标（\url{http://www.unix.org/}），XSI兼容的系统可以从该组织获得授权使用UNIX这个商标。
+
+\end{BookNote}
+
+
+现在该说说文件描述符了。每个进程在Linux内核中都有一个\BookCode{task\_\BookSplit{}struct}结构体来维护进程相关的信息，称为进程描述符（Process Descriptor）\BookAnchor{db.ch28s02.id2851254}，而在操作系统理论中称为进程控制块（PCB，Process Control Block）\BookAnchor{db.ch28s02.id2851263}。\BookCode{task\_\BookSplit{}struct}中有一个指针指向\BookCode{files\_\BookSplit{}struct}结构体，称为文件描述符表，其中每个表项包含一个指向已打开的文件的指针，如下图所示。
+
+
+\BookFigure{文件描述符表}{\BookImage{images/io.fd.png}{0.380}}{\BookAnchor{db.ch28s02.id2851286}}
+
+
+至于已打开的文件在内核中用什么结构体表示，我们将在下一章详细介绍，目前我们在画图时用一个圈表示。用户程序不能直接访问内核中的文件描述符表，而只能使用文件描述符表的索引（即0、1、2、3这些数字），这些索引就称为文件描述符（File Descriptor）\BookAnchor{db.ch28s02.id2851312}，用\BookCode{int}型变量保存。当调用\BookCode{open}打开一个文件或创建一个新文件时，内核分配一个文件描述符并返回给用户程序，该文件描述符表项中的指针指向新打开的文件。当读写文件时，用户程序把文件描述符传给\BookCode{read}或\BookCode{write}，内核根据文件描述符找到相应的表项，再通过表项中的指针找到相应的文件。
+
+
+
+我们知道，程序启动时会自动打开三个文件：标准输入、标准输出和标准错误输出。在C标准库中分别用\BookCode{FILE *}指针\BookCode{stdin}、\BookCode{stdout}和\BookCode{stderr}表示。这三个文件的描述符分别是0、1、2，保存在相应的\BookCode{FILE}结构体中。头文件\BookCode{unistd.\BookSplit{}h}中有如下的宏定义来表示这三个文件描述符：
+
+
+\BookSource{numbers=none}{code/ch28s02/01.pv}{5}{3}
+
+\BookNav{\hyperlink{db.ch28s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch28s03.html
+
+\section{open/close}
+\BookAnchor{db.ch28s03}\BookAnchor{db.ch28s03.id2851400}%
+\BookCode{open}函数可以打开或创建一个文件。
+
+
+\BookSource{numbers=none}{code/ch28s03/01.pv}{9}{7}
+
+
+在Man Page中\BookCode{open}函数有两种形式，一种带两个参数，一种带三个参数，其实在C代码中\BookCode{open}函数是这样声明的：
+
+
+\BookSource{numbers=none}{code/ch28s03/02.pv}{3}{1}
+
+
+最后的可变参数可以是0个或1个，由\BookCode{flags}参数中的标志位决定，见下面的详细说明。
+
+
+
+\BookCode{pathname}参数是要打开或创建的文件名，和\BookCode{fopen}一样，\BookCode{pathname}既可以是相对路径也可以是绝对路径。\BookCode{flags}参数有一系列常数值可供选择，可以同时选择多个常数用按位或运算符连接起来，所以这些常数的宏定义都以\BookCode{O\_\BookSplit{}}开头，表示or。
+
+
+
+必选项：以下三个常数中必须指定一个，且仅允许指定一个。
+
+
+\begin{itemize}
+
+\item \BookCode{O\_\BookSplit{}RDONLY} 只读打开
+
+\item \BookCode{O\_\BookSplit{}WRONLY} 只写打开
+
+\item \BookCode{O\_\BookSplit{}RDWR} 可读可写打开
+\end{itemize}
+
+
+以下可选项可以同时指定0个或多个，和必选项按位或起来作为\BookCode{flags}参数。可选项有很多，这里只介绍一部分，其它选项可参考\BookCode{open(\BookSplit{}2)\BookSplit{}}的Man Page：
+
+
+\begin{itemize}
+
+\item \BookCode{O\_\BookSplit{}APPEND} 表示追加。如果文件已有内容，这次打开文件所写的数据附加到文件的末尾而不覆盖原来的内容。
+
+\item \BookCode{O\_\BookSplit{}CREAT} 若此文件不存在则创建它。使用此选项时需要提供第三个参数\BookCode{mode}，表示该文件的访问权限。
+
+\item \BookCode{O\_\BookSplit{}EXCL} 如果同时指定了\BookCode{O\_\BookSplit{}CREAT}，并且文件已存在，则出错返回。
+
+\item \BookCode{O\_\BookSplit{}TRUNC} 如果文件已存在，并且以只写或可读可写方式打开，则将其长度截断（Truncate）\BookAnchor{db.ch28s03.id2851609}为0字节。
+
+\item \BookCode{O\_\BookSplit{}NONBLOCK} 对于设备文件，以\BookCode{O\_\BookSplit{}NONBLOCK}方式打开可以做非阻塞I/\BookSplit{}O（Nonblock I/\BookSplit{}O）\BookAnchor{db.ch28s03.id2851635}，非阻塞I/\BookSplit{}O在下一节详细讲解。
+\end{itemize}
+
+
+注意\BookCode{open}函数与C标准I/\BookSplit{}O库的\BookCode{fopen}函数有些细微的区别：
+
+
+\begin{itemize}
+
+\item 以可写的方式\BookCode{fopen}一个文件时，如果文件不存在会自动创建，而\BookCode{open}一个文件时必须明确指定\BookCode{O\_\BookSplit{}CREAT}才会创建文件，否则文件不存在就出错返回。
+
+\item 以\BookCode{w}或\BookCode{w+\BookSplit{}}方式\BookCode{fopen}一个文件时，如果文件已存在就截断为0字节，而\BookCode{open}一个文件时必须明确指定\BookCode{O\_\BookSplit{}TRUNC}才会截断文件，否则直接在原来的数据上改写。
+\end{itemize}
+
+
+第三个参数\BookCode{mode}指定文件权限，可以用八进制数表示，比如0644表示\BookCode{-\BookSplit{}rw-\BookSplit{}r-\BookSplit{}-\BookSplit{}r-\BookSplit{}-\BookSplit{}}，也可以用\BookCode{S\_\BookSplit{}IRUSR}、\BookCode{S\_\BookSplit{}IWUSR}等宏定义按位或起来表示，详见\BookCode{open(\BookSplit{}2)\BookSplit{}}的Man Page。要注意的是，文件权限由\BookCode{open}的\BookCode{mode}参数和当前进程的\BookCode{umask}掩码共同决定。
+
+
+
+补充说明一下Shell的\BookCode{umask}命令。Shell进程的\BookCode{umask}掩码可以用\BookCode{umask}命令查看：
+
+
+\BookTerminal{code/ch28s03/03.txt}{4}{2}
+
+
+用\BookCode{touch}命令创建一个文件时，创建权限是0666，而\BookCode{touch}进程继承了Shell进程的\BookCode{umask}掩码，所以最终的文件权限是0666\&\textasciitilde{}022=\BookSplit{}0644。
+
+
+\BookTerminal{code/ch28s03/04.txt}{5}{3}
+
+
+同样道理，用\BookCode{gcc}编译生成一个可执行文件时，创建权限是0777，而最终的文件权限是0777\&\textasciitilde{}022=\BookSplit{}0755。
+
+
+\BookTerminal{code/ch28s03/05.txt}{5}{3}
+
+
+我们看到的都是被\BookCode{umask}掩码修改之后的权限，那么如何证明\BookCode{touch}或\BookCode{gcc}创建文件的权限本来应该是0666和0777呢？我们可以把Shell进程的\BookCode{umask}改成0，再重复上述实验：
+
+
+\BookTerminal{code/ch28s03/06.txt}{9}{9}
+
+
+现在我们自己写一个程序，在其中调用\BookCode{open(\BookSplit{}\BookQuoteChar{}somefile\BookQuoteChar{},\BookSplit{} O\_\BookSplit{}WRONLY|\BookSplit{}O\_\BookSplit{}CREAT,\BookSplit{} 0664)\BookSplit{};\BookSplit{}}创建文件，然后在Shell中运行并查看结果：
+
+
+\BookTerminal{code/ch28s03/07.txt}{6}{4}
+
+
+不出所料，文件\BookCode{somefile}的权限是0664\&\textasciitilde{}022=\BookSplit{}0644。有几个问题现在我没有解释：为什么被Shell启动的进程可以继承Shell进程的\BookCode{umask}掩码？为什么\BookCode{umask}命令可以读写Shell进程的\BookCode{umask}掩码？这些问题将在\hyperlink{db.ch30s01.id2865382}{第 1 节 “引言”}解释。
+
+
+
+\BookCode{close}函数关闭一个已打开的文件：
+
+
+\BookSource{numbers=none}{code/ch28s03/08.pv}{6}{4}
+
+
+参数\BookCode{fd}是要关闭的文件描述符。需要说明的是，当一个进程终止时，内核对该进程所有尚未关闭的文件描述符调用\BookCode{close}关闭，所以即使用户程序不调用\BookCode{close}，在终止时内核也会自动关闭它打开的所有文件。但是对于一个长年累月运行的程序（比如网络服务器），打开的文件描述符一定要记得关闭，否则随着打开的文件越来越多，会占用大量文件描述符和系统资源。
+
+
+
+由\BookCode{open}返回的文件描述符一定是该进程尚未使用的最小描述符。由于程序启动时自动打开文件描述符0、1、2，因此第一次调用\BookCode{open}打开文件通常会返回描述符3，再调用\BookCode{open}就会返回4。可以利用这一点在标准输入、标准输出或标准错误输出上打开一个新文件，实现重定向的功能。例如，首先调用\BookCode{close}关闭文件描述符1，然后调用\BookCode{open}打开一个常规文件，则一定会返回文件描述符1，这时候标准输出就不再是终端，而是一个常规文件了，再调用\BookCode{printf}就不会打印到屏幕上，而是写到这个文件中了。后面要讲的\BookCode{dup2}函数提供了另外一种办法在指定的文件描述符上打开文件。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch28s03.id2852046}%
+
+
+1、在系统头文件中查找\BookCode{flags}和\BookCode{mode}参数用到的这些宏定义的值是多少。把这些宏定义按位或起来是什么效果？为什么必选项只能选一个而可选项可以选多个？
+
+
+
+2、请按照下述要求分别写出相应的\BookCode{open}调用。
+
+
+\begin{itemize}
+
+\item 打开文件\BookCode{/\BookSplit{}home/\BookSplit{}akae.\BookSplit{}txt}用于写操作，以追加方式打开
+
+\item 打开文件\BookCode{/\BookSplit{}home/\BookSplit{}akae.\BookSplit{}txt}用于写操作，如果该文件不存在则创建它
+
+\item 打开文件\BookCode{/\BookSplit{}home/\BookSplit{}akae.\BookSplit{}txt}用于写操作，如果该文件已存在则截断为0字节，如果该文件不存在则创建它
+
+\item 打开文件\BookCode{/\BookSplit{}home/\BookSplit{}akae.\BookSplit{}txt}用于写操作，如果该文件已存在则报错退出，如果该文件不存在则创建它
+\end{itemize}
+
+\BookNav{\hyperlink{db.ch28s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch28s04.html
+
+\section{read/write}
+\BookAnchor{db.ch28s04}\BookAnchor{db.ch28s04.id2852134}%
+\BookCode{read}函数从打开的设备或文件中读取数据。
+
+
+\BookSource{numbers=none}{code/ch28s04/01.pv}{6}{4}
+
+
+
+
+
+
+参数\BookCode{count}是请求读取的字节数，读上来的数据保存在缓冲区\BookCode{buf}中，同时文件的当前读写位置向后移。注意这个读写位置和使用C标准I/\BookSplit{}O库时的读写位置有可能不同，这个读写位置是记在内核中的，而使用C标准I/\BookSplit{}O库时的读写位置是用户空间I/\BookSplit{}O缓冲区中的位置。比如用\BookCode{fgetc}读一个字节，\BookCode{fgetc}有可能从内核中预读1024个字节到I/\BookSplit{}O缓冲区中，再返回第一个字节，这时该文件在内核中记录的读写位置是1024，而在\BookCode{FILE}结构体中记录的读写位置是1。注意返回值类型是\BookCode{ssize\_\BookSplit{}t}，表示有符号的\BookCode{size\_\BookSplit{}t}，这样既可以返回正的字节数、0（表示到达文件末尾）也可以返回负值-1（表示出错）。\BookCode{read}函数返回时，返回值说明了\BookCode{buf}中前多少个字节是刚读上来的。有些情况下，实际读到的字节数（返回值）会小于请求读的字节数\BookCode{count}，例如：
+
+
+\begin{itemize}
+
+\item 读常规文件时，在读到\BookCode{count}个字节之前已到达文件末尾。例如，距文件末尾还有30个字节而请求读100个字节，则\BookCode{read}返回30，下次\BookCode{read}将返回0。
+
+\item 从终端设备读，通常以行为单位，读到换行符就返回了。
+
+\item 从网络读，根据不同的传输层协议和内核缓存机制，返回值可能小于请求的字节数，后面socket编程部分会详细讲解。
+\end{itemize}
+
+
+\BookCode{write}函数向打开的设备或文件中写数据。
+
+
+\BookSource{numbers=none}{code/ch28s04/02.pv}{6}{4}
+
+
+写常规文件时，\BookCode{write}的返回值通常等于请求写的字节数\BookCode{count}，而向终端设备或网络写则不一定。
+
+
+
+读常规文件是不会阻塞的，不管读多少字节，\BookCode{read}一定会在有限的时间内返回。从终端设备或网络读则不一定，如果从终端输入的数据没有换行符，调用\BookCode{read}读终端设备就会阻塞，如果网络上没有接收到数据包，调用\BookCode{read}从网络读就会阻塞，至于会阻塞多长时间也是不确定的，如果一直没有数据到达就一直阻塞在那里。同样，写常规文件是不会阻塞的，而向终端设备或网络写则不一定。
+
+
+
+现在明确一下阻塞（Block）\BookAnchor{db.ch28s04.id2852343}这个概念。当进程调用一个阻塞的系统函数时，该进程被置于睡眠（Sleep）\BookAnchor{db.ch28s04.id2852352}状态，这时内核调度其它进程运行，直到该进程等待的事件发生了（比如网络上接收到数据包，或者调用\BookCode{sleep}指定的睡眠时间到了）它才有可能继续运行。与睡眠状态相对的是运行（Running）\BookAnchor{db.ch28s04.id2852368}状态，在Linux内核中，处于运行状态的进程分为两种情况：
+
+
+\begin{itemize}
+
+\item 正在被调度执行。CPU处于该进程的上下文环境中，程序计数器（\BookCode{eip}）里保存着该进程的指令地址，通用寄存器里保存着该进程运算过程的中间结果，正在执行该进程的指令，正在读写该进程的地址空间。
+
+\item 就绪状态。该进程不需要等待什么事件发生，随时都可以执行，但CPU暂时还在执行另一个进程，所以该进程在一个就绪队列中等待被内核调度。系统中可能同时有多个就绪的进程，那么该调度谁执行呢？内核的调度算法是基于优先级和时间片的，而且会根据每个进程的运行情况动态调整它的优先级和时间片，让每个进程都能比较公平地得到机会执行，同时要兼顾用户体验，不能让和用户交互的进程响应太慢。
+\end{itemize}
+
+
+下面这个小程序从终端读数据再写回终端。
+
+
+\BookExampleTitle{阻塞读终端}\BookAnchor{db.ch28s04.id2852428}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch28s04/03.pv}{9}{15}
+
+
+执行结果如下：
+
+
+\BookTerminal{code/ch28s04/04.txt}{9}{7}
+
+
+第一次执行\BookCode{a.\BookSplit{}out}的结果很正常，而第二次执行的过程有点特殊，现在分析一下：
+
+
+\begin{enumerate}
+
+\item Shell进程创建\BookCode{a.\BookSplit{}out}进程，\BookCode{a.\BookSplit{}out}进程开始执行，而Shell进程睡眠等待\BookCode{a.\BookSplit{}out}进程退出。
+
+\item \BookCode{a.\BookSplit{}out}调用\BookCode{read}时睡眠等待，直到终端设备输入了换行符才从\BookCode{read}返回，\BookCode{read}只读走10个字符，剩下的字符仍然保存在内核的终端设备输入缓冲区中。
+
+\item \BookCode{a.\BookSplit{}out}进程打印并退出，这时Shell进程恢复运行，Shell继续从终端读取用户输入的命令，于是读走了终端设备输入缓冲区中剩下的字符d和换行符，把它当成一条命令解释执行，结果发现执行不了，没有d这个命令。
+\end{enumerate}
+
+
+如果在\BookCode{open}一个设备时指定了\BookCode{O\_\BookSplit{}NONBLOCK}标志，\BookCode{read}/\BookCode{write}就不会阻塞。以\BookCode{read}为例，如果设备暂时没有数据可读就返回-1，同时置\BookCode{errno}为\BookCode{EWOULDBLOCK}（或者\BookCode{EAGAIN}，这两个宏定义的值相同），表示本来应该阻塞在这里（would block，虚拟语气），事实上并没有阻塞而是直接返回错误，调用者应该试着再读一次（again）。这种行为方式称为轮询（Poll）\BookAnchor{db.ch28s04.id2852596}，调用者只是查询一下，而不是阻塞在这里死等，这样可以同时监视多个设备：
+
+
+\BookPlain{code/ch28s04/05.txt}{9}{9}
+
+
+如果\BookCode{read(\BookSplit{}设备1)\BookSplit{}}是阻塞的，那么只要设备1没有数据到达就会一直阻塞在设备1的\BookCode{read}调用上，即使设备2有数据到达也不能处理，使用非阻塞I/\BookSplit{}O就可以避免设备2得不到及时处理。
+
+
+
+非阻塞I/\BookSplit{}O有一个缺点，如果所有设备都一直没有数据到达，调用者需要反复查询做无用功，如果阻塞在那里，操作系统可以调度别的进程执行，就不会做无用功了。在使用非阻塞I/\BookSplit{}O时，通常不会在一个\BookCode{while}循环中一直不停地查询（这称为Tight Loop\BookAnchor{db.ch28s04.id2852646}），而是每延迟等待一会儿来查询一下，以免做太多无用功，在延迟等待的时候可以调度其它进程执行。
+
+
+\BookPlain{code/ch28s04/06.txt}{9}{10}
+
+
+这样做的问题是，设备1有数据到达时可能不能及时处理，最长需延迟n秒才能处理，而且反复查询还是做了很多无用功。以后要学习的\BookCode{select(\BookSplit{}2)\BookSplit{}}函数可以阻塞地同时监视多个设备，还可以设定阻塞等待的超时时间，从而圆满地解决了这个问题。
+
+
+
+以下是一个非阻塞I/\BookSplit{}O的例子。目前我们学过的可能引起阻塞的设备只有终端，所以我们用终端来做这个实验。程序开始执行时在0、1、2文件描述符上自动打开的文件就是终端，但是没有\BookCode{O\_\BookSplit{}NONBLOCK}标志。所以就像\hyperlink{db.ch28s04.id2852428}{例 28.\BookSplit{}2 “阻塞读终端”}一样，读标准输入是阻塞的。我们可以重新打开一遍设备文件\BookCode{/\BookSplit{}dev/\BookSplit{}tty}（表示当前终端），在打开时指定\BookCode{O\_\BookSplit{}NONBLOCK}标志。
+
+
+\BookExampleTitle{非阻塞读终端}\BookAnchor{db.ch28s04.id2852714}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch28s04/07.pv}{9}{32}
+
+
+以下是用非阻塞I/\BookSplit{}O实现等待超时的例子。既保证了超时退出的逻辑又保证了有数据到达时处理延迟较小。
+
+
+\BookExampleTitle{非阻塞读终端和等待超时}\BookAnchor{db.ch28s04.id2852731}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch28s04/08.pv}{9}{36}
+
+\BookNav{\hyperlink{db.ch28s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28s05}{下一页}}
+
+
+% https://akaedu.github.io/book/ch28s05.html
+
+\section{lseek}
+\BookAnchor{db.ch28s05}\BookAnchor{db.ch28s05.id2852751}%
+每个打开的文件都记录着当前读写位置，打开文件时读写位置是0，表示文件开头，通常读写多少个字节就会将读写位置往后移多少个字节。但是有一个例外，如果以\BookCode{O\_\BookSplit{}APPEND}方式打开，每次写操作都会在文件末尾追加数据，然后将读写位置移到新的文件末尾。\BookCode{lseek}和标准I/\BookSplit{}O库的\BookCode{fseek}函数类似，可以移动当前读写位置（或者叫偏移量）。
+
+
+\BookSource{numbers=none}{code/ch28s05/01.pv}{6}{4}
+
+
+参数\BookCode{offset}和\BookCode{whence}的含义和\BookCode{fseek}函数完全相同。只不过第一个参数换成了文件描述符。和\BookCode{fseek}一样，偏移量允许超过文件末尾，这种情况下对该文件的下一次写操作将延长文件，中间空洞的部分读出来都是0。
+
+
+
+若\BookCode{lseek}成功执行，则返回新的偏移量，因此可用以下方法确定一个打开文件的当前偏移量：
+
+
+\BookPlain{code/ch28s05/02.txt}{4}{2}
+
+
+这种方法也可用来确定文件或设备是否可以设置偏移量，常规文件都可以设置偏移量，而设备一般是不可以设置偏移量的。如果设备不支持\BookCode{lseek}，则\BookCode{lseek}返回-1，并将\BookCode{errno}设置为\BookCode{ESPIPE}。注意\BookCode{fseek}和\BookCode{lseek}在返回值上有细微的差别，\BookCode{fseek}成功时返回0失败时返回-1，要返回当前偏移量需调用\BookCode{ftell}，而\BookCode{lseek}成功时返回当前偏移量失败时返回-1。
+
+\BookNav{\hyperlink{db.ch28s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28s06}{下一页}}
+
+
+% https://akaedu.github.io/book/ch28s06.html
+
+\section{fcntl}
+\BookAnchor{db.ch28s06}\BookAnchor{db.ch28s06.id2852909}%
+先前我们以\BookCode{read}终端设备为例介绍了非阻塞I/\BookSplit{}O，为什么我们不直接对\BookCode{STDIN\_\BookSplit{}FILENO}做非阻塞\BookCode{read}，而要重新\BookCode{open}一遍\BookCode{/\BookSplit{}dev/\BookSplit{}tty}呢？因为\BookCode{STDIN\_\BookSplit{}FILENO}在程序启动时已经被自动打开了，而我们需要在调用\BookCode{open}时指定\BookCode{O\_\BookSplit{}NONBLOCK}标志。这里介绍另外一种办法，可以用\BookCode{fcntl}函数改变一个已打开的文件的属性，可以重新设置读、写、追加、非阻塞等标志（这些标志称为File Status Flag\BookAnchor{db.ch28s06.id2852976}），而不必重新\BookCode{open}文件。
+
+
+\BookSource{numbers=none}{code/ch28s06/01.pv}{8}{6}
+
+
+这个函数和\BookCode{open}一样，也是用可变参数实现的，可变参数的类型和个数取决于前面的\BookCode{cmd}参数。下面的例子使用\BookCode{F\_\BookSplit{}GETFL}和\BookCode{F\_\BookSplit{}SETFL}这两种\BookCode{fcntl}命令改变\BookCode{STDIN\_\BookSplit{}FILENO}的属性，加上\BookCode{O\_\BookSplit{}NONBLOCK}选项，实现和\hyperlink{db.ch28s04.id2852714}{例 28.\BookSplit{}3 “非阻塞读终端”}同样的功能。
+
+
+\BookExampleTitle{用fcntl改变File Status Flag}\BookAnchor{db.ch28s06.id2853051}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch28s06/02.pv}{9}{33}
+
+
+以下程序通过命令行的第一个参数指定一个文件描述符，同时利用Shell的重定向功能在该描述符上打开文件，然后用\BookCode{fcntl}的\BookCode{F\_\BookSplit{}GETFL}命令取出File Status Flag并打印。
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch28s06/03.pv}{9}{37}
+
+
+运行该程序的几种情况解释如下。
+
+
+\BookTerminal{code/ch28s06/04.txt}{4}{2}
+
+
+Shell在执行\BookCode{a.\BookSplit{}out}时将它的标准输入重定向到\BookCode{/\BookSplit{}dev/\BookSplit{}tty}，并且是只读的。\BookCode{argv[\BookSplit{}1]\BookSplit{}}是0，因此取出文件描述符0（也就是标准输入）的File Status Flag，用掩码\BookCode{O\_\BookSplit{}ACCMODE}取出它的读写位，结果是\BookCode{O\_\BookSplit{}RDONLY}。注意，Shell的重定向语法不属于程序的命令行参数，这个命行只有两个参数，\BookCode{argv[\BookSplit{}0]\BookSplit{}}是\BookQuoteChar{}./a.\BookSplit{}out\BookQuoteChar{}，\BookCode{argv[\BookSplit{}1]\BookSplit{}}是\BookQuoteChar{}0\BookQuoteChar{}，重定向由Shell解释，在启动程序时已经生效，程序在运行时并不知道标准输入被重定向了。
+
+
+\BookTerminal{code/ch28s06/05.txt}{5}{3}
+
+
+Shell在执行\BookCode{a.\BookSplit{}out}时将它的标准输出重定向到文件\BookCode{temp.\BookSplit{}foo}，并且是只写的。程序取出文件描述符1的File Status Flag，发现是只写的，于是打印\BookCode{write only}，但是打印不到屏幕上而是打印到\BookCode{temp.\BookSplit{}foo}这个文件中了。
+
+
+\BookTerminal{code/ch28s06/06.txt}{4}{2}
+
+
+Shell在执行\BookCode{a.\BookSplit{}out}时将它的标准错误输出重定向到文件\BookCode{temp.\BookSplit{}foo}，并且是只写和追加方式。程序取出文件描述符2的File Status Flag，发现是只写和追加方式的。
+
+
+\BookTerminal{code/ch28s06/07.txt}{4}{2}
+
+
+Shell在执行\BookCode{a.\BookSplit{}out}时在它的文件描述符5上打开文件\BookCode{temp.\BookSplit{}foo}，并且是可读可写的。程序取出文件描述符5的File Status Flag，发现是可读可写的。
+
+
+
+我们看到一种新的Shell重定向语法，如果在\textless{}、\textgreater{}、\textgreater{}\textgreater{}、\textless{}\textgreater{}前面添一个数字，该数字就表示在哪个文件描述符上打开文件，例如2\textgreater{}\textgreater{}temp.\BookSplit{}foo表示将标准错误输出重定向到文件temp.\BookSplit{}foo并且以追加方式写入文件，注意2和\textgreater{}\textgreater{}之间不能有空格，否则2就被解释成命令行参数了。文件描述符数字还可以出现在重定向符号右边，例如：
+
+
+\BookTerminal{code/ch28s06/08.txt}{3}{1}
+
+
+首先将某个命令command的标准输出重定向到\BookCode{/\BookSplit{}dev/\BookSplit{}null}，然后将该命令可能产生的错误信息（标准错误输出）也重定向到和标准输出（用\&1标识）相同的文件，即\BookCode{/\BookSplit{}dev/\BookSplit{}null}，如下图所示。
+
+
+\BookFigure{重定向之后的文件描述符表}{\BookImage{images/io.fdredirect.png}{0.276}}{\BookAnchor{db.ch28s06.id2853285}}
+
+
+\BookCode{/\BookSplit{}dev/\BookSplit{}null}设备文件只有一个作用，往它里面写任何数据都被直接丢弃。因此保证了该命令执行时屏幕上没有任何输出，既不打印正常信息也不打印错误信息，让命令安静地执行，这种写法在Shell脚本中很常见。注意，文件描述符数字写在重定向符号右边需要加\&号，否则就被解释成文件名了，2\textgreater{}\&1其中的\textgreater{}左右两边都不能有空格。
+
+
+
+除了\BookCode{F\_\BookSplit{}GETFL}和\BookCode{F\_\BookSplit{}SETFL}命令之外，\BookCode{fcntl}还有很多命令做其它操作，例如设置文件记录锁等。可以通过\BookCode{fcntl}设置的都是当前进程如何访问设备或文件的访问控制属性，例如读、写、追加、非阻塞、加锁等，但并不设置文件或设备本身的属性，例如文件的读写权限、串口波特率等。下一节要介绍的\BookCode{ioctl}函数用于设置某些设备本身的属性，例如串口波特率、终端窗口大小，注意区分这两个函数的作用。
+
+\BookNav{\hyperlink{db.ch28s05}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28s07}{下一页}}
+
+
+% https://akaedu.github.io/book/ch28s07.html
+
+\section{ioctl}
+\BookAnchor{db.ch28s07}\BookAnchor{db.ch28s07.id2853359}%
+\BookCode{ioctl}用于向设备发控制和配置命令，有些命令也需要读写一些数据，但这些数据是不能用\BookCode{read}/\BookCode{write}读写的，称为Out-of-band\BookAnchor{db.ch28s07.id2853385}数据。也就是说，\BookCode{read}/\BookCode{write}读写的数据是in-band数据，是I/\BookSplit{}O操作的主体，而\BookCode{ioctl}命令传送的是控制信息，其中的数据是辅助的数据。例如，在串口线上收发数据通过\BookCode{read}/\BookCode{write}操作，而串口的波特率、校验位、停止位通过\BookCode{ioctl}设置，A/\BookSplit{}D转换的结果通过\BookCode{read}读取，而A/\BookSplit{}D转换的精度和工作频率通过\BookCode{ioctl}设置。
+
+
+\BookSource{numbers=none}{code/ch28s07/01.pv}{5}{3}
+
+
+\BookCode{d}是某个设备的文件描述符。\BookCode{request}是\BookCode{ioctl}的命令，可变参数取决于\BookCode{request}，通常是一个指向变量或结构体的指针。若出错则返回-1，若成功则返回其他值，返回值也是取决于\BookCode{request}。
+
+
+
+以下程序使用\BookCode{TIOCGWINSZ}命令获得终端设备的窗口大小。
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch28s07/02.pv}{9}{17}
+
+
+在图形界面的终端里多次改变终端窗口的大小并运行该程序，观察结果。
+
+\BookNav{\hyperlink{db.ch28s06}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28s08}{下一页}}
+
+
+% https://akaedu.github.io/book/ch28s08.html
+
+\section{mmap}
+\BookAnchor{db.ch28s08}\BookAnchor{db.ch28s08.id2853510}%
+\BookCode{mmap}可以把磁盘文件的一部分直接映射到内存，这样文件中的位置直接就有对应的内存地址，对文件的读写可以直接用指针来做而不需要\BookCode{read}/\BookCode{write}函数。
+
+
+\BookSource{numbers=none}{code/ch28s08/01.pv}{6}{4}
+
+
+该函数各参数的作用图示如下：
+
+
+\BookFigure{mmap函数}{\BookImage{images/io.mmap.png}{0.638}}{\BookAnchor{db.ch28s08.id2853551}}
+
+
+如果\BookCode{addr}参数为\BookCode{NULL}，内核会自己在进程地址空间中选择合适的地址建立映射。如果\BookCode{addr}不是\BookCode{NULL}，则给内核一个提示，应该从什么地址开始映射，内核会选择\BookCode{addr}之上的某个合适的地址开始映射。建立映射后，真正的映射首地址通过返回值可以得到。\BookCode{len}参数是需要映射的那一部分文件的长度。\BookCode{off}参数是从文件的什么位置开始映射，必须是页大小的整数倍（在32位体系统结构上通常是4K）。\BookCode{filedes}是代表该文件的描述符。
+
+
+
+\BookCode{prot}参数有四种取值：
+
+
+\begin{itemize}
+
+\item PROT\_\BookSplit{}EXEC表示映射的这一段可执行，例如映射共享库
+
+\item PROT\_\BookSplit{}READ表示映射的这一段可读
+
+\item PROT\_\BookSplit{}WRITE表示映射的这一段可写
+
+\item PROT\_\BookSplit{}NONE表示映射的这一段不可访问
+\end{itemize}
+
+
+\BookCode{flag}参数有很多种取值，这里只讲两种，其它取值可查看\BookCode{mmap(\BookSplit{}2)\BookSplit{}}
+
+
+\begin{itemize}
+
+\item MAP\_\BookSplit{}SHARED多个进程对同一个文件的映射是共享的，一个进程对映射的内存做了修改，另一个进程也会看到这种变化。
+
+\item MAP\_\BookSplit{}PRIVATE多个进程对同一个文件的映射不是共享的，一个进程对映射的内存做了修改，另一个进程并不会看到这种变化，也不会真的写到文件中去。
+\end{itemize}
+
+
+如果\BookCode{mmap}成功则返回映射首地址，如果出错则返回常数\BookCode{MAP\_\BookSplit{}FAILED}。当进程终止时，该进程的映射内存会自动解除，也可以调用\BookCode{munmap}解除映射。\BookCode{munmap}成功返回0，出错返回-1。
+
+
+
+下面做一个简单的实验。
+
+
+\BookTerminal{code/ch28s08/02.txt}{8}{6}
+
+
+现在用如下程序操作这个文件（注意，把\BookCode{fd}关掉并不影响该文件已建立的映射，仍然可以对文件进行读写）。
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch28s08/03.pv}{9}{22}
+
+
+然后再查看这个文件的内容：
+
+
+\BookTerminal{code/ch28s08/04.txt}{6}{4}
+
+
+请读者自己分析一下实验结果。
+
+
+
+\BookCode{mmap}函数的底层也是一个系统调用，在执行程序时经常要用到这个系统调用来映射共享库到该进程的地址空间。例如一个很简单的hello world程序：
+
+
+\BookSource{numbers=none}{code/ch28s08/05.pv}{9}{7}
+
+
+用\BookCode{strace}命令执行该程序，跟踪该程序执行过程中用到的所有系统调用的参数及返回值：
+
+
+\BookTerminal{code/ch28s08/06.txt}{9}{28}
+
+
+可以看到，执行这个程序要映射共享库\BookCode{/\BookSplit{}lib/\BookSplit{}tls/\BookSplit{}i686/\BookSplit{}cmov/\BookSplit{}libc.\BookSplit{}so.\BookSplit{}6}到进程地址空间。也可以看到，\BookCode{printf}函数的底层确实是调用\BookCode{write}。
+
+\BookNav{\hyperlink{db.ch28s07}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch28}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch29}{下一页}}

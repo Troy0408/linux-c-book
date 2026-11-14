@@ -1,0 +1,31 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}time.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{gesture}\BK{p}{[}\BK{l+m+mi}{3}\BK{p}{]}\BK{p}{[}\BK{l+m+mi}{10}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{scissor}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{stone}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{cloth}\BK{l+s}{\BKZdq{}}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{man}\BK{p}{,}\BK{+w}{ }\BK{n}{computer}\BK{p}{,}\BK{+w}{ }\BK{n}{result}\BK{p}{,}\BK{+w}{ }\BK{n}{ret}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{srand}\BK{p}{(}\BK{n}{time}\BK{p}{(}\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{computer}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{rand}\BK{p}{(}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZpc{}}\BK{+w}{ }\BK{l+m+mi}{3}\BK{p}{;}
+\BK{+w}{	  	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{Input your gesture (0\BKZhy{}scissor 1\BKZhy{}stone 2\BKZhy{}cloth):}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{ret}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{scanf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{man}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	  	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{ret}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{+w}{ }\BK{o}{|}\BK{o}{|}\BK{+w}{ }\BK{n}{man}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{+w}{ }\BK{o}{|}\BK{o}{|}\BK{+w}{ }\BK{n}{man}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{			}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Invalid input! Please input 0, 1 or 2.}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{			}\BK{k}{continue}\BK{p}{;}
+\BK{+w}{		}\BK{p}{\BKZcb{}}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Your gesture: \BKZpc{}s}\BK{l+s+se}{\BKZbs{}t}\BK{l+s}{Computer\BKZsq{}s gesture: \BKZpc{}s}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }
+\BK{+w}{			}\BK{n}{gesture}\BK{p}{[}\BK{n}{man}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{n}{gesture}\BK{p}{[}\BK{n}{computer}\BK{p}{]}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{		}\BK{n}{result}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{(}\BK{n}{man}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{n}{computer}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{l+m+mi}{4}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZpc{}}\BK{+w}{ }\BK{l+m+mi}{3}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{result}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{			}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{You win!}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{else}\BK{+w}{ }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{result}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{			}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Draw!}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{else}
+\BK{+w}{			}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{You lose!}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

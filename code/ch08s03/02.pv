@@ -1,0 +1,9 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{,}\BK{+w}{ }\BK{n}{histogram}\BK{p}{[}\BK{l+m+mi}{10}\BK{p}{]}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{gen\BKZus{}random}\BK{p}{(}\BK{l+m+mi}{10}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{10}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{		}\BK{n}{histogram}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{howmany}\BK{p}{(}\BK{n}{i}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,359 @@
+
+% https://akaedu.github.io/book/ch26.html
+
+\chapter{链表、二叉树和哈希表}
+\BookAnchor{db.ch26}\BookAnchor{db.ch26.id2844763}%
+
+
+\BookNav{\hyperlink{db.ch25s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt02}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch26s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch26s01.html
+
+\section{链表}
+\BookAnchor{db.ch26s01}\BookAnchor{db.ch26s01.id2844772}%
+\subsection{单链表}
+\BookAnchor{db.ch26s01.id2844144}%
+
+
+\hyperlink{db.ch23s09.id2814368}{图 23.\BookSplit{}6 “链表”}所示的链表即单链表（Single Linked List）\BookAnchor{db.ch26s01.id2844161}，本节我们学习如何创建和操作这种链表。每个链表有一个头指针，通过头指针可以找到第一个节点，每个节点都可以通过指针域找到它的后继，最后一个节点的指针域为\BookCode{NULL}，表示没有后继。数组在内存中是连续存放的，而链表在内存中的布局是不规则的，我们知道访问某个数组元素\BookCode{b[\BookSplit{}n]\BookSplit{}}时可以通过\BookCode{基地址+\BookSplit{}n×每个元素的字节数}得到它地址，或者说数组支持随机访问，而链表是不支持随机访问的，只能通过前一个元素的指针域得知后一个元素的地址，因此只能从头指针开始顺序访问各节点。以下代码实现了单链表的基本操作。
+
+
+\BookExampleTitle{单链表}\BookAnchor{db.ch26s01.id2844807}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s01/01.pv}{9}{21}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s01/02.pv}{9}{81}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s01/03.pv}{9}{36}
+
+
+在初始化时把头指针\BookCode{head}初始化为\BookCode{NULL}，表示空链表。然后\BookCode{main}函数调用\BookCode{make\_\BookSplit{}node}创建几个节点，分别调用\BookCode{insert}插入到链表中。
+
+
+\BookSource{numbers=none}{code/ch26s01/04.pv}{7}{5}
+
+\BookFigure{链表的插入操作}{\BookImage{images/linkedlist.insert.png}{0.895}}{\BookAnchor{db.ch26s01.id2844893}}
+
+
+正如上图所示，\BookCode{insert}函数虽然简单，其中也隐含了一种特殊情况（Special Case）\BookAnchor{db.ch26s01.id2844915}的处理，当\BookCode{head}为\BookCode{NULL}时，执行\BookCode{insert}操作插入第一个节点之后，\BookCode{head}指向第一个节点，而第一个节点的\BookCode{next}指针域成为\BookCode{NULL}，这很合理，因为它也是最后一个节点。所以空链表虽然是一种特殊情况，却不需要特殊的代码来处理，和一般情况用同样的代码处理即可，这样写出来的代码更简洁，但是在读代码时要想到可能存在的特殊情况。当然，\BookCode{insert}函数传进来的参数\BookCode{p}也可能有特殊情况，传进来的\BookCode{p}可能是\BookCode{NULL}，甚至是野指针，本章的函数代码都假定调用者的传进来的参数是合法的，不对参数做特别检查。事实上，对指针参数做检查是不现实的，如果传进来的是\BookCode{NULL}还可以检查一下，如果传进来的是野指针，根本无法检查它指向的内存单元是不是合法的，C标准库的函数通常也不做这种检查，例如\BookCode{strcpy(\BookSplit{}p,\BookSplit{} NULL)\BookSplit{}}就会引起段错误。
+
+
+
+接下来\BookCode{main}函数调用\BookCode{search}在链表中查找某个节点，如果找到就返回指向该节点的指针，找不到就返回\BookCode{NULL}。
+
+
+\BookSource{numbers=none}{code/ch26s01/05.pv}{9}{8}
+
+
+\BookCode{search}函数其实也隐含了对于空链表这种特殊情况的处理，如果是空链表则循环体一次都不执行，直接返回\BookCode{NULL}。
+
+
+
+然后\BookCode{main}函数调用\BookCode{delete}从链表中摘除用\BookCode{search}找到的节点，最后调用\BookCode{free\_\BookSplit{}node}释放它的存储空间。
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s01/06.pv}{9}{13}
+
+\BookFigure{链表的删除操作}{\BookImage{images/linkedlist.delete.png}{0.736}}{\BookAnchor{db.ch26s01.id2845087}}
+
+
+从上图可以看出，要摘除一个节点需要首先找到它的前趋然后才能做摘除操作，而在单链表中通过某个节点只能找到它的后继而不能找到它的前趋，所以删除操作要麻烦一些，需要从第一个节点开始依次查找要摘除的节点的前趋。\BookCode{delete}操作也要处理一种特殊情况，如果要摘除的节点是链表的第一个节点，它是没有前趋的，这种情况要用特殊的代码处理，而不能和一般情况用同样的代码处理。这样很不爽，能不能把这种特殊情况转化为一般情况呢？可以把\BookCode{delete}函数改成这样：
+
+
+\BookSource{numbers=none}{code/ch26s01/07.pv}{9}{9}
+
+\BookFigure{消除特殊情况的链表删除操作}{\BookImage{images/linkedlist.pdelete.png}{0.633}}{\BookAnchor{db.ch26s01.id2845143}}
+
+
+定义一个指向指针的指针\BookCode{pnext}，在\BookCode{for}循环中\BookCode{pnext}遍历的是指向链表中各节点的指针域，这样就把\BookCode{head}指针和各节点的\BookCode{next}指针统一起来了，可以在一个循环中处理。
+
+
+
+然后\BookCode{main}函数调用\BookCode{traverse}函数遍历整个链表，调用\BookCode{destroy}函数销毁整个链表。请读者自己阅读这两个函数的代码。
+
+
+
+如果限定每次只在链表的头部插入和删除元素，就形成一个LIFO的访问序列，所以在链表头部插入和删除元素的操作实现了堆栈的\BookCode{push}和\BookCode{pop}操作，\BookCode{main}函数的最后几步把链表当成堆栈来操作，从打印的结果可以看到出栈的顺序和入栈是相反的。想一想，用链表实现的堆栈和\hyperlink{db.ch12s02.id2749855}{第 2 节 “堆栈”}中用数组实现的堆栈相比有什么优点和缺点？
+
+
+\subsubsection*{习题}
+\BookAnchor{db.ch26s01.id2845251}%
+
+
+1、修改\BookCode{insert}函数实现插入排序的功能，链表中的数据按从小到大排列，每次插入数据都要在链表中找到合适的位置再插入。在\hyperlink{db.ch11s06.id2746698}{第 6 节 “折半查找”}中我们看到，如果数组中的元素是有序排列的，可以用折半查找算法更快地找到某个元素，想一想如果链表中的节点是有序排列的，是否适用折半查找算法？为什么？
+
+
+
+2、基于单链表实现队列的\BookCode{enqueue}和\BookCode{dequeue}操作。在链表的末尾再维护一个指针\BookCode{tail}，在\BookCode{tail}处\BookCode{enqueue}，在\BookCode{head}处\BookCode{dequeue}。想一想能不能反过来，在\BookCode{head}处\BookCode{enqueue}而在\BookCode{tail}处\BookCode{dequeue}？
+
+
+
+3、实现函数\BookCode{void reverse(\BookSplit{}void)\BookSplit{};\BookSplit{}}将单链表反转。如下图所示。
+
+
+\BookFigure{单链表的反转}{\BookImage{images/linkedlist.reverse.png}{0.582}}{\BookAnchor{db.ch26s01.id2845362}}
+
+\subsection{双向链表}
+\BookAnchor{db.ch26s01.id2845376}%
+
+
+链表的\BookCode{delete}操作需要首先找到要摘除的节点的前趋，而在单链表中找某个节点的前趋需要从表头开始依次查找，对于n个节点的链表，删除操作的时间复杂度为O(n)。可以想像得到，如果每个节点再维护一个指向前趋的指针，删除操作就像插入操作一样容易了，时间复杂度为O(1)，这称为双向链表（Doubly Linked List）。要实现双向链表只需在上一节代码的基础上改动两个地方。
+
+
+
+在\BookCode{linkedlist.\BookSplit{}h}中修改链表节点的结构体定义：
+
+
+\BookSource{numbers=none}{code/ch26s01/08.pv}{6}{4}
+
+
+在\BookCode{linkedlist.\BookSplit{}c}中修改\BookCode{insert}和\BookCode{delete}函数：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s01/09.pv}{9}{18}
+
+\BookFigure{双向链表}{\BookImage{images/linkedlist.doubly.png}{0.789}}{\BookAnchor{db.ch26s01.id2845444}}
+
+
+由于引入了\BookCode{prev}指针，\BookCode{insert}和\BookCode{delete}函数中都有一些特殊情况需要用特殊的代码处理，不能和一般情况用同样的代码处理，这非常不爽，如果在表头和表尾各添加一个Sentinel节点（这两个节点只用于界定表头和表尾，不保存数据），就可以把这些特殊情况都转化为一般情况了。
+
+
+\BookExampleTitle{带Sentinel的双向链表}\BookAnchor{db.ch26s01.id2845498}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s01/10.pv}{9}{21}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s01/11.pv}{9}{81}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s01/12.pv}{9}{36}
+
+\BookFigure{带Sentinel的双向链表}{\BookImage{images/linkedlist.sentinel.png}{0.909}}{\BookAnchor{db.ch26s01.id2845549}}
+
+
+这个例子也实现了队列的\BookCode{enqueue}和\BookCode{dequeue}操作，现在每个节点有了\BookCode{prev}指针，可以反过来在\BookCode{head}处\BookCode{enqueue}而在\BookCode{tail}处\BookCode{dequeue}了。
+
+
+
+现在结合\hyperlink{db.ch12s05.id2750902}{第 5 节 “环形队列”}想一想，其实用链表实现环形队列是最自然的，以前基于数组实现环形队列，我们还需要“假想”它是首尾相接的，而如果基于链表实现环形队列，我们本来就可以用指针串成首尾相接的。把上面的程序改成环形链表（Circular Linked List）\BookAnchor{db.ch26s01.id2845629}也非常简单，只需要把\BookCode{doublylinkedli\BookSplit{}st.\BookSplit{}c}中的
+
+
+\BookSource{numbers=none}{code/ch26s01/13.pv}{8}{6}
+
+
+改成：
+
+
+\BookSource{numbers=none}{code/ch26s01/14.pv}{4}{2}
+
+
+再把\BookCode{doublylinkedli\BookSplit{}st.\BookSplit{}c}中所有的\BookCode{tail}替换成\BookCode{head}即可，相当于把\BookCode{head}和\BookCode{tail}合二为一了。
+
+
+\BookFigure{环形链表}{\BookImage{images/linkedlist.circular.png}{0.658}}{\BookAnchor{db.ch26s01.id2845693}}
+
+\subsection{静态链表}
+\BookAnchor{db.ch26s01.id2845707}%
+
+
+回想一下我们在\hyperlink{db.ch12s04.id2750660}{例 12.\BookSplit{}4 “用广度优先搜索解迷宫问题”}中使用的数据结构，我把图重新画在下面。
+
+
+\BookFigure{广度优先搜索的队列数据结构}{\BookImage{images/stackqueue.bfsqueue.png}{0.452}}{\BookAnchor{db.ch26s01.id2845725}}
+
+
+这是一个静态分配的数组，每个数组元素都有\BookCode{row}、\BookCode{col}和\BookCode{predecessor}三个成员，\BookCode{predecessor}成员保存一个数组下标，指向数组中的另一个元素，这其实也是链表的一种形式，称为静态链表，例如上图中的第6、4、2、1、0个元素串成一条链表。
+
+
+\subsection{本节综合练习}
+\BookAnchor{db.ch26s01.id2845773}%
+
+
+1、Josephus是公元1世纪的著名历史学家，相传在一次战役中他和另外几个人被围困在山洞里，他们宁死不屈，决定站成一圈，每次数到三个人就杀一个，直到全部死光为止。Josephus和他的一个朋友不想死，于是串通好了站在适当的位置上，最后只剩下他们俩的时候这个游戏就停止了。如果一开始的人数为\BookCode{N}，每次数到\BookCode{M}个人就杀一个，那么要想不死应该站在什么位置呢？这个问题比较复杂，\hyperlink{db.bi01.bibli.concrete}{[具体数学]}的1.\BookSplit{}3节研究了Josephus问题的解，有兴趣的读者可以参考。现在我们做个比较简单的练习，用链表模拟Josephus他们玩的这个游戏，\BookCode{N}和\BookCode{M}作为命令行参数传入，每个人的编号依次是1\textasciitilde{}\BookSplit{}N，打印每次被杀者的编号，打印最后一个幸存者的编号。
+
+
+
+2、在\hyperlink{db.ch25s02.id2834904}{第 2.\BookSplit{}11 节 “本节综合练习”}的习题1中规定了一种日志文件的格式，每行是一条记录，由行号、日期、时间三个字段组成，由于记录是按时间先后顺序写入的，可以看作所有记录是按日期排序的，对于日期相同的记录再按时间排序。现在要求从这样的一个日志文件中读出所有记录组成一个链表，在链表中首先按时间排序，对于时间相同的记录再按日期排序，最后写回文件中。比如原文件的内容是：
+
+
+\BookPlain{code/ch26s01/15.txt}{8}{6}
+
+
+重新排序输出的文件内容是：
+
+
+\BookPlain{code/ch26s01/16.txt}{8}{6}
+
+\BookNav{\hyperlink{db.ch26}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch26}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch26s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch26s02.html
+
+\section{二叉树}
+\BookAnchor{db.ch26s02}\BookAnchor{db.ch26s02.id2845871}%
+\subsection{二叉树的基本概念}
+\BookAnchor{db.ch26s02.id2845875}%
+
+
+链表的每个节点可以有一个后继，而二叉树（Binary Tree）\BookAnchor{db.ch26s02.id2845884}的每个节点可以有两个后继。比如这样定义二叉树的节点：
+
+
+\BookSource{numbers=none}{code/ch26s02/01.pv}{7}{5}
+
+
+这样的节点可以组织成下图所示的各种形态。
+
+
+\BookFigure{二叉树的定义和举例}{\BookImage{images/linkedlist.binarytree.png}{0.655}}{\BookAnchor{db.ch26s02.id2845902}}
+
+
+二叉树可以这样递归地定义：
+
+
+\begin{enumerate}
+
+\item 就像链表有头指针一样，每个二叉树都有一个根指针（上图中的\BookCode{root}指针）指向它。根指针可以是\BookCode{NULL}，表示空二叉树，或者
+
+\item 根指针可以指向一个节点，这个节点除了有数据成员之外还有两个指针域，这两个指针域又分别是另外两个二叉树（左子树和右子树）的根指针。
+\end{enumerate}
+
+
+上图举例示意了几种情况。
+
+
+\begin{itemize}
+
+\item 单节点的二叉树：左子树和右子树都是空二叉树。
+
+\item 只有左子树的二叉树：右子树是空二叉树。
+
+\item 只有右子树的二叉树：左子树是空二叉树。
+
+\item 一般的二叉树：左右子树都不为空。注意右侧由圈和线段组成的简化图示，以后我们都采用这种简化图示法，在圈中标上该节点数据成员的值。
+\end{itemize}
+
+
+链表的遍历方法是显而易见的：从前到后遍历即可。二叉树是一种树状结构，如何做到把所有节点都走一遍不重不漏呢？有以下几种方法：
+
+
+\BookFigure{二叉树的遍历}{\BookImage{images/linkedlist.binarytraverse.png}{0.486}}{\BookAnchor{db.ch26s02.id2845990}}
+
+
+前序（Pre-order Traversal）、中序（In-order Traversal）、后序遍历（Post-order Traversal）和深度优先搜索的顺序类似，层序遍历（Level-order Traversal）和广度优先搜索的顺序类似。
+
+
+
+前序和中序遍历的结果合在一起可以唯一确定二叉树的形态，也就是说根据遍历结果可以构造出二叉树。过程如下图所示：
+
+
+\BookFigure{根据前序和中序遍历结果构造二叉树}{\BookImage{images/linkedlist.constructbinary.png}{0.521}}{\BookAnchor{db.ch26s02.id2846022}}
+
+
+想一想，根据中序和后序遍历结果能否构造二叉树？根据前序和后序遍历结果能否构造二叉树？
+
+
+\BookExampleTitle{二叉树}\BookAnchor{db.ch26s02.id2846041}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s02/02.pv}{9}{19}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s02/03.pv}{9}{78}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s02/04.pv}{9}{24}
+
+\subsubsection*{习题}
+\BookAnchor{db.ch26s02.id2846092}%
+
+
+1、本节描述了二叉树的递归定义，想一想单链表的递归定义应该怎么表述？请仿照本节的例子用递归实现单链表的各种操作函数：
+
+
+\BookSource{numbers=none}{code/ch26s02/05.pv}{7}{5}
+
+\subsection{排序二叉树}
+\BookAnchor{db.ch26s02.id2846120}%
+
+
+排序二叉树（BST，Binary Search Tree）\BookAnchor{db.ch26s02.id2846126}具有这样的性质：对于二叉树中的任意节点，如果它有左子树或右子树，则该节点的数据成员大于左子树所有节点的数据成员，且小于右子树所有节点的数据成员。排序二叉树的中序遍历结果是从小到大排列的，其实上一节的\hyperlink{db.ch26s02.id2845990}{图 26.\BookSplit{}10 “二叉树的遍历”}就是排序二叉树。
+
+
+\BookExampleTitle{排序二叉树}\BookAnchor{db.ch26s02.id2846146}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s02/06.pv}{9}{16}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s02/07.pv}{9}{80}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch26s02/08.pv}{9}{35}
+
+\BookTerminal{code/ch26s02/09.txt}{9}{20}
+
+
+程序的运行结果可以用Greg Lee编写的The Tree Preprocessor（\url{http://www.essex.ac.uk/linguistics/clmt/latex4ling/trees/tree/}）转换成树形：
+
+
+\BookTerminal{code/ch26s02/10.txt}{9}{64}
+
+\BookNav{\hyperlink{db.ch26s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch26}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch26s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch26s03.html
+
+\section{哈希表}
+\BookAnchor{db.ch26s03}\BookAnchor{db.ch26s03.id2846250}%
+下图示意了哈希表（Hash Table）这种数据结构。
+
+
+\BookFigure{哈希表}{\BookImage{images/linkedlist.hashtab.png}{0.426}}{\BookAnchor{db.ch26s03.id2846258}}
+
+
+如上图所示，首先分配一个指针数组，数组的每个元素是一个链表的头指针，每个链表称为一个槽（Slot）\BookAnchor{db.ch26s03.id2846275}。哪个数据应该放入哪个槽中由哈希函数决定，在这个例子中我们简单地选取哈希函数h(x) = x \% 11，这样任意数据x都可以映射成0\textasciitilde{}\BookSplit{}10之间的一个数，就是槽的编号，将数据放入某个槽的操作就是链表的插入操作。
+
+
+
+如果每个槽里至多只有一个数据，可以想像这种情况下\BookCode{search}、\BookCode{insert}和\BookCode{delete}操作的时间复杂度都是O(1)，但有时会有多个数据被哈希函数映射到同一个槽中，这称为碰撞（Collision）\BookAnchor{db.ch26s03.id2846311}，设计一个好的哈希函数可以把数据比较均匀地分布到各个槽中，尽量避免碰撞。如果能把n个数据比较均匀地分布到m个槽中，每个糟里约有n/\BookSplit{}m个数据，则\BookCode{search}、\BookCode{insert}和\BookCode{delete}和操作的时间复杂度都是O(n/\BookSplit{}m)，如果n和m的比是常数，则时间复杂度仍然是O(1)。一般来说，要处理的数据越多，构造哈希表时分配的槽也应该越多，所以n和m成正比这个假设是成立的。
+
+
+
+请读者自己编写程序构造这样一个哈希表，并实现\BookCode{search}、\BookCode{insert}和\BookCode{delete}操作。
+
+
+
+如果用我们学过的各种数据结构来表示n个数据的集合，下表是\BookCode{search}、\BookCode{insert}和\BookCode{delete}操作在平均情况下的时间复杂度比较。
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.340646\linewidth-2\tabcolsep\relax}L{\dimexpr 0.420116\linewidth-2\tabcolsep\relax}L{\dimexpr 0.119619\linewidth-2\tabcolsep\relax}L{\dimexpr 0.119619\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{各种数据结构的search、insert和delete操作在平均情况下的时间复杂度比较}\BookTableLabel{\BookAnchor{db.ch26s03.id2846390}}
+\toprule
+{\bfseries 数据结构} & {\bfseries search} & {\bfseries insert} & {\bfseries delete} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 数据结构} & {\bfseries search} & {\bfseries insert} & {\bfseries delete} \\
+\midrule
+\endhead
+数组 & O(n)，有序数组折半查找是O(lgn) & O(n) & O(n) \\
+\addlinespace[2pt]
+双向链表 & O(n) & O(1) & O(1) \\
+\addlinespace[2pt]
+排序二叉树 & O(lgn) & O(lgn) & O(lgn) \\
+\addlinespace[2pt]
+哈希表（n与槽数m成正比） & O(1) & O(1) & O(1) \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\subsection*{习题}
+\BookAnchor{db.ch26s03.id2846467}%
+
+
+1、统计一个文本文件中每个单词的出现次数，然后按出现次数排序并打印输出。单词由连续的英文字母组成，不区分大小写。
+
+
+
+2、实现一个函数求两个数组的交集：\BookCode{size\_\BookSplit{}t intersect(\BookSplit{}const int a[\BookSplit{}]\BookSplit{},\BookSplit{} size\_\BookSplit{}t nmema,\BookSplit{} const int b[\BookSplit{}]\BookSplit{},\BookSplit{} size\_\BookSplit{}t nmemb,\BookSplit{} int c[\BookSplit{}]\BookSplit{},\BookSplit{} size\_\BookSplit{}t nmemc)\BookSplit{};\BookSplit{}}。数组元素是32位\BookCode{int}型的。数组\BookCode{a}有\BookCode{nmema}个元素且各不相同，数组\BookCode{b}有\BookCode{nmemb}个元素且各不相同。要求找出数组\BookCode{a}和数组\BookCode{b}的交集保存到数组\BookCode{c}中，\BookCode{nmemc}是数组\BookCode{c}的最大长度，返回值表示交集中实际有多少个元素，如果交集中实际的元素数量超过了\BookCode{nmemc}则返回\BookCode{nmemc}个元素。数组\BookCode{a}和数组\BookCode{b}的元素数量可能会很大（比如上百万个），需要设计尽可能快的算法。
+
+\BookNav{\hyperlink{db.ch26s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch26}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch27}{下一页}}

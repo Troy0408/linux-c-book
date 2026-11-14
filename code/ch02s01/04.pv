@@ -1,0 +1,2 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{\BKZob{}}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Hello, world.}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{p}{\BKZcb{}}

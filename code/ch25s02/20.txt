@@ -1,0 +1,6 @@
+$ ./a.out
+hello（输入hello并回车，这时第一次调用getchar返回，读取字符h存到文件中，然后连续调用getchar五次，读取ello和换行符存到文件中，第七次调用getchar又阻塞了）
+hey（输入hey并回车，第七次调用getchar返回，读取字符h存到文件中，然后连续调用getchar三次，读取ey和换行符存到文件中，第11次调用getchar又阻塞了）
+（这时输入Ctrl-D，第11次调用getchar返回EOF，跳出循环，进入下一个循环，回到文件开头，把文件内容一个字节一个字节读出来打印，直到文件结束）
+hello
+hey

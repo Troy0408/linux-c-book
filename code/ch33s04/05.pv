@@ -1,0 +1,6 @@
+\BK{k+kt}{long}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{a}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{a}\BK{o}{=}\BK{l+m+mi}{5}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

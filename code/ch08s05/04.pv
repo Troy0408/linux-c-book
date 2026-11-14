@@ -1,0 +1,8 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x}\BK{p}{,}\BK{+w}{ }\BK{n}{y}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{n}{a}\BK{p}{[}\BK{l+m+mi}{4}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{p}{.}\BK{n}{x}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mf}{8.0}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{k}{struct}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x}\BK{p}{,}\BK{+w}{ }\BK{n}{y}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{count}\BK{p}{[}\BK{l+m+mi}{4}\BK{p}{]}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{n}{s}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{p}{.}\BK{n}{count}\BK{p}{[}\BK{l+m+mi}{2}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{9}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}

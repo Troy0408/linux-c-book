@@ -1,0 +1,4 @@
+\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{+w}{ }\BK{p}{(}\BK{n}{fp}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{fopen}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{/tmp/file1}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{r}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{error open file /tmp/file1!}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

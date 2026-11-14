@@ -1,0 +1,5 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{atoi}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{nptr}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{double}\BK{+w}{ }\BK{n+nf}{atof}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{nptr}\BK{p}{)}\BK{p}{;}
+\BK{n}{返回值}\BK{err}{：}\BK{n}{转换结果}

@@ -1,0 +1,22 @@
+$ ps
+  PID TTY          TIME CMD
+30697 pts/1    00:00:00 bash
+30749 pts/1    00:00:00 ps
+$ cat /proc/30697/maps
+08048000-080f4000 r-xp 00000000 08:15 688142     /bin/bash
+080f4000-080f9000 rw-p 000ac000 08:15 688142     /bin/bash
+080f9000-080fe000 rw-p 080f9000 00:00 0 
+082d7000-084f9000 rw-p 082d7000 00:00 0          [heap]
+b7cf1000-b7cfb000 r-xp 00000000 08:15 581665     /lib/tls/i686/cmov/libnss_files-2.8.90.so
+b7cfb000-b7cfc000 r--p 00009000 08:15 581665     /lib/tls/i686/cmov/libnss_files-2.8.90.so
+b7cfc000-b7cfd000 rw-p 0000a000 08:15 581665     /lib/tls/i686/cmov/libnss_files-2.8.90.so
+...
+b7e5e000-b7fb6000 r-xp 00000000 08:15 581656     /lib/tls/i686/cmov/libc-2.8.90.so
+b7fb6000-b7fb8000 r--p 00158000 08:15 581656     /lib/tls/i686/cmov/libc-2.8.90.so
+b7fb8000-b7fb9000 rw-p 0015a000 08:15 581656     /lib/tls/i686/cmov/libc-2.8.90.so
+...
+b8006000-b8020000 r-xp 00000000 08:15 565466     /lib/ld-2.8.90.so
+b8020000-b8021000 r-xp b8020000 00:00 0          [vdso]
+b8021000-b8022000 r--p 0001a000 08:15 565466     /lib/ld-2.8.90.so
+b8022000-b8023000 rw-p 0001b000 08:15 565466     /lib/ld-2.8.90.so
+bff0e000-bff23000 rw-p bffeb000 00:00 0          [stack]

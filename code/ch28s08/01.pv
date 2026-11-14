@@ -1,0 +1,4 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/mman.h\BKZgt{}}
+
+\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{mmap}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{addr}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{len}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{prot}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{flag}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{filedes}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{off\BKZus{}t}\BK{+w}{ }\BK{n}{off}\BK{p}{)}\BK{p}{;}
+\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{munmap}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{addr}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{len}\BK{p}{)}\BK{p}{;}

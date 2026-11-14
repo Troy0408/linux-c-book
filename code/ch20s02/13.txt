@@ -1,0 +1,8 @@
+$ tree
+.
+|-- main.c
+`-- stack
+    |-- stack.c
+    `-- stack.h
+
+1 directory, 3 files

@@ -1,0 +1,158 @@
+\defaultfontfeatures{Ligatures={TeXOff,NoCommon}}
+\IfFontExistsTF{TeX Gyre Pagella}{\setmainfont{TeX Gyre Pagella}}{\setmainfont{Latin Modern Roman}}
+\IfFontExistsTF{TeX Gyre Heros}{\setsansfont{TeX Gyre Heros}}{\setsansfont{Latin Modern Sans}}
+\IfFontExistsTF{DejaVu Sans Mono}
+  {\setmonofont[Scale=MatchLowercase]{DejaVu Sans Mono}}
+  {\setmonofont[Scale=MatchLowercase]{Latin Modern Mono}}
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont[BoldFont={Noto Serif CJK SC Bold},ItalicFont={Noto Serif CJK SC}]{Noto Serif CJK SC}
+  \setCJKsansfont[BoldFont={Noto Sans CJK SC Bold}]{Noto Sans CJK SC}
+  \setCJKmonofont[ItalicFont={Noto Sans Mono CJK SC},BoldItalicFont={Noto Sans Mono CJK SC Bold}]{Noto Sans Mono CJK SC}
+}{
+  \IfFontExistsTF{FandolSong-Regular}
+    {\setCJKmainfont[BoldFont=FandolSong-Bold,ItalicFont=FandolKai-Regular]{FandolSong-Regular}\setCJKsansfont[BoldFont=FandolHei-Bold]{FandolHei-Regular}\setCJKmonofont{FandolFang-Regular}}
+    {\setCJKmainfont[AutoFakeBold=2]{AR PL UMing CN}
+     \setCJKsansfont[AutoFakeBold=2]{WenQuanYi Micro Hei}
+     \setCJKmonofont{WenQuanYi Micro Hei}}
+}
+\IfFontExistsTF{DejaVu Sans}{\newfontfamily\BookSymbolFont{DejaVu Sans}}{\newcommand{\BookSymbolFont}{\sffamily}}
+
+% Classic editorial technical book palette (warm, restrained, high-contrast)
+\definecolor{BookInk}{HTML}{1F2328}
+\definecolor{BookAccent}{HTML}{8C2D19}
+\definecolor{BookMuted}{HTML}{636C76}
+\definecolor{BookLine}{HTML}{D0D7DE}
+\definecolor{BookRuleDark}{HTML}{2D333B}
+\definecolor{BookCodePaper}{HTML}{F7F8FA}
+\definecolor{BookTerminalPaper}{HTML}{F6F4EF}
+\definecolor{BookTerminalLine}{HTML}{DFDCD4}
+\definecolor{BookNotePaper}{HTML}{FAF8F4}
+\definecolor{BookLink}{HTML}{2C4A63}
+\definecolor{BookCoverBg}{HTML}{1B2028}
+\definecolor{BookCoverGold}{HTML}{C89B62}
+\definecolor{BookCoverText}{HTML}{F5F2EB}
+\definecolor{BookCoverMuted}{HTML}{9AA4B2}
+
+\hypersetup{
+  unicode=true,pdfencoding=auto,pdflang={zh-CN},
+  pdftitle={\EditionTitle},pdfauthor={宋劲杉},
+  pdfsubject={Linux C 编程技术教材，\EditionVersion},
+  pdfkeywords={C语言, Linux, 系统编程, 宋劲杉},
+  colorlinks=true,linkcolor=BookLink,urlcolor=BookLink,
+  linktoc=all,pdfdisplaydoctitle=true,hypertexnames=false
+}
+\bookmarksetup{depth=3,numbered}
+\makeatletter
+\patchcmd{\frontmatter}{\cleardoublepage}{\clearpage}{}{\PackageError{book}{Cannot set front matter pagination}{}}
+\patchcmd{\mainmatter}{\cleardoublepage}{\clearpage}{}{\PackageError{book}{Cannot set main matter pagination}{}}
+\makeatother
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+% Classic editorial Part, Chapter, and Section headings
+\newcommand{\BookChapterAfterTitle}{%
+  \par\nobreak\vspace{2.5mm}%
+  {\color{BookLine}\rule{\linewidth}{0.5pt}}\par%
+}
+
+\ctexset{
+  part={
+    name={第,部分},
+    number=\chinese{part},
+    format=\raggedright\sffamily\bfseries\color{BookInk}\setlength{\parskip}{0pt},
+    nameformat=\normalsize\color{BookAccent},
+    aftername=\par\vspace{8pt},
+    titleformat=\fontsize{28}{34}\selectfont\color{BookInk},
+    aftertitle=\par\vspace{14pt}{\color{BookRuleDark}\rule{4em}{0.8pt}},
+    afterskip=14pt
+  },
+  chapter={
+    name={第,章},
+    number=\arabic{chapter},
+    format=\raggedright\sffamily\bfseries\setlength{\parskip}{0pt},
+    nameformat=\small\color{BookAccent},
+    aftername=\par\vspace{2pt},
+    titleformat=\fontsize{22}{28}\selectfont\color{BookInk},
+    aftertitle=\BookChapterAfterTitle,
+    beforeskip=6mm,
+    afterskip=6mm,
+    fixskip=true
+  },
+  section={
+    format=\raggedright\sffamily\bfseries\Large\color{BookInk},
+    break=\BookHeadingBreak{8},
+    beforeskip=3.2ex plus 0.5ex minus 0.2ex,
+    afterskip=1.3ex
+  },
+  subsection={
+    format=\raggedright\sffamily\bfseries\large\color{BookInk},
+    break=\BookHeadingBreak{7.5},
+    beforeskip=2.4ex plus 0.4ex minus 0.2ex,
+    afterskip=1.0ex
+  },
+  subsubsection={
+    format=\raggedright\sffamily\bfseries\normalsize\color{BookMuted},
+    break=\BookHeadingBreak{7},
+    beforeskip=2.0ex,
+    afterskip=.75ex
+  }
+}
+\let\BookOriginalAppendix\appendix
+\renewcommand{\appendix}{%
+  \BookOriginalAppendix
+  \ctexset{chapter={name={附录\space,},number=\Alph{chapter}}}}
+
+% TOC styling (clean editorial typography, dark ink)
+\renewcommand{\cftpartfont}{\sffamily\bfseries\large\color{BookInk}}
+\renewcommand{\cftpartpagefont}{\sffamily\bfseries\large\color{BookInk}}
+\setlength{\cftbeforepartskip}{1.2em}
+\renewcommand{\cftchapfont}{\sffamily\bfseries\color{BookInk}}
+\renewcommand{\cftchappagefont}{\sffamily\bfseries\color{BookInk}}
+\setlength{\cftbeforechapskip}{0.5em}
+\renewcommand{\cftsecfont}{\normalfont\color{BookInk}}
+\renewcommand{\cftsecpagefont}{\normalfont\color{BookMuted}}
+\renewcommand{\cftsecdotsep}{\cftdotsep}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+
+% Typography & spacing
+\linespread{1.32}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{.32\baselineskip plus .12\baselineskip minus .06\baselineskip}
+\setlength{\emergencystretch}{4em}
+\tolerance=2100
+\setlength{\LTpre}{6pt}
+\setlength{\LTpost}{7pt}
+\setlength{\LTcapwidth}{0.88\linewidth}
+\setlength{\columnsep}{18pt}
+\setlength{\footnotesep}{9pt}
+\setlength{\fboxsep}{4pt}
+\raggedbottom
+\widowpenalty=8500
+\clubpenalty=8500
+\displaywidowpenalty=8500
+
+% Lists & Captions
+\setlist{topsep=.45\baselineskip,itemsep=.2\baselineskip,parsep=.16\baselineskip}
+\captionsetup{hypcap=false,font=small,labelfont={bf,sf,color=BookInk},textfont={sf,color=BookInk},labelsep=quad,skip=6pt}
+
+% Tables
+\arrayrulecolor{BookRuleDark}
+\setlength{\heavyrulewidth}{0.85pt}
+\setlength{\lightrulewidth}{0.4pt}
+
+% Running headers & footers
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily\color{BookMuted}\OriginalTitle}
+\fancyhead[R]{\footnotesize\sffamily\color{BookMuted}\nouppercase{\leftmark}}
+\fancyfoot[C]{\footnotesize\sffamily\color{BookMuted}\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{BookLine}\leaders\hrule height \headrulewidth\hfill}}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\footnotesize\sffamily\color{BookMuted}\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\headrule}{}}

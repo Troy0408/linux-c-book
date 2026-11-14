@@ -1,0 +1,1 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{socket}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{family}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{type}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{protocol}\BK{p}{)}\BK{p}{;}

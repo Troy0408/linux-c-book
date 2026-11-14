@@ -1,0 +1,3 @@
+character: }
+integer: 34
+floating point: 3.14

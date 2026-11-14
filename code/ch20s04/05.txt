@@ -1,0 +1,27 @@
+$ gcc -g main.c stack.o push.o pop.o is_empty.o -Istack -o main
+$ objdump -dS main
+...
+080483c0 <push>:
+/* push.c */
+extern char stack[512];
+extern int top;
+
+void push(char c)
+{
+ 80483c0:       55                      push   %ebp
+ 80483c1:       89 e5                   mov    %esp,%ebp
+ 80483c3:       83 ec 04                sub    $0x4,%esp
+ 80483c6:       8b 45 08                mov    0x8(%ebp),%eax
+ 80483c9:       88 45 fc                mov    %al,-0x4(%ebp)
+        stack[++top] = c;
+ 80483cc:       a1 10 a0 04 08          mov    0x804a010,%eax
+ 80483d1:       83 c0 01                add    $0x1,%eax
+ 80483d4:       a3 10 a0 04 08          mov    %eax,0x804a010
+ 80483d9:       8b 15 10 a0 04 08       mov    0x804a010,%edx
+ 80483df:       0f b6 45 fc             movzbl -0x4(%ebp),%eax
+ 80483e3:       88 82 40 a0 04 08       mov    %al,0x804a040(%edx)
+}
+ 80483e9:       c9                      leave  
+ 80483ea:       c3                      ret    
+ 80483eb:       90                      nop    
+...

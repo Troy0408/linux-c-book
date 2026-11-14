@@ -1,0 +1,12 @@
+\BK{n+nf}{lock}\BK{o}{:}
+\BK{+w}{	}\BK{k}{if}\BK{o}{(}mutex\BK{+w}{ }\BKZgt{}\BK{+w}{ }\BK{l+m}{0}\BK{o}{)}\BK{o}{\BKZob{}}
+\BK{+w}{		}\BK{n+nv}{mutex}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m}{0}\BK{p}{;}
+\BK{+w}{		}\BK{k}{return}\BK{+w}{ }\BK{l+m}{0}\BK{p}{;}
+\BK{+w}{	}\BK{o}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}
+\BK{+w}{		}挂起等待\BK{p}{;}
+\BK{+w}{	}goto\BK{+w}{ }lock\BK{p}{;}
+
+\BK{n+nf}{unlock}\BK{o}{:}
+\BK{+w}{	}\BK{n+nv}{mutex}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m}{1}\BK{p}{;}
+\BK{+w}{	}唤醒等待Mutex的线程\BK{p}{;}
+\BK{+w}{	}\BK{err}{r}\BK{err}{e}\BK{err}{t}\BK{err}{u}\BK{err}{r}\BK{err}{n}\BK{+w}{ }\BK{err}{0}\BK{err}{;}

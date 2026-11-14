@@ -1,0 +1,4 @@
+$ gcc main.c -lpthread
+$ ./a.out
+main thread: pid 7398 tid 3084450496 (0xb7d8fac0)
+new thread:  pid 7398 tid 3084446608 (0xb7d8eb90)

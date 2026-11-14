@@ -1,0 +1,28 @@
+$ gcc main.c -g
+$ objdump -dS a.out
+...
+int max(int n)
+{
+ 8048369:       55                      push   %ebp
+ 804836a:       89 e5                   mov    %esp,%ebp
+ 804836c:       83 ec 0c                sub    $0xc,%esp
+        return n == 0 ? a[0] : MAX(a[n], max(n-1));
+ 804836f:       83 7d 08 00             cmpl   $0x0,0x8(%ebp)
+ 8048373:       75 0a                   jne    804837f <max+0x16>
+ 8048375:       a1 c0 95 04 08          mov    0x80495c0,%eax
+ 804837a:       89 45 fc                mov    %eax,-0x4(%ebp)
+ 804837d:       eb 29                   jmp    80483a8 <max+0x3f>
+ 804837f:       8b 45 08                mov    0x8(%ebp),%eax
+ 8048382:       83 e8 01                sub    $0x1,%eax
+ 8048385:       89 04 24                mov    %eax,(%esp)
+ 8048388:       e8 dc ff ff ff          call   8048369 <max>
+ 804838d:       89 c2                   mov    %eax,%edx
+ 804838f:       8b 45 08                mov    0x8(%ebp),%eax
+ 8048392:       8b 04 85 c0 95 04 08    mov    0x80495c0(,%eax,4),%eax
+ 8048399:       89 54 24 04             mov    %edx,0x4(%esp)
+ 804839d:       89 04 24                mov    %eax,(%esp)
+ 80483a0:       e8 9f ff ff ff          call   8048344 <MAX>
+ 80483a5:       89 45 fc                mov    %eax,-0x4(%ebp)
+ 80483a8:       8b 45 fc                mov    -0x4(%ebp),%eax
+}
+...

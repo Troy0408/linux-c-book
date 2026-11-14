@@ -1,0 +1,4 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{dup}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{oldfd}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{dup2}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{oldfd}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{newfd}\BK{p}{)}\BK{p}{;}

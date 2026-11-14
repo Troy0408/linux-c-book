@@ -1,0 +1,10 @@
+\BK{c+cm}{/* main.h */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifndef MAIN\BKZus{}H}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define MAIN\BKZus{}H}
+
+\BK{k}{typedef}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{point}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{row}\BK{p}{,}\BK{+w}{ }\BK{n}{col}\BK{p}{;}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{n}{item\BKZus{}t}\BK{p}{;}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define MAX\BKZus{}ROW 5}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define MAX\BKZus{}COL 5}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

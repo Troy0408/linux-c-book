@@ -1,0 +1,8 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define x 3}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define f(a) f(x * (a))}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{undef x}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define x 2}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define g f}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define t(a) a}
+
+\BK{n}{t}\BK{p}{(}\BK{n}{t}\BK{p}{(}\BK{n}{g}\BK{p}{)}\BK{p}{(}\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{t}\BK{p}{)}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}

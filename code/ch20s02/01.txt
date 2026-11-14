@@ -1,0 +1,5 @@
+$ gcc -c main.c -Wall
+main.c: In function ‘main’:
+main.c:8: warning: implicit declaration of function ‘push’
+main.c:12: warning: implicit declaration of function ‘is_empty’
+main.c:13: warning: implicit declaration of function ‘pop’

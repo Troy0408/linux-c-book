@@ -1,0 +1,17 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/ioctl.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{winsize}\BK{+w}{ }\BK{n}{size}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{isatty}\BK{p}{(}\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{)}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{p}{(}\BK{n}{ioctl}\BK{p}{(}\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{,}\BK{+w}{ }\BK{n}{TIOCGWINSZ}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{size}\BK{p}{)}\BK{o}{\BKZlt{}}\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{ioctl TIOCGWINSZ error}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d rows, \BKZpc{}d columns}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{size}\BK{p}{.}\BK{n}{ws\BKZus{}row}\BK{p}{,}\BK{+w}{ }\BK{n}{size}\BK{p}{.}\BK{n}{ws\BKZus{}col}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,11 @@
+\BK{c+cm}{/* 从start到end之间找出第k小的元素 */}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{order\BKZus{}statistic}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{start}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{end}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{k}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{用partition函数把序列分成两半}\BK{err}{，}\BK{n}{中间的pivot元素是序列中的第i个}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{k}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{i}\BK{p}{)}
+\BK{+w}{		}\BK{n}{返回找到的元素}\BK{p}{;}
+\BK{+w}{	}\BK{k}{else}\BK{+w}{ }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{k}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{n}{i}\BK{p}{)}
+\BK{+w}{		}\BK{n}{从后半部分找出第k}\BK{o}{\BKZhy{}}\BK{n}{i小的元素并返回}\BK{p}{;}
+\BK{+w}{	}\BK{k}{else}
+\BK{+w}{		}\BK{n}{从前半部分找出第k小的元素并返回}\BK{p}{;}
+\BK{p}{\BKZcb{}}

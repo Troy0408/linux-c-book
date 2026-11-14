@@ -1,0 +1,9 @@
+(gdb) s
+add_range (low=1, high=100) at main.c:6
+6		for (i = low; i <= high; i++)
+(gdb) bt
+#0  add_range (low=1, high=100) at main.c:6
+#1  0x080483db in main () at main.c:15
+(gdb) i locals 
+i = 11
+sum = 55

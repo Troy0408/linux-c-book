@@ -1,0 +1,11 @@
+(gdb) l add_range
+1	#include <stdio.h>
+2	
+3	int add_range(int low, int high)
+4	{
+5		int i, sum;
+6		for (i = low; i <= high; i++)
+7			sum = sum + i;
+8		return sum;
+9	}
+10

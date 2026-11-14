@@ -1,0 +1,5 @@
+$ gcc main.c
+main.c: In function ‘main’:
+main.c:7: warning: passing argument 1 of ‘printf’ makes pointer from integer without a cast
+$ ./a.out 
+Segmentation fault

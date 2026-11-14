@@ -1,0 +1,5 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}pthread.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}create}\BK{p}{(}\BK{n}{pthread\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{k+kr}{restrict}\BK{+w}{ }\BK{k+kr}{thread}\BK{p}{,}
+\BK{+w}{	}\BK{k}{const}\BK{+w}{ }\BK{n}{pthread\BKZus{}attr\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{k+kr}{restrict}\BK{+w}{ }\BK{n}{attr}\BK{p}{,}
+\BK{+w}{	}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{p}{(}\BK{o}{*}\BK{n}{start\BKZus{}routine}\BK{p}{)}\BK{p}{(}\BK{k+kt}{void}\BK{o}{*}\BK{p}{)}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{k+kr}{restrict}\BK{+w}{ }\BK{n}{arg}\BK{p}{)}\BK{p}{;}

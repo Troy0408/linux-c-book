@@ -1,0 +1,7 @@
+$ cpp main.c
+# 1 "main.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "main.c"
+
+k = ((i&0x0f)>(j&0x0f)?(i&0x0f):(j&0x0f))

@@ -1,0 +1,13 @@
+$ cat testfile &
+[1] 11426
+$ hello
+
+[1]+  Done                    cat testfile
+$ stty tostop
+$ cat testfile &
+[1] 11428
+
+[1]+  Stopped                 cat testfile
+$ fg %1
+cat testfile
+hello

@@ -1,0 +1,4 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{s}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{data}\BK{p}{[}\BK{l+m+mi}{6}\BK{p}{]}\BK{p}{;}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{s}\BK{o}{*}\BK{+w}{ }\BK{n}{next}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{p}{;}

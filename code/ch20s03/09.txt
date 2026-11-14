@@ -1,0 +1,2 @@
+$ ar rs libstack.a stack.o push.o pop.o is_empty.o
+ar: creating libstack.a

@@ -1,0 +1,6442 @@
+{
+  "base_url": "https://akaedu.github.io/book/",
+  "pages": [
+    {
+      "path": "index.html",
+      "url": "https://akaedu.github.io/book/index.html",
+      "title": "Linux C编程一站式学习",
+      "kind": "book",
+      "depth": 0,
+      "sha256": "9d5e4155dbd1f0013c0266524d88ff6812309c0df59e20425c1c33fbb2ca2e30",
+      "file": "source-html/index.html",
+      "document_title": "Linux C编程一站式学习",
+      "nav": {
+        "start": "index.html",
+        "next": "pr01.html"
+      }
+    },
+    {
+      "path": "pr01.html",
+      "url": "https://akaedu.github.io/book/pr01.html",
+      "title": "历史",
+      "kind": "preface",
+      "depth": 1,
+      "sha256": "533d92ad8b7503408e0be6990e8c8df134ec837db5fb32c8ef0e4306469825ae",
+      "file": "source-html/pr01.html",
+      "document_title": "历史",
+      "nav": {
+        "start": "index.html",
+        "up": "index.html",
+        "prev": "index.html",
+        "next": "pr02.html"
+      }
+    },
+    {
+      "path": "pr02.html",
+      "url": "https://akaedu.github.io/book/pr02.html",
+      "title": "前言",
+      "kind": "preface",
+      "depth": 1,
+      "sha256": "6ef21a7928477ead907d3a597a3a3cd551f0d1fb0ce2b033767ab8bb896cee22",
+      "file": "source-html/pr02.html",
+      "document_title": "前言",
+      "nav": {
+        "start": "index.html",
+        "up": "index.html",
+        "prev": "pr01.html",
+        "next": "pt01.html"
+      }
+    },
+    {
+      "path": "pt01.html",
+      "url": "https://akaedu.github.io/book/pt01.html",
+      "title": "I. C语言入门",
+      "kind": "part",
+      "depth": 1,
+      "sha256": "3b89b099c3d3668805f58b6d7efc6130ee660ffae31fc6b86270e1a0d862381a",
+      "file": "source-html/pt01.html",
+      "document_title": "部分 I. C语言入门",
+      "nav": {
+        "start": "index.html",
+        "up": "index.html",
+        "prev": "pr02.html",
+        "next": "ch01.html"
+      }
+    },
+    {
+      "path": "ch01.html",
+      "url": "https://akaedu.github.io/book/ch01.html",
+      "title": "1. 程序的基本概念",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "01f5f687937880662331a6a8b7ecf6fb2e46803b860742346cd26d4ac6247f71",
+      "file": "source-html/ch01.html",
+      "document_title": "第 1 章 程序的基本概念",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "pt01.html",
+        "next": "intro.program.html"
+      }
+    },
+    {
+      "path": "intro.program.html",
+      "url": "https://akaedu.github.io/book/intro.program.html",
+      "title": "1. 程序和编程语言",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "0e35d1627caf00b56447c70f27d48030e00c2c9de1b04f7b1aa59cb8f95072ee",
+      "file": "source-html/intro.program.html",
+      "document_title": "1. 程序和编程语言",
+      "nav": {
+        "start": "index.html",
+        "up": "ch01.html",
+        "prev": "ch01.html",
+        "next": "intro.naturalformal.html"
+      }
+    },
+    {
+      "path": "intro.naturalformal.html",
+      "url": "https://akaedu.github.io/book/intro.naturalformal.html",
+      "title": "2. 自然语言和形式语言",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "465cc92983990f01b53b104b5e1c5614e82b2984c1b207f6a8b3f1ea161b4b6a",
+      "file": "source-html/intro.naturalformal.html",
+      "document_title": "2. 自然语言和形式语言",
+      "nav": {
+        "start": "index.html",
+        "up": "ch01.html",
+        "prev": "intro.program.html",
+        "next": "ch01s03.html"
+      }
+    },
+    {
+      "path": "ch01s03.html",
+      "url": "https://akaedu.github.io/book/ch01s03.html",
+      "title": "3. 程序的调试",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "5526f7fa73d8e9c5e7054f8d2fa355ef480b8bf63a2aececd7405ebf29a5dff5",
+      "file": "source-html/ch01s03.html",
+      "document_title": "3. 程序的调试",
+      "nav": {
+        "start": "index.html",
+        "up": "ch01.html",
+        "prev": "intro.naturalformal.html",
+        "next": "intro.helloworld.html"
+      }
+    },
+    {
+      "path": "intro.helloworld.html",
+      "url": "https://akaedu.github.io/book/intro.helloworld.html",
+      "title": "4. 第一个程序",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "658982f030024bba98e8e6050dedaedf2e79d411b0002b6e61dccefccb1c2439",
+      "file": "source-html/intro.helloworld.html",
+      "document_title": "4. 第一个程序",
+      "nav": {
+        "start": "index.html",
+        "up": "ch01.html",
+        "prev": "ch01s03.html",
+        "next": "ch02.html"
+      }
+    },
+    {
+      "path": "ch02.html",
+      "url": "https://akaedu.github.io/book/ch02.html",
+      "title": "2. 常量、变量和表达式",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "241e13a91427ef6a0c891076d0979c5a7c919c0285312712f09ac7c3f460872a",
+      "file": "source-html/ch02.html",
+      "document_title": "第 2 章 常量、变量和表达式",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "intro.helloworld.html",
+        "next": "ch02s01.html"
+      }
+    },
+    {
+      "path": "ch02s01.html",
+      "url": "https://akaedu.github.io/book/ch02s01.html",
+      "title": "1. 继续Hello World",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "80e16e0f19afb1eef07a974a7c8857df5e465efd3e05e6af3b66103f92b6e4c9",
+      "file": "source-html/ch02s01.html",
+      "document_title": "1. 继续Hello World",
+      "nav": {
+        "start": "index.html",
+        "up": "ch02.html",
+        "prev": "ch02.html",
+        "next": "ch02s02.html"
+      }
+    },
+    {
+      "path": "ch02s02.html",
+      "url": "https://akaedu.github.io/book/ch02s02.html",
+      "title": "2. 常量",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "398ca7c25816044891b898d9162d83141ec232f6f246da440dd6608b016f6a71",
+      "file": "source-html/ch02s02.html",
+      "document_title": "2. 常量",
+      "nav": {
+        "start": "index.html",
+        "up": "ch02.html",
+        "prev": "ch02s01.html",
+        "next": "expr.variable.html"
+      }
+    },
+    {
+      "path": "expr.variable.html",
+      "url": "https://akaedu.github.io/book/expr.variable.html",
+      "title": "3. 变量",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "579ec20331d28a0a1c8ad3cf1c77c8b58597f04a906d965f81659c8b763aef38",
+      "file": "source-html/expr.variable.html",
+      "document_title": "3. 变量",
+      "nav": {
+        "start": "index.html",
+        "up": "ch02.html",
+        "prev": "ch02s02.html",
+        "next": "ch02s04.html"
+      }
+    },
+    {
+      "path": "ch02s04.html",
+      "url": "https://akaedu.github.io/book/ch02s04.html",
+      "title": "4. 赋值",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "03bccd699c6aa44e968751ed592db37fccf8b2bf2e80bac0da5b94b649645020",
+      "file": "source-html/ch02s04.html",
+      "document_title": "4. 赋值",
+      "nav": {
+        "start": "index.html",
+        "up": "ch02.html",
+        "prev": "expr.variable.html",
+        "next": "expr.expression.html"
+      }
+    },
+    {
+      "path": "expr.expression.html",
+      "url": "https://akaedu.github.io/book/expr.expression.html",
+      "title": "5. 表达式",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "46a8d637ecf9e6bb8fe0efe3a15b9789a5fc048d80c9f7d216492400474a5a49",
+      "file": "source-html/expr.expression.html",
+      "document_title": "5. 表达式",
+      "nav": {
+        "start": "index.html",
+        "up": "ch02.html",
+        "prev": "ch02s04.html",
+        "next": "ch02s06.html"
+      }
+    },
+    {
+      "path": "ch02s06.html",
+      "url": "https://akaedu.github.io/book/ch02s06.html",
+      "title": "6. 字符类型与字符编码",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "ee803e7df63f847281a41ad117b1815cfdb389b77e0c7cfb8aeec6cd1c7ae3b7",
+      "file": "source-html/ch02s06.html",
+      "document_title": "6. 字符类型与字符编码",
+      "nav": {
+        "start": "index.html",
+        "up": "ch02.html",
+        "prev": "expr.expression.html",
+        "next": "ch03.html"
+      }
+    },
+    {
+      "path": "ch03.html",
+      "url": "https://akaedu.github.io/book/ch03.html",
+      "title": "3. 简单函数",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "e930e22021443931226d823da51ccb4905d50977a560f8cef7dc1921b1a66184",
+      "file": "source-html/ch03.html",
+      "document_title": "第 3 章 简单函数",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "ch02s06.html",
+        "next": "ch03s01.html"
+      }
+    },
+    {
+      "path": "ch03s01.html",
+      "url": "https://akaedu.github.io/book/ch03s01.html",
+      "title": "1. 数学函数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "c7b4222590fe02d20c5dde3761c7ff778be3c7187d42554d996a70be2f12b704",
+      "file": "source-html/ch03s01.html",
+      "document_title": "1. 数学函数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch03.html",
+        "prev": "ch03.html",
+        "next": "ch03s02.html"
+      }
+    },
+    {
+      "path": "ch03s02.html",
+      "url": "https://akaedu.github.io/book/ch03s02.html",
+      "title": "2. 自定义函数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "1123a62e7388a2a4508b5cd7c21e81b37adfef21bc1bf703d2506a5f8e94f762",
+      "file": "source-html/ch03s02.html",
+      "document_title": "2. 自定义函数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch03.html",
+        "prev": "ch03s01.html",
+        "next": "ch03s03.html"
+      }
+    },
+    {
+      "path": "ch03s03.html",
+      "url": "https://akaedu.github.io/book/ch03s03.html",
+      "title": "3. 形参和实参",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "a2e0b8d94b453f2ebde39cf345fc3116e8a1f49ee24ca5b138f991695e36096b",
+      "file": "source-html/ch03s03.html",
+      "document_title": "3. 形参和实参",
+      "nav": {
+        "start": "index.html",
+        "up": "ch03.html",
+        "prev": "ch03s02.html",
+        "next": "ch03s04.html"
+      }
+    },
+    {
+      "path": "ch03s04.html",
+      "url": "https://akaedu.github.io/book/ch03s04.html",
+      "title": "4. 全局变量、局部变量和作用域",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "3e176cd1cfbf90cedfc025320990d5b821f49708394a97803c976a217daa0697",
+      "file": "source-html/ch03s04.html",
+      "document_title": "4. 全局变量、局部变量和作用域",
+      "nav": {
+        "start": "index.html",
+        "up": "ch03.html",
+        "prev": "ch03s03.html",
+        "next": "ch04.html"
+      }
+    },
+    {
+      "path": "ch04.html",
+      "url": "https://akaedu.github.io/book/ch04.html",
+      "title": "4. 分支语句",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "a91f200998f388fd4ba9a75d48bb9b331229f48ca8c142adaf33fd86ceef56da",
+      "file": "source-html/ch04.html",
+      "document_title": "第 4 章 分支语句",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "ch03s04.html",
+        "next": "ch04s01.html"
+      }
+    },
+    {
+      "path": "ch04s01.html",
+      "url": "https://akaedu.github.io/book/ch04s01.html",
+      "title": "1. if语句",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "adec3a2ec7cc9e5641f306e5be56886160e0ae7873f2c24e58fc595c5850b76b",
+      "file": "source-html/ch04s01.html",
+      "document_title": "1. if语句",
+      "nav": {
+        "start": "index.html",
+        "up": "ch04.html",
+        "prev": "ch04.html",
+        "next": "ch04s02.html"
+      }
+    },
+    {
+      "path": "ch04s02.html",
+      "url": "https://akaedu.github.io/book/ch04s02.html",
+      "title": "2. if/else语句",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "5714e33ded872b92e80b8f011530677604d74370be39af006b2bcb15370ff988",
+      "file": "source-html/ch04s02.html",
+      "document_title": "2. if/else语句",
+      "nav": {
+        "start": "index.html",
+        "up": "ch04.html",
+        "prev": "ch04s01.html",
+        "next": "ch04s03.html"
+      }
+    },
+    {
+      "path": "ch04s03.html",
+      "url": "https://akaedu.github.io/book/ch04s03.html",
+      "title": "3. 布尔代数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "b7319617b80630d3001456b810585555821650e4039e8da4fcd52fa1bfc47520",
+      "file": "source-html/ch04s03.html",
+      "document_title": "3. 布尔代数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch04.html",
+        "prev": "ch04s02.html",
+        "next": "ch04s04.html"
+      }
+    },
+    {
+      "path": "ch04s04.html",
+      "url": "https://akaedu.github.io/book/ch04s04.html",
+      "title": "4. switch语句",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "18c753b54f688e96a469deb9121fa19d5700caa3604f016ff67516a49cb91d45",
+      "file": "source-html/ch04s04.html",
+      "document_title": "4. switch语句",
+      "nav": {
+        "start": "index.html",
+        "up": "ch04.html",
+        "prev": "ch04s03.html",
+        "next": "ch05.html"
+      }
+    },
+    {
+      "path": "ch05.html",
+      "url": "https://akaedu.github.io/book/ch05.html",
+      "title": "5. 深入理解函数",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "8f6df42887dbf4fcf657e64180bf08a2d59b412422505a7d1b338b2b2ac384cf",
+      "file": "source-html/ch05.html",
+      "document_title": "第 5 章 深入理解函数",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "ch04s04.html",
+        "next": "ch05s01.html"
+      }
+    },
+    {
+      "path": "ch05s01.html",
+      "url": "https://akaedu.github.io/book/ch05s01.html",
+      "title": "1. return语句",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "833c05c3f6123c2a809197689d5b4b3b56b9cc41d6604e1ad72910d62c3ce3b0",
+      "file": "source-html/ch05s01.html",
+      "document_title": "1. return语句",
+      "nav": {
+        "start": "index.html",
+        "up": "ch05.html",
+        "prev": "ch05.html",
+        "next": "ch05s02.html"
+      }
+    },
+    {
+      "path": "ch05s02.html",
+      "url": "https://akaedu.github.io/book/ch05s02.html",
+      "title": "2. 增量式开发",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "727c733e7eb560440058f44be5694e1d19218b10d82e0112e0f8e8c0f3e57aa2",
+      "file": "source-html/ch05s02.html",
+      "document_title": "2. 增量式开发",
+      "nav": {
+        "start": "index.html",
+        "up": "ch05.html",
+        "prev": "ch05s01.html",
+        "next": "ch05s03.html"
+      }
+    },
+    {
+      "path": "ch05s03.html",
+      "url": "https://akaedu.github.io/book/ch05s03.html",
+      "title": "3. 递归",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "a730426d404f4db8201c88c7562dafe644de13bfb1a2cc2ba356e3d19849079f",
+      "file": "source-html/ch05s03.html",
+      "document_title": "3. 递归",
+      "nav": {
+        "start": "index.html",
+        "up": "ch05.html",
+        "prev": "ch05s02.html",
+        "next": "ch06.html"
+      }
+    },
+    {
+      "path": "ch06.html",
+      "url": "https://akaedu.github.io/book/ch06.html",
+      "title": "6. 循环语句",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "62674b10bcb14347b91ff5cfbe4aed921b45cb10d8191547f7e7d8f097f1864c",
+      "file": "source-html/ch06.html",
+      "document_title": "第 6 章 循环语句",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "ch05s03.html",
+        "next": "ch06s01.html"
+      }
+    },
+    {
+      "path": "ch06s01.html",
+      "url": "https://akaedu.github.io/book/ch06s01.html",
+      "title": "1. while语句",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "e5c6b226afb21a5658fdd29b216edd132eb220c5b26b8b42cdd873cb8b96aac4",
+      "file": "source-html/ch06s01.html",
+      "document_title": "1. while语句",
+      "nav": {
+        "start": "index.html",
+        "up": "ch06.html",
+        "prev": "ch06.html",
+        "next": "ch06s02.html"
+      }
+    },
+    {
+      "path": "ch06s02.html",
+      "url": "https://akaedu.github.io/book/ch06s02.html",
+      "title": "2. do/while语句",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "8ae1d6b733120edb07c8d52308269cd48f611d8aea3933fa6331e2ffec64eb04",
+      "file": "source-html/ch06s02.html",
+      "document_title": "2. do/while语句",
+      "nav": {
+        "start": "index.html",
+        "up": "ch06.html",
+        "prev": "ch06s01.html",
+        "next": "ch06s03.html"
+      }
+    },
+    {
+      "path": "ch06s03.html",
+      "url": "https://akaedu.github.io/book/ch06s03.html",
+      "title": "3. for语句",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "efbf3cd457924736b2dbf0543c2f0be82fb151d2c156a2be42f01d4446e57c5d",
+      "file": "source-html/ch06s03.html",
+      "document_title": "3. for语句",
+      "nav": {
+        "start": "index.html",
+        "up": "ch06.html",
+        "prev": "ch06s02.html",
+        "next": "ch06s04.html"
+      }
+    },
+    {
+      "path": "ch06s04.html",
+      "url": "https://akaedu.github.io/book/ch06s04.html",
+      "title": "4. break和continue语句",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "80f912ecb49ed8543e4a31472b51f5553d825fd6ab3d526ce0252359834b9043",
+      "file": "source-html/ch06s04.html",
+      "document_title": "4. break和continue语句",
+      "nav": {
+        "start": "index.html",
+        "up": "ch06.html",
+        "prev": "ch06s03.html",
+        "next": "ch06s05.html"
+      }
+    },
+    {
+      "path": "ch06s05.html",
+      "url": "https://akaedu.github.io/book/ch06s05.html",
+      "title": "5. 嵌套循环",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "ad403b532d264bf2649c6a23123e9f75e2e1e74dfb3ed7e646f17313021092c8",
+      "file": "source-html/ch06s05.html",
+      "document_title": "5. 嵌套循环",
+      "nav": {
+        "start": "index.html",
+        "up": "ch06.html",
+        "prev": "ch06s04.html",
+        "next": "ch06s06.html"
+      }
+    },
+    {
+      "path": "ch06s06.html",
+      "url": "https://akaedu.github.io/book/ch06s06.html",
+      "title": "6. goto语句和标号",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "87489231316a6c8f3f9144588accfe4627ba18c6460ae0db87553f4285ef222a",
+      "file": "source-html/ch06s06.html",
+      "document_title": "6. goto语句和标号",
+      "nav": {
+        "start": "index.html",
+        "up": "ch06.html",
+        "prev": "ch06s05.html",
+        "next": "ch07.html"
+      }
+    },
+    {
+      "path": "ch07.html",
+      "url": "https://akaedu.github.io/book/ch07.html",
+      "title": "7. 结构体",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "d3a2cfbfe61aad3d13934771c9eedb428d08e8e1ac3f26e60c180484cab532ad",
+      "file": "source-html/ch07.html",
+      "document_title": "第 7 章 结构体",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "ch06s06.html",
+        "next": "ch07s01.html"
+      }
+    },
+    {
+      "path": "ch07s01.html",
+      "url": "https://akaedu.github.io/book/ch07s01.html",
+      "title": "1. 复合类型与结构体",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "664e8b925e7208a3971003da576f508e94227f860d168bae935ffc23aa75e70b",
+      "file": "source-html/ch07s01.html",
+      "document_title": "1. 复合类型与结构体",
+      "nav": {
+        "start": "index.html",
+        "up": "ch07.html",
+        "prev": "ch07.html",
+        "next": "ch07s02.html"
+      }
+    },
+    {
+      "path": "ch07s02.html",
+      "url": "https://akaedu.github.io/book/ch07s02.html",
+      "title": "2. 数据抽象",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "71c73d9fbddb974b5498a7e850b140bd60b760406a4599a56cb14166f16a543c",
+      "file": "source-html/ch07s02.html",
+      "document_title": "2. 数据抽象",
+      "nav": {
+        "start": "index.html",
+        "up": "ch07.html",
+        "prev": "ch07s01.html",
+        "next": "ch07s03.html"
+      }
+    },
+    {
+      "path": "ch07s03.html",
+      "url": "https://akaedu.github.io/book/ch07s03.html",
+      "title": "3. 数据类型标志",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "827220b33ef7cf9397829810db690203fdd488c9bf7c857140a72cdacab662df",
+      "file": "source-html/ch07s03.html",
+      "document_title": "3. 数据类型标志",
+      "nav": {
+        "start": "index.html",
+        "up": "ch07.html",
+        "prev": "ch07s02.html",
+        "next": "ch07s04.html"
+      }
+    },
+    {
+      "path": "ch07s04.html",
+      "url": "https://akaedu.github.io/book/ch07s04.html",
+      "title": "4. 嵌套结构体",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "e89f12b371f5b0c47346efde64695a13562a37454f333030074f402dcf100ec9",
+      "file": "source-html/ch07s04.html",
+      "document_title": "4. 嵌套结构体",
+      "nav": {
+        "start": "index.html",
+        "up": "ch07.html",
+        "prev": "ch07s03.html",
+        "next": "ch08.html"
+      }
+    },
+    {
+      "path": "ch08.html",
+      "url": "https://akaedu.github.io/book/ch08.html",
+      "title": "8. 数组",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "d0fe0531ad0fe58d63628e25564c555966cc9fe68a45d14a0a40ff9e7d5d5a7f",
+      "file": "source-html/ch08.html",
+      "document_title": "第 8 章 数组",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "ch07s04.html",
+        "next": "ch08s01.html"
+      }
+    },
+    {
+      "path": "ch08s01.html",
+      "url": "https://akaedu.github.io/book/ch08s01.html",
+      "title": "1. 数组的基本概念",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "7f84b24ef73002cc55915aac26866248606cfe22e8827120010b320685c3a52a",
+      "file": "source-html/ch08s01.html",
+      "document_title": "1. 数组的基本概念",
+      "nav": {
+        "start": "index.html",
+        "up": "ch08.html",
+        "prev": "ch08.html",
+        "next": "ch08s02.html"
+      }
+    },
+    {
+      "path": "ch08s02.html",
+      "url": "https://akaedu.github.io/book/ch08s02.html",
+      "title": "2. 数组应用实例：统计随机数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "284c5afe797baa0aed574c565b453fd05dda17c164fdc96d0ebe8f6a4e852865",
+      "file": "source-html/ch08s02.html",
+      "document_title": "2. 数组应用实例：统计随机数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch08.html",
+        "prev": "ch08s01.html",
+        "next": "ch08s03.html"
+      }
+    },
+    {
+      "path": "ch08s03.html",
+      "url": "https://akaedu.github.io/book/ch08s03.html",
+      "title": "3. 数组应用实例：直方图",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "2d33d55aeb8d099daf3c624b4b9a355e8368e0368c5c45e779cf2f17efdee2e4",
+      "file": "source-html/ch08s03.html",
+      "document_title": "3. 数组应用实例：直方图",
+      "nav": {
+        "start": "index.html",
+        "up": "ch08.html",
+        "prev": "ch08s02.html",
+        "next": "ch08s04.html"
+      }
+    },
+    {
+      "path": "ch08s04.html",
+      "url": "https://akaedu.github.io/book/ch08s04.html",
+      "title": "4. 字符串",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "d218fc4be4faeadbe96c1c983ad1b688e5a17ec981e4e2f07e95a3924b5130c3",
+      "file": "source-html/ch08s04.html",
+      "document_title": "4. 字符串",
+      "nav": {
+        "start": "index.html",
+        "up": "ch08.html",
+        "prev": "ch08s03.html",
+        "next": "ch08s05.html"
+      }
+    },
+    {
+      "path": "ch08s05.html",
+      "url": "https://akaedu.github.io/book/ch08s05.html",
+      "title": "5. 多维数组",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "562ddf8f4ac070a44b9e24e49a2858aff883e1172a372108f99e7402637fbac1",
+      "file": "source-html/ch08s05.html",
+      "document_title": "5. 多维数组",
+      "nav": {
+        "start": "index.html",
+        "up": "ch08.html",
+        "prev": "ch08s04.html",
+        "next": "ch09.html"
+      }
+    },
+    {
+      "path": "ch09.html",
+      "url": "https://akaedu.github.io/book/ch09.html",
+      "title": "9. 编码风格",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "cbea3c78acb095bf1d77fdcb28c8df0aff6073d49982b349beb102c241f15617",
+      "file": "source-html/ch09.html",
+      "document_title": "第 9 章 编码风格",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "ch08s05.html",
+        "next": "ch09s01.html"
+      }
+    },
+    {
+      "path": "ch09s01.html",
+      "url": "https://akaedu.github.io/book/ch09s01.html",
+      "title": "1. 缩进和空白",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "e50ccd4fa997a271649ac4c4c4abd07d3f0e79daa3ac5ad6291a85f81f58d462",
+      "file": "source-html/ch09s01.html",
+      "document_title": "1. 缩进和空白",
+      "nav": {
+        "start": "index.html",
+        "up": "ch09.html",
+        "prev": "ch09.html",
+        "next": "ch09s02.html"
+      }
+    },
+    {
+      "path": "ch09s02.html",
+      "url": "https://akaedu.github.io/book/ch09s02.html",
+      "title": "2. 注释",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "7b5b6fbe2b382de7cd54957bfc1b653438a21996389e3e0eb8c12229194cd50c",
+      "file": "source-html/ch09s02.html",
+      "document_title": "2. 注释",
+      "nav": {
+        "start": "index.html",
+        "up": "ch09.html",
+        "prev": "ch09s01.html",
+        "next": "ch09s03.html"
+      }
+    },
+    {
+      "path": "ch09s03.html",
+      "url": "https://akaedu.github.io/book/ch09s03.html",
+      "title": "3. 标识符命名",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "a7b7922f40ad3a3237c934e16a704de872cfa9dae103456b3f130d4f863bacdd",
+      "file": "source-html/ch09s03.html",
+      "document_title": "3. 标识符命名",
+      "nav": {
+        "start": "index.html",
+        "up": "ch09.html",
+        "prev": "ch09s02.html",
+        "next": "ch09s04.html"
+      }
+    },
+    {
+      "path": "ch09s04.html",
+      "url": "https://akaedu.github.io/book/ch09s04.html",
+      "title": "4. 函数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "35ed507589d5e7afbc2733fe146d145718cf7858d7ee50174c6d67eb818bd4fa",
+      "file": "source-html/ch09s04.html",
+      "document_title": "4. 函数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch09.html",
+        "prev": "ch09s03.html",
+        "next": "ch09s05.html"
+      }
+    },
+    {
+      "path": "ch09s05.html",
+      "url": "https://akaedu.github.io/book/ch09s05.html",
+      "title": "5. indent工具",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "75afad39a4acbf814a4b5e991336a9ae9e6e909cb36b19ba1aed278d7c0cf060",
+      "file": "source-html/ch09s05.html",
+      "document_title": "5. indent工具",
+      "nav": {
+        "start": "index.html",
+        "up": "ch09.html",
+        "prev": "ch09s04.html",
+        "next": "ch10.html"
+      }
+    },
+    {
+      "path": "ch10.html",
+      "url": "https://akaedu.github.io/book/ch10.html",
+      "title": "10. gdb",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "655c569580ac64a0fd00b5113ec8d2825d28f8ee8cc6ad8da0e16ff4d843b1d0",
+      "file": "source-html/ch10.html",
+      "document_title": "第 10 章 gdb",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "ch09s05.html",
+        "next": "ch10s01.html"
+      }
+    },
+    {
+      "path": "ch10s01.html",
+      "url": "https://akaedu.github.io/book/ch10s01.html",
+      "title": "1. 单步执行和跟踪函数调用",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "f1a72ef37f0323b121cc93120bd795749990f3c85f0d3147708b92b1cc07ca99",
+      "file": "source-html/ch10s01.html",
+      "document_title": "1. 单步执行和跟踪函数调用",
+      "nav": {
+        "start": "index.html",
+        "up": "ch10.html",
+        "prev": "ch10.html",
+        "next": "ch10s02.html"
+      }
+    },
+    {
+      "path": "ch10s02.html",
+      "url": "https://akaedu.github.io/book/ch10s02.html",
+      "title": "2. 断点",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "7729318206ffda6c2301eef1d50b5ee8b88d4a98556f8bbbef57f76855a4514f",
+      "file": "source-html/ch10s02.html",
+      "document_title": "2. 断点",
+      "nav": {
+        "start": "index.html",
+        "up": "ch10.html",
+        "prev": "ch10s01.html",
+        "next": "ch10s03.html"
+      }
+    },
+    {
+      "path": "ch10s03.html",
+      "url": "https://akaedu.github.io/book/ch10s03.html",
+      "title": "3. 观察点",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "c71f5ace1015af4c2279223be1f3ad579f1962ad982a329ababee67a5701f8e3",
+      "file": "source-html/ch10s03.html",
+      "document_title": "3. 观察点",
+      "nav": {
+        "start": "index.html",
+        "up": "ch10.html",
+        "prev": "ch10s02.html",
+        "next": "ch10s04.html"
+      }
+    },
+    {
+      "path": "ch10s04.html",
+      "url": "https://akaedu.github.io/book/ch10s04.html",
+      "title": "4. 段错误",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "02e40677d6772f11183b514f0637a67b14f0247527a00ac738d3cdf434c03c43",
+      "file": "source-html/ch10s04.html",
+      "document_title": "4. 段错误",
+      "nav": {
+        "start": "index.html",
+        "up": "ch10.html",
+        "prev": "ch10s03.html",
+        "next": "ch11.html"
+      }
+    },
+    {
+      "path": "ch11.html",
+      "url": "https://akaedu.github.io/book/ch11.html",
+      "title": "11. 排序与查找",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "d8a735a1c7168db0547031c3ec49cbb653824ddec5b8c5a044a4f217c696d02d",
+      "file": "source-html/ch11.html",
+      "document_title": "第 11 章 排序与查找",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "ch10s04.html",
+        "next": "ch11s01.html"
+      }
+    },
+    {
+      "path": "ch11s01.html",
+      "url": "https://akaedu.github.io/book/ch11s01.html",
+      "title": "1. 算法的概念",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "581cd61393e8e7c06a1a0a241fdc16f5635fc13574037245239976e58e385041",
+      "file": "source-html/ch11s01.html",
+      "document_title": "1. 算法的概念",
+      "nav": {
+        "start": "index.html",
+        "up": "ch11.html",
+        "prev": "ch11.html",
+        "next": "ch11s02.html"
+      }
+    },
+    {
+      "path": "ch11s02.html",
+      "url": "https://akaedu.github.io/book/ch11s02.html",
+      "title": "2. 插入排序",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "76a114866016ad0bb6257d634663491476396fca92e0588b8200508a10363760",
+      "file": "source-html/ch11s02.html",
+      "document_title": "2. 插入排序",
+      "nav": {
+        "start": "index.html",
+        "up": "ch11.html",
+        "prev": "ch11s01.html",
+        "next": "ch11s03.html"
+      }
+    },
+    {
+      "path": "ch11s03.html",
+      "url": "https://akaedu.github.io/book/ch11s03.html",
+      "title": "3. 算法的时间复杂度分析",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "4a9a0cd90690e09c617197191f5e6caff8fd69a50aaee65d2ac29eeb10f0ec76",
+      "file": "source-html/ch11s03.html",
+      "document_title": "3. 算法的时间复杂度分析",
+      "nav": {
+        "start": "index.html",
+        "up": "ch11.html",
+        "prev": "ch11s02.html",
+        "next": "ch11s04.html"
+      }
+    },
+    {
+      "path": "ch11s04.html",
+      "url": "https://akaedu.github.io/book/ch11s04.html",
+      "title": "4. 归并排序",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "df4d2b1665c5d958ffac0879c002d1caad2bb673984601629c93422126720f1f",
+      "file": "source-html/ch11s04.html",
+      "document_title": "4. 归并排序",
+      "nav": {
+        "start": "index.html",
+        "up": "ch11.html",
+        "prev": "ch11s03.html",
+        "next": "ch11s05.html"
+      }
+    },
+    {
+      "path": "ch11s05.html",
+      "url": "https://akaedu.github.io/book/ch11s05.html",
+      "title": "5. 线性查找",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "16edd622c02a5a6fa9ac35448f98cd403d62dafab67a4f6fee5784022f80a0db",
+      "file": "source-html/ch11s05.html",
+      "document_title": "5. 线性查找",
+      "nav": {
+        "start": "index.html",
+        "up": "ch11.html",
+        "prev": "ch11s04.html",
+        "next": "ch11s06.html"
+      }
+    },
+    {
+      "path": "ch11s06.html",
+      "url": "https://akaedu.github.io/book/ch11s06.html",
+      "title": "6. 折半查找",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "d4912cfaf6b3f48d3da68ad9de414250ef660c8f7bc25c7a890f2c0176e3e868",
+      "file": "source-html/ch11s06.html",
+      "document_title": "6. 折半查找",
+      "nav": {
+        "start": "index.html",
+        "up": "ch11.html",
+        "prev": "ch11s05.html",
+        "next": "ch12.html"
+      }
+    },
+    {
+      "path": "ch12.html",
+      "url": "https://akaedu.github.io/book/ch12.html",
+      "title": "12. 栈与队列",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "571c922606870ceed75fcd52d3dacc921a128ee8693ee736e898e6779e65dd72",
+      "file": "source-html/ch12.html",
+      "document_title": "第 12 章 栈与队列",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "ch11s06.html",
+        "next": "ch12s01.html"
+      }
+    },
+    {
+      "path": "ch12s01.html",
+      "url": "https://akaedu.github.io/book/ch12s01.html",
+      "title": "1. 数据结构的概念",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "0f5289b19c9700d0106d89a3668fb93fb9843df81b88166c47ceb2ce085014fd",
+      "file": "source-html/ch12s01.html",
+      "document_title": "1. 数据结构的概念",
+      "nav": {
+        "start": "index.html",
+        "up": "ch12.html",
+        "prev": "ch12.html",
+        "next": "ch12s02.html"
+      }
+    },
+    {
+      "path": "ch12s02.html",
+      "url": "https://akaedu.github.io/book/ch12s02.html",
+      "title": "2. 堆栈",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "4d78aa85242578f8ea1dbd9ebe79dcb51b9e2bccf0ddf6227a661316e1c8d46b",
+      "file": "source-html/ch12s02.html",
+      "document_title": "2. 堆栈",
+      "nav": {
+        "start": "index.html",
+        "up": "ch12.html",
+        "prev": "ch12s01.html",
+        "next": "ch12s03.html"
+      }
+    },
+    {
+      "path": "ch12s03.html",
+      "url": "https://akaedu.github.io/book/ch12s03.html",
+      "title": "3. 深度优先搜索",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "30849502a0915816c3ff1395efbba5301d6693f2534a088a18e5b2eaed254f97",
+      "file": "source-html/ch12s03.html",
+      "document_title": "3. 深度优先搜索",
+      "nav": {
+        "start": "index.html",
+        "up": "ch12.html",
+        "prev": "ch12s02.html",
+        "next": "ch12s04.html"
+      }
+    },
+    {
+      "path": "ch12s04.html",
+      "url": "https://akaedu.github.io/book/ch12s04.html",
+      "title": "4. 队列与广度优先搜索",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "cf0cab43812ed629aa7c9150b65b307b3e4fdd13430b19b79688747e021491b7",
+      "file": "source-html/ch12s04.html",
+      "document_title": "4. 队列与广度优先搜索",
+      "nav": {
+        "start": "index.html",
+        "up": "ch12.html",
+        "prev": "ch12s03.html",
+        "next": "ch12s05.html"
+      }
+    },
+    {
+      "path": "ch12s05.html",
+      "url": "https://akaedu.github.io/book/ch12s05.html",
+      "title": "5. 环形队列",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "49e223ecba3675ec43985bdd6cd1ea2a7176b9c5bb4ed6322083c62ae52800a3",
+      "file": "source-html/ch12s05.html",
+      "document_title": "5. 环形队列",
+      "nav": {
+        "start": "index.html",
+        "up": "ch12.html",
+        "prev": "ch12s04.html",
+        "next": "ch13.html"
+      }
+    },
+    {
+      "path": "ch13.html",
+      "url": "https://akaedu.github.io/book/ch13.html",
+      "title": "13. 本阶段总结",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "e0056558df8ceab468835ce3925f7ed3b74e1e027ca1fbbaeb4c3e8f6986a657",
+      "file": "source-html/ch13.html",
+      "document_title": "第 13 章 本阶段总结",
+      "nav": {
+        "start": "index.html",
+        "up": "pt01.html",
+        "prev": "ch12s05.html",
+        "next": "pt02.html"
+      }
+    },
+    {
+      "path": "pt02.html",
+      "url": "https://akaedu.github.io/book/pt02.html",
+      "title": "II. C语言本质",
+      "kind": "part",
+      "depth": 1,
+      "sha256": "1fa26194e31d96fc1e0ab7726e31a8fa835fc1d51f8d5755eb0be119b467b9eb",
+      "file": "source-html/pt02.html",
+      "document_title": "部分 II. C语言本质",
+      "nav": {
+        "start": "index.html",
+        "up": "index.html",
+        "prev": "ch13.html",
+        "next": "ch14.html"
+      }
+    },
+    {
+      "path": "ch14.html",
+      "url": "https://akaedu.github.io/book/ch14.html",
+      "title": "14. 计算机中数的表示",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "386662571c19f53a3deb1af5e555b53eab9d481fb269191bbd04ce87a468e4ac",
+      "file": "source-html/ch14.html",
+      "document_title": "第 14 章 计算机中数的表示",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "pt02.html",
+        "next": "ch14s01.html"
+      }
+    },
+    {
+      "path": "ch14s01.html",
+      "url": "https://akaedu.github.io/book/ch14s01.html",
+      "title": "1. 为什么计算机用二进制计数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "08b42235ccdaa2dcd74b84f47d545516d27a8fa3f86fd9645bbc4bfab761a801",
+      "file": "source-html/ch14s01.html",
+      "document_title": "1. 为什么计算机用二进制计数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch14.html",
+        "prev": "ch14.html",
+        "next": "ch14s02.html"
+      }
+    },
+    {
+      "path": "ch14s02.html",
+      "url": "https://akaedu.github.io/book/ch14s02.html",
+      "title": "2. 不同进制之间的换算",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "066232f3bdb8fd1a12f966dfcc662fc67621d7d1ac8de91e3622e544e50bc51f",
+      "file": "source-html/ch14s02.html",
+      "document_title": "2. 不同进制之间的换算",
+      "nav": {
+        "start": "index.html",
+        "up": "ch14.html",
+        "prev": "ch14s01.html",
+        "next": "ch14s03.html"
+      }
+    },
+    {
+      "path": "ch14s03.html",
+      "url": "https://akaedu.github.io/book/ch14s03.html",
+      "title": "3. 整数的加减运算",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "08bce11cee610668fd3a90f3fc2e6cd49ff5651efc40b901eb45ddfaf44d7034",
+      "file": "source-html/ch14s03.html",
+      "document_title": "3. 整数的加减运算",
+      "nav": {
+        "start": "index.html",
+        "up": "ch14.html",
+        "prev": "ch14s02.html",
+        "next": "ch14s04.html"
+      }
+    },
+    {
+      "path": "ch14s04.html",
+      "url": "https://akaedu.github.io/book/ch14s04.html",
+      "title": "4. 浮点数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "aa1e5c50343b52ecb443c0f43fb2866c7043aa526bf2e9c31365f1f390a61751",
+      "file": "source-html/ch14s04.html",
+      "document_title": "4. 浮点数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch14.html",
+        "prev": "ch14s03.html",
+        "next": "ch15.html"
+      }
+    },
+    {
+      "path": "ch15.html",
+      "url": "https://akaedu.github.io/book/ch15.html",
+      "title": "15. 数据类型详解",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "2740d51b1f58c2e06a250b7c64c7b65dc946a207880f64c68542486f88017720",
+      "file": "source-html/ch15.html",
+      "document_title": "第 15 章 数据类型详解",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch14s04.html",
+        "next": "ch15s01.html"
+      }
+    },
+    {
+      "path": "ch15s01.html",
+      "url": "https://akaedu.github.io/book/ch15s01.html",
+      "title": "1. 整型",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "3137b7037b52226dd3eb4804672ff293272cd83d09a7d973a168b9eadf06392e",
+      "file": "source-html/ch15s01.html",
+      "document_title": "1. 整型",
+      "nav": {
+        "start": "index.html",
+        "up": "ch15.html",
+        "prev": "ch15.html",
+        "next": "ch15s02.html"
+      }
+    },
+    {
+      "path": "ch15s02.html",
+      "url": "https://akaedu.github.io/book/ch15s02.html",
+      "title": "2. 浮点型",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "7271cc22625e52e5a4d6d511e610eebb48dc956d9686d1f0f1f1918305f6f851",
+      "file": "source-html/ch15s02.html",
+      "document_title": "2. 浮点型",
+      "nav": {
+        "start": "index.html",
+        "up": "ch15.html",
+        "prev": "ch15s01.html",
+        "next": "ch15s03.html"
+      }
+    },
+    {
+      "path": "ch15s03.html",
+      "url": "https://akaedu.github.io/book/ch15s03.html",
+      "title": "3. 类型转换",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "c025e658abcf3887867e97db15d47b14c44a71876f31d384681565e5a223d782",
+      "file": "source-html/ch15s03.html",
+      "document_title": "3. 类型转换",
+      "nav": {
+        "start": "index.html",
+        "up": "ch15.html",
+        "prev": "ch15s02.html",
+        "next": "ch16.html"
+      }
+    },
+    {
+      "path": "ch16.html",
+      "url": "https://akaedu.github.io/book/ch16.html",
+      "title": "16. 运算符详解",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "9854036f3b02870579619b6c40015e3c7b1a95fd5de3a516389d341af3374ce9",
+      "file": "source-html/ch16.html",
+      "document_title": "第 16 章 运算符详解",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch15s03.html",
+        "next": "ch16s01.html"
+      }
+    },
+    {
+      "path": "ch16s01.html",
+      "url": "https://akaedu.github.io/book/ch16s01.html",
+      "title": "1. 位运算",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "20517210f67cf4ae2bd62aa69ee8a8f5962041e80fe304561c005561ccd6068f",
+      "file": "source-html/ch16s01.html",
+      "document_title": "1. 位运算",
+      "nav": {
+        "start": "index.html",
+        "up": "ch16.html",
+        "prev": "ch16.html",
+        "next": "ch16s02.html"
+      }
+    },
+    {
+      "path": "ch16s02.html",
+      "url": "https://akaedu.github.io/book/ch16s02.html",
+      "title": "2. 其它运算符",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "7dbb816800deb09368d3f10c4497305b78926a8f2c57ef39879d374320114882",
+      "file": "source-html/ch16s02.html",
+      "document_title": "2. 其它运算符",
+      "nav": {
+        "start": "index.html",
+        "up": "ch16.html",
+        "prev": "ch16s01.html",
+        "next": "ch16s03.html"
+      }
+    },
+    {
+      "path": "ch16s03.html",
+      "url": "https://akaedu.github.io/book/ch16s03.html",
+      "title": "3. Side Effect与Sequence Point",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "dbe36b8eb63e95f4bf591a719416efcc3f7d7e3b191be0fdb6afb82812481e9a",
+      "file": "source-html/ch16s03.html",
+      "document_title": "3. Side Effect与Sequence Point",
+      "nav": {
+        "start": "index.html",
+        "up": "ch16.html",
+        "prev": "ch16s02.html",
+        "next": "ch16s04.html"
+      }
+    },
+    {
+      "path": "ch16s04.html",
+      "url": "https://akaedu.github.io/book/ch16s04.html",
+      "title": "4. 运算符总结",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "42683aeb5b96f75003de2d51de5d379dfcb605e99dd998f4876a0edcb3a17348",
+      "file": "source-html/ch16s04.html",
+      "document_title": "4. 运算符总结",
+      "nav": {
+        "start": "index.html",
+        "up": "ch16.html",
+        "prev": "ch16s03.html",
+        "next": "ch17.html"
+      }
+    },
+    {
+      "path": "ch17.html",
+      "url": "https://akaedu.github.io/book/ch17.html",
+      "title": "17. 计算机体系结构基础",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "2d64d573c9d56749754984b03c9a326cfa7d02ef8e48b8280ab8f15702419cd9",
+      "file": "source-html/ch17.html",
+      "document_title": "第 17 章 计算机体系结构基础",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch16s04.html",
+        "next": "ch17s01.html"
+      }
+    },
+    {
+      "path": "ch17s01.html",
+      "url": "https://akaedu.github.io/book/ch17s01.html",
+      "title": "1. 内存与地址",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "ff677d90f4874f6a21a8aa584c397d519dcd80b8641fdb0d9007a86a3cede140",
+      "file": "source-html/ch17s01.html",
+      "document_title": "1. 内存与地址",
+      "nav": {
+        "start": "index.html",
+        "up": "ch17.html",
+        "prev": "ch17.html",
+        "next": "ch17s02.html"
+      }
+    },
+    {
+      "path": "ch17s02.html",
+      "url": "https://akaedu.github.io/book/ch17s02.html",
+      "title": "2. CPU",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "52d691aecef2b10aa7d9872ba42f552e476ae98ee4d1f6264feab54ff3e9c914",
+      "file": "source-html/ch17s02.html",
+      "document_title": "2. CPU",
+      "nav": {
+        "start": "index.html",
+        "up": "ch17.html",
+        "prev": "ch17s01.html",
+        "next": "ch17s03.html"
+      }
+    },
+    {
+      "path": "ch17s03.html",
+      "url": "https://akaedu.github.io/book/ch17s03.html",
+      "title": "3. 设备",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "7087008aa168a73dd7f89b1401ab16fbbdd8781956547869e3024dbb51f308a7",
+      "file": "source-html/ch17s03.html",
+      "document_title": "3. 设备",
+      "nav": {
+        "start": "index.html",
+        "up": "ch17.html",
+        "prev": "ch17s02.html",
+        "next": "ch17s04.html"
+      }
+    },
+    {
+      "path": "ch17s04.html",
+      "url": "https://akaedu.github.io/book/ch17s04.html",
+      "title": "4. MMU",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "1828c420ed1bd301955af71556731fdfca495d7c092ee4ce78500dd3612c06c0",
+      "file": "source-html/ch17s04.html",
+      "document_title": "4. MMU",
+      "nav": {
+        "start": "index.html",
+        "up": "ch17.html",
+        "prev": "ch17s03.html",
+        "next": "ch17s05.html"
+      }
+    },
+    {
+      "path": "ch17s05.html",
+      "url": "https://akaedu.github.io/book/ch17s05.html",
+      "title": "5. Memory Hierarchy",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "3add53201188eb79604433698ade531e043d3f4a3d7a618328eb04b28cb074b5",
+      "file": "source-html/ch17s05.html",
+      "document_title": "5. Memory Hierarchy",
+      "nav": {
+        "start": "index.html",
+        "up": "ch17.html",
+        "prev": "ch17s04.html",
+        "next": "ch18.html"
+      }
+    },
+    {
+      "path": "ch18.html",
+      "url": "https://akaedu.github.io/book/ch18.html",
+      "title": "18. x86汇编程序基础",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "377b875b1ec4beccda96ec83292fd50867c002e826b7f76e5b1e318949144820",
+      "file": "source-html/ch18.html",
+      "document_title": "第 18 章 x86汇编程序基础",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch17s05.html",
+        "next": "ch18s01.html"
+      }
+    },
+    {
+      "path": "ch18s01.html",
+      "url": "https://akaedu.github.io/book/ch18s01.html",
+      "title": "1. 最简单的汇编程序",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "c60cd975d0a264abbc6dbcfd31f4b29a88a1c9ab3f5c24f932de51d0ce459289",
+      "file": "source-html/ch18s01.html",
+      "document_title": "1. 最简单的汇编程序",
+      "nav": {
+        "start": "index.html",
+        "up": "ch18.html",
+        "prev": "ch18.html",
+        "next": "ch18s02.html"
+      }
+    },
+    {
+      "path": "ch18s02.html",
+      "url": "https://akaedu.github.io/book/ch18s02.html",
+      "title": "2. x86的寄存器",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "bc6d1e7536ce7791fc9f6da97df14520e41a292e503a7e7ce7d32b896a050ddf",
+      "file": "source-html/ch18s02.html",
+      "document_title": "2. x86的寄存器",
+      "nav": {
+        "start": "index.html",
+        "up": "ch18.html",
+        "prev": "ch18s01.html",
+        "next": "ch18s03.html"
+      }
+    },
+    {
+      "path": "ch18s03.html",
+      "url": "https://akaedu.github.io/book/ch18s03.html",
+      "title": "3. 第二个汇编程序",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "835de6d58f48af37466cb3b34275f08c2bc7b8be5095611fe4bb46268e01c4f2",
+      "file": "source-html/ch18s03.html",
+      "document_title": "3. 第二个汇编程序",
+      "nav": {
+        "start": "index.html",
+        "up": "ch18.html",
+        "prev": "ch18s02.html",
+        "next": "ch18s04.html"
+      }
+    },
+    {
+      "path": "ch18s04.html",
+      "url": "https://akaedu.github.io/book/ch18s04.html",
+      "title": "4. 寻址方式",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "5d67d73ff915785967cc82bf7baec1af1f6d79b8f879151b2f6334de33e27eec",
+      "file": "source-html/ch18s04.html",
+      "document_title": "4. 寻址方式",
+      "nav": {
+        "start": "index.html",
+        "up": "ch18.html",
+        "prev": "ch18s03.html",
+        "next": "ch18s05.html"
+      }
+    },
+    {
+      "path": "ch18s05.html",
+      "url": "https://akaedu.github.io/book/ch18s05.html",
+      "title": "5. ELF文件",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "ce952c3209d5c7b66174fece10e4c3499a072e8f2005c4281f9e1bc424773264",
+      "file": "source-html/ch18s05.html",
+      "document_title": "5. ELF文件",
+      "nav": {
+        "start": "index.html",
+        "up": "ch18.html",
+        "prev": "ch18s04.html",
+        "next": "ch19.html"
+      }
+    },
+    {
+      "path": "ch19.html",
+      "url": "https://akaedu.github.io/book/ch19.html",
+      "title": "19. 汇编与C之间的关系",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "0269d4b8b16c5e864614c0f09fd2d4e302ddb9243a34925d8a32105e8650226c",
+      "file": "source-html/ch19.html",
+      "document_title": "第 19 章 汇编与C之间的关系",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch18s05.html",
+        "next": "ch19s01.html"
+      }
+    },
+    {
+      "path": "ch19s01.html",
+      "url": "https://akaedu.github.io/book/ch19s01.html",
+      "title": "1. 函数调用",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "903971d71b418b3637f76fc6d201935cf89bf36b7c25a2247aed181e44de8840",
+      "file": "source-html/ch19s01.html",
+      "document_title": "1. 函数调用",
+      "nav": {
+        "start": "index.html",
+        "up": "ch19.html",
+        "prev": "ch19.html",
+        "next": "ch19s02.html"
+      }
+    },
+    {
+      "path": "ch19s02.html",
+      "url": "https://akaedu.github.io/book/ch19s02.html",
+      "title": "2. main函数和启动例程",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "492f6cb8706110dcd51911fa4a0b5036fbf93bdca4bc461e3a973bec3d696966",
+      "file": "source-html/ch19s02.html",
+      "document_title": "2. main函数和启动例程",
+      "nav": {
+        "start": "index.html",
+        "up": "ch19.html",
+        "prev": "ch19s01.html",
+        "next": "ch19s03.html"
+      }
+    },
+    {
+      "path": "ch19s03.html",
+      "url": "https://akaedu.github.io/book/ch19s03.html",
+      "title": "3. 变量的存储布局",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "7d36aee11decc6b389e88afc66dc4b13e81e94e63e63e3d6456e5614b642df2b",
+      "file": "source-html/ch19s03.html",
+      "document_title": "3. 变量的存储布局",
+      "nav": {
+        "start": "index.html",
+        "up": "ch19.html",
+        "prev": "ch19s02.html",
+        "next": "ch19s04.html"
+      }
+    },
+    {
+      "path": "ch19s04.html",
+      "url": "https://akaedu.github.io/book/ch19s04.html",
+      "title": "4. 结构体和联合体",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "7b59034309cd046b6c222557e4226df9287d9ce3d74d2665b60db00bc1af27b7",
+      "file": "source-html/ch19s04.html",
+      "document_title": "4. 结构体和联合体",
+      "nav": {
+        "start": "index.html",
+        "up": "ch19.html",
+        "prev": "ch19s03.html",
+        "next": "ch19s05.html"
+      }
+    },
+    {
+      "path": "ch19s05.html",
+      "url": "https://akaedu.github.io/book/ch19s05.html",
+      "title": "5. C内联汇编",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "c653707d8e0bc9505e231af65d0ad14dbfe3c82609efd9682a2139c19468648c",
+      "file": "source-html/ch19s05.html",
+      "document_title": "5. C内联汇编",
+      "nav": {
+        "start": "index.html",
+        "up": "ch19.html",
+        "prev": "ch19s04.html",
+        "next": "ch19s06.html"
+      }
+    },
+    {
+      "path": "ch19s06.html",
+      "url": "https://akaedu.github.io/book/ch19s06.html",
+      "title": "6. volatile限定符",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "e97905091a2259d40f17744bc7ef5cbe3f57d5c59995bb3dd4f768fcb59eacca",
+      "file": "source-html/ch19s06.html",
+      "document_title": "6. volatile限定符",
+      "nav": {
+        "start": "index.html",
+        "up": "ch19.html",
+        "prev": "ch19s05.html",
+        "next": "ch20.html"
+      }
+    },
+    {
+      "path": "ch20.html",
+      "url": "https://akaedu.github.io/book/ch20.html",
+      "title": "20. 链接详解",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "ca1b91f92260597b4f3ab991b26f087eb8fe8b8b8907227f7780f1cf5c4b6cc2",
+      "file": "source-html/ch20.html",
+      "document_title": "第 20 章 链接详解",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch19s06.html",
+        "next": "ch20s01.html"
+      }
+    },
+    {
+      "path": "ch20s01.html",
+      "url": "https://akaedu.github.io/book/ch20s01.html",
+      "title": "1. 多目标文件的链接",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "e3e23f3a0fc5755ae3f276b0e83bc7a2afcd9cf10a8bab835a77fb9125ec81c7",
+      "file": "source-html/ch20s01.html",
+      "document_title": "1. 多目标文件的链接",
+      "nav": {
+        "start": "index.html",
+        "up": "ch20.html",
+        "prev": "ch20.html",
+        "next": "ch20s02.html"
+      }
+    },
+    {
+      "path": "ch20s02.html",
+      "url": "https://akaedu.github.io/book/ch20s02.html",
+      "title": "2. 定义和声明",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "32776c74e2eb1de2a7653c79c965fa0aeb17f812b4d91c36ad263032bfc55741",
+      "file": "source-html/ch20s02.html",
+      "document_title": "2. 定义和声明",
+      "nav": {
+        "start": "index.html",
+        "up": "ch20.html",
+        "prev": "ch20s01.html",
+        "next": "ch20s03.html"
+      }
+    },
+    {
+      "path": "ch20s03.html",
+      "url": "https://akaedu.github.io/book/ch20s03.html",
+      "title": "3. 静态库",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "02cd795fa6c7611b5d0c7885a707a36a48045c72660ec162b17a950cc6b7fbfd",
+      "file": "source-html/ch20s03.html",
+      "document_title": "3. 静态库",
+      "nav": {
+        "start": "index.html",
+        "up": "ch20.html",
+        "prev": "ch20s02.html",
+        "next": "ch20s04.html"
+      }
+    },
+    {
+      "path": "ch20s04.html",
+      "url": "https://akaedu.github.io/book/ch20s04.html",
+      "title": "4. 共享库",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "a157ea5074b42f3bf0fa8c61c5d4fc84cb8895cb69b0f1115cd73915cda641d5",
+      "file": "source-html/ch20s04.html",
+      "document_title": "4. 共享库",
+      "nav": {
+        "start": "index.html",
+        "up": "ch20.html",
+        "prev": "ch20s03.html",
+        "next": "ch20s05.html"
+      }
+    },
+    {
+      "path": "ch20s05.html",
+      "url": "https://akaedu.github.io/book/ch20s05.html",
+      "title": "5. 虚拟内存管理",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "b2cd6016755997558720bdd930a9955fa9db4fdfa574dcfff1c3930eceaeaffd",
+      "file": "source-html/ch20s05.html",
+      "document_title": "5. 虚拟内存管理",
+      "nav": {
+        "start": "index.html",
+        "up": "ch20.html",
+        "prev": "ch20s04.html",
+        "next": "ch21.html"
+      }
+    },
+    {
+      "path": "ch21.html",
+      "url": "https://akaedu.github.io/book/ch21.html",
+      "title": "21. 预处理",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "52d4e6ef315a6df8cc44ecfd213a3bec8a031a62ab1df2def83f6214814340d3",
+      "file": "source-html/ch21.html",
+      "document_title": "第 21 章 预处理",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch20s05.html",
+        "next": "ch21s01.html"
+      }
+    },
+    {
+      "path": "ch21s01.html",
+      "url": "https://akaedu.github.io/book/ch21s01.html",
+      "title": "1. 预处理的步骤",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "5e88f294eacc475c3d9966ee68b14926f328a3f89a7f4101f8ee9758ca984da0",
+      "file": "source-html/ch21s01.html",
+      "document_title": "1. 预处理的步骤",
+      "nav": {
+        "start": "index.html",
+        "up": "ch21.html",
+        "prev": "ch21.html",
+        "next": "ch21s02.html"
+      }
+    },
+    {
+      "path": "ch21s02.html",
+      "url": "https://akaedu.github.io/book/ch21s02.html",
+      "title": "2. 宏定义",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "ed54ccd5061c3ab94ea8aab0396278544083683c914a46e637b9c75c6daee110",
+      "file": "source-html/ch21s02.html",
+      "document_title": "2. 宏定义",
+      "nav": {
+        "start": "index.html",
+        "up": "ch21.html",
+        "prev": "ch21s01.html",
+        "next": "ch21s03.html"
+      }
+    },
+    {
+      "path": "ch21s03.html",
+      "url": "https://akaedu.github.io/book/ch21s03.html",
+      "title": "3. 条件预处理指示",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "70abc846815432b672497976e0466ce6fd0e3b19c274283b8d5901d076448223",
+      "file": "source-html/ch21s03.html",
+      "document_title": "3. 条件预处理指示",
+      "nav": {
+        "start": "index.html",
+        "up": "ch21.html",
+        "prev": "ch21s02.html",
+        "next": "ch21s04.html"
+      }
+    },
+    {
+      "path": "ch21s04.html",
+      "url": "https://akaedu.github.io/book/ch21s04.html",
+      "title": "4. 其它预处理特性",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "0322ee10a6b01bf5c17bc8bdaafd1aad13789912f0a765b4138bd5a56cf26de3",
+      "file": "source-html/ch21s04.html",
+      "document_title": "4. 其它预处理特性",
+      "nav": {
+        "start": "index.html",
+        "up": "ch21.html",
+        "prev": "ch21s03.html",
+        "next": "ch22.html"
+      }
+    },
+    {
+      "path": "ch22.html",
+      "url": "https://akaedu.github.io/book/ch22.html",
+      "title": "22. Makefile基础",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "be414a7a70947f7acbcb64ae42806c5010e1dce560fd78740a185a0cc3e92691",
+      "file": "source-html/ch22.html",
+      "document_title": "第 22 章 Makefile基础",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch21s04.html",
+        "next": "ch22s01.html"
+      }
+    },
+    {
+      "path": "ch22s01.html",
+      "url": "https://akaedu.github.io/book/ch22s01.html",
+      "title": "1. 基本规则",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "3967706dca5b4360e0978adfdcacff654dd2cb6891193fb02c95985296f18e11",
+      "file": "source-html/ch22s01.html",
+      "document_title": "1. 基本规则",
+      "nav": {
+        "start": "index.html",
+        "up": "ch22.html",
+        "prev": "ch22.html",
+        "next": "ch22s02.html"
+      }
+    },
+    {
+      "path": "ch22s02.html",
+      "url": "https://akaedu.github.io/book/ch22s02.html",
+      "title": "2. 隐含规则和模式规则",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "eead56b4081d48b80c40f3045e4b2c7514004d4816755dfd7c9079ce0707090c",
+      "file": "source-html/ch22s02.html",
+      "document_title": "2. 隐含规则和模式规则",
+      "nav": {
+        "start": "index.html",
+        "up": "ch22.html",
+        "prev": "ch22s01.html",
+        "next": "ch22s03.html"
+      }
+    },
+    {
+      "path": "ch22s03.html",
+      "url": "https://akaedu.github.io/book/ch22s03.html",
+      "title": "3. 变量",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "2d0ac8229c2dc2d9e3a43d91fa366d86a248214b5515e0b54df0dfae715ba830",
+      "file": "source-html/ch22s03.html",
+      "document_title": "3. 变量",
+      "nav": {
+        "start": "index.html",
+        "up": "ch22.html",
+        "prev": "ch22s02.html",
+        "next": "ch22s04.html"
+      }
+    },
+    {
+      "path": "ch22s04.html",
+      "url": "https://akaedu.github.io/book/ch22s04.html",
+      "title": "4. 自动处理头文件的依赖关系",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "2cbc82de4caed848e24f7bea0c68b6d3597c5659d4e47735120268e9a6fc54cb",
+      "file": "source-html/ch22s04.html",
+      "document_title": "4. 自动处理头文件的依赖关系",
+      "nav": {
+        "start": "index.html",
+        "up": "ch22.html",
+        "prev": "ch22s03.html",
+        "next": "ch22s05.html"
+      }
+    },
+    {
+      "path": "ch22s05.html",
+      "url": "https://akaedu.github.io/book/ch22s05.html",
+      "title": "5. 常用的make命令行选项",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "e56c5a2429e09ffa6c5b0113bacd5ef85958cc7fe1b6cc420e45d609d51eee93",
+      "file": "source-html/ch22s05.html",
+      "document_title": "5. 常用的make命令行选项",
+      "nav": {
+        "start": "index.html",
+        "up": "ch22.html",
+        "prev": "ch22s04.html",
+        "next": "ch23.html"
+      }
+    },
+    {
+      "path": "ch23.html",
+      "url": "https://akaedu.github.io/book/ch23.html",
+      "title": "23. 指针",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "5c0b6a8f50a60d94ab69b08685c5d50f068e9f4f0a8e99241db5f3a827791e5f",
+      "file": "source-html/ch23.html",
+      "document_title": "第 23 章 指针",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch22s05.html",
+        "next": "ch23s01.html"
+      }
+    },
+    {
+      "path": "ch23s01.html",
+      "url": "https://akaedu.github.io/book/ch23s01.html",
+      "title": "1. 指针的基本概念",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "886e40e35f62525477172551d94f0c0122c360d627805ad9175b6bc80b6f73ff",
+      "file": "source-html/ch23s01.html",
+      "document_title": "1. 指针的基本概念",
+      "nav": {
+        "start": "index.html",
+        "up": "ch23.html",
+        "prev": "ch23.html",
+        "next": "ch23s02.html"
+      }
+    },
+    {
+      "path": "ch23s02.html",
+      "url": "https://akaedu.github.io/book/ch23s02.html",
+      "title": "2. 指针类型的参数和返回值",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "992eef176afdefbc64d813a806a65d5a43ad9e85797ac71466c60f0d5de9033c",
+      "file": "source-html/ch23s02.html",
+      "document_title": "2. 指针类型的参数和返回值",
+      "nav": {
+        "start": "index.html",
+        "up": "ch23.html",
+        "prev": "ch23s01.html",
+        "next": "ch23s03.html"
+      }
+    },
+    {
+      "path": "ch23s03.html",
+      "url": "https://akaedu.github.io/book/ch23s03.html",
+      "title": "3. 指针与数组",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "acf3e7c65502ec8ddc973068e5d0eaface5d8ccbd8a7af084320dc9d0ed4d65c",
+      "file": "source-html/ch23s03.html",
+      "document_title": "3. 指针与数组",
+      "nav": {
+        "start": "index.html",
+        "up": "ch23.html",
+        "prev": "ch23s02.html",
+        "next": "ch23s04.html"
+      }
+    },
+    {
+      "path": "ch23s04.html",
+      "url": "https://akaedu.github.io/book/ch23s04.html",
+      "title": "4. 指针与const限定符",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "5758144b3569981b328d18fd27d8aa6453e440cbb4407637dbac60c3badec407",
+      "file": "source-html/ch23s04.html",
+      "document_title": "4. 指针与const限定符",
+      "nav": {
+        "start": "index.html",
+        "up": "ch23.html",
+        "prev": "ch23s03.html",
+        "next": "ch23s05.html"
+      }
+    },
+    {
+      "path": "ch23s05.html",
+      "url": "https://akaedu.github.io/book/ch23s05.html",
+      "title": "5. 指针与结构体",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "0156207fab8b7ca4a93c9acb8b61b8ae72bd3b2ba9c02ad356eac95a97b9dc30",
+      "file": "source-html/ch23s05.html",
+      "document_title": "5. 指针与结构体",
+      "nav": {
+        "start": "index.html",
+        "up": "ch23.html",
+        "prev": "ch23s04.html",
+        "next": "ch23s06.html"
+      }
+    },
+    {
+      "path": "ch23s06.html",
+      "url": "https://akaedu.github.io/book/ch23s06.html",
+      "title": "6. 指向指针的指针与指针数组",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "3e83cf64097ef5df3908d330095b58ada7ff2762d998b7b43fd550d4f05719c2",
+      "file": "source-html/ch23s06.html",
+      "document_title": "6. 指向指针的指针与指针数组",
+      "nav": {
+        "start": "index.html",
+        "up": "ch23.html",
+        "prev": "ch23s05.html",
+        "next": "ch23s07.html"
+      }
+    },
+    {
+      "path": "ch23s07.html",
+      "url": "https://akaedu.github.io/book/ch23s07.html",
+      "title": "7. 指向数组的指针与多维数组",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "2d78d6d4991837b6ecee3f21d9f4586eb8fe02e902d543127e0002a2daa53890",
+      "file": "source-html/ch23s07.html",
+      "document_title": "7. 指向数组的指针与多维数组",
+      "nav": {
+        "start": "index.html",
+        "up": "ch23.html",
+        "prev": "ch23s06.html",
+        "next": "ch23s08.html"
+      }
+    },
+    {
+      "path": "ch23s08.html",
+      "url": "https://akaedu.github.io/book/ch23s08.html",
+      "title": "8. 函数类型和函数指针类型",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "de68c3609b4f1f4456478b4b161197bfd30129f73972d5b8228eb8ffc3b9fe30",
+      "file": "source-html/ch23s08.html",
+      "document_title": "8. 函数类型和函数指针类型",
+      "nav": {
+        "start": "index.html",
+        "up": "ch23.html",
+        "prev": "ch23s07.html",
+        "next": "ch23s09.html"
+      }
+    },
+    {
+      "path": "ch23s09.html",
+      "url": "https://akaedu.github.io/book/ch23s09.html",
+      "title": "9. 不完全类型和复杂声明",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "8cac9f34c66ee4c0340626fef0145fdd0f45590cf2652ddba004517c4842ee40",
+      "file": "source-html/ch23s09.html",
+      "document_title": "9. 不完全类型和复杂声明",
+      "nav": {
+        "start": "index.html",
+        "up": "ch23.html",
+        "prev": "ch23s08.html",
+        "next": "ch24.html"
+      }
+    },
+    {
+      "path": "ch24.html",
+      "url": "https://akaedu.github.io/book/ch24.html",
+      "title": "24. 函数接口",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "c6faa4051e496f909e7a865f1b59cc5e4e12773546edd0d0db66fa7370040635",
+      "file": "source-html/ch24.html",
+      "document_title": "第 24 章 函数接口",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch23s09.html",
+        "next": "ch24s01.html"
+      }
+    },
+    {
+      "path": "ch24s01.html",
+      "url": "https://akaedu.github.io/book/ch24s01.html",
+      "title": "1. 本章的预备知识",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "38da3c30ea0ad9982f77c4d2a409b62ca8691eef622269a0acaa584f625e07eb",
+      "file": "source-html/ch24s01.html",
+      "document_title": "1. 本章的预备知识",
+      "nav": {
+        "start": "index.html",
+        "up": "ch24.html",
+        "prev": "ch24.html",
+        "next": "ch24s02.html"
+      }
+    },
+    {
+      "path": "ch24s02.html",
+      "url": "https://akaedu.github.io/book/ch24s02.html",
+      "title": "2. 传入参数与传出参数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "f23177daa76b609f071894aa29abb208dd77a60951e5ac1aa9011323acbc522e",
+      "file": "source-html/ch24s02.html",
+      "document_title": "2. 传入参数与传出参数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch24.html",
+        "prev": "ch24s01.html",
+        "next": "ch24s03.html"
+      }
+    },
+    {
+      "path": "ch24s03.html",
+      "url": "https://akaedu.github.io/book/ch24s03.html",
+      "title": "3. 两层指针的参数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "905e681491c217f4566210943c7c497ca09c593967346bac3c1a5bd7c4829f07",
+      "file": "source-html/ch24s03.html",
+      "document_title": "3. 两层指针的参数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch24.html",
+        "prev": "ch24s02.html",
+        "next": "ch24s04.html"
+      }
+    },
+    {
+      "path": "ch24s04.html",
+      "url": "https://akaedu.github.io/book/ch24s04.html",
+      "title": "4. 返回值是指针的情况",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "7cb812ffdb682a1bf76392e961fffa4ac4ae8f7684bacb029754e15252d7d433",
+      "file": "source-html/ch24s04.html",
+      "document_title": "4. 返回值是指针的情况",
+      "nav": {
+        "start": "index.html",
+        "up": "ch24.html",
+        "prev": "ch24s03.html",
+        "next": "ch24s05.html"
+      }
+    },
+    {
+      "path": "ch24s05.html",
+      "url": "https://akaedu.github.io/book/ch24s05.html",
+      "title": "5. 回调函数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "abc7469c212e54c106cb51519f19354070b87b2568cc637ac70744700120e0a4",
+      "file": "source-html/ch24s05.html",
+      "document_title": "5. 回调函数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch24.html",
+        "prev": "ch24s04.html",
+        "next": "ch24s06.html"
+      }
+    },
+    {
+      "path": "ch24s06.html",
+      "url": "https://akaedu.github.io/book/ch24s06.html",
+      "title": "6. 可变参数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "4ea4e7ebb3d0581610cce28269c7682d2cd663474c0eeba621ee15c4fb1ab0ec",
+      "file": "source-html/ch24s06.html",
+      "document_title": "6. 可变参数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch24.html",
+        "prev": "ch24s05.html",
+        "next": "ch25.html"
+      }
+    },
+    {
+      "path": "ch25.html",
+      "url": "https://akaedu.github.io/book/ch25.html",
+      "title": "25. C标准库",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "9ae9739480364408b59ce29d45bf4e835a3d19ff30809c364d8b9637949619d8",
+      "file": "source-html/ch25.html",
+      "document_title": "第 25 章 C标准库",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch24s06.html",
+        "next": "ch25s01.html"
+      }
+    },
+    {
+      "path": "ch25s01.html",
+      "url": "https://akaedu.github.io/book/ch25s01.html",
+      "title": "1. 字符串操作函数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "055baaabb9542bea4fcf861f5e7d82fdf808ad514b2ac6bde21f587941aebac3",
+      "file": "source-html/ch25s01.html",
+      "document_title": "1. 字符串操作函数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch25.html",
+        "prev": "ch25.html",
+        "next": "ch25s02.html"
+      }
+    },
+    {
+      "path": "ch25s02.html",
+      "url": "https://akaedu.github.io/book/ch25s02.html",
+      "title": "2. 标准I/O库函数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "1a3d988db28569bd55c459b9b97d8f191b3de2fd68967bb8a972050734943aec",
+      "file": "source-html/ch25s02.html",
+      "document_title": "2. 标准I/O库函数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch25.html",
+        "prev": "ch25s01.html",
+        "next": "ch25s03.html"
+      }
+    },
+    {
+      "path": "ch25s03.html",
+      "url": "https://akaedu.github.io/book/ch25s03.html",
+      "title": "3. 数值字符串转换函数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "69c9770f24f47197d20afa3d957361a976a83d4f656da5f9e3255b058e0e75af",
+      "file": "source-html/ch25s03.html",
+      "document_title": "3. 数值字符串转换函数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch25.html",
+        "prev": "ch25s02.html",
+        "next": "ch25s04.html"
+      }
+    },
+    {
+      "path": "ch25s04.html",
+      "url": "https://akaedu.github.io/book/ch25s04.html",
+      "title": "4. 分配内存的函数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "631a68e50e05c2881bea20c2035ba8998daed4776063ea93b1149476c8ccd98b",
+      "file": "source-html/ch25s04.html",
+      "document_title": "4. 分配内存的函数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch25.html",
+        "prev": "ch25s03.html",
+        "next": "ch26.html"
+      }
+    },
+    {
+      "path": "ch26.html",
+      "url": "https://akaedu.github.io/book/ch26.html",
+      "title": "26. 链表、二叉树和哈希表",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "cf57305115d45f9281089e2c5a2c546033291532037360338b113c1b5e6ac7c4",
+      "file": "source-html/ch26.html",
+      "document_title": "第 26 章 链表、二叉树和哈希表",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch25s04.html",
+        "next": "ch26s01.html"
+      }
+    },
+    {
+      "path": "ch26s01.html",
+      "url": "https://akaedu.github.io/book/ch26s01.html",
+      "title": "1. 链表",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "13e4ccf684616eb608469ff0abfa0a360cd3124febd0b193b0422e569a97a483",
+      "file": "source-html/ch26s01.html",
+      "document_title": "1. 链表",
+      "nav": {
+        "start": "index.html",
+        "up": "ch26.html",
+        "prev": "ch26.html",
+        "next": "ch26s02.html"
+      }
+    },
+    {
+      "path": "ch26s02.html",
+      "url": "https://akaedu.github.io/book/ch26s02.html",
+      "title": "2. 二叉树",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "36983806172ed16afb257959502875ecf24a84393125776f7e546a9bb5d4ee7a",
+      "file": "source-html/ch26s02.html",
+      "document_title": "2. 二叉树",
+      "nav": {
+        "start": "index.html",
+        "up": "ch26.html",
+        "prev": "ch26s01.html",
+        "next": "ch26s03.html"
+      }
+    },
+    {
+      "path": "ch26s03.html",
+      "url": "https://akaedu.github.io/book/ch26s03.html",
+      "title": "3. 哈希表",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "2e26d1b5370da6e6d5418c1fc5d123e6ef8266fac75dfe5ddab0cc31829b1fd5",
+      "file": "source-html/ch26s03.html",
+      "document_title": "3. 哈希表",
+      "nav": {
+        "start": "index.html",
+        "up": "ch26.html",
+        "prev": "ch26s02.html",
+        "next": "ch27.html"
+      }
+    },
+    {
+      "path": "ch27.html",
+      "url": "https://akaedu.github.io/book/ch27.html",
+      "title": "27. 本阶段总结",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "44e429a649872a9b3d1e6c6d1f57a1ca1ca2f4009dc48463c7f377bfd96ceed6",
+      "file": "source-html/ch27.html",
+      "document_title": "第 27 章 本阶段总结",
+      "nav": {
+        "start": "index.html",
+        "up": "pt02.html",
+        "prev": "ch26s03.html",
+        "next": "pt03.html"
+      }
+    },
+    {
+      "path": "pt03.html",
+      "url": "https://akaedu.github.io/book/pt03.html",
+      "title": "III. Linux系统编程",
+      "kind": "part",
+      "depth": 1,
+      "sha256": "24b25967e733149b6b286701dc835d875ae208bb70003303f61c9cd744e80a21",
+      "file": "source-html/pt03.html",
+      "document_title": "部分 III. Linux系统编程",
+      "nav": {
+        "start": "index.html",
+        "up": "index.html",
+        "prev": "ch27.html",
+        "next": "ch28.html"
+      }
+    },
+    {
+      "path": "ch28.html",
+      "url": "https://akaedu.github.io/book/ch28.html",
+      "title": "28. 文件与I/O",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "d03ba414670f70e84e8e58dec57453d1c59f2de8b9d642ef54ddbbcde0830c18",
+      "file": "source-html/ch28.html",
+      "document_title": "第 28 章 文件与I/O",
+      "nav": {
+        "start": "index.html",
+        "up": "pt03.html",
+        "prev": "pt03.html",
+        "next": "ch28s01.html"
+      }
+    },
+    {
+      "path": "ch28s01.html",
+      "url": "https://akaedu.github.io/book/ch28s01.html",
+      "title": "1. 汇编程序的Hello world",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "926c9dd4b618f0ccd42c55d9da90996f911b44ceed9fc335c4db74b946723d50",
+      "file": "source-html/ch28s01.html",
+      "document_title": "1. 汇编程序的Hello world",
+      "nav": {
+        "start": "index.html",
+        "up": "ch28.html",
+        "prev": "ch28.html",
+        "next": "ch28s02.html"
+      }
+    },
+    {
+      "path": "ch28s02.html",
+      "url": "https://akaedu.github.io/book/ch28s02.html",
+      "title": "2. C标准I/O库函数与Unbuffered I/O函数",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "523343e38e0621582588dd86d175b23fac6b330337f359187463323e592a029d",
+      "file": "source-html/ch28s02.html",
+      "document_title": "2. C标准I/O库函数与Unbuffered I/O函数",
+      "nav": {
+        "start": "index.html",
+        "up": "ch28.html",
+        "prev": "ch28s01.html",
+        "next": "ch28s03.html"
+      }
+    },
+    {
+      "path": "ch28s03.html",
+      "url": "https://akaedu.github.io/book/ch28s03.html",
+      "title": "3. open/close",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "dd7801177ce9676eee7bdde1e00dc700342c7856c731073743c3eeddc935193b",
+      "file": "source-html/ch28s03.html",
+      "document_title": "3. open/close",
+      "nav": {
+        "start": "index.html",
+        "up": "ch28.html",
+        "prev": "ch28s02.html",
+        "next": "ch28s04.html"
+      }
+    },
+    {
+      "path": "ch28s04.html",
+      "url": "https://akaedu.github.io/book/ch28s04.html",
+      "title": "4. read/write",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "5cf06a83796149ad95f57717581dea8d9735199712e0fe0a3723e17fff171c3f",
+      "file": "source-html/ch28s04.html",
+      "document_title": "4. read/write",
+      "nav": {
+        "start": "index.html",
+        "up": "ch28.html",
+        "prev": "ch28s03.html",
+        "next": "ch28s05.html"
+      }
+    },
+    {
+      "path": "ch28s05.html",
+      "url": "https://akaedu.github.io/book/ch28s05.html",
+      "title": "5. lseek",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "d3e6b9b04bd8afc221367fd9c0f614fee8392940234c48db05eb43e5aba3d1e7",
+      "file": "source-html/ch28s05.html",
+      "document_title": "5. lseek",
+      "nav": {
+        "start": "index.html",
+        "up": "ch28.html",
+        "prev": "ch28s04.html",
+        "next": "ch28s06.html"
+      }
+    },
+    {
+      "path": "ch28s06.html",
+      "url": "https://akaedu.github.io/book/ch28s06.html",
+      "title": "6. fcntl",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "a0714049bb6950ebf5156914f3afff6092e678fa0945cb61d29a283ec1b78d24",
+      "file": "source-html/ch28s06.html",
+      "document_title": "6. fcntl",
+      "nav": {
+        "start": "index.html",
+        "up": "ch28.html",
+        "prev": "ch28s05.html",
+        "next": "ch28s07.html"
+      }
+    },
+    {
+      "path": "ch28s07.html",
+      "url": "https://akaedu.github.io/book/ch28s07.html",
+      "title": "7. ioctl",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "092ce9db9aeeaba84ade7e9593f13d4c97a8c5acac936c698199b92b61b565f8",
+      "file": "source-html/ch28s07.html",
+      "document_title": "7. ioctl",
+      "nav": {
+        "start": "index.html",
+        "up": "ch28.html",
+        "prev": "ch28s06.html",
+        "next": "ch28s08.html"
+      }
+    },
+    {
+      "path": "ch28s08.html",
+      "url": "https://akaedu.github.io/book/ch28s08.html",
+      "title": "8. mmap",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "e72e174abdfe08f6f044ea1edf43abb26a31bea58254cebb601cf25762dde081",
+      "file": "source-html/ch28s08.html",
+      "document_title": "8. mmap",
+      "nav": {
+        "start": "index.html",
+        "up": "ch28.html",
+        "prev": "ch28s07.html",
+        "next": "ch29.html"
+      }
+    },
+    {
+      "path": "ch29.html",
+      "url": "https://akaedu.github.io/book/ch29.html",
+      "title": "29. 文件系统",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "aacf52b7623321b1e942a64330ec77e667db2a3e3e6c509225dbd4aece6f1644",
+      "file": "source-html/ch29.html",
+      "document_title": "第 29 章 文件系统",
+      "nav": {
+        "start": "index.html",
+        "up": "pt03.html",
+        "prev": "ch28s08.html",
+        "next": "ch29s01.html"
+      }
+    },
+    {
+      "path": "ch29s01.html",
+      "url": "https://akaedu.github.io/book/ch29s01.html",
+      "title": "1. 引言",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "9fdcf9bc4a903f505b4a3acba30c43eefb33e93df3fee41b96f9297c195d8fcb",
+      "file": "source-html/ch29s01.html",
+      "document_title": "1. 引言",
+      "nav": {
+        "start": "index.html",
+        "up": "ch29.html",
+        "prev": "ch29.html",
+        "next": "ch29s02.html"
+      }
+    },
+    {
+      "path": "ch29s02.html",
+      "url": "https://akaedu.github.io/book/ch29s02.html",
+      "title": "2. ext2文件系统",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "1fe3bf85b1996b9f59c5186e6e7050049b3804253d1c9b1fad7ec2daf64b7678",
+      "file": "source-html/ch29s02.html",
+      "document_title": "2. ext2文件系统",
+      "nav": {
+        "start": "index.html",
+        "up": "ch29.html",
+        "prev": "ch29s01.html",
+        "next": "ch29s03.html"
+      }
+    },
+    {
+      "path": "ch29s03.html",
+      "url": "https://akaedu.github.io/book/ch29s03.html",
+      "title": "3. VFS",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "529b987c1b40cd57b5f9f4fd8ea186151a378e9c5a76a79baa2ee507e6e4795e",
+      "file": "source-html/ch29s03.html",
+      "document_title": "3. VFS",
+      "nav": {
+        "start": "index.html",
+        "up": "ch29.html",
+        "prev": "ch29s02.html",
+        "next": "ch30.html"
+      }
+    },
+    {
+      "path": "ch30.html",
+      "url": "https://akaedu.github.io/book/ch30.html",
+      "title": "30. 进程",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "e046bbb0301a28b5c60955503471dac0820d3ac88c667434e2075730e8408a7b",
+      "file": "source-html/ch30.html",
+      "document_title": "第 30 章 进程",
+      "nav": {
+        "start": "index.html",
+        "up": "pt03.html",
+        "prev": "ch29s03.html",
+        "next": "ch30s01.html"
+      }
+    },
+    {
+      "path": "ch30s01.html",
+      "url": "https://akaedu.github.io/book/ch30s01.html",
+      "title": "1. 引言",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "af949029952ba9f0c5ea94df9955db513a8ebd9821a13d3eae671f137a27c8b6",
+      "file": "source-html/ch30s01.html",
+      "document_title": "1. 引言",
+      "nav": {
+        "start": "index.html",
+        "up": "ch30.html",
+        "prev": "ch30.html",
+        "next": "ch30s02.html"
+      }
+    },
+    {
+      "path": "ch30s02.html",
+      "url": "https://akaedu.github.io/book/ch30s02.html",
+      "title": "2. 环境变量",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "cd0031a3fa561afc3bc784332ca7455a147f8367574b868fc2119c4b88c95330",
+      "file": "source-html/ch30s02.html",
+      "document_title": "2. 环境变量",
+      "nav": {
+        "start": "index.html",
+        "up": "ch30.html",
+        "prev": "ch30s01.html",
+        "next": "ch30s03.html"
+      }
+    },
+    {
+      "path": "ch30s03.html",
+      "url": "https://akaedu.github.io/book/ch30s03.html",
+      "title": "3. 进程控制",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "e7568d528c50f88c48ebb85f4ac3fc7fd0da9c6bb4bc35a6c6333a9ea3812cae",
+      "file": "source-html/ch30s03.html",
+      "document_title": "3. 进程控制",
+      "nav": {
+        "start": "index.html",
+        "up": "ch30.html",
+        "prev": "ch30s02.html",
+        "next": "ch30s04.html"
+      }
+    },
+    {
+      "path": "ch30s04.html",
+      "url": "https://akaedu.github.io/book/ch30s04.html",
+      "title": "4. 进程间通信",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "2a1f342bd2de93c12a65de649284d7a4570252e5b145fbef983d492f4102afdd",
+      "file": "source-html/ch30s04.html",
+      "document_title": "4. 进程间通信",
+      "nav": {
+        "start": "index.html",
+        "up": "ch30.html",
+        "prev": "ch30s03.html",
+        "next": "ch30s05.html"
+      }
+    },
+    {
+      "path": "ch30s05.html",
+      "url": "https://akaedu.github.io/book/ch30s05.html",
+      "title": "5. 练习：实现简单的Shell",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "7d7ec1a7905e944cd2eb09e644c8da20ba7674f0d14050ed1a94a9bc65c15dbc",
+      "file": "source-html/ch30s05.html",
+      "document_title": "5. 练习：实现简单的Shell",
+      "nav": {
+        "start": "index.html",
+        "up": "ch30.html",
+        "prev": "ch30s04.html",
+        "next": "ch31.html"
+      }
+    },
+    {
+      "path": "ch31.html",
+      "url": "https://akaedu.github.io/book/ch31.html",
+      "title": "31. Shell脚本",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "49c780621db0b6cc2b5b68e451d12b35fa643b146c9a93a8ad0bdb3761a411a0",
+      "file": "source-html/ch31.html",
+      "document_title": "第 31 章 Shell脚本",
+      "nav": {
+        "start": "index.html",
+        "up": "pt03.html",
+        "prev": "ch30s05.html",
+        "next": "ch31s01.html"
+      }
+    },
+    {
+      "path": "ch31s01.html",
+      "url": "https://akaedu.github.io/book/ch31s01.html",
+      "title": "1. Shell的历史",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "2d536a29ad5482041060b59ee8c020a3c91ac9f70b5d4cd6df8a6db9688ff71c",
+      "file": "source-html/ch31s01.html",
+      "document_title": "1. Shell的历史",
+      "nav": {
+        "start": "index.html",
+        "up": "ch31.html",
+        "prev": "ch31.html",
+        "next": "ch31s02.html"
+      }
+    },
+    {
+      "path": "ch31s02.html",
+      "url": "https://akaedu.github.io/book/ch31s02.html",
+      "title": "2. Shell如何执行命令",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "8c4492df3e78581b9e806fa32f3354b211cadc6a0aac4d45491af04fe03deea9",
+      "file": "source-html/ch31s02.html",
+      "document_title": "2. Shell如何执行命令",
+      "nav": {
+        "start": "index.html",
+        "up": "ch31.html",
+        "prev": "ch31s01.html",
+        "next": "ch31s03.html"
+      }
+    },
+    {
+      "path": "ch31s03.html",
+      "url": "https://akaedu.github.io/book/ch31s03.html",
+      "title": "3. Shell的基本语法",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "5ca5de5b495115210103139a9951da894e4238acc7c5c127c56e044be8c6ccbd",
+      "file": "source-html/ch31s03.html",
+      "document_title": "3. Shell的基本语法",
+      "nav": {
+        "start": "index.html",
+        "up": "ch31.html",
+        "prev": "ch31s02.html",
+        "next": "ch31s04.html"
+      }
+    },
+    {
+      "path": "ch31s04.html",
+      "url": "https://akaedu.github.io/book/ch31s04.html",
+      "title": "4. bash启动脚本",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "3a4d9a170aa528392adbba8dec2a7522f6949b1d5f49c18e9d54a6eb6a377205",
+      "file": "source-html/ch31s04.html",
+      "document_title": "4. bash启动脚本",
+      "nav": {
+        "start": "index.html",
+        "up": "ch31.html",
+        "prev": "ch31s03.html",
+        "next": "ch31s05.html"
+      }
+    },
+    {
+      "path": "ch31s05.html",
+      "url": "https://akaedu.github.io/book/ch31s05.html",
+      "title": "5. Shell脚本语法",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "882662caabd2f9d4f15b73c2dea271e0f2161161d1e64723894b404eb13fe95f",
+      "file": "source-html/ch31s05.html",
+      "document_title": "5. Shell脚本语法",
+      "nav": {
+        "start": "index.html",
+        "up": "ch31.html",
+        "prev": "ch31s04.html",
+        "next": "ch31s06.html"
+      }
+    },
+    {
+      "path": "ch31s06.html",
+      "url": "https://akaedu.github.io/book/ch31s06.html",
+      "title": "6. Shell脚本的调试方法",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "0f5f62e617476a3bd004ac2940f40c1d7c723dff58eef78ca3d3c19060789736",
+      "file": "source-html/ch31s06.html",
+      "document_title": "6. Shell脚本的调试方法",
+      "nav": {
+        "start": "index.html",
+        "up": "ch31.html",
+        "prev": "ch31s05.html",
+        "next": "ch32.html"
+      }
+    },
+    {
+      "path": "ch32.html",
+      "url": "https://akaedu.github.io/book/ch32.html",
+      "title": "32. 正则表达式",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "f1c03778b8a0d7979e6feacaf87c67163761cdf90a8981cf7fb479922b63015f",
+      "file": "source-html/ch32.html",
+      "document_title": "第 32 章 正则表达式",
+      "nav": {
+        "start": "index.html",
+        "up": "pt03.html",
+        "prev": "ch31s06.html",
+        "next": "ch32s01.html"
+      }
+    },
+    {
+      "path": "ch32s01.html",
+      "url": "https://akaedu.github.io/book/ch32s01.html",
+      "title": "1. 引言",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "c63f288fa99411a1895822e7799127adf1cf13db83e404dc18c211018b1192e3",
+      "file": "source-html/ch32s01.html",
+      "document_title": "1. 引言",
+      "nav": {
+        "start": "index.html",
+        "up": "ch32.html",
+        "prev": "ch32.html",
+        "next": "ch32s02.html"
+      }
+    },
+    {
+      "path": "ch32s02.html",
+      "url": "https://akaedu.github.io/book/ch32s02.html",
+      "title": "2. 基本语法",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "475b6869c9e431cdadd1388832cca82238b5087c3cef0d431289ad6897dee939",
+      "file": "source-html/ch32s02.html",
+      "document_title": "2. 基本语法",
+      "nav": {
+        "start": "index.html",
+        "up": "ch32.html",
+        "prev": "ch32s01.html",
+        "next": "ch32s03.html"
+      }
+    },
+    {
+      "path": "ch32s03.html",
+      "url": "https://akaedu.github.io/book/ch32s03.html",
+      "title": "3. sed",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "f39276fef44bbf03e775d5d5334cda74ce10728afefc59d7c1e8c8b3af19175b",
+      "file": "source-html/ch32s03.html",
+      "document_title": "3. sed",
+      "nav": {
+        "start": "index.html",
+        "up": "ch32.html",
+        "prev": "ch32s02.html",
+        "next": "ch32s04.html"
+      }
+    },
+    {
+      "path": "ch32s04.html",
+      "url": "https://akaedu.github.io/book/ch32s04.html",
+      "title": "4. awk",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "3704b40218a05fdd3f511bc16c2f0f204c5423f6e4838dd8bc657312b60acd3a",
+      "file": "source-html/ch32s04.html",
+      "document_title": "4. awk",
+      "nav": {
+        "start": "index.html",
+        "up": "ch32.html",
+        "prev": "ch32s03.html",
+        "next": "ch32s05.html"
+      }
+    },
+    {
+      "path": "ch32s05.html",
+      "url": "https://akaedu.github.io/book/ch32s05.html",
+      "title": "5. 练习：在C语言中使用正则表达式",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "33ca5335318fa79825b6018e606e32b9ea3cb770b807f8818bdc1efa3dcbce33",
+      "file": "source-html/ch32s05.html",
+      "document_title": "5. 练习：在C语言中使用正则表达式",
+      "nav": {
+        "start": "index.html",
+        "up": "ch32.html",
+        "prev": "ch32s04.html",
+        "next": "ch33.html"
+      }
+    },
+    {
+      "path": "ch33.html",
+      "url": "https://akaedu.github.io/book/ch33.html",
+      "title": "33. 信号",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "a3604e223dad2bb502f5397f108cc4fb7c7a0a7b8a98757feb9433588426c693",
+      "file": "source-html/ch33.html",
+      "document_title": "第 33 章 信号",
+      "nav": {
+        "start": "index.html",
+        "up": "pt03.html",
+        "prev": "ch32s05.html",
+        "next": "ch33s01.html"
+      }
+    },
+    {
+      "path": "ch33s01.html",
+      "url": "https://akaedu.github.io/book/ch33s01.html",
+      "title": "1. 信号的基本概念",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "838c0d9da82a0f8db439cf48f7d7f26968c46b0910f96cacc2e74b568503d7c6",
+      "file": "source-html/ch33s01.html",
+      "document_title": "1. 信号的基本概念",
+      "nav": {
+        "start": "index.html",
+        "up": "ch33.html",
+        "prev": "ch33.html",
+        "next": "ch33s02.html"
+      }
+    },
+    {
+      "path": "ch33s02.html",
+      "url": "https://akaedu.github.io/book/ch33s02.html",
+      "title": "2. 产生信号",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "a050033236ee174b66a52e92c95140ac92aae31822d38d6b5f86300f178f13a6",
+      "file": "source-html/ch33s02.html",
+      "document_title": "2. 产生信号",
+      "nav": {
+        "start": "index.html",
+        "up": "ch33.html",
+        "prev": "ch33s01.html",
+        "next": "ch33s03.html"
+      }
+    },
+    {
+      "path": "ch33s03.html",
+      "url": "https://akaedu.github.io/book/ch33s03.html",
+      "title": "3. 阻塞信号",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "5bcd8f26f76dd9b0cf715e124ac8647dcd7b031de0b1bdd7be96aafe1aa77394",
+      "file": "source-html/ch33s03.html",
+      "document_title": "3. 阻塞信号",
+      "nav": {
+        "start": "index.html",
+        "up": "ch33.html",
+        "prev": "ch33s02.html",
+        "next": "ch33s04.html"
+      }
+    },
+    {
+      "path": "ch33s04.html",
+      "url": "https://akaedu.github.io/book/ch33s04.html",
+      "title": "4. 捕捉信号",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "b24200569986e54706f574addc37f80067f01cf0ee1397b1c50b5f0e253d95c1",
+      "file": "source-html/ch33s04.html",
+      "document_title": "4. 捕捉信号",
+      "nav": {
+        "start": "index.html",
+        "up": "ch33.html",
+        "prev": "ch33s03.html",
+        "next": "ch34.html"
+      }
+    },
+    {
+      "path": "ch34.html",
+      "url": "https://akaedu.github.io/book/ch34.html",
+      "title": "34. 终端、作业控制与守护进程",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "b6fae0fd38987e61a629bcec854ccb443fd66d2fe5bef5a5196e4872a13dc2dd",
+      "file": "source-html/ch34.html",
+      "document_title": "第 34 章 终端、作业控制与守护进程",
+      "nav": {
+        "start": "index.html",
+        "up": "pt03.html",
+        "prev": "ch33s04.html",
+        "next": "ch34s01.html"
+      }
+    },
+    {
+      "path": "ch34s01.html",
+      "url": "https://akaedu.github.io/book/ch34s01.html",
+      "title": "1. 终端",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "bac5efd9913aedff2c11f77c543693a0c448f8f87dcae2a69b359e7f87c779c9",
+      "file": "source-html/ch34s01.html",
+      "document_title": "1. 终端",
+      "nav": {
+        "start": "index.html",
+        "up": "ch34.html",
+        "prev": "ch34.html",
+        "next": "ch34s02.html"
+      }
+    },
+    {
+      "path": "ch34s02.html",
+      "url": "https://akaedu.github.io/book/ch34s02.html",
+      "title": "2. 作业控制",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "113120f82c767a72fea915d6bc1aae7366551de471d195d652e0864f865ddff6",
+      "file": "source-html/ch34s02.html",
+      "document_title": "2. 作业控制",
+      "nav": {
+        "start": "index.html",
+        "up": "ch34.html",
+        "prev": "ch34s01.html",
+        "next": "ch34s03.html"
+      }
+    },
+    {
+      "path": "ch34s03.html",
+      "url": "https://akaedu.github.io/book/ch34s03.html",
+      "title": "3. 守护进程",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "860d4a6b0a2921436cec1d5de140f738c6f7f8a82a11fec61f598d0972f397d3",
+      "file": "source-html/ch34s03.html",
+      "document_title": "3. 守护进程",
+      "nav": {
+        "start": "index.html",
+        "up": "ch34.html",
+        "prev": "ch34s02.html",
+        "next": "ch35.html"
+      }
+    },
+    {
+      "path": "ch35.html",
+      "url": "https://akaedu.github.io/book/ch35.html",
+      "title": "35. 线程",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "c80260e99386b5d68b199cd979d282439591f2d1c4d75fb167fcc039893c5a51",
+      "file": "source-html/ch35.html",
+      "document_title": "第 35 章 线程",
+      "nav": {
+        "start": "index.html",
+        "up": "pt03.html",
+        "prev": "ch34s03.html",
+        "next": "ch35s01.html"
+      }
+    },
+    {
+      "path": "ch35s01.html",
+      "url": "https://akaedu.github.io/book/ch35s01.html",
+      "title": "1. 线程的概念",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "d22e9731b05df78e49bc305ff4f69799f16452500d95fde26acb7c640e2adc8a",
+      "file": "source-html/ch35s01.html",
+      "document_title": "1. 线程的概念",
+      "nav": {
+        "start": "index.html",
+        "up": "ch35.html",
+        "prev": "ch35.html",
+        "next": "ch35s02.html"
+      }
+    },
+    {
+      "path": "ch35s02.html",
+      "url": "https://akaedu.github.io/book/ch35s02.html",
+      "title": "2. 线程控制",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "6cf09e5156c7c88e296648810e57f20f0c04e34037ed9a1683a53c9afdca5795",
+      "file": "source-html/ch35s02.html",
+      "document_title": "2. 线程控制",
+      "nav": {
+        "start": "index.html",
+        "up": "ch35.html",
+        "prev": "ch35s01.html",
+        "next": "ch35s03.html"
+      }
+    },
+    {
+      "path": "ch35s03.html",
+      "url": "https://akaedu.github.io/book/ch35s03.html",
+      "title": "3. 线程间同步",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "fef02f70317fbfdd0d56d04c2d2a3fced0a64282cd36f9748426f663534c312c",
+      "file": "source-html/ch35s03.html",
+      "document_title": "3. 线程间同步",
+      "nav": {
+        "start": "index.html",
+        "up": "ch35.html",
+        "prev": "ch35s02.html",
+        "next": "ch35s04.html"
+      }
+    },
+    {
+      "path": "ch35s04.html",
+      "url": "https://akaedu.github.io/book/ch35s04.html",
+      "title": "4. 编程练习",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "2be6fa6a135fb0f4ee3ca5507ad9c789e864b297e394a6e5fb4c84c39f6841da",
+      "file": "source-html/ch35s04.html",
+      "document_title": "4. 编程练习",
+      "nav": {
+        "start": "index.html",
+        "up": "ch35.html",
+        "prev": "ch35s03.html",
+        "next": "ch36.html"
+      }
+    },
+    {
+      "path": "ch36.html",
+      "url": "https://akaedu.github.io/book/ch36.html",
+      "title": "36. TCP/IP协议基础",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "0fa901e5428d02d9ee1158b43fab7ff8474975ddeb099fd7e0d0229935d7b0ea",
+      "file": "source-html/ch36.html",
+      "document_title": "第 36 章 TCP/IP协议基础",
+      "nav": {
+        "start": "index.html",
+        "up": "pt03.html",
+        "prev": "ch35s04.html",
+        "next": "ch36s01.html"
+      }
+    },
+    {
+      "path": "ch36s01.html",
+      "url": "https://akaedu.github.io/book/ch36s01.html",
+      "title": "1. TCP/IP协议栈与数据包封装",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "49263f2377799b5b8e8443c4fd754c2d426ecee909bc5273334bc72859c49092",
+      "file": "source-html/ch36s01.html",
+      "document_title": "1. TCP/IP协议栈与数据包封装",
+      "nav": {
+        "start": "index.html",
+        "up": "ch36.html",
+        "prev": "ch36.html",
+        "next": "ch36s02.html"
+      }
+    },
+    {
+      "path": "ch36s02.html",
+      "url": "https://akaedu.github.io/book/ch36s02.html",
+      "title": "2. 以太网(RFC 894)帧格式",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "1badd8980ab21d0f6618b8b40d74a4581ca34f449ad9387537248e6c0fbf1773",
+      "file": "source-html/ch36s02.html",
+      "document_title": "2. 以太网(RFC 894)帧格式",
+      "nav": {
+        "start": "index.html",
+        "up": "ch36.html",
+        "prev": "ch36s01.html",
+        "next": "ch36s03.html"
+      }
+    },
+    {
+      "path": "ch36s03.html",
+      "url": "https://akaedu.github.io/book/ch36s03.html",
+      "title": "3. ARP数据报格式",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "dd691284e66f17d8a514936e6a5a2a2bef8d9ef554544834b2346193d19cecff",
+      "file": "source-html/ch36s03.html",
+      "document_title": "3. ARP数据报格式",
+      "nav": {
+        "start": "index.html",
+        "up": "ch36.html",
+        "prev": "ch36s02.html",
+        "next": "ch36s04.html"
+      }
+    },
+    {
+      "path": "ch36s04.html",
+      "url": "https://akaedu.github.io/book/ch36s04.html",
+      "title": "4. IP数据报格式",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "472e7ef76eb54ddc65e2623e743d2add1ecc23cc680a2236ea8002f07933cb72",
+      "file": "source-html/ch36s04.html",
+      "document_title": "4. IP数据报格式",
+      "nav": {
+        "start": "index.html",
+        "up": "ch36.html",
+        "prev": "ch36s03.html",
+        "next": "ch36s05.html"
+      }
+    },
+    {
+      "path": "ch36s05.html",
+      "url": "https://akaedu.github.io/book/ch36s05.html",
+      "title": "5. IP地址与路由",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "cd5e78f72b75ea0eb496f35654c2ef8d45dcc7bee474ec1401736ff254e4cc6e",
+      "file": "source-html/ch36s05.html",
+      "document_title": "5. IP地址与路由",
+      "nav": {
+        "start": "index.html",
+        "up": "ch36.html",
+        "prev": "ch36s04.html",
+        "next": "ch36s06.html"
+      }
+    },
+    {
+      "path": "ch36s06.html",
+      "url": "https://akaedu.github.io/book/ch36s06.html",
+      "title": "6. UDP段格式",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "d171aac5dd0736e2f751f4b9342349a03cb52c268bce848fc478b2f23e4f9319",
+      "file": "source-html/ch36s06.html",
+      "document_title": "6. UDP段格式",
+      "nav": {
+        "start": "index.html",
+        "up": "ch36.html",
+        "prev": "ch36s05.html",
+        "next": "ch36s07.html"
+      }
+    },
+    {
+      "path": "ch36s07.html",
+      "url": "https://akaedu.github.io/book/ch36s07.html",
+      "title": "7. TCP协议",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "eee03a5f41450ab87fe90d618dfb063f3cfb09dd09dee41f73aec545e37fed68",
+      "file": "source-html/ch36s07.html",
+      "document_title": "7. TCP协议",
+      "nav": {
+        "start": "index.html",
+        "up": "ch36.html",
+        "prev": "ch36s06.html",
+        "next": "ch37.html"
+      }
+    },
+    {
+      "path": "ch37.html",
+      "url": "https://akaedu.github.io/book/ch37.html",
+      "title": "37. socket编程",
+      "kind": "chapter",
+      "depth": 2,
+      "sha256": "1828028480e23c4b2cdfa0dca9cdd8e13892e7d66e41279eeb53330a1a920ec3",
+      "file": "source-html/ch37.html",
+      "document_title": "第 37 章 socket编程",
+      "nav": {
+        "start": "index.html",
+        "up": "pt03.html",
+        "prev": "ch36s07.html",
+        "next": "ch37s01.html"
+      }
+    },
+    {
+      "path": "ch37s01.html",
+      "url": "https://akaedu.github.io/book/ch37s01.html",
+      "title": "1. 预备知识",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "67af02f0a7a8d29d9b8b9ddb6a2bb2f27ddaf28a748ef24453d94c350cd5e7a8",
+      "file": "source-html/ch37s01.html",
+      "document_title": "1. 预备知识",
+      "nav": {
+        "start": "index.html",
+        "up": "ch37.html",
+        "prev": "ch37.html",
+        "next": "ch37s02.html"
+      }
+    },
+    {
+      "path": "ch37s02.html",
+      "url": "https://akaedu.github.io/book/ch37s02.html",
+      "title": "2. 基于TCP协议的网络程序",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "5febfc7a1d26e318b63dacc64fcdd3b2b79d9cde725b627df293c5db80277f96",
+      "file": "source-html/ch37s02.html",
+      "document_title": "2. 基于TCP协议的网络程序",
+      "nav": {
+        "start": "index.html",
+        "up": "ch37.html",
+        "prev": "ch37s01.html",
+        "next": "ch37s03.html"
+      }
+    },
+    {
+      "path": "ch37s03.html",
+      "url": "https://akaedu.github.io/book/ch37s03.html",
+      "title": "3. 基于UDP协议的网络程序",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "f3a76b43ba8b5953f38e9947a4e3c773ebc5a0deeb83d7a8b896e36e0b3a113f",
+      "file": "source-html/ch37s03.html",
+      "document_title": "3. 基于UDP协议的网络程序",
+      "nav": {
+        "start": "index.html",
+        "up": "ch37.html",
+        "prev": "ch37s02.html",
+        "next": "ch37s04.html"
+      }
+    },
+    {
+      "path": "ch37s04.html",
+      "url": "https://akaedu.github.io/book/ch37s04.html",
+      "title": "4. UNIX Domain Socket IPC",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "401d8951477836364c88b6d72558692771d13707528cd897f6f216fab4fc86f0",
+      "file": "source-html/ch37s04.html",
+      "document_title": "4. UNIX Domain Socket IPC",
+      "nav": {
+        "start": "index.html",
+        "up": "ch37.html",
+        "prev": "ch37s03.html",
+        "next": "ch37s05.html"
+      }
+    },
+    {
+      "path": "ch37s05.html",
+      "url": "https://akaedu.github.io/book/ch37s05.html",
+      "title": "5. 练习：实现简单的Web服务器",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "8efc333810eae156931d07a2f1e3881974133335e65ba85ccad4d89be860abf8",
+      "file": "source-html/ch37s05.html",
+      "document_title": "5. 练习：实现简单的Web服务器",
+      "nav": {
+        "start": "index.html",
+        "up": "ch37.html",
+        "prev": "ch37s04.html",
+        "next": "apa.html"
+      }
+    },
+    {
+      "path": "apa.html",
+      "url": "https://akaedu.github.io/book/apa.html",
+      "title": "A. 字符编码",
+      "kind": "appendix",
+      "depth": 1,
+      "sha256": "525c19710bbb5146a92880073e81e4a01cf743a8f30096a533cf8e8121cb199f",
+      "file": "source-html/apa.html",
+      "document_title": "附录 A. 字符编码",
+      "nav": {
+        "start": "index.html",
+        "up": "index.html",
+        "prev": "ch37s05.html",
+        "next": "apas01.html"
+      }
+    },
+    {
+      "path": "apas01.html",
+      "url": "https://akaedu.github.io/book/apas01.html",
+      "title": "1. ASCII码",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "d1b0c5a0f133d1076a66c87553cd5d6e0cb193a459c587521bad94f7df984c73",
+      "file": "source-html/apas01.html",
+      "document_title": "1. ASCII码",
+      "nav": {
+        "start": "index.html",
+        "up": "apa.html",
+        "prev": "apa.html",
+        "next": "apas02.html"
+      }
+    },
+    {
+      "path": "apas02.html",
+      "url": "https://akaedu.github.io/book/apas02.html",
+      "title": "2. Unicode和UTF-8",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "c6d76e81c4b9620420f321a74f431192e8347b2c60af8324e538e8d3ad1396fe",
+      "file": "source-html/apas02.html",
+      "document_title": "2. Unicode和UTF-8",
+      "nav": {
+        "start": "index.html",
+        "up": "apa.html",
+        "prev": "apas01.html",
+        "next": "apas03.html"
+      }
+    },
+    {
+      "path": "apas03.html",
+      "url": "https://akaedu.github.io/book/apas03.html",
+      "title": "3. 在Linux C编程中使用Unicode和UTF-8",
+      "kind": "sect1",
+      "depth": 3,
+      "sha256": "3921d856037e18fb6e6256d696c28e7b38442aa9333fe16806472dfd8e25d7a3",
+      "file": "source-html/apas03.html",
+      "document_title": "3. 在Linux C编程中使用Unicode和UTF-8",
+      "nav": {
+        "start": "index.html",
+        "up": "apa.html",
+        "prev": "apas02.html",
+        "next": "apb.html"
+      }
+    },
+    {
+      "path": "apb.html",
+      "url": "https://akaedu.github.io/book/apb.html",
+      "title": "B. GNU Free Documentation License Version 1.3, 3 November 2008",
+      "kind": "appendix",
+      "depth": 1,
+      "sha256": "121d37879d1d5e05c89fef7391220fb8f32f75d938071feaf0430b711802f7aa",
+      "file": "source-html/apb.html",
+      "document_title": "附录 B. GNU Free Documentation License Version 1.3, 3 November 2008",
+      "nav": {
+        "start": "index.html",
+        "up": "index.html",
+        "prev": "apas03.html",
+        "next": "bi01.html"
+      }
+    },
+    {
+      "path": "bi01.html",
+      "url": "https://akaedu.github.io/book/bi01.html",
+      "title": "参考书目",
+      "kind": "bibliography",
+      "depth": 1,
+      "sha256": "ca3f62018f713ea45a1ea1cfc358911ca4586fef86898796c3c11d5edf2c1efb",
+      "file": "source-html/bi01.html",
+      "document_title": "参考书目",
+      "nav": {
+        "start": "index.html",
+        "up": "index.html",
+        "prev": "apb.html",
+        "next": "ix01.html"
+      }
+    },
+    {
+      "path": "ix01.html",
+      "url": "https://akaedu.github.io/book/ix01.html",
+      "title": "索引",
+      "kind": "index",
+      "depth": 1,
+      "sha256": "c89a6be0abc3b032d56b24c6328490adfd9ea69ba52cb04a24c2ddd162d193d7",
+      "file": "source-html/ix01.html",
+      "document_title": "索引",
+      "nav": {
+        "start": "index.html",
+        "up": "index.html",
+        "prev": "bi01.html"
+      }
+    }
+  ],
+  "toc": [
+    {
+      "href": "pr01.html",
+      "title": "历史",
+      "kind": "preface",
+      "depth": 1
+    },
+    {
+      "href": "pr02.html",
+      "title": "前言",
+      "kind": "preface",
+      "depth": 1
+    },
+    {
+      "href": "pt01.html",
+      "title": "I. C语言入门",
+      "kind": "part",
+      "depth": 1
+    },
+    {
+      "href": "ch01.html",
+      "title": "1. 程序的基本概念",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "intro.program.html",
+      "title": "1. 程序和编程语言",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "intro.naturalformal.html",
+      "title": "2. 自然语言和形式语言",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch01s03.html",
+      "title": "3. 程序的调试",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "intro.helloworld.html",
+      "title": "4. 第一个程序",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch02.html",
+      "title": "2. 常量、变量和表达式",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch02s01.html",
+      "title": "1. 继续Hello World",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch02s02.html",
+      "title": "2. 常量",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "expr.variable.html",
+      "title": "3. 变量",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch02s04.html",
+      "title": "4. 赋值",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "expr.expression.html",
+      "title": "5. 表达式",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch02s06.html",
+      "title": "6. 字符类型与字符编码",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch03.html",
+      "title": "3. 简单函数",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch03s01.html",
+      "title": "1. 数学函数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch03s02.html",
+      "title": "2. 自定义函数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch03s03.html",
+      "title": "3. 形参和实参",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch03s04.html",
+      "title": "4. 全局变量、局部变量和作用域",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch04.html",
+      "title": "4. 分支语句",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch04s01.html",
+      "title": "1. if语句",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch04s02.html",
+      "title": "2. if/else语句",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch04s03.html",
+      "title": "3. 布尔代数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch04s04.html",
+      "title": "4. switch语句",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch05.html",
+      "title": "5. 深入理解函数",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch05s01.html",
+      "title": "1. return语句",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch05s02.html",
+      "title": "2. 增量式开发",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch05s03.html",
+      "title": "3. 递归",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch06.html",
+      "title": "6. 循环语句",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch06s01.html",
+      "title": "1. while语句",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch06s02.html",
+      "title": "2. do/while语句",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch06s03.html",
+      "title": "3. for语句",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch06s04.html",
+      "title": "4. break和continue语句",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch06s05.html",
+      "title": "5. 嵌套循环",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch06s06.html",
+      "title": "6. goto语句和标号",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch07.html",
+      "title": "7. 结构体",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch07s01.html",
+      "title": "1. 复合类型与结构体",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch07s02.html",
+      "title": "2. 数据抽象",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch07s03.html",
+      "title": "3. 数据类型标志",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch07s04.html",
+      "title": "4. 嵌套结构体",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch08.html",
+      "title": "8. 数组",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch08s01.html",
+      "title": "1. 数组的基本概念",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch08s02.html",
+      "title": "2. 数组应用实例：统计随机数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch08s03.html",
+      "title": "3. 数组应用实例：直方图",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch08s04.html",
+      "title": "4. 字符串",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch08s05.html",
+      "title": "5. 多维数组",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch09.html",
+      "title": "9. 编码风格",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch09s01.html",
+      "title": "1. 缩进和空白",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch09s02.html",
+      "title": "2. 注释",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch09s03.html",
+      "title": "3. 标识符命名",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch09s04.html",
+      "title": "4. 函数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch09s05.html",
+      "title": "5. indent工具",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch10.html",
+      "title": "10. gdb",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch10s01.html",
+      "title": "1. 单步执行和跟踪函数调用",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch10s02.html",
+      "title": "2. 断点",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch10s03.html",
+      "title": "3. 观察点",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch10s04.html",
+      "title": "4. 段错误",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch11.html",
+      "title": "11. 排序与查找",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch11s01.html",
+      "title": "1. 算法的概念",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch11s02.html",
+      "title": "2. 插入排序",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch11s03.html",
+      "title": "3. 算法的时间复杂度分析",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch11s04.html",
+      "title": "4. 归并排序",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch11s05.html",
+      "title": "5. 线性查找",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch11s06.html",
+      "title": "6. 折半查找",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch12.html",
+      "title": "12. 栈与队列",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch12s01.html",
+      "title": "1. 数据结构的概念",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch12s02.html",
+      "title": "2. 堆栈",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch12s03.html",
+      "title": "3. 深度优先搜索",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch12s04.html",
+      "title": "4. 队列与广度优先搜索",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch12s05.html",
+      "title": "5. 环形队列",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch13.html",
+      "title": "13. 本阶段总结",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "pt02.html",
+      "title": "II. C语言本质",
+      "kind": "part",
+      "depth": 1
+    },
+    {
+      "href": "ch14.html",
+      "title": "14. 计算机中数的表示",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch14s01.html",
+      "title": "1. 为什么计算机用二进制计数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch14s02.html",
+      "title": "2. 不同进制之间的换算",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch14s03.html",
+      "title": "3. 整数的加减运算",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch14s03.html#id2753623",
+      "title": "3.1. Sign and Magnitude表示法",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch14s03.html#id2753761",
+      "title": "3.2. 1's Complement表示法",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch14s03.html#id2753996",
+      "title": "3.3. 2's Complement表示法",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch14s03.html#id2754091",
+      "title": "3.4. 有符号数和无符号数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch14s04.html",
+      "title": "4. 浮点数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch15.html",
+      "title": "15. 数据类型详解",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch15s01.html",
+      "title": "1. 整型",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch15s02.html",
+      "title": "2. 浮点型",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch15s03.html",
+      "title": "3. 类型转换",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch15s03.html#id2757955",
+      "title": "3.1. Integer Promotion",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch15s03.html#id2758200",
+      "title": "3.2. Usual Arithmetic Conversion",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch15s03.html#id2758516",
+      "title": "3.3. 由赋值产生的类型转换",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch15s03.html#id2758655",
+      "title": "3.4. 强制类型转换",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch15s03.html#id2758764",
+      "title": "3.5. 编译器如何处理类型转换",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch16.html",
+      "title": "16. 运算符详解",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch16s01.html",
+      "title": "1. 位运算",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch16s01.html#id2761062",
+      "title": "1.1. 按位与、或、异或、取反运算",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch16s01.html#id2761805",
+      "title": "1.2. 移位运算",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch16s01.html#id2761995",
+      "title": "1.3. 掩码",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch16s01.html#id2762114",
+      "title": "1.4. 异或运算的一些特性",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch16s02.html",
+      "title": "2. 其它运算符",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch16s02.html#id2762352",
+      "title": "2.1. 复合赋值运算符",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch16s02.html#id2762537",
+      "title": "2.2. 条件运算符",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch16s02.html#id2762598",
+      "title": "2.3. 逗号运算符",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch16s02.html#id2762676",
+      "title": "2.4. sizeof运算符与typedef类型声明",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch16s03.html",
+      "title": "3. Side Effect与Sequence Point",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch16s04.html",
+      "title": "4. 运算符总结",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch17.html",
+      "title": "17. 计算机体系结构基础",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch17s01.html",
+      "title": "1. 内存与地址",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch17s02.html",
+      "title": "2. CPU",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch17s03.html",
+      "title": "3. 设备",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch17s04.html",
+      "title": "4. MMU",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch17s05.html",
+      "title": "5. Memory Hierarchy",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch18.html",
+      "title": "18. x86汇编程序基础",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch18s01.html",
+      "title": "1. 最简单的汇编程序",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch18s02.html",
+      "title": "2. x86的寄存器",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch18s03.html",
+      "title": "3. 第二个汇编程序",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch18s04.html",
+      "title": "4. 寻址方式",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch18s05.html",
+      "title": "5. ELF文件",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch18s05.html#id2770854",
+      "title": "5.1. 目标文件",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch18s05.html#id2771639",
+      "title": "5.2. 可执行文件",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch19.html",
+      "title": "19. 汇编与C之间的关系",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch19s01.html",
+      "title": "1. 函数调用",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch19s02.html",
+      "title": "2. main函数和启动例程",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch19s03.html",
+      "title": "3. 变量的存储布局",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch19s04.html",
+      "title": "4. 结构体和联合体",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch19s05.html",
+      "title": "5. C内联汇编",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch19s06.html",
+      "title": "6. volatile限定符",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch20.html",
+      "title": "20. 链接详解",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch20s01.html",
+      "title": "1. 多目标文件的链接",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch20s02.html",
+      "title": "2. 定义和声明",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch20s02.html#id2787367",
+      "title": "2.1. extern和static关键字",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch20s02.html#id2788051",
+      "title": "2.2. 头文件",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch20s02.html#id2788815",
+      "title": "2.3. 定义和声明的详细规则",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch20s03.html",
+      "title": "3. 静态库",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch20s04.html",
+      "title": "4. 共享库",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch20s04.html#id2789691",
+      "title": "4.1. 编译、链接、运行",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch20s04.html#id2790795",
+      "title": "4.2. 动态链接的过程",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch20s04.html#id2791032",
+      "title": "4.3. 共享库的命名惯例",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch20s05.html",
+      "title": "5. 虚拟内存管理",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch21.html",
+      "title": "21. 预处理",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch21s01.html",
+      "title": "1. 预处理的步骤",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch21s02.html",
+      "title": "2. 宏定义",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch21s02.html#id2797214",
+      "title": "2.1. 函数式宏定义",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch21s02.html#id2797661",
+      "title": "2.2. 内联函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch21s02.html#id2797840",
+      "title": "2.3. #、##运算符和可变参数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch21s02.html#id2798306",
+      "title": "2.4. 宏展开的步骤",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch21s03.html",
+      "title": "3. 条件预处理指示",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch21s04.html",
+      "title": "4. 其它预处理特性",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch22.html",
+      "title": "22. Makefile基础",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch22s01.html",
+      "title": "1. 基本规则",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch22s02.html",
+      "title": "2. 隐含规则和模式规则",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch22s03.html",
+      "title": "3. 变量",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch22s04.html",
+      "title": "4. 自动处理头文件的依赖关系",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch22s05.html",
+      "title": "5. 常用的make命令行选项",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch23.html",
+      "title": "23. 指针",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch23s01.html",
+      "title": "1. 指针的基本概念",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch23s02.html",
+      "title": "2. 指针类型的参数和返回值",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch23s03.html",
+      "title": "3. 指针与数组",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch23s04.html",
+      "title": "4. 指针与const限定符",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch23s05.html",
+      "title": "5. 指针与结构体",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch23s06.html",
+      "title": "6. 指向指针的指针与指针数组",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch23s07.html",
+      "title": "7. 指向数组的指针与多维数组",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch23s08.html",
+      "title": "8. 函数类型和函数指针类型",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch23s09.html",
+      "title": "9. 不完全类型和复杂声明",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch24.html",
+      "title": "24. 函数接口",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch24s01.html",
+      "title": "1. 本章的预备知识",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch24s01.html#id2819066",
+      "title": "1.1. strcpy与strncpy",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch24s01.html#id2820062",
+      "title": "1.2. malloc与free",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch24s02.html",
+      "title": "2. 传入参数与传出参数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch24s03.html",
+      "title": "3. 两层指针的参数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch24s04.html",
+      "title": "4. 返回值是指针的情况",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch24s05.html",
+      "title": "5. 回调函数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch24s06.html",
+      "title": "6. 可变参数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch25.html",
+      "title": "25. C标准库",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch25s01.html",
+      "title": "1. 字符串操作函数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch25s01.html#id2827594",
+      "title": "1.1. 初始化字符串",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s01.html#id2827671",
+      "title": "1.2. 取字符串的长度",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s01.html#id2827741",
+      "title": "1.3. 拷贝字符串",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s01.html#id2828376",
+      "title": "1.4. 连接字符串",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s01.html#id2828656",
+      "title": "1.5. 比较字符串",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s01.html#id2828881",
+      "title": "1.6. 搜索字符串",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s01.html#id2829046",
+      "title": "1.7. 分割字符串",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s02.html",
+      "title": "2. 标准I/O库函数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch25s02.html#id2829671",
+      "title": "2.1. 文件的基本概念",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s02.html#id2829869",
+      "title": "2.2. fopen/fclose",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s02.html#id2830485",
+      "title": "2.3. stdin/stdout/stderr",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s02.html#id2830807",
+      "title": "2.4. errno与perror函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s02.html#id2831236",
+      "title": "2.5. 以字节为单位的I/O函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s02.html#id2831814",
+      "title": "2.6. 操作读写位置的函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s02.html#id2832034",
+      "title": "2.7. 以字符串为单位的I/O函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s02.html#id2832480",
+      "title": "2.8. 以记录为单位的I/O函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s02.html#id2832755",
+      "title": "2.9. 格式化I/O函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s02.html#id2834346",
+      "title": "2.10. C标准库的I/O缓冲区",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s02.html#id2834904",
+      "title": "2.11. 本节综合练习",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch25s03.html",
+      "title": "3. 数值字符串转换函数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch25s04.html",
+      "title": "4. 分配内存的函数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch26.html",
+      "title": "26. 链表、二叉树和哈希表",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch26s01.html",
+      "title": "1. 链表",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch26s01.html#id2844144",
+      "title": "1.1. 单链表",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch26s01.html#id2845376",
+      "title": "1.2. 双向链表",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch26s01.html#id2845707",
+      "title": "1.3. 静态链表",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch26s01.html#id2845773",
+      "title": "1.4. 本节综合练习",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch26s02.html",
+      "title": "2. 二叉树",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch26s02.html#id2845875",
+      "title": "2.1. 二叉树的基本概念",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch26s02.html#id2846120",
+      "title": "2.2. 排序二叉树",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch26s03.html",
+      "title": "3. 哈希表",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch27.html",
+      "title": "27. 本阶段总结",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "pt03.html",
+      "title": "III. Linux系统编程",
+      "kind": "part",
+      "depth": 1
+    },
+    {
+      "href": "ch28.html",
+      "title": "28. 文件与I/O",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch28s01.html",
+      "title": "1. 汇编程序的Hello world",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch28s02.html",
+      "title": "2. C标准I/O库函数与Unbuffered I/O函数",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch28s03.html",
+      "title": "3. open/close",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch28s04.html",
+      "title": "4. read/write",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch28s05.html",
+      "title": "5. lseek",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch28s06.html",
+      "title": "6. fcntl",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch28s07.html",
+      "title": "7. ioctl",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch28s08.html",
+      "title": "8. mmap",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch29.html",
+      "title": "29. 文件系统",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch29s01.html",
+      "title": "1. 引言",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch29s02.html",
+      "title": "2. ext2文件系统",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch29s02.html#id2857323",
+      "title": "2.1. 总体存储布局",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch29s02.html#id2858019",
+      "title": "2.2. 实例剖析",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch29s02.html#id2859212",
+      "title": "2.3. 数据块寻址",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch29s02.html#id2859394",
+      "title": "2.4. 文件和目录操作的系统函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch29s03.html",
+      "title": "3. VFS",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch29s03.html#id2860264",
+      "title": "3.1. 内核数据结构",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch29s03.html#id2860911",
+      "title": "3.2. dup和dup2函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch30.html",
+      "title": "30. 进程",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch30s01.html",
+      "title": "1. 引言",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch30s02.html",
+      "title": "2. 环境变量",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch30s03.html",
+      "title": "3. 进程控制",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch30s03.html#id2866212",
+      "title": "3.1. fork函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch30s03.html#id2866732",
+      "title": "3.2. exec函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch30s03.html#id2867242",
+      "title": "3.3. wait和waitpid函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch30s04.html",
+      "title": "4. 进程间通信",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch30s04.html#id2867812",
+      "title": "4.1. 管道",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch30s04.html#id2868153",
+      "title": "4.2. 其它IPC机制",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch30s05.html",
+      "title": "5. 练习：实现简单的Shell",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch31.html",
+      "title": "31. Shell脚本",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch31s01.html",
+      "title": "1. Shell的历史",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch31s02.html",
+      "title": "2. Shell如何执行命令",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch31s02.html#id2872017",
+      "title": "2.1. 执行交互式命令",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s02.html#id2872211",
+      "title": "2.2. 执行脚本",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s03.html",
+      "title": "3. Shell的基本语法",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch31s03.html#id2872666",
+      "title": "3.1. 变量",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s03.html#id2872839",
+      "title": "3.2. 文件名代换（Globbing）：* ? []",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s03.html#id2872936",
+      "title": "3.3. 命令代换：`或 $()",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s03.html#id2872971",
+      "title": "3.4. 算术代换：$(())",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s03.html#id2873001",
+      "title": "3.5. 转义字符\\",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s03.html#id2873083",
+      "title": "3.6. 单引号",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s03.html#id2873112",
+      "title": "3.7. 双引号",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s04.html",
+      "title": "4. bash启动脚本",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch31s04.html#id2873231",
+      "title": "4.1. 作为交互登录Shell启动，或者使用--login参数启动",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s04.html#id2873387",
+      "title": "4.2. 以交互非登录Shell启动",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s04.html#id2873571",
+      "title": "4.3. 非交互启动",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s04.html#id2873616",
+      "title": "4.4. 以sh命令启动",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s05.html",
+      "title": "5. Shell脚本语法",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch31s05.html#id2873722",
+      "title": "5.1. 条件测试：test [",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s05.html#id2874121",
+      "title": "5.2. if/then/elif/else/fi",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s05.html#id2874366",
+      "title": "5.3. case/esac",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s05.html#id2874526",
+      "title": "5.4. for/do/done",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s05.html#id2874637",
+      "title": "5.5. while/do/done",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s05.html#id2874685",
+      "title": "5.6. 位置参数和特殊变量",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s05.html#id2874943",
+      "title": "5.7. 函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch31s06.html",
+      "title": "6. Shell脚本的调试方法",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch32.html",
+      "title": "32. 正则表达式",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch32s01.html",
+      "title": "1. 引言",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch32s02.html",
+      "title": "2. 基本语法",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch32s03.html",
+      "title": "3. sed",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch32s04.html",
+      "title": "4. awk",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch32s05.html",
+      "title": "5. 练习：在C语言中使用正则表达式",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch33.html",
+      "title": "33. 信号",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch33s01.html",
+      "title": "1. 信号的基本概念",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch33s02.html",
+      "title": "2. 产生信号",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch33s02.html#id2884244",
+      "title": "2.1. 通过终端按键产生信号",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s02.html#id2884400",
+      "title": "2.2. 调用系统函数向进程发信号",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s02.html#id2884567",
+      "title": "2.3. 由软件条件产生信号",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s03.html",
+      "title": "3. 阻塞信号",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch33s03.html#id2884694",
+      "title": "3.1. 信号在内核中的表示",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s03.html#id2884876",
+      "title": "3.2. 信号集操作函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s03.html#id2885022",
+      "title": "3.3. sigprocmask",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s03.html#id2885205",
+      "title": "3.4. sigpending",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s04.html",
+      "title": "4. 捕捉信号",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch33s04.html#id2885289",
+      "title": "4.1. 内核如何实现信号的捕捉",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s04.html#id2885439",
+      "title": "4.2. sigaction",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s04.html#id2885627",
+      "title": "4.3. pause",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s04.html#id2885983",
+      "title": "4.4. 可重入函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s04.html#id2886197",
+      "title": "4.5. sig_atomic_t类型与volatile限定符",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s04.html#id2886686",
+      "title": "4.6. 竞态条件与sigsuspend函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch33s04.html#id2887260",
+      "title": "4.7. 关于SIGCHLD信号",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch34.html",
+      "title": "34. 终端、作业控制与守护进程",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch34s01.html",
+      "title": "1. 终端",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch34s01.html#id2890359",
+      "title": "1.1. 终端的基本概念",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch34s01.html#id2891132",
+      "title": "1.2. 终端登录过程",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch34s01.html#id2891618",
+      "title": "1.3. 网络登录过程",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch34s02.html",
+      "title": "2. 作业控制",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch34s02.html#id2892071",
+      "title": "2.1. Session与进程组",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch34s02.html#id2892541",
+      "title": "2.2. 与作业控制有关的信号",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch34s03.html",
+      "title": "3. 守护进程",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch35.html",
+      "title": "35. 线程",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch35s01.html",
+      "title": "1. 线程的概念",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch35s02.html",
+      "title": "2. 线程控制",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch35s02.html#id2895632",
+      "title": "2.1. 创建线程",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch35s02.html#id2896029",
+      "title": "2.2. 终止线程",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch35s03.html",
+      "title": "3. 线程间同步",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch35s03.html#id2896462",
+      "title": "3.1. mutex",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch35s03.html#id2895424",
+      "title": "3.2. Condition Variable",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch35s03.html#id2897332",
+      "title": "3.3. Semaphore",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch35s03.html#id2897423",
+      "title": "3.4. 其它线程间同步机制",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch35s04.html",
+      "title": "4. 编程练习",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch36.html",
+      "title": "36. TCP/IP协议基础",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch36s01.html",
+      "title": "1. TCP/IP协议栈与数据包封装",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch36s02.html",
+      "title": "2. 以太网(RFC 894)帧格式",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch36s03.html",
+      "title": "3. ARP数据报格式",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch36s04.html",
+      "title": "4. IP数据报格式",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch36s05.html",
+      "title": "5. IP地址与路由",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch36s06.html",
+      "title": "6. UDP段格式",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch36s07.html",
+      "title": "7. TCP协议",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch36s07.html#id2900865",
+      "title": "7.1. 段格式",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch36s07.html#id2900917",
+      "title": "7.2. 通讯时序",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch36s07.html#id2901189",
+      "title": "7.3. 流量控制",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch37.html",
+      "title": "37. socket编程",
+      "kind": "chapter",
+      "depth": 2
+    },
+    {
+      "href": "ch37s01.html",
+      "title": "1. 预备知识",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch37s01.html#id2902826",
+      "title": "1.1. 网络字节序",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch37s01.html#id2902915",
+      "title": "1.2. socket地址的数据类型及相关函数",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch37s02.html",
+      "title": "2. 基于TCP协议的网络程序",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch37s02.html#id2902690",
+      "title": "2.1. 最简单的TCP网络程序",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch37s02.html#id2903656",
+      "title": "2.2. 错误处理与读写控制",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch37s02.html#id2903862",
+      "title": "2.3. 把client改为交互式输入",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch37s02.html#id2903959",
+      "title": "2.4. 使用fork并发处理多个client的请求",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch37s02.html#id2904007",
+      "title": "2.5. setsockopt",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch37s02.html#id2904122",
+      "title": "2.6. 使用select",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch37s03.html",
+      "title": "3. 基于UDP协议的网络程序",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch37s04.html",
+      "title": "4. UNIX Domain Socket IPC",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch37s05.html",
+      "title": "5. 练习：实现简单的Web服务器",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "ch37s05.html#id2904532",
+      "title": "5.1. 基本HTTP协议",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "ch37s05.html#id2904687",
+      "title": "5.2. 执行CGI程序",
+      "kind": "sect2",
+      "depth": 4
+    },
+    {
+      "href": "apa.html",
+      "title": "A. 字符编码",
+      "kind": "appendix",
+      "depth": 1
+    },
+    {
+      "href": "apas01.html",
+      "title": "1. ASCII码",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "apas02.html",
+      "title": "2. Unicode和UTF-8",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "apas03.html",
+      "title": "3. 在Linux C编程中使用Unicode和UTF-8",
+      "kind": "sect1",
+      "depth": 3
+    },
+    {
+      "href": "apb.html",
+      "title": "B. GNU Free Documentation License Version 1.3, 3 November 2008",
+      "kind": "appendix",
+      "depth": 1
+    },
+    {
+      "href": "bi01.html",
+      "title": "参考书目",
+      "kind": "bibliography",
+      "depth": 1
+    },
+    {
+      "href": "ix01.html",
+      "title": "索引",
+      "kind": "index",
+      "depth": 1
+    }
+  ],
+  "resources": [
+    {
+      "path": "images/app-encoding.ascii.png",
+      "url": "https://akaedu.github.io/book/images/app-encoding.ascii.png",
+      "file": "images/app-encoding.ascii.png",
+      "sha256": "226cdb0fd383d0efc486137cb221fa6b5b6b236a68b7b3ca6611bf82e3a486db"
+    },
+    {
+      "path": "images/app-encoding.extascii.png",
+      "url": "https://akaedu.github.io/book/images/app-encoding.extascii.png",
+      "file": "images/app-encoding.extascii.png",
+      "sha256": "b86f68a51e6bc0fff4507608b09dfd4f21d52ec192f1bc209bebc72f2dabac57"
+    },
+    {
+      "path": "images/app-encoding.latin1.png",
+      "url": "https://akaedu.github.io/book/images/app-encoding.latin1.png",
+      "file": "images/app-encoding.latin1.png",
+      "sha256": "71ef685311bddd6f6cdb4bea4afc9f79f60f20329eeb7b695dd6a5d06bbbf195"
+    },
+    {
+      "path": "images/arch.box.png",
+      "url": "https://akaedu.github.io/book/images/arch.box.png",
+      "file": "images/arch.box.png",
+      "sha256": "850c3e6cdc61c647b4ba300fa90b8b77fac85f33dd956f4e060fcd65b2588872"
+    },
+    {
+      "path": "images/arch.cpumode.png",
+      "url": "https://akaedu.github.io/book/images/arch.cpumode.png",
+      "file": "images/arch.cpumode.png",
+      "sha256": "a76c9cfaa5ca50e01e825dbb0b2a140435d372ae0bfd4f17c1ee4f9d90fd4932"
+    },
+    {
+      "path": "images/arch.memhie.png",
+      "url": "https://akaedu.github.io/book/images/arch.memhie.png",
+      "file": "images/arch.memhie.png",
+      "sha256": "f0deafdeabe979a43ee2da3c94a005a6e4faf40898612a174d08cabf6ca2dc48"
+    },
+    {
+      "path": "images/arch.pabox.png",
+      "url": "https://akaedu.github.io/book/images/arch.pabox.png",
+      "file": "images/arch.pabox.png",
+      "sha256": "1005cfcc6f8651e1f9874cd708c998b43f47e543c8f2ce6c336493e367d63f72"
+    },
+    {
+      "path": "images/arch.pobox.png",
+      "url": "https://akaedu.github.io/book/images/arch.pobox.png",
+      "file": "images/arch.pobox.png",
+      "sha256": "ac5114e094b4dca14ed1bebd7d4e4d54344316cb0c11bf668c784499187df05b"
+    },
+    {
+      "path": "images/arch.readmem.png",
+      "url": "https://akaedu.github.io/book/images/arch.readmem.png",
+      "file": "images/arch.readmem.png",
+      "sha256": "8a134159750f54f5316ea28ee76316836b1cb041e8079e82737c94d8e7c9a17c"
+    },
+    {
+      "path": "images/arch.vabox.png",
+      "url": "https://akaedu.github.io/book/images/arch.vabox.png",
+      "file": "images/arch.vabox.png",
+      "sha256": "1bbe1edfd99402d75c5027b087827cf1e9f7cf6e57d6046600a25fcc614817c5"
+    },
+    {
+      "path": "images/arch.von.png",
+      "url": "https://akaedu.github.io/book/images/arch.von.png",
+      "file": "images/arch.von.png",
+      "sha256": "ec4f628d66fd5e63595a95c288cf40fcb22f60185c0a2676423e3ceb365293e0"
+    },
+    {
+      "path": "images/array.count.png",
+      "url": "https://akaedu.github.io/book/images/array.count.png",
+      "file": "images/array.count.png",
+      "sha256": "ebc82a1b83d2187462027d3a354d03ad2db9ccaf0ff223dea76ca27cf9c3a1f7"
+    },
+    {
+      "path": "images/array.multichar.png",
+      "url": "https://akaedu.github.io/book/images/array.multichar.png",
+      "file": "images/array.multichar.png",
+      "sha256": "0554eec3338d74646985c2d0cc615d5d2c46a47b90faf1d4fa6285f616b75acf"
+    },
+    {
+      "path": "images/array.multidim.png",
+      "url": "https://akaedu.github.io/book/images/array.multidim.png",
+      "file": "images/array.multidim.png",
+      "sha256": "50fd62d0cc74aead32bbfa17b93628db63a7075b86b0d91a88cb47aefca978b3"
+    },
+    {
+      "path": "images/array.string.png",
+      "url": "https://akaedu.github.io/book/images/array.string.png",
+      "file": "images/array.string.png",
+      "sha256": "6b2397e59738098f32220165ac4d2f25214311dc2c41f1218fcacac0e1d44d6b"
+    },
+    {
+      "path": "images/asm.elfoverview.png",
+      "url": "https://akaedu.github.io/book/images/asm.elfoverview.png",
+      "file": "images/asm.elfoverview.png",
+      "sha256": "a68b4d725ce24ed20383a0d112869a597e8ad2839ba1fb2d10946c34c5e0232f"
+    },
+    {
+      "path": "images/asm.load.png",
+      "url": "https://akaedu.github.io/book/images/asm.load.png",
+      "file": "images/asm.load.png",
+      "sha256": "ad6d4c80883df47c92c6bd4d3e7e500b643b9bd9a3eba539c9cd832d7cb3f261"
+    },
+    {
+      "path": "images/asmc.array.png",
+      "url": "https://akaedu.github.io/book/images/asmc.array.png",
+      "file": "images/asmc.array.png",
+      "sha256": "6c1b1b237c1bfa30387249dca744eea69bfc2850bca58497d67d7c524ec29d49"
+    },
+    {
+      "path": "images/asmc.bitfield.png",
+      "url": "https://akaedu.github.io/book/images/asmc.bitfield.png",
+      "file": "images/asmc.bitfield.png",
+      "sha256": "53d0e8ed72a0419c3a2750a7ad5ac7b02734de5309601386f3eaa27d2efdc8b9"
+    },
+    {
+      "path": "images/asmc.eax.png",
+      "url": "https://akaedu.github.io/book/images/asmc.eax.png",
+      "file": "images/asmc.eax.png",
+      "sha256": "4eaafacaca037b05008df78e59063adff65fc9b9385420ed1fd6aac1b5286ca1"
+    },
+    {
+      "path": "images/asmc.gcc.png",
+      "url": "https://akaedu.github.io/book/images/asmc.gcc.png",
+      "file": "images/asmc.gcc.png",
+      "sha256": "92d8e957e517b2a2c4d1b78265c25da33595ba6c406f398ec46583689c498a8a"
+    },
+    {
+      "path": "images/asmc.link.png",
+      "url": "https://akaedu.github.io/book/images/asmc.link.png",
+      "file": "images/asmc.link.png",
+      "sha256": "17a06f781f1825d6390cd98a33fa8c7c61584904259a19633a938edba1be8e3b"
+    },
+    {
+      "path": "images/asmc.nocache.png",
+      "url": "https://akaedu.github.io/book/images/asmc.nocache.png",
+      "file": "images/asmc.nocache.png",
+      "sha256": "4fbc86ffbc2d353113b5baa8978af8fbc29d6807105f0b7424f977d94e88c214"
+    },
+    {
+      "path": "images/asmc.stackframe.png",
+      "url": "https://akaedu.github.io/book/images/asmc.stackframe.png",
+      "file": "images/asmc.stackframe.png",
+      "sha256": "8d53b014068a824ffa73dc040f5abbb57a2802eb20a778c52cffe8f83d208cf6"
+    },
+    {
+      "path": "images/asmc.struct.png",
+      "url": "https://akaedu.github.io/book/images/asmc.struct.png",
+      "file": "images/asmc.struct.png",
+      "sha256": "f4d867c7cc0bf0fa53a13332a4461b44e26d41e46b08434f45ce92210d89da83"
+    },
+    {
+      "path": "images/cond.switch1.png",
+      "url": "https://akaedu.github.io/book/images/cond.switch1.png",
+      "file": "images/cond.switch1.png",
+      "sha256": "567e6b08b9f6525356868495f33422d9f189cc10af59060a615735df1df47ad8"
+    },
+    {
+      "path": "images/cond.switch2.png",
+      "url": "https://akaedu.github.io/book/images/cond.switch2.png",
+      "file": "images/cond.switch2.png",
+      "sha256": "9d1820406d215d5188c653ae13988971ac079ea0c4c34b2c31fcad3ef61d8ed4"
+    },
+    {
+      "path": "images/expr.parse.png",
+      "url": "https://akaedu.github.io/book/images/expr.parse.png",
+      "file": "images/expr.parse.png",
+      "sha256": "ac70d10172daa65221d5a3e52bba0f7d7ed3c70a149dbe637cd2969a967febab"
+    },
+    {
+      "path": "images/expr.variable.png",
+      "url": "https://akaedu.github.io/book/images/expr.variable.png",
+      "file": "images/expr.variable.png",
+      "sha256": "33036f7c87a28f2e64a9912726e90a149234f93433863e2eff15964854c44066"
+    },
+    {
+      "path": "images/fs.datablock.png",
+      "url": "https://akaedu.github.io/book/images/fs.datablock.png",
+      "file": "images/fs.datablock.png",
+      "sha256": "de588ab7e59a92dff145b0e6c5edb3decec58882d52110d356516fb179b8fe74"
+    },
+    {
+      "path": "images/fs.datablockaddr.png",
+      "url": "https://akaedu.github.io/book/images/fs.datablockaddr.png",
+      "file": "images/fs.datablockaddr.png",
+      "sha256": "355a9035baea192e8a7d3cc42a940845412a0b42a93973092a150c8af2a7b509"
+    },
+    {
+      "path": "images/fs.dup.png",
+      "url": "https://akaedu.github.io/book/images/fs.dup.png",
+      "file": "images/fs.dup.png",
+      "sha256": "ecbc25752631411d808692e709fe22a44b681ce004b7fe5fdb90aab1726aa2c0"
+    },
+    {
+      "path": "images/fs.ext2layout.png",
+      "url": "https://akaedu.github.io/book/images/fs.ext2layout.png",
+      "file": "images/fs.ext2layout.png",
+      "sha256": "533156ea338e87fe51cf5241ca70ccc37ad3cce7d5422e5081049f6c33a45fe5"
+    },
+    {
+      "path": "images/fs.gd.png",
+      "url": "https://akaedu.github.io/book/images/fs.gd.png",
+      "file": "images/fs.gd.png",
+      "sha256": "f79e905399355324c30bcfacd87ee5fc986a4000671064859a16989ae8ff9779"
+    },
+    {
+      "path": "images/fs.repr.png",
+      "url": "https://akaedu.github.io/book/images/fs.repr.png",
+      "file": "images/fs.repr.png",
+      "sha256": "161c1161422f0d16095f17b08b001905ff72d112b2aa8645c883b1f831fc1821"
+    },
+    {
+      "path": "images/fs.rootinode.png",
+      "url": "https://akaedu.github.io/book/images/fs.rootinode.png",
+      "file": "images/fs.rootinode.png",
+      "sha256": "89d5bda5b66030564ea93f09b11885d91b7539c640386761654c23ecdde6c856"
+    },
+    {
+      "path": "images/fs.sb.png",
+      "url": "https://akaedu.github.io/book/images/fs.sb.png",
+      "file": "images/fs.sb.png",
+      "sha256": "e258f10cdc8e848cdfa7903bcea05b26847949849d7cc35f4cb960c81e6a7669"
+    },
+    {
+      "path": "images/fs.vfs.png",
+      "url": "https://akaedu.github.io/book/images/fs.vfs.png",
+      "file": "images/fs.vfs.png",
+      "sha256": "1f90cc86abc2adf683b9511cac3163c8a2e6b5ae620b0ad6ab0cc3bd04d25d55"
+    },
+    {
+      "path": "images/func.funccall.png",
+      "url": "https://akaedu.github.io/book/images/func.funccall.png",
+      "file": "images/func.funccall.png",
+      "sha256": "d2562077453e9a6c60e974e70e09f070077671f76cde519dc12fb5c447a9466c"
+    },
+    {
+      "path": "images/func.scope.png",
+      "url": "https://akaedu.github.io/book/images/func.scope.png",
+      "file": "images/func.scope.png",
+      "sha256": "2ae8e25f134fa769b818d423671549a6171ed104fcf848dff11baeba63637125"
+    },
+    {
+      "path": "images/func2.factorial.png",
+      "url": "https://akaedu.github.io/book/images/func2.factorial.png",
+      "file": "images/func2.factorial.png",
+      "sha256": "252191806e85c1f60493d03719b5eeda4eb66ee51cbda2eae78ec9ff4626b8dd"
+    },
+    {
+      "path": "images/func2.stratify.png",
+      "url": "https://akaedu.github.io/book/images/func2.stratify.png",
+      "file": "images/func2.stratify.png",
+      "sha256": "305b005754bfae17cc21e876ef60667bea3be874715000741e89e8c326538f9b"
+    },
+    {
+      "path": "images/interface.bugs.png",
+      "url": "https://akaedu.github.io/book/images/interface.bugs.png",
+      "file": "images/interface.bugs.png",
+      "sha256": "4ceb28f05b37cb8ba2f23baaf3b2cacde51b6f448191aeb6bc10762107b24a79"
+    },
+    {
+      "path": "images/interface.description.png",
+      "url": "https://akaedu.github.io/book/images/interface.description.png",
+      "file": "images/interface.description.png",
+      "sha256": "b91c1b2c58af637068bc2c32728ff1ca06ef63fa4913118f8aa9f61e9f94c783"
+    },
+    {
+      "path": "images/interface.malloc.png",
+      "url": "https://akaedu.github.io/book/images/interface.malloc.png",
+      "file": "images/interface.malloc.png",
+      "sha256": "a175175a8a5e0b95dba84c2810e69ec897936718372827dca5dbd66205713666"
+    },
+    {
+      "path": "images/interface.return.png",
+      "url": "https://akaedu.github.io/book/images/interface.return.png",
+      "file": "images/interface.return.png",
+      "sha256": "57e7bfe4d6eaa1c9732324377d41439385e2b9155b741a0ba264098d1b445b40"
+    },
+    {
+      "path": "images/interface.synopsis.png",
+      "url": "https://akaedu.github.io/book/images/interface.synopsis.png",
+      "file": "images/interface.synopsis.png",
+      "sha256": "958cf135389904f7fe50d11f8bbeb34768b1715f9c29b038a0457f9cc3252fa2"
+    },
+    {
+      "path": "images/interface.vaarg.png",
+      "url": "https://akaedu.github.io/book/images/interface.vaarg.png",
+      "file": "images/interface.vaarg.png",
+      "sha256": "e36c8379ebacdc660942144bc3a211ed9d0f05784093cafb08fea9200d056365"
+    },
+    {
+      "path": "images/intro.compile.png",
+      "url": "https://akaedu.github.io/book/images/intro.compile.png",
+      "file": "images/intro.compile.png",
+      "sha256": "bf0f9aa3ccae73fae8515e7d2a0e8bfe4069d2304ed90e2f194bbfa2a48efabc"
+    },
+    {
+      "path": "images/intro.interpret.png",
+      "url": "https://akaedu.github.io/book/images/intro.interpret.png",
+      "file": "images/intro.interpret.png",
+      "sha256": "db041ebe00f459258ab154c0bfc1d1de923e00acdd45806e5e692e012d0ade45"
+    },
+    {
+      "path": "images/io.fd.png",
+      "url": "https://akaedu.github.io/book/images/io.fd.png",
+      "file": "images/io.fd.png",
+      "sha256": "02858514e6beb2bd98ad9ea9fa852ff1aac6e9322eda5b9bae3a844419b6388b"
+    },
+    {
+      "path": "images/io.fdredirect.png",
+      "url": "https://akaedu.github.io/book/images/io.fdredirect.png",
+      "file": "images/io.fdredirect.png",
+      "sha256": "95c98cd3b1ce0458c306eaa5b005e93f478dc927de4a30d56ece420a9ba63a6d"
+    },
+    {
+      "path": "images/io.mmap.png",
+      "url": "https://akaedu.github.io/book/images/io.mmap.png",
+      "file": "images/io.mmap.png",
+      "sha256": "fe2a0edea5a7ba497a8eb00dd7bd075d822c1b129f2de3690911312366d0062c"
+    },
+    {
+      "path": "images/io.syscall.png",
+      "url": "https://akaedu.github.io/book/images/io.syscall.png",
+      "file": "images/io.syscall.png",
+      "sha256": "4295171780a1d2c3f165bf17a42966d3cc7176f17cdbb2e1c3a621257497e20b"
+    },
+    {
+      "path": "images/jobs.pg.png",
+      "url": "https://akaedu.github.io/book/images/jobs.pg.png",
+      "file": "images/jobs.pg.png",
+      "sha256": "46cb0afa72bc9b7415b96acfe6f20d2d6bfc5f7585c4a1ae1ab6d6f786d1ff63"
+    },
+    {
+      "path": "images/jobs.pseudotty.png",
+      "url": "https://akaedu.github.io/book/images/jobs.pseudotty.png",
+      "file": "images/jobs.pseudotty.png",
+      "sha256": "5062662abba0dd9a461f2c7757bca557f05ab395bbb277e1267e6ae559c77d0b"
+    },
+    {
+      "path": "images/jobs.terminalmodule.png",
+      "url": "https://akaedu.github.io/book/images/jobs.terminalmodule.png",
+      "file": "images/jobs.terminalmodule.png",
+      "sha256": "8956381a55f2292a807857e94107b53c5baada21f7d965f02e1a0541960fdf9b"
+    },
+    {
+      "path": "images/jobs.terminalqueue.png",
+      "url": "https://akaedu.github.io/book/images/jobs.terminalqueue.png",
+      "file": "images/jobs.terminalqueue.png",
+      "sha256": "0153b67a40bbcc4bb2129a26a7b2028ceab413ab4387567899715c651e327761"
+    },
+    {
+      "path": "images/link.addrspace.png",
+      "url": "https://akaedu.github.io/book/images/link.addrspace.png",
+      "file": "images/link.addrspace.png",
+      "sha256": "fb7cbc060a3b725cd6ec9894ee039f8efa01f63ba42b9fbcc17c80ba3e6726e0"
+    },
+    {
+      "path": "images/link.discontpa.png",
+      "url": "https://akaedu.github.io/book/images/link.discontpa.png",
+      "file": "images/link.discontpa.png",
+      "sha256": "83102456c9edf650c9fbd174e267d03a4d9f03322ccfd5016bf1517763a65b74"
+    },
+    {
+      "path": "images/link.includeh.png",
+      "url": "https://akaedu.github.io/book/images/link.includeh.png",
+      "file": "images/link.includeh.png",
+      "sha256": "80732c1887ef6bff09a379ed658fc8496531e4359bbed2c4c11f69453d0244c0"
+    },
+    {
+      "path": "images/link.indirect.png",
+      "url": "https://akaedu.github.io/book/images/link.indirect.png",
+      "file": "images/link.indirect.png",
+      "sha256": "71642031e9e986b86c750c30e822e70b42b1878e81657e3f107a91be53e43d7e"
+    },
+    {
+      "path": "images/link.multiobj.png",
+      "url": "https://akaedu.github.io/book/images/link.multiobj.png",
+      "file": "images/link.multiobj.png",
+      "sha256": "e1b2e560417e4e339515505a620d57513b77dc1ab19173a2df4bd52906a23c46"
+    },
+    {
+      "path": "images/link.sepva.png",
+      "url": "https://akaedu.github.io/book/images/link.sepva.png",
+      "file": "images/link.sepva.png",
+      "sha256": "4022b2974652175c03c419a90ec1c76e4eb8495c0ce4738ae64c21d59d47adbb"
+    },
+    {
+      "path": "images/link.swap.png",
+      "url": "https://akaedu.github.io/book/images/link.swap.png",
+      "file": "images/link.swap.png",
+      "sha256": "5ec107bb328f011c8729e88f435723230be83374c89c1691793ac5dd112c01f4"
+    },
+    {
+      "path": "images/linkedlist.binarytraverse.png",
+      "url": "https://akaedu.github.io/book/images/linkedlist.binarytraverse.png",
+      "file": "images/linkedlist.binarytraverse.png",
+      "sha256": "028b71f27a00c0ced73c4b57fb9d8722822dd2f65d7f963024a1923516b78ff4"
+    },
+    {
+      "path": "images/linkedlist.binarytree.png",
+      "url": "https://akaedu.github.io/book/images/linkedlist.binarytree.png",
+      "file": "images/linkedlist.binarytree.png",
+      "sha256": "b1e6e646b8f7e36c6595f9326cea35fe8efcd9e2c91eee185bbec997f3e227af"
+    },
+    {
+      "path": "images/linkedlist.circular.png",
+      "url": "https://akaedu.github.io/book/images/linkedlist.circular.png",
+      "file": "images/linkedlist.circular.png",
+      "sha256": "8505072398be1b988c6e50dc4cfb3b1a0286f8a348e8e213cd55b373727ed9ae"
+    },
+    {
+      "path": "images/linkedlist.constructbinary.png",
+      "url": "https://akaedu.github.io/book/images/linkedlist.constructbinary.png",
+      "file": "images/linkedlist.constructbinary.png",
+      "sha256": "2109b4f543155f8425ba59f30151d2873755a08d1106042eee3236cc97dc8278"
+    },
+    {
+      "path": "images/linkedlist.delete.png",
+      "url": "https://akaedu.github.io/book/images/linkedlist.delete.png",
+      "file": "images/linkedlist.delete.png",
+      "sha256": "dfbf1dde6f73b7e8c4cd506c4235ff53fb7f20def256d80e80bd387818654bc4"
+    },
+    {
+      "path": "images/linkedlist.doubly.png",
+      "url": "https://akaedu.github.io/book/images/linkedlist.doubly.png",
+      "file": "images/linkedlist.doubly.png",
+      "sha256": "657d9609f2fde531833b92ceac5b91584c5f9b6dd6d70ac52c6300d6948f0784"
+    },
+    {
+      "path": "images/linkedlist.hashtab.png",
+      "url": "https://akaedu.github.io/book/images/linkedlist.hashtab.png",
+      "file": "images/linkedlist.hashtab.png",
+      "sha256": "ce570d6baf29e97ac4cc83bba6846748721354c4239c8f906f4a00489c7b4839"
+    },
+    {
+      "path": "images/linkedlist.insert.png",
+      "url": "https://akaedu.github.io/book/images/linkedlist.insert.png",
+      "file": "images/linkedlist.insert.png",
+      "sha256": "71373dfb73be7dfdb8832b6fcbb4df6d0abf10ef55f71dd14e1f25a58702d686"
+    },
+    {
+      "path": "images/linkedlist.pdelete.png",
+      "url": "https://akaedu.github.io/book/images/linkedlist.pdelete.png",
+      "file": "images/linkedlist.pdelete.png",
+      "sha256": "6eadddc15eafa0a19bff210e0c14e195a2f4e4fad0c55baf9bdb788aa3afd2c2"
+    },
+    {
+      "path": "images/linkedlist.reverse.png",
+      "url": "https://akaedu.github.io/book/images/linkedlist.reverse.png",
+      "file": "images/linkedlist.reverse.png",
+      "sha256": "96092bd470340e8d53f894902e6be53838d5fb5b1b88e53df2e888458fef9494"
+    },
+    {
+      "path": "images/linkedlist.sentinel.png",
+      "url": "https://akaedu.github.io/book/images/linkedlist.sentinel.png",
+      "file": "images/linkedlist.sentinel.png",
+      "sha256": "e3d8649d4f12f95e994af9fc89e72f9a85c7569708eb974f880059998da54e54"
+    },
+    {
+      "path": "images/make.graph.png",
+      "url": "https://akaedu.github.io/book/images/make.graph.png",
+      "file": "images/make.graph.png",
+      "sha256": "cef5862f59996521109b82967a407ea6963563a5f136f88ab9a451ecf8ff66f6"
+    },
+    {
+      "path": "images/number.addfloat.png",
+      "url": "https://akaedu.github.io/book/images/number.addfloat.png",
+      "file": "images/number.addfloat.png",
+      "sha256": "ffd86608bfa358c864187e52cee9ddaf35f01741a0272e7140802d72381146cc"
+    },
+    {
+      "path": "images/number.biasfloat025.png",
+      "url": "https://akaedu.github.io/book/images/number.biasfloat025.png",
+      "file": "images/number.biasfloat025.png",
+      "sha256": "0ca192c7571791a979d6f166de700ab7569045c18b1cb5028a8540c8d3c8e6e7"
+    },
+    {
+      "path": "images/number.carry.png",
+      "url": "https://akaedu.github.io/book/images/number.carry.png",
+      "file": "images/number.carry.png",
+      "sha256": "1ebb5f2062e25d87f85ed9a240e24a3e8d80eaf209da62ef261f7bb807f21f48"
+    },
+    {
+      "path": "images/number.digitallogic.png",
+      "url": "https://akaedu.github.io/book/images/number.digitallogic.png",
+      "file": "images/number.digitallogic.png",
+      "sha256": "c10eb3aee45e058a2f6e57ffb4ad002165d38951c394a2c4dbf3ef98ea041cb2"
+    },
+    {
+      "path": "images/number.float.png",
+      "url": "https://akaedu.github.io/book/images/number.float.png",
+      "file": "images/number.float.png",
+      "sha256": "0da8fdf1ed56b91d779ab7d62d1d8b8b2c4665bfa3d3187815f12ffd0e50145d"
+    },
+    {
+      "path": "images/number.float17.png",
+      "url": "https://akaedu.github.io/book/images/number.float17.png",
+      "file": "images/number.float17.png",
+      "sha256": "d4665915636f3d7d20cd28aa8117443375183ebf5f3e278c7bf47c5614fc93e9"
+    },
+    {
+      "path": "images/number.fulladder.png",
+      "url": "https://akaedu.github.io/book/images/number.fulladder.png",
+      "file": "images/number.fulladder.png",
+      "sha256": "4d6fc1b2c448badd04934ddd63b865a013c879ca6decc30d5de418d06204d719"
+    },
+    {
+      "path": "images/number.normalfloat17.png",
+      "url": "https://akaedu.github.io/book/images/number.normalfloat17.png",
+      "file": "images/number.normalfloat17.png",
+      "sha256": "7c6d2057e1bc921e03b2ddfdea754ff76d843fe59d15c01555429e1f25610322"
+    },
+    {
+      "path": "images/number.overflow.png",
+      "url": "https://akaedu.github.io/book/images/number.overflow.png",
+      "file": "images/number.overflow.png",
+      "sha256": "93787238212ea9282e2074b694743ee035be8a8ef26be00f32390340e21dcf10"
+    },
+    {
+      "path": "images/number.overflowp.png",
+      "url": "https://akaedu.github.io/book/images/number.overflowp.png",
+      "file": "images/number.overflowp.png",
+      "sha256": "3a195fb9c04aef9c484e4f328aacc27a1f8ec26b3aef6c3e9c81c5e35ea0961d"
+    },
+    {
+      "path": "images/op.bitwise.png",
+      "url": "https://akaedu.github.io/book/images/op.bitwise.png",
+      "file": "images/op.bitwise.png",
+      "sha256": "1bc6da80bccb2380e41362acc5408ffeccd32bbfa5e6a58a503359fcb642bebf"
+    },
+    {
+      "path": "images/op.shiftleft.png",
+      "url": "https://akaedu.github.io/book/images/op.shiftleft.png",
+      "file": "images/op.shiftleft.png",
+      "sha256": "c463bedac191e89ec0b4ccbacbbb753c793740ada6173d7d5b8aebe342990f2e"
+    },
+    {
+      "path": "images/op.shiftright.png",
+      "url": "https://akaedu.github.io/book/images/op.shiftright.png",
+      "file": "images/op.shiftright.png",
+      "sha256": "1d2b2372bf4b9f8c3121dee9e7bc4fcefb9aae95391af8a7f4693995fa51f4c8"
+    },
+    {
+      "path": "images/pointer.argv.png",
+      "url": "https://akaedu.github.io/book/images/pointer.argv.png",
+      "file": "images/pointer.argv.png",
+      "sha256": "f81275347cdb3fbc57b745c09a910f84fdf45a0db6927cb866063f1f7707d6ca"
+    },
+    {
+      "path": "images/pointer.array.png",
+      "url": "https://akaedu.github.io/book/images/pointer.array.png",
+      "file": "images/pointer.array.png",
+      "sha256": "cf7774737d483a8be154a4dfea4e3a5247b7295b3aa54e3bb5b6b157282e532b"
+    },
+    {
+      "path": "images/pointer.linkedlist.png",
+      "url": "https://akaedu.github.io/book/images/pointer.linkedlist.png",
+      "file": "images/pointer.linkedlist.png",
+      "sha256": "9c2eb9e54835491a2c17da921e5f292a17d799f459e683ffdd9bd22dc2a3ed63"
+    },
+    {
+      "path": "images/pointer.pointer0.png",
+      "url": "https://akaedu.github.io/book/images/pointer.pointer0.png",
+      "file": "images/pointer.pointer0.png",
+      "sha256": "aa6809bc1f2a4fc2b7d383afd101d0c79cdb9b6b125e8ccf31d081769d7fe243"
+    },
+    {
+      "path": "images/pointer.pointer1.png",
+      "url": "https://akaedu.github.io/book/images/pointer.pointer1.png",
+      "file": "images/pointer.pointer1.png",
+      "sha256": "907c4d5432e7f0017e66e4d2680586af29d0eb4032eebb195d8fac9a66b2e7f1"
+    },
+    {
+      "path": "images/pointer.type.gif",
+      "url": "https://akaedu.github.io/book/images/pointer.type.gif",
+      "file": "images/pointer.type.gif",
+      "sha256": "682e5fed6261da02f1dc194468f4bbeca494c86d3653cec37ce24c4dd1979a57"
+    },
+    {
+      "path": "images/process.addressspace.png",
+      "url": "https://akaedu.github.io/book/images/process.addressspace.png",
+      "file": "images/process.addressspace.png",
+      "sha256": "47b55e4e3442268aa78489e4e92d9d03f1845138d076603daf8dfdf1ce4e4e05"
+    },
+    {
+      "path": "images/process.environ.png",
+      "url": "https://akaedu.github.io/book/images/process.environ.png",
+      "file": "images/process.environ.png",
+      "sha256": "48eb9cb1480737d27261715ac0942e8c2382be4802e395773655ed3be36804c6"
+    },
+    {
+      "path": "images/process.exec.png",
+      "url": "https://akaedu.github.io/book/images/process.exec.png",
+      "file": "images/process.exec.png",
+      "sha256": "a22fd08af0116ff410ae3f4bffe2cb0a93efc0c3584153b3caeb4b225bebed94"
+    },
+    {
+      "path": "images/process.fork.png",
+      "url": "https://akaedu.github.io/book/images/process.fork.png",
+      "file": "images/process.fork.png",
+      "sha256": "34478235934c801ba9ddcd645c1fdff7d38641e23e551aef6a9676643f5e07a8"
+    },
+    {
+      "path": "images/process.forkexec.png",
+      "url": "https://akaedu.github.io/book/images/process.forkexec.png",
+      "file": "images/process.forkexec.png",
+      "sha256": "a5153d3203268ddc51f0d39b510f927a84206765837a99da2fa188ce3364376f"
+    },
+    {
+      "path": "images/process.ipc.png",
+      "url": "https://akaedu.github.io/book/images/process.ipc.png",
+      "file": "images/process.ipc.png",
+      "sha256": "4e890e8ebcff3131a5c0e94e3e6415c89207a1052cd2602ed11b4d463b71c38a"
+    },
+    {
+      "path": "images/process.pipe.png",
+      "url": "https://akaedu.github.io/book/images/process.pipe.png",
+      "file": "images/process.pipe.png",
+      "sha256": "ad6e8272bbfd866afb1fafd8444bc55eee074eb1c2c00356f239864ab7e90e09"
+    },
+    {
+      "path": "images/shellscript.shellexec.png",
+      "url": "https://akaedu.github.io/book/images/shellscript.shellexec.png",
+      "file": "images/shellscript.shellexec.png",
+      "sha256": "b401a0ed2c17ccc9e4d2965922b102d43331ef432d42725a0eff3a3b17201816"
+    },
+    {
+      "path": "images/signal.catch.png",
+      "url": "https://akaedu.github.io/book/images/signal.catch.png",
+      "file": "images/signal.catch.png",
+      "sha256": "1f60a90e9a22ab5d72ec9f5d03644ec4fc37d96401a1c41a3e59184e373a3aa5"
+    },
+    {
+      "path": "images/signal.internal.png",
+      "url": "https://akaedu.github.io/book/images/signal.internal.png",
+      "file": "images/signal.internal.png",
+      "sha256": "95b41c10382fc3728a1e3fe8f6bfe519e1324501dc7b6f9c2014b8e60d3bf642"
+    },
+    {
+      "path": "images/signal.reentrancy.png",
+      "url": "https://akaedu.github.io/book/images/signal.reentrancy.png",
+      "file": "images/signal.reentrancy.png",
+      "sha256": "90f4b77cd1160033b08cc76ae02773a471715ad5e86226ec9ad7d70a35ffdd56"
+    },
+    {
+      "path": "images/socket.sockaddr.png",
+      "url": "https://akaedu.github.io/book/images/socket.sockaddr.png",
+      "file": "images/socket.sockaddr.png",
+      "sha256": "fd03c53835e72e27c006e366e21c8f153f1b42441ab840acc3c97983acd04ca6"
+    },
+    {
+      "path": "images/socket.tcpflowchart.png",
+      "url": "https://akaedu.github.io/book/images/socket.tcpflowchart.png",
+      "file": "images/socket.tcpflowchart.png",
+      "sha256": "b71afc562d4f2b9bd9ea7122d525f52e24e02476ec083e7021cd1ab1c172d914"
+    },
+    {
+      "path": "images/socket.udpflowchart.png",
+      "url": "https://akaedu.github.io/book/images/socket.udpflowchart.png",
+      "file": "images/socket.udpflowchart.png",
+      "sha256": "9cda9f55f448d0bf1b84635f968d51c05ce7ba7a6408fba4f5aa4b4814c4c08c"
+    },
+    {
+      "path": "images/sortsearch.calcrecurrence.png",
+      "url": "https://akaedu.github.io/book/images/sortsearch.calcrecurrence.png",
+      "file": "images/sortsearch.calcrecurrence.png",
+      "sha256": "e8d42779bd9caee72f45c844edd0b16f112a6845afb20d0f4584142deafe88bb"
+    },
+    {
+      "path": "images/sortsearch.fn0.png",
+      "url": "https://akaedu.github.io/book/images/sortsearch.fn0.png",
+      "file": "images/sortsearch.fn0.png",
+      "sha256": "a66903be233053801656aa651879bb4a106d691832ebb7ef643baa18e4a4ce43"
+    },
+    {
+      "path": "images/sortsearch.mergesort.png",
+      "url": "https://akaedu.github.io/book/images/sortsearch.mergesort.png",
+      "file": "images/sortsearch.mergesort.png",
+      "sha256": "a5802acf2ccad5bb23b9703b2342b82577ae62f0ac1a35a08c7f9828a6ff0607"
+    },
+    {
+      "path": "images/sortsearch.recurrence1.png",
+      "url": "https://akaedu.github.io/book/images/sortsearch.recurrence1.png",
+      "file": "images/sortsearch.recurrence1.png",
+      "sha256": "106311561b256981685a93b742f1c1bcb2570da3a1bb9b5008fa4d3541d9ccfa"
+    },
+    {
+      "path": "images/sortsearch.recurrence2.png",
+      "url": "https://akaedu.github.io/book/images/sortsearch.recurrence2.png",
+      "file": "images/sortsearch.recurrence2.png",
+      "sha256": "8045c2ac630a18ab11310ea960d13fce3e0c17eaf09433a12a083e198b58cc47"
+    },
+    {
+      "path": "images/sortsearch.sortcards.png",
+      "url": "https://akaedu.github.io/book/images/sortsearch.sortcards.png",
+      "file": "images/sortsearch.sortcards.png",
+      "sha256": "3aa21ead2b10c16773da8a69aaaa1f7b4e479e549a927cb2763c4f987d969727"
+    },
+    {
+      "path": "images/sortsearch.theta.png",
+      "url": "https://akaedu.github.io/book/images/sortsearch.theta.png",
+      "file": "images/sortsearch.theta.png",
+      "sha256": "5bfe746492ce86febd49b96df787475fa356691383f2377c11eca092f1038dab"
+    },
+    {
+      "path": "images/stackqueue.bfs.png",
+      "url": "https://akaedu.github.io/book/images/stackqueue.bfs.png",
+      "file": "images/stackqueue.bfs.png",
+      "sha256": "b01e909097a6c03a268cf2c9aaba201f7dc610d62e5bf89a52529f302c7f8b06"
+    },
+    {
+      "path": "images/stackqueue.bfsqueue.png",
+      "url": "https://akaedu.github.io/book/images/stackqueue.bfsqueue.png",
+      "file": "images/stackqueue.bfsqueue.png",
+      "sha256": "913a51bad64415b88bca393109542505a3b5b95bb00f0179aeec17c73d6ab485"
+    },
+    {
+      "path": "images/stackqueue.circular.png",
+      "url": "https://akaedu.github.io/book/images/stackqueue.circular.png",
+      "file": "images/stackqueue.circular.png",
+      "sha256": "8a35b604d0aec323df8d8ba0a4bbc2c8a7df1a41424cddfea103e6a19bf2a7d1"
+    },
+    {
+      "path": "images/stackqueue.dfs.png",
+      "url": "https://akaedu.github.io/book/images/stackqueue.dfs.png",
+      "file": "images/stackqueue.dfs.png",
+      "sha256": "31d3b499ba49fd0dae5a052231583a3267700b039795f9b09c5616f72ab6d9fa"
+    },
+    {
+      "path": "images/stackqueue.stack.png",
+      "url": "https://akaedu.github.io/book/images/stackqueue.stack.png",
+      "file": "images/stackqueue.stack.png",
+      "sha256": "60484cc55ff41aef6c581401c2acd054f40da3e559b95d1eb00270bbb0384528"
+    },
+    {
+      "path": "images/stdlib.buffer.png",
+      "url": "https://akaedu.github.io/book/images/stdlib.buffer.png",
+      "file": "images/stdlib.buffer.png",
+      "sha256": "612047ee5e5fff1a5b2e35af00dd36b6124638cbd39ce15eb334780a40d3b9c1"
+    },
+    {
+      "path": "images/struct.abstraction.png",
+      "url": "https://akaedu.github.io/book/images/struct.abstraction.png",
+      "file": "images/struct.abstraction.png",
+      "sha256": "f54703b776216a70a9aea84fbcf229d0dc392dd0747c1ab91924111da93bede1"
+    },
+    {
+      "path": "images/struct.complex.png",
+      "url": "https://akaedu.github.io/book/images/struct.complex.png",
+      "file": "images/struct.complex.png",
+      "sha256": "a801244ca8039d3bf3bc9f0694bda95c385fa1c3c2274fbed8206ab881cbaa30"
+    },
+    {
+      "path": "images/struct.parameter.png",
+      "url": "https://akaedu.github.io/book/images/struct.parameter.png",
+      "file": "images/struct.parameter.png",
+      "sha256": "2965369f9d67349839ae34ee4755761037109b6d9b571a15a1f1a6dffd5fd43c"
+    },
+    {
+      "path": "images/tcpip.addressclass.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.addressclass.png",
+      "file": "images/tcpip.addressclass.png",
+      "sha256": "8bac1abab40054adea5e9b0e6b6d1af68ba796470eb497be506e264ac73bdf43"
+    },
+    {
+      "path": "images/tcpip.arpformat.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.arpformat.png",
+      "file": "images/tcpip.arpformat.png",
+      "sha256": "463aad37956de9717f2c1926eb1886f8ae0700ef23b282abed1c1c1db09bd2fb"
+    },
+    {
+      "path": "images/tcpip.datagram.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.datagram.png",
+      "file": "images/tcpip.datagram.png",
+      "sha256": "9517f656282a662de5a9104867cfce857ee62b3b9e2f847ce9735e733b30ec16"
+    },
+    {
+      "path": "images/tcpip.ethernetformat.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.ethernetformat.png",
+      "file": "images/tcpip.ethernetformat.png",
+      "sha256": "6a3c35b385046adf78b2389f8e6054585180aa9254fb44120f933a68bc6f6319"
+    },
+    {
+      "path": "images/tcpip.ipformat.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.ipformat.png",
+      "file": "images/tcpip.ipformat.png",
+      "sha256": "12fa1af28c4a16b63f62a51a980a97613a5a64505f974a51da5a7fc38b1d7d3c"
+    },
+    {
+      "path": "images/tcpip.loopback.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.loopback.png",
+      "file": "images/tcpip.loopback.png",
+      "sha256": "be64be7209e9938bcd0aaf8fd5e8f8b6e6da21f9a95c6ce9fffc56e289f13ab3"
+    },
+    {
+      "path": "images/tcpip.multiplex.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.multiplex.png",
+      "file": "images/tcpip.multiplex.png",
+      "sha256": "0865361d65a53ad4e60ad4922fe2caf7e4546b50fcdf11dd379e14ca85af8e80"
+    },
+    {
+      "path": "images/tcpip.slidingwindow.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.slidingwindow.png",
+      "file": "images/tcpip.slidingwindow.png",
+      "sha256": "376f97170890fa87c06936435ba401ae989d5d9b8b2349ae7271687238bd149d"
+    },
+    {
+      "path": "images/tcpip.stack.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.stack.png",
+      "file": "images/tcpip.stack.png",
+      "sha256": "82dfb723673efe25c68d4271bcced47d0c81ed233ed8b70370f54c2815ea700e"
+    },
+    {
+      "path": "images/tcpip.tcpconnection.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.tcpconnection.png",
+      "file": "images/tcpip.tcpconnection.png",
+      "sha256": "27182d8e209318d1479ce054dd299456ab2b9de471b0ae97f2390c8d7ac4d883"
+    },
+    {
+      "path": "images/tcpip.tcpformat.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.tcpformat.png",
+      "file": "images/tcpip.tcpformat.png",
+      "sha256": "f8e1b302eb8e993b8ada0c0fe3e55bf87c1e4693bd902d38c622c98ceee3b9f8"
+    },
+    {
+      "path": "images/tcpip.transferlan.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.transferlan.png",
+      "file": "images/tcpip.transferlan.png",
+      "sha256": "9a8b7314eee0a11560e24dc5e1bc4f452b66755e79e5881f5178a28951889456"
+    },
+    {
+      "path": "images/tcpip.transferovernet.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.transferovernet.png",
+      "file": "images/tcpip.transferovernet.png",
+      "sha256": "6d5f73e50d94ccd03bd656b85c4c257a6a8aeec66cf64c65ce559a593a76f91b"
+    },
+    {
+      "path": "images/tcpip.udpformat.png",
+      "url": "https://akaedu.github.io/book/images/tcpip.udpformat.png",
+      "file": "images/tcpip.udpformat.png",
+      "sha256": "41f028a9e2ef19c4185e84aec08f2e173b4cbb0176b7463749ee47fd10cb874e"
+    },
+    {
+      "path": "images/thread.corrupt.png",
+      "url": "https://akaedu.github.io/book/images/thread.corrupt.png",
+      "file": "images/thread.corrupt.png",
+      "sha256": "bdcd520d131030c0466e6c6e9abb549d81c247bd2f2df892f34d50ce6998c91e"
+    },
+    {
+      "path": "images/thread.philosopher.png",
+      "url": "https://akaedu.github.io/book/images/thread.philosopher.png",
+      "file": "images/thread.philosopher.png",
+      "sha256": "38ada696b66ca81a52eb118fdb05ff0ab2dfd1baa7dacdd8e241863ce0006834"
+    },
+    {
+      "path": "styles.css",
+      "url": "https://akaedu.github.io/book/styles.css",
+      "file": "source-html/styles.css",
+      "sha256": "53dbfe789f0ecc028a9bebc944b8b9fa0b00d927de344200e506522ffd9eb54a"
+    }
+  ],
+  "missing": [
+    {
+      "path": "images/note.png",
+      "error": "curl: (22) The requested URL returned error: 404"
+    },
+    {
+      "path": "images/tip.png",
+      "error": "curl: (22) The requested URL returned error: 404"
+    },
+    {
+      "path": "images/warning.png",
+      "error": "curl: (22) The requested URL returned error: 404"
+    }
+  ],
+  "external": [
+    "http://savannah.nongnu.org/projects/pgubook/",
+    "http://www.essex.ac.uk/linguistics/clmt/latex4ling/trees/tree/",
+    "http://www.greenteapress.com/",
+    "http://www.unix.org/",
+    "http://www.visi.com/~barr/ldpath.html"
+  ],
+  "nav_mismatches": []
+}

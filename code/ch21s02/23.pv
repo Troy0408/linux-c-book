@@ -1,0 +1,5 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define FOO(a, b, c) a\BKZsh{}\BKZsh{}b\BKZsh{}\BKZsh{}c}
+\BK{n}{FOO}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{,}\BK{l+m+mi}{2}\BK{p}{,}\BK{l+m+mi}{3}\BK{p}{)}
+\BK{n}{FOO}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{,}\BK{l+m+mi}{2}\BK{p}{,}\BK{p}{)}
+\BK{n}{FOO}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{,}\BK{p}{,}\BK{l+m+mi}{3}\BK{p}{)}
+\BK{n}{FOO}\BK{p}{(}\BK{p}{,}\BK{p}{,}\BK{l+m+mi}{3}\BK{p}{)}

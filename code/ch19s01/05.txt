@@ -1,0 +1,5 @@
+int foo(int a, int b)
+{
+ 80483aa:	55                   	push   %ebp
+ 80483ab:	89 e5                	mov    %esp,%ebp
+ 80483ad:	83 ec 08             	sub    $0x8,%esp

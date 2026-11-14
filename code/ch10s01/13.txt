@@ -1,0 +1,8 @@
+(gdb) n
+15		result[1] = add_range(1, 100);
+(gdb) （直接回车）
+16		printf("result[0]=%d\nresult[1]=%d\n", result[0], result[1]);
+(gdb) （直接回车）
+result[0]=55
+result[1]=5105
+17		return 0;

@@ -1,0 +1,3 @@
+\BK{c+cm}{/* artificial device registers */}
+\BK{k}{volatile}\BK{+w}{ }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{recv}\BK{p}{;}
+\BK{k}{volatile}\BK{+w}{ }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{send}\BK{p}{;}

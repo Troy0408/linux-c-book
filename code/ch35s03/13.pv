@@ -1,0 +1,7 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}semaphore.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sem\BKZus{}init}\BK{p}{(}\BK{n}{sem\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{sem}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{pshared}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{value}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sem\BKZus{}wait}\BK{p}{(}\BK{n}{sem\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{sem}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sem\BKZus{}trywait}\BK{p}{(}\BK{n}{sem\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{sem}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sem\BKZus{}post}\BK{p}{(}\BK{n}{sem\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{sem}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sem\BKZus{}destroy}\BK{p}{(}\BK{n}{sem\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{sem}\BK{p}{)}\BK{p}{;}

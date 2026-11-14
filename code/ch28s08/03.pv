@@ -1,0 +1,22 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/mman.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}fcntl.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{o}{*}\BK{n}{p}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{open}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{hello}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{O\BKZus{}RDWR}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{fd}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{open hello}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{mmap}\BK{p}{(}\BK{n+nb}{NULL}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{6}\BK{p}{,}\BK{+w}{ }\BK{n}{PROT\BKZus{}WRITE}\BK{p}{,}\BK{+w}{ }\BK{n}{MAP\BKZus{}SHARED}\BK{p}{,}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{MAP\BKZus{}FAILED}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{mmap}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{close}\BK{p}{(}\BK{n}{fd}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{p}\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mh}{0x30313233}\BK{p}{;}
+\BK{+w}{	}\BK{n}{munmap}\BK{p}{(}\BK{n}{p}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{6}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

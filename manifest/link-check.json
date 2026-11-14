@@ -1,0 +1,1400 @@
+{
+  "checked_pages": 219,
+  "broken_internal_html_links": [
+    [
+      "index.html",
+      "apb.html#app-gfdl",
+      "missing fragment"
+    ],
+    [
+      "intro.program.html",
+      "ch18s05.html#asm.relocatable",
+      "missing fragment"
+    ],
+    [
+      "intro.helloworld.html",
+      "ch09s01.html#codingstyle.indent",
+      "missing fragment"
+    ],
+    [
+      "ch02s01.html",
+      "ch09.html#codingstyle",
+      "missing fragment"
+    ],
+    [
+      "ch02s02.html",
+      "ch07s03.html#struct.datatag",
+      "missing fragment"
+    ],
+    [
+      "ch02s02.html",
+      "ch14.html#number",
+      "missing fragment"
+    ],
+    [
+      "expr.variable.html",
+      "ch20s02.html#link.defdecl",
+      "missing fragment"
+    ],
+    [
+      "expr.variable.html",
+      "ch07.html#struct",
+      "missing fragment"
+    ],
+    [
+      "expr.variable.html",
+      "ch15.html#type",
+      "missing fragment"
+    ],
+    [
+      "ch02s04.html",
+      "ch15.html#type",
+      "missing fragment"
+    ],
+    [
+      "expr.expression.html",
+      "ch15s03.html#type.conversion",
+      "missing fragment"
+    ],
+    [
+      "ch02s06.html",
+      "apas01.html#app-encoding.ascii",
+      "missing fragment"
+    ],
+    [
+      "ch02s06.html",
+      "ch14s02.html#number.convert",
+      "missing fragment"
+    ],
+    [
+      "ch02s06.html",
+      "ch02s01.html#expr.escapeseq",
+      "missing fragment"
+    ],
+    [
+      "ch02s06.html",
+      "ch15s01.html#type.integertype",
+      "missing fragment"
+    ],
+    [
+      "ch03s01.html",
+      "ch20.html#link",
+      "missing fragment"
+    ],
+    [
+      "ch03s02.html",
+      "ch07.html#struct",
+      "missing fragment"
+    ],
+    [
+      "ch03s02.html",
+      "ch23s06.html#pointer.parray",
+      "missing fragment"
+    ],
+    [
+      "ch03s02.html",
+      "ch05s01.html#func2.return",
+      "missing fragment"
+    ],
+    [
+      "ch03s03.html",
+      "ch02.html#expr",
+      "missing fragment"
+    ],
+    [
+      "ch03s03.html",
+      "ch24s06.html#interface.va",
+      "missing fragment"
+    ],
+    [
+      "ch03s03.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch03s04.html",
+      "ch19s01.html#asmc.func",
+      "missing fragment"
+    ],
+    [
+      "ch03s04.html",
+      "ch03s02.html#func.ourfirstfunc",
+      "missing fragment"
+    ],
+    [
+      "ch04s01.html",
+      "ch25s01.html#stdlib.strcmp",
+      "missing fragment"
+    ],
+    [
+      "ch04s01.html",
+      "ch03s04.html#func.scope",
+      "missing fragment"
+    ],
+    [
+      "ch04s01.html",
+      "ch01s03.html#intro.debug",
+      "missing fragment"
+    ],
+    [
+      "ch04s02.html",
+      "ch02s01.html#expr.helloworldcont",
+      "missing fragment"
+    ],
+    [
+      "ch04s02.html",
+      "ch14s04.html#number.float",
+      "missing fragment"
+    ],
+    [
+      "ch04s03.html",
+      "ch04s01.html#cond.if",
+      "missing fragment"
+    ],
+    [
+      "ch04s03.html",
+      "ch16s04.html#op.summary",
+      "missing fragment"
+    ],
+    [
+      "ch04s04.html",
+      "ch04s02.html#cond.ifelse",
+      "missing fragment"
+    ],
+    [
+      "ch05s01.html",
+      "ch04s02.html#cond.ifelse",
+      "missing fragment"
+    ],
+    [
+      "ch05s01.html",
+      "ch03s03.html#func.paraarg",
+      "missing fragment"
+    ],
+    [
+      "ch05s01.html",
+      "ch19s01.html#asmc.funccall",
+      "missing fragment"
+    ],
+    [
+      "ch05s03.html",
+      "ch03s04.html#func.localvar",
+      "missing fragment"
+    ],
+    [
+      "ch05s03.html",
+      "ch03s01.html#func.mathfunc",
+      "missing fragment"
+    ],
+    [
+      "ch05s03.html",
+      "ch04s01.html#cond.if",
+      "missing fragment"
+    ],
+    [
+      "ch06s01.html",
+      "ch05s03.html#func2.recursion",
+      "missing fragment"
+    ],
+    [
+      "ch06s01.html",
+      "ch05s03.html#func2.factorial",
+      "missing fragment"
+    ],
+    [
+      "ch06s01.html",
+      "ch03s01.html#func.mathfunc",
+      "missing fragment"
+    ],
+    [
+      "ch06s01.html",
+      "ch03s04.html#func.localvar",
+      "missing fragment"
+    ],
+    [
+      "ch06s01.html",
+      "ch25s02.html#stdlib.errno",
+      "missing fragment"
+    ],
+    [
+      "ch06s01.html",
+      "ch05s03.html#func2.recursion",
+      "missing fragment"
+    ],
+    [
+      "ch06s01.html",
+      "ch04s02.html#cond.ifelse",
+      "missing fragment"
+    ],
+    [
+      "ch06s03.html",
+      "ch11.html#sortsearch",
+      "missing fragment"
+    ],
+    [
+      "ch06s03.html",
+      "ch04s01.html#cond.if",
+      "missing fragment"
+    ],
+    [
+      "ch06s03.html",
+      "ch16s02.html#op.compound",
+      "missing fragment"
+    ],
+    [
+      "ch06s04.html",
+      "ch04s04.html#cond.switch",
+      "missing fragment"
+    ],
+    [
+      "ch06s06.html",
+      "ch04s04.html#cond.switch",
+      "missing fragment"
+    ],
+    [
+      "ch06s06.html",
+      "ch04s04.html#cond.switch2",
+      "missing fragment"
+    ],
+    [
+      "ch07s01.html",
+      "ch04s02.html#cond.ifelse",
+      "missing fragment"
+    ],
+    [
+      "ch07s01.html",
+      "ch19s03.html#asmc.layout",
+      "missing fragment"
+    ],
+    [
+      "ch07s01.html",
+      "ch23s09.html#pointer.typesummary",
+      "missing fragment"
+    ],
+    [
+      "ch07s01.html",
+      "ch19s04.html#asmc.structunion",
+      "missing fragment"
+    ],
+    [
+      "ch07s02.html",
+      "ch05s03.html#func2.recursion",
+      "missing fragment"
+    ],
+    [
+      "ch07s04.html",
+      "ch07s01.html#struct.intro",
+      "missing fragment"
+    ],
+    [
+      "ch07s04.html",
+      "ch07s01.html#struct.intro",
+      "missing fragment"
+    ],
+    [
+      "ch08s01.html",
+      "ch10s04.html#gdb.segfault",
+      "missing fragment"
+    ],
+    [
+      "ch08s01.html",
+      "ch23s01.html#pointer.intro",
+      "missing fragment"
+    ],
+    [
+      "ch08s02.html",
+      "ch21.html#prep",
+      "missing fragment"
+    ],
+    [
+      "ch08s02.html",
+      "ch07s03.html#struct.datatag",
+      "missing fragment"
+    ],
+    [
+      "ch08s02.html",
+      "ch07s03.html#struct.datatag",
+      "missing fragment"
+    ],
+    [
+      "ch08s02.html",
+      "ch07s02.html#struct.abstract",
+      "missing fragment"
+    ],
+    [
+      "ch08s03.html",
+      "ch23s01.html#pointer.intro",
+      "missing fragment"
+    ],
+    [
+      "ch08s04.html",
+      "ch03s03.html#func.paraarg",
+      "missing fragment"
+    ],
+    [
+      "ch08s05.html",
+      "ch04s04.html#cond.switch1",
+      "missing fragment"
+    ],
+    [
+      "ch08s05.html",
+      "ch04s04.html#cond.switch1",
+      "missing fragment"
+    ],
+    [
+      "ch08s05.html",
+      "ch25s02.html#stdlib.formatio",
+      "missing fragment"
+    ],
+    [
+      "ch08s05.html",
+      "ch23s01.html#pointer.intro",
+      "missing fragment"
+    ],
+    [
+      "ch08s05.html",
+      "ch10s02.html#gdb.bp",
+      "missing fragment"
+    ],
+    [
+      "ch09s01.html",
+      "ch08s05.html#array.scissor",
+      "missing fragment"
+    ],
+    [
+      "ch09s02.html",
+      "ch02s01.html#expr.morehelloworld",
+      "missing fragment"
+    ],
+    [
+      "ch09s05.html",
+      "ch09s01.html#codingstyle.badcode",
+      "missing fragment"
+    ],
+    [
+      "ch10s01.html",
+      "ch03s04.html#func.localvalidate",
+      "missing fragment"
+    ],
+    [
+      "ch10s01.html",
+      "ch05s03.html#func2.recursion",
+      "missing fragment"
+    ],
+    [
+      "ch10s01.html",
+      "ch05s03.html#func2.factorial",
+      "missing fragment"
+    ],
+    [
+      "ch10s03.html",
+      "ch17s01.html#arch.addr",
+      "missing fragment"
+    ],
+    [
+      "ch11s01.html",
+      "ch05s03.html#func2.recursion",
+      "missing fragment"
+    ],
+    [
+      "ch11s02.html",
+      "ch05s03.html#func2.recursion",
+      "missing fragment"
+    ],
+    [
+      "ch11s06.html",
+      "ch11s02.html#sortsearch.insertion",
+      "missing fragment"
+    ],
+    [
+      "ch11s06.html",
+      "ch21.html#prep",
+      "missing fragment"
+    ],
+    [
+      "ch11s06.html",
+      "ch21s04.html#prep.other",
+      "missing fragment"
+    ],
+    [
+      "ch12s02.html",
+      "ch05s03.html#func2.recursion",
+      "missing fragment"
+    ],
+    [
+      "ch12s02.html",
+      "ch11s02.html#sortsearch.insertion",
+      "missing fragment"
+    ],
+    [
+      "ch12s04.html",
+      "ch12s03.html#stackqueue.dfs",
+      "missing fragment"
+    ],
+    [
+      "ch12s04.html",
+      "ch12s03.html#stackqueue.dfs",
+      "missing fragment"
+    ],
+    [
+      "ch12s05.html",
+      "ch12s03.html#stackqueue.dfs",
+      "missing fragment"
+    ],
+    [
+      "ch12s05.html",
+      "ch12s04.html#stackqueue.bfs",
+      "missing fragment"
+    ],
+    [
+      "ch12s05.html",
+      "ch12s04.html#stackqueue.bfs",
+      "missing fragment"
+    ],
+    [
+      "ch12s05.html",
+      "ch12s04.html#stackqueue.bfs",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch03s03.html#func.paraarg",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch03s04.html#func.localvar",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch04s02.html#cond.ifelse",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch04s03.html#cond.bool",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch05s03.html#func2.recursion",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch06s01.html#iter.while",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch06.html#iter",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch11s02.html#sortsearch.insertion",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch07s02.html#struct.abstract",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch08s05.html#array.multidimension",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch11s04.html#sortsearch.merge",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch11s06.html#sortsearch.binary",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch12s03.html#stackqueue.dfs",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch01s03.html#intro.debug",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch05s02.html#func2.incremental",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch05s02.html#func2.incremental",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch10.html#gdb",
+      "missing fragment"
+    ],
+    [
+      "ch13.html",
+      "ch11s06.html#sortsearch.binary",
+      "missing fragment"
+    ],
+    [
+      "ch14s01.html",
+      "ch04s03.html#cond.bool",
+      "missing fragment"
+    ],
+    [
+      "ch14s03.html",
+      "ch14s01.html#number.binary",
+      "missing fragment"
+    ],
+    [
+      "ch14s04.html",
+      "ch04s02.html#cond.ifelse",
+      "missing fragment"
+    ],
+    [
+      "ch15s01.html",
+      "ch17.html#arch",
+      "missing fragment"
+    ],
+    [
+      "ch15s01.html",
+      "ch23.html#pointer",
+      "missing fragment"
+    ],
+    [
+      "ch15s01.html",
+      "ch02s02.html#expr.constant",
+      "missing fragment"
+    ],
+    [
+      "ch15s01.html",
+      "ch02s06.html#expr.charencoding",
+      "missing fragment"
+    ],
+    [
+      "ch15s01.html",
+      "ch25s02.html#stdlib.formatio",
+      "missing fragment"
+    ],
+    [
+      "ch15s01.html",
+      "ch15s03.html#type.conversion",
+      "missing fragment"
+    ],
+    [
+      "ch15s01.html",
+      "ch19s04.html#asmc.structunion",
+      "missing fragment"
+    ],
+    [
+      "ch15s02.html",
+      "ch19s04.html#asmc.structunion",
+      "missing fragment"
+    ],
+    [
+      "ch15s03.html",
+      "ch03s02.html#func.ourfirstfunc",
+      "missing fragment"
+    ],
+    [
+      "ch15s03.html",
+      "ch25s02.html#stdlib.byteio",
+      "missing fragment"
+    ],
+    [
+      "ch16s01.html",
+      "apas02.html#app-encoding.utf8",
+      "missing fragment"
+    ],
+    [
+      "ch16s01.html",
+      "ch04s03.html#cond.bool",
+      "missing fragment"
+    ],
+    [
+      "ch16s01.html",
+      "ch14s01.html#number.binary",
+      "missing fragment"
+    ],
+    [
+      "ch16s01.html",
+      "ch14s02.html#number.convert",
+      "missing fragment"
+    ],
+    [
+      "ch16s01.html",
+      "ch25s02.html#stdlib.formatio",
+      "missing fragment"
+    ],
+    [
+      "ch16s01.html",
+      "ch17s05.html#arch.memh",
+      "missing fragment"
+    ],
+    [
+      "ch16s02.html",
+      "ch06s03.html#iter.for",
+      "missing fragment"
+    ],
+    [
+      "ch16s03.html",
+      "ch04s03.html#cond.bool",
+      "missing fragment"
+    ],
+    [
+      "ch16s03.html",
+      "ch08s05.html#array.scissor",
+      "missing fragment"
+    ],
+    [
+      "ch16s03.html",
+      "ch21s02.html#prep.funcmacro",
+      "missing fragment"
+    ],
+    [
+      "ch16s04.html",
+      "ch23.html#pointer",
+      "missing fragment"
+    ],
+    [
+      "ch16s04.html",
+      "ch04s02.html#cond.ifelse",
+      "missing fragment"
+    ],
+    [
+      "ch17s02.html",
+      "ch17s04.html#arch.mmu",
+      "missing fragment"
+    ],
+    [
+      "ch17s02.html",
+      "intro.program.html#intro.instruction",
+      "missing fragment"
+    ],
+    [
+      "ch17s04.html",
+      "ch20s05.html#link.vm",
+      "missing fragment"
+    ],
+    [
+      "ch18s01.html",
+      "ch18s05.html#asm.executable",
+      "missing fragment"
+    ],
+    [
+      "ch18s01.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch18s01.html",
+      "ch03s02.html#func.ourfirstfunc",
+      "missing fragment"
+    ],
+    [
+      "ch18s01.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch18s01.html",
+      "ch18s05.html#asm.relocatable",
+      "missing fragment"
+    ],
+    [
+      "ch18s02.html",
+      "ch14s03.html#number.addminus",
+      "missing fragment"
+    ],
+    [
+      "ch18s02.html",
+      "ch19s01.html#asmc.funccall",
+      "missing fragment"
+    ],
+    [
+      "ch18s05.html",
+      "ch20s04.html#link.shared",
+      "missing fragment"
+    ],
+    [
+      "ch18s05.html",
+      "ch18s03.html#asm.max",
+      "missing fragment"
+    ],
+    [
+      "ch18s05.html",
+      "ch19s03.html#asmc.layout",
+      "missing fragment"
+    ],
+    [
+      "ch18s05.html",
+      "ch20s01.html#link.basic",
+      "missing fragment"
+    ],
+    [
+      "ch18s05.html",
+      "ch20s04.html#link.dlprocess",
+      "missing fragment"
+    ],
+    [
+      "ch19s01.html",
+      "ch10.html#gdb",
+      "missing fragment"
+    ],
+    [
+      "ch19s01.html",
+      "ch03s02.html#func.ourfirstfunc",
+      "missing fragment"
+    ],
+    [
+      "ch19s02.html",
+      "ch18s01.html#asm.simpleasm",
+      "missing fragment"
+    ],
+    [
+      "ch19s02.html",
+      "ch08s02.html#array.statistic",
+      "missing fragment"
+    ],
+    [
+      "ch19s02.html",
+      "ch18s01.html#asm.simpleasm",
+      "missing fragment"
+    ],
+    [
+      "ch19s02.html",
+      "ch19s01.html#asmc.func",
+      "missing fragment"
+    ],
+    [
+      "ch19s02.html",
+      "ch03s01.html#func.mathfunc",
+      "missing fragment"
+    ],
+    [
+      "ch19s02.html",
+      "ch18s05.html#asm.executable",
+      "missing fragment"
+    ],
+    [
+      "ch19s03.html",
+      "ch08s04.html#array.string",
+      "missing fragment"
+    ],
+    [
+      "ch19s03.html",
+      "ch03s04.html#func.localvar",
+      "missing fragment"
+    ],
+    [
+      "ch19s03.html",
+      "ch08s04.html#array.string",
+      "missing fragment"
+    ],
+    [
+      "ch19s03.html",
+      "ch16s02.html#op.sizeoftypedef",
+      "missing fragment"
+    ],
+    [
+      "ch20s01.html",
+      "ch12s02.html#stackqueue.stackreverse",
+      "missing fragment"
+    ],
+    [
+      "ch20s01.html",
+      "ch12s02.html#stackqueue.stackreverse",
+      "missing fragment"
+    ],
+    [
+      "ch20s01.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch20s02.html",
+      "ch03s02.html#func.ourfirstfunc",
+      "missing fragment"
+    ],
+    [
+      "ch20s02.html",
+      "ch03s02.html#func.ourfirstfunc",
+      "missing fragment"
+    ],
+    [
+      "ch20s02.html",
+      "ch08s02.html#array.statistic",
+      "missing fragment"
+    ],
+    [
+      "ch20s02.html",
+      "ch12s02.html#stackqueue.stackreverse",
+      "missing fragment"
+    ],
+    [
+      "ch20s03.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch20s04.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch20s04.html",
+      "ch20s03.html#link.staticlib",
+      "missing fragment"
+    ],
+    [
+      "ch20s05.html",
+      "ch17s04.html#arch.mmu",
+      "missing fragment"
+    ],
+    [
+      "ch20s05.html",
+      "ch05s03.html#func2.recursion",
+      "missing fragment"
+    ],
+    [
+      "ch21s01.html",
+      "ch02s02.html#expr.constant",
+      "missing fragment"
+    ],
+    [
+      "ch21s01.html",
+      "ch08s02.html#array.statistic",
+      "missing fragment"
+    ],
+    [
+      "ch21s03.html",
+      "ch20s02.html#link.header",
+      "missing fragment"
+    ],
+    [
+      "ch21s03.html",
+      "ch11s06.html#sortsearch.binary",
+      "missing fragment"
+    ],
+    [
+      "ch21s04.html",
+      "ch11s06.html#sortsearch.binary",
+      "missing fragment"
+    ],
+    [
+      "ch22s01.html",
+      "ch12s03.html#stackqueue.dfs",
+      "missing fragment"
+    ],
+    [
+      "ch22s01.html",
+      "ch12s03.html#stackqueue.dfs",
+      "missing fragment"
+    ],
+    [
+      "ch23s01.html",
+      "ch12.html#stackqueue",
+      "missing fragment"
+    ],
+    [
+      "ch23s01.html",
+      "ch20s04.html#link.indirect",
+      "missing fragment"
+    ],
+    [
+      "ch23s02.html",
+      "ch23s01.html#pointer.pointer0",
+      "missing fragment"
+    ],
+    [
+      "ch23s02.html",
+      "ch03s03.html#func.paraarg",
+      "missing fragment"
+    ],
+    [
+      "ch23s03.html",
+      "ch08s01.html#array.intro",
+      "missing fragment"
+    ],
+    [
+      "ch23s03.html",
+      "ch08s01.html#array.intro",
+      "missing fragment"
+    ],
+    [
+      "ch23s03.html",
+      "ch03s03.html#func.paraarg",
+      "missing fragment"
+    ],
+    [
+      "ch23s03.html",
+      "ch23s07.html#pointer.array3",
+      "missing fragment"
+    ],
+    [
+      "ch23s04.html",
+      "ch19s03.html#asmc.layout",
+      "missing fragment"
+    ],
+    [
+      "ch23s04.html",
+      "ch08s04.html#array.string",
+      "missing fragment"
+    ],
+    [
+      "ch23s08.html",
+      "ch07s03.html#struct.datatag",
+      "missing fragment"
+    ],
+    [
+      "ch23s09.html",
+      "ch07s01.html#struct.intro",
+      "missing fragment"
+    ],
+    [
+      "ch24.html",
+      "ch11s06.html#sortsearch.binary",
+      "missing fragment"
+    ],
+    [
+      "ch24.html",
+      "ch23s01.html#pointer.pointer0",
+      "missing fragment"
+    ],
+    [
+      "ch24s01.html",
+      "ch10s04.html#gdb.segfault",
+      "missing fragment"
+    ],
+    [
+      "ch24s01.html",
+      "ch08s01.html#array.intro",
+      "missing fragment"
+    ],
+    [
+      "ch24s01.html",
+      "ch20s05.html#link.vm",
+      "missing fragment"
+    ],
+    [
+      "ch24s06.html",
+      "ch15s03.html#type.intpromo",
+      "missing fragment"
+    ],
+    [
+      "ch25.html",
+      "ch03s01.html#func.mathfunc",
+      "missing fragment"
+    ],
+    [
+      "ch25.html",
+      "ch08s02.html#array.statistic",
+      "missing fragment"
+    ],
+    [
+      "ch25.html",
+      "ch08s05.html#array.scissor",
+      "missing fragment"
+    ],
+    [
+      "ch25.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch25.html",
+      "ch11s06.html#sortsearch.binary",
+      "missing fragment"
+    ],
+    [
+      "ch25.html",
+      "ch21s04.html#prep.other",
+      "missing fragment"
+    ],
+    [
+      "ch25.html",
+      "ch16s02.html#op.sizeoftypedef",
+      "missing fragment"
+    ],
+    [
+      "ch25.html",
+      "ch23s01.html#pointer.intro",
+      "missing fragment"
+    ],
+    [
+      "ch25.html",
+      "ch24s01.html#interface.prereq",
+      "missing fragment"
+    ],
+    [
+      "ch25.html",
+      "ch24s06.html#interface.va",
+      "missing fragment"
+    ],
+    [
+      "ch25.html",
+      "ch20s04.html#link.shared",
+      "missing fragment"
+    ],
+    [
+      "ch25s01.html",
+      "ch24s01.html#interface.prereq",
+      "missing fragment"
+    ],
+    [
+      "ch25s01.html",
+      "ch28s02.html#io.twoioflavors",
+      "missing fragment"
+    ],
+    [
+      "ch25s02.html",
+      "ch18s05.html#asm.relocatable",
+      "missing fragment"
+    ],
+    [
+      "ch25s02.html",
+      "ch28s02.html#io.twoioflavors",
+      "missing fragment"
+    ],
+    [
+      "ch25s02.html",
+      "ch34s01.html#jobs.intro",
+      "missing fragment"
+    ],
+    [
+      "ch25s02.html",
+      "ch24s06.html#interface.va",
+      "missing fragment"
+    ],
+    [
+      "ch25s02.html",
+      "ch17s05.html#arch.memh",
+      "missing fragment"
+    ],
+    [
+      "ch25s02.html",
+      "ch20s02.html#link.header",
+      "missing fragment"
+    ],
+    [
+      "ch26s01.html",
+      "ch23s09.html#pointer.linkedlist",
+      "missing fragment"
+    ],
+    [
+      "ch26s01.html",
+      "ch12s02.html#stackqueue.stack",
+      "missing fragment"
+    ],
+    [
+      "ch26s01.html",
+      "ch11s06.html#sortsearch.binary",
+      "missing fragment"
+    ],
+    [
+      "ch26s01.html",
+      "ch12s05.html#stackqueue.circular",
+      "missing fragment"
+    ],
+    [
+      "ch26s01.html",
+      "ch12s04.html#stackqueue.bfs",
+      "missing fragment"
+    ],
+    [
+      "ch26s01.html",
+      "ch25s02.html#stdlib.ioproblem",
+      "missing fragment"
+    ],
+    [
+      "ch26s02.html",
+      "ch26s02.html#linkedlist.binarytraverse",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch13.html#summary1",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch21s03.html#prep.cond",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch21s02.html#prep.funcmacro",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch10s01.html#gdb.step",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch20s02.html#link.header",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch20s03.html#link.staticlib",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch22s04.html#make.header",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch19s06.html#asmc.volatile",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch20s03.html#link.staticlib",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch20s04.html#link.shared",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch10.html#gdb",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch19s01.html#asmc.funccall",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch20s01.html#link.basic",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch23s06.html#pointer.parray",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch18s01.html#asm.simpleasm",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch18s01.html#asm.simpleasm",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch20s01.html#link.basic",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch18s05.html#asm.relocatable",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch18s05.html#asm.relocatable",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch18s05.html#asm.relocatable",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch20s03.html#link.staticlib",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch20s03.html#link.staticlib",
+      "missing fragment"
+    ],
+    [
+      "ch27.html",
+      "ch19s02.html#asmc.main",
+      "missing fragment"
+    ],
+    [
+      "ch28s03.html",
+      "ch30s01.html#process.intro",
+      "missing fragment"
+    ],
+    [
+      "ch28s04.html",
+      "ch28s04.html#io.blockread",
+      "missing fragment"
+    ],
+    [
+      "ch28s06.html",
+      "ch28s04.html#io.nonblockread",
+      "missing fragment"
+    ],
+    [
+      "ch29s02.html",
+      "ch29s02.html#fs.datablock",
+      "missing fragment"
+    ],
+    [
+      "ch29s02.html",
+      "ch29s02.html#fs.datablock",
+      "missing fragment"
+    ],
+    [
+      "ch29s03.html",
+      "ch28.html#io",
+      "missing fragment"
+    ],
+    [
+      "ch30s01.html",
+      "ch28s03.html#io.open",
+      "missing fragment"
+    ],
+    [
+      "ch30s03.html",
+      "ch30s03.html#process.wait",
+      "missing fragment"
+    ],
+    [
+      "ch30s03.html",
+      "ch33.html#signal",
+      "missing fragment"
+    ],
+    [
+      "ch30s03.html",
+      "ch34.html#jobs",
+      "missing fragment"
+    ],
+    [
+      "ch30s04.html",
+      "ch33.html#signal",
+      "missing fragment"
+    ],
+    [
+      "ch30s04.html",
+      "ch37.html#socket",
+      "missing fragment"
+    ],
+    [
+      "ch30s04.html",
+      "ch30s04.html#process.pipe",
+      "missing fragment"
+    ],
+    [
+      "ch30s04.html",
+      "ch30s04.html#process.pipe",
+      "missing fragment"
+    ],
+    [
+      "ch30s05.html",
+      "ch30s03.html#process.wrapper",
+      "missing fragment"
+    ],
+    [
+      "ch31s02.html",
+      "ch30s05.html#process.implementshell",
+      "missing fragment"
+    ],
+    [
+      "ch31s03.html",
+      "ch30s02.html#process.environ",
+      "missing fragment"
+    ],
+    [
+      "ch33s01.html",
+      "ch30s03.html#process.wait",
+      "missing fragment"
+    ],
+    [
+      "ch33s01.html",
+      "ch34.html#jobs",
+      "missing fragment"
+    ],
+    [
+      "ch33s02.html",
+      "ch30s04.html#process.pipe",
+      "missing fragment"
+    ],
+    [
+      "ch33s04.html",
+      "ch33s04.html#signal.mysleep",
+      "missing fragment"
+    ],
+    [
+      "ch34s01.html",
+      "ch30s01.html#process.intro",
+      "missing fragment"
+    ],
+    [
+      "ch34s01.html",
+      "ch33.html#signal",
+      "missing fragment"
+    ],
+    [
+      "ch34s01.html",
+      "ch28.html#io",
+      "missing fragment"
+    ],
+    [
+      "ch34s01.html",
+      "ch34s01.html#jobs.ttyname",
+      "missing fragment"
+    ],
+    [
+      "ch34s02.html",
+      "ch33s01.html#signal.intro",
+      "missing fragment"
+    ],
+    [
+      "ch34s02.html",
+      "ch30s03.html#process.simplefork",
+      "missing fragment"
+    ],
+    [
+      "ch34s03.html",
+      "ch34s01.html#jobs.netlogin",
+      "missing fragment"
+    ]
+  ]
+}

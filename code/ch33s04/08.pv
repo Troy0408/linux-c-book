@@ -1,0 +1,10 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}signal.h\BKZgt{}}
+
+\BK{k+kt}{sig\BKZus{}atomic\BKZus{}t}\BK{+w}{ }\BK{n}{a}\BK{o}{=}\BK{l+m+mi}{0}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{c+cm}{/* register a sighandler */}
+\BK{+w}{	}\BK{k}{while}\BK{p}{(}\BK{o}{!}\BK{n}{a}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* wait until a changes in sighandler */}
+\BK{+w}{	}\BK{c+cm}{/* do something after signal arrives */}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

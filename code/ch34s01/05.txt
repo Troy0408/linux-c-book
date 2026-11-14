@@ -1,0 +1,1 @@
+1:2345:respawn:/sbin/getty 9600 tty1

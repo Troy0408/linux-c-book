@@ -1,0 +1,7 @@
+$ gcc main.c
+main.c: In function ‘myprintf’:
+main.c:33: warning: ‘char’ is promoted to ‘int’ when passed through ‘...’
+main.c:33: note: (so you should pass ‘int’ not ‘char’ to ‘va_arg’)
+main.c:33: note: if this code is reached, the program will abort
+$ ./a.out
+Illegal instruction

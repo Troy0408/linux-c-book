@@ -1,0 +1,10 @@
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{c+cm}{/*}
+\BK{c+cm}{ * Network device support}
+\BK{c+cm}{ */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define CONFIG\BKZus{}NETDEVICES 1}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{undef CONFIG\BKZus{}DUMMY}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{undef CONFIG\BKZus{}BONDING}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{undef CONFIG\BKZus{}EQUALIZER}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{undef CONFIG\BKZus{}TUN}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}

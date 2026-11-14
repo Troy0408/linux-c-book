@@ -1,0 +1,12 @@
+# default
+OUTPUT_OPTION = -o $@
+
+# default
+CC = cc
+
+# default
+COMPILE.c = $(CC) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+
+%.o: %.c
+#  commands to execute (built-in):
+        $(COMPILE.c) $(OUTPUT_OPTION) $<

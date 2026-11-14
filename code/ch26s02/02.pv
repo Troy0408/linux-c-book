@@ -1,0 +1,19 @@
+\BK{c+cm}{/* binarytree.h */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifndef BINARYTREE\BKZus{}H}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define BINARYTREE\BKZus{}H}
+
+\BK{k}{typedef}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{node}\BK{+w}{ }\BK{o}{*}\BK{n}{link}\BK{p}{;}
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{node}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{item}\BK{p}{;}
+\BK{+w}{     }\BK{n}{link}\BK{+w}{ }\BK{n}{l}\BK{p}{,}\BK{+w}{ }\BK{n}{r}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{n}{link}\BK{+w}{ }\BK{n+nf}{init}\BK{p}{(}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{VLR}\BK{p}{[}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{LVR}\BK{p}{[}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{n}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{pre\BKZus{}order}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{t}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{visit}\BK{p}{)}\BK{p}{(}\BK{n}{link}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{in\BKZus{}order}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{t}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{visit}\BK{p}{)}\BK{p}{(}\BK{n}{link}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{post\BKZus{}order}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{t}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{visit}\BK{p}{)}\BK{p}{(}\BK{n}{link}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{count}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{t}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{depth}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{t}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{destroy}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{t}\BK{p}{)}\BK{p}{;}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

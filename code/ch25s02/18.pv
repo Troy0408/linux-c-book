@@ -1,0 +1,5 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{fputc}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{c}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{FILE}\BK{+w}{ }\BK{o}{*}\BK{n}{stream}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{putchar}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{c}\BK{p}{)}\BK{p}{;}
+\BK{n}{返回值}\BK{err}{：}\BK{n}{成功返回写入的字节}\BK{err}{，}\BK{n}{出错返回EOF}

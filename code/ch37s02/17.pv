@@ -1,0 +1,41 @@
+\BK{err}{s}\BK{err}{t}\BK{err}{a}\BK{err}{t}\BK{err}{i}\BK{err}{c}\BK{+w}{ }\BK{err}{s}\BK{err}{s}\BK{err}{i}\BK{err}{z}\BK{err}{e}\BK{err}{\BKZus{}}\BK{err}{t}\BK{+w}{ }\BK{err}{m}\BK{err}{y}\BK{err}{\BKZus{}}\BK{err}{r}\BK{err}{e}\BK{err}{a}\BK{err}{d}\BK{err}{(}\BK{err}{i}\BK{err}{n}\BK{err}{t}\BK{+w}{ }\BK{err}{f}\BK{err}{d}\BK{err}{,}\BK{+w}{ }\BK{err}{c}\BK{err}{h}\BK{err}{a}\BK{err}{r}\BK{+w}{ }\BK{err}{*}\BK{err}{p}\BK{err}{t}\BK{err}{r}\BK{err}{)}
+\BK{err}{\BKZob{}}
+\BK{+w}{	}\BK{err}{s}\BK{err}{t}\BK{err}{a}\BK{err}{t}\BK{err}{i}\BK{err}{c}\BK{+w}{ }\BK{err}{i}\BK{err}{n}\BK{err}{t}\BK{+w}{ }\BK{err}{r}\BK{err}{e}\BK{err}{a}\BK{err}{d}\BK{err}{\BKZus{}}\BK{err}{c}\BK{err}{n}\BK{err}{t}\BK{err}{;}
+\BK{+w}{	}\BK{err}{s}\BK{err}{t}\BK{err}{a}\BK{err}{t}\BK{err}{i}\BK{err}{c}\BK{+w}{ }\BK{err}{c}\BK{err}{h}\BK{err}{a}\BK{err}{r}\BK{+w}{ }\BK{err}{*}\BK{err}{r}\BK{err}{e}\BK{err}{a}\BK{err}{d}\BK{err}{\BKZus{}}\BK{err}{p}\BK{err}{t}\BK{err}{r}\BK{err}{;}
+\BK{+w}{	}\BK{err}{s}\BK{err}{t}\BK{err}{a}\BK{err}{t}\BK{err}{i}\BK{err}{c}\BK{+w}{ }\BK{err}{c}\BK{err}{h}\BK{err}{a}\BK{err}{r}\BK{+w}{ }\BK{err}{r}\BK{err}{e}\BK{err}{a}\BK{err}{d}\BK{err}{\BKZus{}}\BK{err}{b}\BK{err}{u}\BK{err}{f}\BK{err}{[}\BK{err}{1}\BK{err}{0}\BK{err}{0}\BK{err}{]}\BK{err}{;}
+
+\BK{c+cp}{	if (read\BKZus{}cnt \BKZlt{}= 0) \BKZob{}}
+\BK{+w}{	}\BK{n+nf}{again}\BK{o}{:}
+\BK{c+cp}{		if ( (read\BKZus{}cnt = read(fd, read\BKZus{}buf, sizeof(read\BKZus{}buf))) \BKZlt{} 0) \BKZob{}}
+\BK{c+cp}{			if (errno == EINTR)}
+\BK{+w}{				}goto\BK{+w}{ }again\BK{p}{;}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BKZhy{}1\BK{p}{;}
+\BK{+w}{		}\BK{o}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}\BK{+w}{ }\BK{k}{if}\BK{+w}{ }\BK{o}{(}\BK{n+nv}{read\BKZus{}cnt}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m}{0}\BK{o}{)}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BK{l+m}{0}\BK{p}{;}
+\BK{+w}{		}\BK{n+nv}{read\BKZus{}ptr}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }read\BKZus{}buf\BK{p}{;}
+\BK{+w}{	}\BK{o}{\BKZcb{}}
+\BK{+w}{	}read\BKZus{}cnt\BKZhy{}\BKZhy{}\BK{p}{;}
+\BK{+w}{	}*ptr\BK{+w}{ }\BK{o}{=}\BK{+w}{ }*read\BKZus{}ptr++\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m}{1}\BK{p}{;}
+\BK{err}{\BKZcb{}}
+
+\BK{err}{s}\BK{err}{s}\BK{err}{i}\BK{err}{z}\BK{err}{e}\BK{err}{\BKZus{}}\BK{err}{t}\BK{+w}{ }\BK{err}{R}\BK{err}{e}\BK{err}{a}\BK{err}{d}\BK{err}{l}\BK{err}{i}\BK{err}{n}\BK{err}{e}\BK{err}{(}\BK{err}{i}\BK{err}{n}\BK{err}{t}\BK{+w}{ }\BK{err}{f}\BK{err}{d}\BK{err}{,}\BK{+w}{ }\BK{err}{v}\BK{err}{o}\BK{err}{i}\BK{err}{d}\BK{+w}{ }\BK{err}{*}\BK{err}{v}\BK{err}{p}\BK{err}{t}\BK{err}{r}\BK{err}{,}\BK{+w}{ }\BK{err}{s}\BK{err}{i}\BK{err}{z}\BK{err}{e}\BK{err}{\BKZus{}}\BK{err}{t}\BK{+w}{ }\BK{err}{m}\BK{err}{a}\BK{err}{x}\BK{err}{l}\BK{err}{e}\BK{err}{n}\BK{err}{)}
+\BK{err}{\BKZob{}}
+\BK{+w}{	}\BK{err}{s}\BK{err}{s}\BK{err}{i}\BK{err}{z}\BK{err}{e}\BK{err}{\BKZus{}}\BK{err}{t}\BK{+w}{ }\BK{err}{n}\BK{err}{,}\BK{+w}{ }\BK{err}{r}\BK{err}{c}\BK{err}{;}
+\BK{+w}{	}\BK{err}{c}\BK{err}{h}\BK{err}{a}\BK{err}{r}\BK{+w}{    }\BK{err}{c}\BK{err}{,}\BK{+w}{ }\BK{err}{*}\BK{err}{p}\BK{err}{t}\BK{err}{r}\BK{err}{;}
+
+\BK{+w}{	}\BK{n+nv}{ptr}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }vptr\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{o}{(}\BK{n+nv}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m}{1}\BK{p}{;}\BK{+w}{ }n\BK{+w}{ }\BKZlt{}\BK{+w}{ }maxlen\BK{p}{;}\BK{+w}{ }n++\BK{o}{)}\BK{+w}{ }\BK{o}{\BKZob{}}
+\BK{c+cp}{		if ( (rc = my\BKZus{}read(fd, \BKZam{}c)) == 1) \BKZob{}}
+\BK{+w}{			}*ptr++\BK{+w}{ }\BK{o}{=}\BK{+w}{ }c\BK{p}{;}
+\BK{c+cp}{			if (c  == \BKZsq{}\BKZbs{}n\BKZsq{})}
+\BK{+w}{				}\BK{k}{break}\BK{p}{;}
+\BK{+w}{		}\BK{o}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}\BK{+w}{ }\BK{k}{if}\BK{+w}{ }\BK{o}{(}\BK{n+nv}{rc}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m}{0}\BK{o}{)}\BK{+w}{ }\BK{o}{\BKZob{}}
+\BK{+w}{			}*ptr\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m}{0}\BK{p}{;}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }n\BK{+w}{ }\BKZhy{}\BK{+w}{ }\BK{l+m}{1}\BK{p}{;}
+\BK{+w}{		}\BK{o}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BKZhy{}1\BK{p}{;}
+\BK{+w}{	}\BK{o}{\BKZcb{}}
+\BK{+w}{	}*ptr\BK{+w}{  }\BK{o}{=}\BK{+w}{ }\BK{l+m}{0}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }n\BK{p}{;}
+\BK{err}{\BKZcb{}}

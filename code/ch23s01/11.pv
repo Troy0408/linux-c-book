@@ -1,0 +1,14 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{func}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{pv}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{c+cm}{/* *pv = \BKZsq{}A\BKZsq{} is illegal */}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{pchar}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{pv}\BK{p}{;}
+\BK{+w}{	}\BK{o}{*}\BK{n}{pchar}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{A}\BK{l+s+sc}{\BKZsq{}}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{c}\BK{p}{;}
+\BK{+w}{	}\BK{n}{func}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{c}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}c}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{c}\BK{p}{)}\BK{p}{;}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{p}{\BKZcb{}}

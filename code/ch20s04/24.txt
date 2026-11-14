@@ -1,0 +1,12 @@
+$ ls -l  /lib
+...
+-rwxr-xr-x  1 root root 1315024 2009-01-09 22:10 libc-2.8.90.so
+lrwxrwxrwx  1 root root      14 2008-07-04 05:58 libcap.so.1 -> libcap.so.1.10
+-rw-r--r--  1 root root   10316 2007-08-01 03:20 libcap.so.1.10
+lrwxrwxrwx  1 root root      14 2008-11-01 08:55 libcap.so.2 -> libcap.so.2.10
+-rw-r--r--  1 root root   13792 2008-06-12 21:39 libcap.so.2.10
+...
+lrwxrwxrwx  1 root root      14 2009-01-13 09:28 libc.so.6 -> libc-2.8.90.so
+...
+$ ls -l /usr/lib/libc.so
+-rw-r--r-- 1 root root 238 2009-01-09 21:59 /usr/lib/libc.so

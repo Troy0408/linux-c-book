@@ -1,0 +1,9 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}pthread.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}cond\BKZus{}timedwait}\BK{p}{(}\BK{n}{pthread\BKZus{}cond\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{k+kr}{restrict}\BK{+w}{ }\BK{n}{cond}\BK{p}{,}
+\BK{+w}{       }\BK{n}{pthread\BKZus{}mutex\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{k+kr}{restrict}\BK{+w}{ }\BK{n}{mutex}\BK{p}{,}
+\BK{+w}{       }\BK{k}{const}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{timespec}\BK{+w}{ }\BK{o}{*}\BK{k+kr}{restrict}\BK{+w}{ }\BK{n}{abstime}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}cond\BKZus{}wait}\BK{p}{(}\BK{n}{pthread\BKZus{}cond\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{k+kr}{restrict}\BK{+w}{ }\BK{n}{cond}\BK{p}{,}
+\BK{+w}{       }\BK{n}{pthread\BKZus{}mutex\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{k+kr}{restrict}\BK{+w}{ }\BK{n}{mutex}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}cond\BKZus{}broadcast}\BK{p}{(}\BK{n}{pthread\BKZus{}cond\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{cond}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}cond\BKZus{}signal}\BK{p}{(}\BK{n}{pthread\BKZus{}cond\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{cond}\BK{p}{)}\BK{p}{;}

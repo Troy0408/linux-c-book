@@ -1,0 +1,682 @@
+
+% https://akaedu.github.io/book/ch19.html
+
+\chapter{汇编与C之间的关系}
+\BookAnchor{db.ch19}\BookAnchor{db.ch19.id2774991}%
+上一章我们学习了汇编的一些基础知识，本章我们进一步研究C程序编译之后的汇编是什么样的，C语言的各种语法分别对应什么样的指令，从而更深入地理解C语言。\BookCode{gcc}还提供了一种扩展语法可以在C程序中内嵌汇编指令，这在内核代码中很常见，本章也会简要介绍这种用法。
+
+\BookNav{\hyperlink{db.ch18s05}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt02}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch19s01.html
+
+\section{函数调用}
+\BookAnchor{db.ch19s01}\BookAnchor{db.ch19s01.id2774377}%
+我们用下面的代码来研究函数调用的过程。
+
+
+\BookExampleTitle{研究函数的调用过程}\BookAnchor{db.ch19s01.id2774388}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch19s01/01.pv}{9}{16}
+
+
+如果在编译时加上\BookCode{-\BookSplit{}g}选项（在\hyperlink{db.ch10.id2740153}{第 10 章 \emph{gdb}}讲过\BookCode{-\BookSplit{}g}选项），那么用\BookCode{objdump}反汇编时可以把C代码和汇编代码穿插起来显示，这样C代码和汇编代码的对应关系看得更清楚。反汇编的结果很长，以下只列出我们关心的部分。
+
+
+\BookTerminal{code/ch19s01/02.txt}{9}{62}
+
+
+要查看编译后的汇编代码，其实还有一种办法是\BookCode{gcc -\BookSplit{}S main.\BookSplit{}c}，这样只生成汇编代码\BookCode{main.\BookSplit{}s}，而不生成二进制的目标文件。
+
+
+
+整个程序的执行过程是\BookCode{main}调用\BookCode{foo}，\BookCode{foo}调用\BookCode{bar}，我们用\BookCode{gdb}跟踪程序的执行，直到\BookCode{bar}函数中的\BookCode{int e =\BookSplit{} c +\BookSplit{} d;\BookSplit{}}语句执行完毕准备返回时，这时在\BookCode{gdb}中打印函数栈帧。
+
+
+\BookTerminal{code/ch19s01/03.txt}{9}{61}
+
+
+这里又用到几个新的\BookCode{gdb}命令。\BookCode{disassemble}可以反汇编当前函数或者指定的函数，单独用\BookCode{disassemble}命令是反汇编当前函数，如果\BookCode{disassemble}命令后面跟函数名或地址则反汇编指定的函数。以前我们讲过\BookCode{step}命令可以一行代码一行代码地单步调试，而这里用到的\BookCode{si}命令可以一条指令一条指令地单步调试。\BookCode{info registers}可以显示所有寄存器的当前值。在\BookCode{gdb}中表示寄存器名时前面要加个\BookCode{\$}，例如\BookCode{p \$esp}可以打印\BookCode{esp}寄存器的值，在上例中\BookCode{esp}寄存器的值是0xbff1c3f4，所以\BookCode{x/\BookSplit{}20 \$esp}命令查看内存中从0xbff1c3f4地址开始的20个32位数。在执行程序时，操作系统为进程分配一块栈空间来保存函数栈帧，\BookCode{esp}寄存器总是指向栈顶，在x86平台上这个栈是从高地址向低地址增长的，我们知道每次调用一个函数都要分配一个栈帧来保存参数和局部变量，现在我们详细分析这些数据在栈空间的布局，根据\BookCode{gdb}的输出结果图示如下\BookAnchor{db.ch19s01.id2775282}\footnote[29]{\BookAnchor{db.ch19s01.ftn.id2775282}\BookFootnoteBack{db.ch19s01.id2775282}Linux内核为每个新进程指定的栈空间的起始地址都会有些不同，所以每次运行这个程序得到的地址都不一样，但通常都是0xbf??????这样一个地址。}：
+
+
+\BookFigure{函数栈帧}{\BookImage{images/asmc.stackframe.png}{0.427}}{\BookAnchor{db.ch19s01.id2775294}}
+
+
+图中每个小方格表示4个字节的内存单元，例如\BookCode{b:\BookSplit{} 3}这个小方格占的内存地址是0xbf822d20\textasciitilde{}\BookSplit{}0xbf822d23，我把地址写在每个小方格的下边界线上，是为了强调该地址是内存单元的起始地址。我们从\BookCode{main}函数的这里开始看起：
+
+
+\BookTerminal{code/ch19s01/04.txt}{9}{7}
+
+
+要调用函数\BookCode{foo}先要把参数准备好，第二个参数保存在\BookCode{esp+\BookSplit{}4}指向的内存位置，第一个参数保存在\BookCode{esp}指向的内存位置，可见参数是从右向左依次压栈的。然后执行\BookCode{call}指令，这个指令有两个作用：
+
+
+\begin{enumerate}
+
+\item \BookCode{foo}函数调用完之后要返回到\BookCode{call}的下一条指令继续执行，所以把\BookCode{call}的下一条指令的地址0x80483e9压栈，同时把\BookCode{esp}的值减4，\BookCode{esp}的值现在是0xbf822d18。
+
+\item 修改程序计数器\BookCode{eip}，跳转到\BookCode{foo}函数的开头执行。
+\end{enumerate}
+
+
+现在看\BookCode{foo}函数的汇编代码：
+
+
+\BookTerminal{code/ch19s01/05.txt}{7}{5}
+
+
+\BookCode{push \%ebp}指令把\BookCode{ebp}寄存器的值压栈，同时把\BookCode{esp}的值减4。\BookCode{esp}的值现在是0xbf822d14，下一条指令把这个值传送给\BookCode{ebp}寄存器。这两条指令合起来是把原来\BookCode{ebp}的值保存在栈上，然后又给\BookCode{ebp}赋了新值。在每个函数的栈帧中，\BookCode{ebp}指向栈底，而\BookCode{esp}指向栈顶，在函数执行过程中\BookCode{esp}随着压栈和出栈操作随时变化，而\BookCode{ebp}是不动的，函数的参数和局部变量都是通过\BookCode{ebp}的值加上一个偏移量来访问，例如\BookCode{foo}函数的参数\BookCode{a}和\BookCode{b}分别通过\BookCode{ebp+\BookSplit{}8}和\BookCode{ebp+\BookSplit{}12}来访问。所以下面的指令把参数\BookCode{a}和\BookCode{b}再次压栈，为调用\BookCode{bar}函数做准备，然后把返回地址压栈，调用\BookCode{bar}函数：
+
+
+\BookTerminal{code/ch19s01/06.txt}{8}{6}
+
+
+现在看\BookCode{bar}函数的指令：
+
+
+\BookTerminal{code/ch19s01/07.txt}{9}{10}
+
+
+这次又把\BookCode{foo}函数的\BookCode{ebp}压栈保存，然后给\BookCode{ebp}赋了新值，指向\BookCode{bar}函数栈帧的栈底，通过\BookCode{ebp+\BookSplit{}8}和\BookCode{ebp+\BookSplit{}12}分别可以访问参数\BookCode{c}和\BookCode{d}。\BookCode{bar}函数还有一个局部变量\BookCode{e}，可以通过\BookCode{ebp-\BookSplit{}4}来访问。所以后面几条指令的意思是把参数\BookCode{c}和\BookCode{d}取出来存在寄存器中做加法，计算结果保存在\BookCode{eax}寄存器中，再把\BookCode{eax}寄存器存回局部变量\BookCode{e}的内存单元。
+
+
+
+在\BookCode{gdb}中可以用\BookCode{bt}命令和\BookCode{frame}命令查看每层栈帧上的参数和局部变量，现在可以解释它的工作原理了：如果我当前在\BookCode{bar}函数中，我可以通过\BookCode{ebp}找到\BookCode{bar}函数的参数和局部变量，也可以找到\BookCode{foo}函数的\BookCode{ebp}保存在栈上的值，有了\BookCode{foo}函数的\BookCode{ebp}，又可以找到它的参数和局部变量，也可以找到\BookCode{main}函数的\BookCode{ebp}保存在栈上的值，因此各层函数栈帧通过保存在栈上的\BookCode{ebp}的值串起来了。
+
+
+
+现在看\BookCode{bar}函数的返回指令：
+
+
+\BookTerminal{code/ch19s01/08.txt}{7}{5}
+
+
+\BookCode{bar}函数有一个\BookCode{int}型的返回值，这个返回值是通过\BookCode{eax}寄存器传递的，所以首先把\BookCode{e}的值读到\BookCode{eax}寄存器中。然后执行\BookCode{leave}指令，这个指令是函数开头的\BookCode{push \%ebp}和\BookCode{mov \%esp,\BookSplit{}\%ebp}的逆操作：
+
+
+\begin{enumerate}
+
+\item 把\BookCode{ebp}的值赋给\BookCode{esp}，现在\BookCode{esp}的值是0xbf822d04。
+
+\item 现在\BookCode{esp}所指向的栈顶保存着\BookCode{foo}函数栈帧的\BookCode{ebp}，把这个值恢复给\BookCode{ebp}，同时\BookCode{esp}增加4，\BookCode{esp}的值变成0xbf822d08。
+\end{enumerate}
+
+
+最后是\BookCode{ret}指令，它是\BookCode{call}指令的逆操作：
+
+
+\begin{enumerate}
+
+\item 现在\BookCode{esp}所指向的栈顶保存着返回地址，把这个值恢复给\BookCode{eip}，同时\BookCode{esp}增加4，\BookCode{esp}的值变成0xbf822d0c。
+
+\item 修改了程序计数器\BookCode{eip}，因此跳转到返回地址0x80483c2继续执行。
+\end{enumerate}
+
+
+地址0x80483c2处是\BookCode{foo}函数的返回指令：
+
+
+\BookTerminal{code/ch19s01/09.txt}{4}{2}
+
+
+重复同样的过程，又返回到了\BookCode{main}函数。注意函数调用和返回过程中的这些规则：
+
+
+\begin{enumerate}
+
+\item 参数压栈传递，并且是从右向左依次压栈。
+
+\item \BookCode{ebp}总是指向当前栈帧的栈底。
+
+\item 返回值通过\BookCode{eax}寄存器传递。
+\end{enumerate}
+
+
+这些规则并不是体系结构所强加的，\BookCode{ebp}寄存器并不是必须这么用，函数的参数和返回值也不是必须这么传，只是操作系统和编译器选择了以这样的方式实现C代码中的函数调用，这称为Calling Convention\BookAnchor{db.ch19s01.id2776053}，Calling Convention是操作系统二进制接口规范（ABI，Application Binary Interface）\BookAnchor{db.ch19s01.id2776062}的一部分。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch19s01.id2776074}%
+
+
+1、在\hyperlink{db.ch03s02.id2712975}{第 2 节 “自定义函数”}讲过，Old Style C风格的函数声明可以不指定参数个数和类型，这样编译器不会对函数调用做检查，那么如果调用时的参数类型不对或者参数个数不对会怎么样呢？比如把本节的例子改成这样：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch19s01/10.pv}{9}{19}
+
+
+\BookCode{main}函数调用\BookCode{foo}时多传了一个参数，那么参数\BookCode{a}和\BookCode{b}分别取什么值？多的参数怎么办？\BookCode{foo}调用\BookCode{bar}时少传了一个参数，那么参数\BookCode{d}的值从哪里取得？请读者利用反汇编和\BookCode{gdb}自己分析一下。我们再看一个参数类型不符的例子：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch19s01/11.pv}{9}{14}
+
+
+打印结果是多少？如果把声明\BookCode{void foo(\BookSplit{})\BookSplit{};\BookSplit{}}改成\BookCode{void foo(\BookSplit{}double)\BookSplit{};\BookSplit{}}，打印结果又是多少？
+
+\BookNav{\hyperlink{db.ch19}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch19s02.html
+
+\section{\BookCode{main}函数和启动例程}
+\BookAnchor{db.ch19s02}\BookAnchor{db.ch19s02.id2776173}%
+为什么汇编程序的入口是\BookCode{\_\BookSplit{}start}，而C程序的入口是\BookCode{main}函数呢？本节就来解释这个问题。在讲\hyperlink{db.ch18s01.id2769136}{例 18.\BookSplit{}1 “最简单的汇编程序”}时，我们的汇编和链接步骤是：
+
+
+\BookTerminal{code/ch19s02/01.txt}{4}{2}
+
+
+以前我们常用\BookCode{gcc main.\BookSplit{}c -\BookSplit{}o main}命令编译一个程序，其实也可以分三步做，第一步生成汇编代码，第二步生成目标文件，第三步生成可执行文件：
+
+
+\BookTerminal{code/ch19s02/02.txt}{5}{3}
+
+
+\BookCode{-\BookSplit{}S}选项生成汇编代码，\BookCode{-\BookSplit{}c}选项生成目标文件，此外在\hyperlink{db.ch08s02.id2733695}{第 2 节 “数组应用实例：统计随机数”}还讲过\BookCode{-\BookSplit{}E}选项只做预处理而不编译，如果不加这些选项则\BookCode{gcc}执行完整的编译步骤，直到最后链接生成可执行文件为止。如下图所示。
+
+
+\BookFigure{gcc命令的选项}{\BookImage{images/asmc.gcc.png}{0.500}}{\BookAnchor{db.ch19s02.id2776267}}
+
+
+这些选项都可以和\BookCode{-\BookSplit{}o}搭配使用，给输出的文件重新命名而不使用\BookCode{gcc}默认的文件名（\BookCode{xxx.\BookSplit{}c}、\BookCode{xxx.\BookSplit{}s}、\BookCode{xxx.\BookSplit{}o}和\BookCode{a.\BookSplit{}out}），例如\BookCode{gcc main.\BookSplit{}o -\BookSplit{}o main}将\BookCode{main.\BookSplit{}o}链接成可执行文件\BookCode{main}。先前由汇编代码\hyperlink{db.ch18s01.id2769136}{例 18.\BookSplit{}1 “最简单的汇编程序”}生成的目标文件\BookCode{hello.\BookSplit{}o}我们是用\BookCode{ld}来链接的，可不可以用\BookCode{gcc}链接呢？试试看。
+
+
+\BookTerminal{code/ch19s02/03.txt}{9}{7}
+
+
+提示两个错误：一是\BookCode{\_\BookSplit{}start}有多个定义，一个定义是由我们的汇编代码提供的，另一个定义来自\BookCode{/\BookSplit{}usr/\BookSplit{}lib/\BookSplit{}crt1.\BookSplit{}o}；二是\BookCode{crt1.\BookSplit{}o}的\BookCode{\_\BookSplit{}start}函数要调用\BookCode{main}函数，而我们的汇编代码中没有提供\BookCode{main}函数的定义。从最后一行还可以看出这些错误提示是由\BookCode{ld}给出的。由此可见，如果我们用\BookCode{gcc}做链接，\BookCode{gcc}其实是调用\BookCode{ld}将目标文件\BookCode{crt1.\BookSplit{}o}和我们的\BookCode{hello.\BookSplit{}o}链接在一起。\BookCode{crt1.\BookSplit{}o}里面已经提供了\BookCode{\_\BookSplit{}start}入口点，我们的汇编程序中再实现一个\BookCode{\_\BookSplit{}start}就是多重定义了，链接器不知道该用哪个，只好报错。另外，\BookCode{crt1.\BookSplit{}o}提供的\BookCode{\_\BookSplit{}start}需要调用\BookCode{main}函数，而我们的汇编程序中没有实现\BookCode{main}函数，所以报错。
+
+
+
+如果目标文件是由C代码编译生成的，用\BookCode{gcc}做链接就没错了，整个程序的入口点是\BookCode{crt1.\BookSplit{}o}中提供的\BookCode{\_\BookSplit{}start}，它首先做一些初始化工作（以下称为启动例程，Startup Routine\BookAnchor{db.ch19s02.id2776521}），然后调用C代码中提供的\BookCode{main}函数。所以，以前我们说\BookCode{main}函数是程序的入口点其实不准确，\BookCode{\_\BookSplit{}start}才是真正的入口点，而\BookCode{main}函数是被\BookCode{\_\BookSplit{}start}调用的。
+
+
+
+我们继续研究上一节的\hyperlink{db.ch19s01.id2774388}{例 19.\BookSplit{}1 “研究函数的调用过程”}。如果分两步编译，第二步\BookCode{gcc main.\BookSplit{}o -\BookSplit{}o main}其实是调用\BookCode{ld}做链接的，相当于这样的命令：
+
+
+\BookTerminal{code/ch19s02/04.txt}{3}{1}
+
+
+也就是说，除了\BookCode{crt1.\BookSplit{}o}之外其实还有\BookCode{crti.\BookSplit{}o}，这两个目标文件和我们的\BookCode{main.\BookSplit{}o}链接在一起生成可执行文件\BookCode{main}。\BookCode{-\BookSplit{}lc}表示需要链接\BookCode{libc}库，在\hyperlink{db.ch03s01.id2712397}{第 1 节 “数学函数”}讲过\BookCode{-\BookSplit{}lc}选项是\BookCode{gcc}默认的，不用写，而对于\BookCode{ld}则不是默认选项，所以要写上。\BookCode{-\BookSplit{}dynamic-\BookSplit{}linker /\BookSplit{}lib/\BookSplit{}ld-\BookSplit{}linux.\BookSplit{}so.\BookSplit{}2}指定动态链接器是\BookCode{/\BookSplit{}lib/\BookSplit{}ld-\BookSplit{}linux.\BookSplit{}so.\BookSplit{}2}，稍后会解释什么是动态链接。
+
+
+
+那么\BookCode{crt1.\BookSplit{}o}和\BookCode{crti.\BookSplit{}o}里面都有什么呢？我们可以用\BookCode{readelf}命令查看。在这里我们只关心符号表，如果只看符号表，可以用\BookCode{readelf}命令的\BookCode{-\BookSplit{}s}选项，也可以用\BookCode{nm}命令。
+
+
+\BookTerminal{code/ch19s02/05.txt}{9}{15}
+
+
+\BookCode{U main}这一行表示\BookCode{main}这个符号在\BookCode{crt1.\BookSplit{}o}中用到了，但是没有定义（U表示Undefined），因此需要别的目标文件提供一个定义并且和\BookCode{crt1.\BookSplit{}o}链接在一起。具体来说，在\BookCode{crt1.\BookSplit{}o}中要用到\BookCode{main}这个符号所代表的地址，例如有一条指令是\BookCode{push \$符号main所代\BookSplit{}表的地址}，但不知道这个地址是多少，所以在\BookCode{crt1.\BookSplit{}o}中这条指令暂时写成\BookCode{push \$0x0}，等到和\BookCode{main.\BookSplit{}o}链接成可执行文件时就知道这个地址是多少了，比如是0x80483c4，那么可执行文件\BookCode{main}中的这条指令就被链接器改成了\BookCode{push \$0x80483c\BookSplit{}4}。链接器在这里起到符号解析（Symbol Resolution）的作用，在\hyperlink{db.ch18s05.id2771639}{第 5.\BookSplit{}2 节 “可执行文件”}我们看到链接器起到重定位的作用，这两种作用都是通过修改指令中的地址实现的，链接器也是一种编辑器，\BookCode{vi}和\BookCode{emacs}编辑的是源文件，而链接器编辑的是目标文件，所以链接器也叫Link Editor。\BookCode{T \_\BookSplit{}start}这一行表示\BookCode{\_\BookSplit{}start}这个符号在\BookCode{crt1.\BookSplit{}o}中提供了定义，这个符号的类型是代码（T表示Text）。我们从上面的输出结果中选取几个符号用图示说明它们之间的关系：
+
+
+\BookFigure{C程序的链接过程}{\BookImage{images/asmc.link.png}{0.659}}{\BookAnchor{db.ch19s02.id2776845}}
+
+
+其实上面我们写的\BookCode{ld}命令做了很多简化，\BookCode{gcc}在链接时还用到了另外几个目标文件，所以上图多画了一个框，表示组成可执行文件\BookCode{main}的除了\BookCode{main.\BookSplit{}o}、\BookCode{crt1.\BookSplit{}o}和\BookCode{crti.\BookSplit{}o}之外还有其它目标文件，本书不做深入讨论，用\BookCode{gcc}的\BookCode{-\BookSplit{}v}选项可以了解详细的编译过程：
+
+
+\BookTerminal{code/ch19s02/06.txt}{9}{9}
+
+
+链接生成的可执行文件\BookCode{main}中包含了各目标文件所定义的符号，通过反汇编可以看到这些符号的定义：
+
+
+\BookTerminal{code/ch19s02/07.txt}{9}{39}
+
+
+\BookCode{crt1.\BookSplit{}o}中的未定义符号\BookCode{main}在\BookCode{main.\BookSplit{}o}中定义了，所以链接在一起就没问题了。\BookCode{crt1.\BookSplit{}o}还有一个未定义符号\BookCode{\_\BookSplit{}\_\BookSplit{}libc\_\BookSplit{}start\_\BookSplit{}main}在其它几个目标文件中也没有定义，所以在可执行文件\BookCode{main}中仍然是个未定义符号。这个符号是在\BookCode{libc}中定义的，\BookCode{libc}并不像其它目标文件一样链接到可执行文件\BookCode{main}中，而是在运行时做动态链接：
+
+
+\begin{enumerate}
+
+\item 操作系统在加载执行\BookCode{main}这个程序时，首先查看它有没有需要动态链接的未定义符号。
+
+\item 如果需要做动态链接，就查看这个程序指定了哪些共享库（我们用\BookCode{-\BookSplit{}lc}指定了\BookCode{libc}）以及用什么动态链接器来做动态链接（我们用\BookCode{-\BookSplit{}dynamic-\BookSplit{}linker /\BookSplit{}lib/\BookSplit{}ld-\BookSplit{}linux.\BookSplit{}so.\BookSplit{}2}指定了动态链接器）。
+
+\item 动态链接器在共享库中查找这些符号的定义，完成链接过程。
+\end{enumerate}
+
+
+了解了这些原理之后，现在我们来看\BookCode{\_\BookSplit{}start}的反汇编：
+
+
+\BookTerminal{code/ch19s02/08.txt}{9}{18}
+
+
+首先将一系列参数压栈，然后调用\BookCode{libc}的库函数\BookCode{\_\BookSplit{}\_\BookSplit{}libc\_\BookSplit{}start\_\BookSplit{}main}做初始化工作，其中最后一个压栈的参数\BookCode{push \$0x80483c\BookSplit{}4}是\BookCode{main}函数的地址，\BookCode{\_\BookSplit{}\_\BookSplit{}libc\_\BookSplit{}start\_\BookSplit{}main}在完成初始化工作之后会调用\BookCode{main}函数。由于\BookCode{\_\BookSplit{}\_\BookSplit{}libc\_\BookSplit{}start\_\BookSplit{}main}需要动态链接，所以这个库函数的指令在可执行文件\BookCode{main}的反汇编中肯定是找不到的，然而我们找到了这个：
+
+
+\BookTerminal{code/ch19s02/09.txt}{8}{6}
+
+
+这三条指令位于\BookCode{.\BookSplit{}plt}段而不是\BookCode{.\BookSplit{}text}段，\BookCode{.\BookSplit{}plt}段协助完成动态链接的过程。我们将在下一章详细讲解动态链接的过程。
+
+
+
+\BookCode{main}函数最标准的原型应该是\BookCode{int main(\BookSplit{}int argc,\BookSplit{} char *argv[\BookSplit{}]\BookSplit{})\BookSplit{}}，也就是说启动例程会传两个参数给\BookCode{main}函数，这两个参数的含义我们学了指针以后再解释。我们到目前为止都把\BookCode{main}函数的原型写成\BookCode{int main(\BookSplit{}void)\BookSplit{}}，这也是C标准允许的，如果你认真分析了上一节的习题，你就应该知道，多传了参数而不用是没有问题的，少传了参数却用了则会出问题。
+
+
+
+由于\BookCode{main}函数是被启动例程调用的，所以从\BookCode{main}函数\BookCode{return}时仍返回到启动例程中，\BookCode{main}函数的返回值被启动例程得到，如果将启动例程表示成等价的C代码（实际上启动例程一般是直接用汇编写的），则它调用\BookCode{main}函数的形式是：
+
+
+\BookPlain{code/ch19s02/10.txt}{3}{1}
+
+
+也就是说，启动例程得到\BookCode{main}函数的返回值后，会立刻用它做参数调用\BookCode{exit}函数。\BookCode{exit}也是\BookCode{libc}中的函数，它首先做一些清理工作，然后调用上一章讲过的\BookCode{\_\BookSplit{}exit}系统调用终止进程，\BookCode{main}函数的返回值最终被传给\BookCode{\_\BookSplit{}exit}系统调用，成为进程的退出状态。我们也可以在\BookCode{main}函数中直接调用\BookCode{exit}函数终止进程而不返回到启动例程，例如：
+
+
+\BookSource{numbers=none}{code/ch19s02/11.pv}{8}{6}
+
+
+这样和\BookCode{int main(\BookSplit{}void)\BookSplit{} \{ return 4;\BookSplit{} \}}的效果是一样的。在Shell中运行这个程序并查看它的退出状态：
+
+
+\BookTerminal{code/ch19s02/12.txt}{5}{3}
+
+
+按照惯例，退出状态为0表示程序执行成功，退出状态非0表示出错。注意，退出状态只有8位，而且被Shell解释成无符号数，如果将上面的代码改为\BookCode{exit(\BookSplit{}-\BookSplit{}1)\BookSplit{};\BookSplit{}}或\BookCode{return -\BookSplit{}1;\BookSplit{}}，则运行结果为
+
+
+\BookTerminal{code/ch19s02/13.txt}{5}{3}
+
+
+注意，如果声明一个函数的返回值类型是\BookCode{int}，函数中每个分支控制流程必须写\BookCode{return}语句指定返回值，如果缺了\BookCode{return}则返回值不确定（想想这是为什么），编译器通常是会报警告的，但如果某个分支控制流程调用了\BookCode{exit}或\BookCode{\_\BookSplit{}exit}而不写\BookCode{return}，编译器是允许的，因为它都没有机会返回了，指不指定返回值也就无所谓了。使用\BookCode{exit}函数需要包含头文件\BookCode{stdlib.\BookSplit{}h}，而使用\BookCode{\_\BookSplit{}exit}函数需要包含头文件\BookCode{unistd.\BookSplit{}h}，以后还要详细解释这两个函数。
+
+\BookNav{\hyperlink{db.ch19s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch19s03.html
+
+\section{变量的存储布局}
+\BookAnchor{db.ch19s03}\BookAnchor{db.ch19s03.id2777491}%
+首先看下面的例子：
+
+
+\BookExampleTitle{研究变量的存储布局}\BookAnchor{db.ch19s03.id2777482}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch19s03/01.pv}{9}{17}
+
+
+我们在全局作用域和\BookCode{main}函数的局部作用域各定义了一些变量，并且引入一些新的关键字\BookCode{const}、\BookCode{static}、\BookCode{register}来修饰变量，那么这些变量的存储空间是怎么分配的呢？我们编译之后用\BookCode{readelf}命令看它的符号表，了解各变量的地址分布。注意在下面的清单中我把符号表按地址从低到高的顺序重新排列了，并且只截取我们关心的那几行。
+
+
+\BookTerminal{code/ch19s03/02.txt}{9}{9}
+
+
+变量A用\BookCode{const}修饰，表示A是只读的，不可修改，它被分配的地址是0x8048540，从\BookCode{readelf}的输出可以看到这个地址位于\BookCode{.\BookSplit{}rodata}段：
+
+
+\BookTerminal{code/ch19s03/03.txt}{9}{10}
+
+
+它在文件中的地址是0x538\textasciitilde{}\BookSplit{}0x554，我们用\BookCode{hexdump}命令看看这个段的内容：
+
+
+\BookTerminal{code/ch19s03/04.txt}{8}{6}
+
+
+其中0x540地址处的\BookCode{0a 00 00 00}就是变量A。我们还看到程序中的字符串字面值\BookCode{\BookQuoteChar{}Hello world \%\BookSplit{}d\textbackslash{}n\BookQuoteChar{}}分配在\BookCode{.\BookSplit{}rodata}段的末尾，在\hyperlink{db.ch08s04.id2734544}{第 4 节 “字符串”}说过字符串字面值是只读的，相当于在全局作用域定义了一个\BookCode{const}数组：
+
+
+\BookSource{numbers=none}{code/ch19s03/05.pv}{4}{2}
+
+
+程序加载运行时，\BookCode{.\BookSplit{}rodata}段和\BookCode{.\BookSplit{}text}段通常合并到一个Segment中，操作系统将这个Segment的页面只读保护起来，防止意外的改写。这一点从\BookCode{readelf}的输出也可以看出来：
+
+
+\BookTerminal{code/ch19s03/06.txt}{9}{10}
+
+
+注意，像\BookCode{A}这种\BookCode{const}变量在定义时必须初始化。因为只有初始化时才有机会给它一个值，一旦定义之后就不能再改写了，也就是不能再赋值了。
+
+
+
+从上面\BookCode{readelf}的输出可以看到\BookCode{.\BookSplit{}data}段从地址0x804a010开始，长度是0x14，也就是到地址0x804a024结束。在\BookCode{.\BookSplit{}data}段中有三个变量，\BookCode{a}，\BookCode{b}和\BookCode{a.\BookSplit{}1589}。
+
+
+
+\BookCode{a}是一个\BookCode{GLOBAL}的符号，而\BookCode{b}被\BookCode{static}关键字修饰了，导致它成为一个\BookCode{LOCAL}的符号，所以\BookCode{static}在这里的作用是声明\BookCode{b}这个符号为\BookCode{LOCAL}的，不被链接器处理，在下一章我们会看到，如果把多个目标文件链接在一起，\BookCode{LOCAL}的符号只能在某一个目标文件中定义和使用，而不能定义在一个目标文件中却在另一个目标文件中使用。一个函数定义前面也可以用\BookCode{static}修饰，表示这个函数名符号是\BookCode{LOCAL}的。
+
+
+
+还有一个\BookCode{a.\BookSplit{}1589}是什么呢？它就是\BookCode{main}函数中的\BookCode{static int a}。函数中的\BookCode{static}变量不同于以前我们讲的局部变量，它并不是在调用函数时分配，在函数返回时释放，而是像全局变量一样静态分配，所以用“static”（静态）这个词。另一方面，函数中的\BookCode{static}变量的作用域和以前讲的局部变量一样，只在函数中起作用，比如\BookCode{main}函数中的\BookCode{a}这个变量名只在\BookCode{main}函数中起作用，在别的函数中说变量\BookCode{a}就不是指它了，所以编译器给它的符号名加了一个后缀，变成\BookCode{a.\BookSplit{}1589}，以便和全局变量\BookCode{a}以及其它函数的变量\BookCode{a}区分开。
+
+
+
+\BookCode{.\BookSplit{}bss}段从地址0x804a024开始（紧挨着\BookCode{.\BookSplit{}data}段），长度为0xc，也就是到地址0x804a030结束。变量\BookCode{c}位于这个段。从上面的\BookCode{readelf}输出可以看到，\BookCode{.\BookSplit{}data}和\BookCode{.\BookSplit{}bss}在加载时合并到一个Segment中，这个Segment是可读可写的。\BookCode{.\BookSplit{}bss}段和\BookCode{.\BookSplit{}data}段的不同之处在于，\BookCode{.\BookSplit{}bss}段在文件中不占存储空间，在加载时这个段用0填充。所以我们在\hyperlink{db.ch03s04.id2714471}{第 4 节 “全局变量、局部变量和作用域”}讲过，全局变量如果不初始化则初值为0，同理可以推断，\BookCode{static}变量（不管是函数里的还是函数外的）如果不初始化则初值也是0，也分配在\BookCode{.\BookSplit{}bss}段。
+
+
+
+现在还剩下函数中的\BookCode{b}和\BookCode{c}这两个变量没有分析。上一节我们讲过函数的参数和局部变量是分配在栈上的，\BookCode{b}是数组也一样，也是分配在栈上的，我们看\BookCode{main}函数的反汇编代码：
+
+
+\BookTerminal{code/ch19s03/07.txt}{9}{14}
+
+
+可见，给\BookCode{b}初始化用的这个字符串\BookCode{\BookQuoteChar{}Hello world\BookQuoteChar{}}并没有分配在\BookCode{.\BookSplit{}rodata}段，而是直接写在指令里了，通过三条\BookCode{movl}指令把12个字节写到栈上，这就是\BookCode{b}的存储空间，如下图所示。
+
+
+\BookFigure{数组的存储布局}{\BookImage{images/asmc.array.png}{0.218}}{\BookAnchor{db.ch19s03.id2778223}}
+
+
+注意，虽然栈是从高地址向低地址增长的，但数组总是从低地址向高地址排列的，按从低地址到高地址的顺序依次是\BookCode{b[\BookSplit{}0]\BookSplit{}}、\BookCode{b[\BookSplit{}1]\BookSplit{}}、\BookCode{b[\BookSplit{}2]\BookSplit{}}……这样，
+
+
+\begin{BookLiteral}
+\BookLiteralLine{数组元素\BookCode{b[\BookSplit{}n]\BookSplit{}}的地址 = 数组的基地址（\BookCode{b}做右值就表示这个基地址） + n × 每个元素的字节数}
+\end{BookLiteral}
+
+
+当n=\BookSplit{}0时，元素\BookCode{b[\BookSplit{}0]\BookSplit{}}的地址就是数组的基地址，因此数组下标要从0开始而不是从1开始。
+
+
+
+变量\BookCode{c}并没有在栈上分配存储空间，而是直接存在\BookCode{eax}寄存器里，后面调用\BookCode{printf}也是直接从\BookCode{eax}寄存器里取出\BookCode{c}的值当参数压栈，这就是\BookCode{register}关键字的作用，指示编译器尽可能分配一个寄存器来存储这个变量。我们还看到调用\BookCode{printf}时对于\BookCode{\BookQuoteChar{}Hello world \%\BookSplit{}d\textbackslash{}n\BookQuoteChar{}}这个参数压栈的是它在\BookCode{.\BookSplit{}rodata}段中的首地址，而不是把整个字符串压栈，所以在\hyperlink{db.ch08s04.id2734544}{第 4 节 “字符串”}中说过，字符串在使用时可以看作数组名，如果做右值则表示数组首元素的地址（或者说指向数组首元素的指针），我们以后讲指针还要继续讨论这个问题。
+
+
+
+以前我们用“全局变量”和“局部变量”这两个概念，主要是从作用域上区分的，现在看来用这两个概念给变量分类太笼统了，需要进一步细分。我们总结一下相关的C语法。
+
+
+
+作用域（Scope）\BookAnchor{db.ch19s03.id2778383}这个概念适用于所有标识符，而不仅仅是变量，C语言的作用域分为以下几类：
+
+
+\begin{itemize}
+
+\item 函数作用域（Function Scope）\BookAnchor{db.ch19s03.id2778399}，标识符在整个函数中都有效。只有语句标号属于函数作用域。标号在函数中不需要先声明后使用，在前面用一个\BookCode{goto}语句也可以跳转到后面的某个标号，但仅限于同一个函数之中。
+
+\item 文件作用域（File Scope）\BookAnchor{db.ch19s03.id2778421}，标识符从它声明的位置开始直到这个程序文件\BookAnchor{db.ch19s03.id2778429}\footnote[30]{\BookAnchor{db.ch19s03.ftn.id2778429}\BookFootnoteBack{db.ch19s03.id2778429}为了容易阅读，这里我用了“程序文件”这个不严格的叫法。如果有文件\BookCode{a.\BookSplit{}c}包含了\BookCode{b.\BookSplit{}h}和\BookCode{c.\BookSplit{}h}，那么我所说的“程序文件”指的是经过预处理把\BookCode{b.\BookSplit{}h}和\BookCode{c.\BookSplit{}h}在\BookCode{a.\BookSplit{}c}中展开之后生成的代码，在C标准中称为编译单元（Translation Unit）\BookAnchor{db.ch19s03.id2778477}。每个编译单元可以分别编译成一个\BookCode{.\BookSplit{}o}目标文件，最后这些目标文件用链接器链接到一起，成为一个可执行文件。C标准中大量使用一些非常不通俗的名词，除了编译单元之外，还有编译器叫Translator，变量叫Object，本书不会采用这些名词，因为我不是在写C标准。}的末尾都有效。例如上例中\BookCode{main}函数外面的\BookCode{A}、\BookCode{a}、\BookCode{b}、\BookCode{c}，还有\BookCode{main}也算，\BookCode{printf}其实是在\BookCode{stdio.\BookSplit{}h}中声明的，被包含到这个程序文件中了，所以也算文件作用域的。
+
+\item 块作用域（Block Scope）\BookAnchor{db.ch19s03.id2778553}，标识符位于一对\{\}括号中（函数体或语句块），从它声明的位置开始到右\}括号之间有效。例如上例中\BookCode{main}函数里的\BookCode{a}、\BookCode{b}、\BookCode{c}。此外，函数定义中的形参也算块作用域的，从声明的位置开始到函数末尾之间有效。
+
+\item 函数原型作用域（Function Prototype Scope）\BookAnchor{db.ch19s03.id2778593}，标识符出现在函数原型中，这个函数原型只是一个声明而不是定义（没有函数体），那么标识符从声明的位置开始到在这个原型末尾之间有效。例如\BookCode{int foo(\BookSplit{}int a,\BookSplit{} int b)\BookSplit{};\BookSplit{}}中的\BookCode{a}和\BookCode{b}。
+\end{itemize}
+
+
+对属于同一命名空间（Name Space）\BookAnchor{db.ch19s03.id2778626}的重名标识符，内层作用域的标识符将覆盖外层作用域的标识符，例如局部变量名在它的函数中将覆盖重名的全局变量。命名空间可分为以下几类：
+
+
+\begin{itemize}
+
+\item 语句标号单独属于一个命名空间。例如在函数中局部变量和语句标号可以重名，互不影响。由于使用标号的语法和使用其它标识符的语法都不一样，编译器不会把它和别的标识符弄混。
+
+\item \BookCode{struct}，\BookCode{enum}和\BookCode{union}（下一节介绍\BookCode{union}）的类型Tag属于一个命名空间。由于Tag前面总是带\BookCode{struct}，\BookCode{enum}或\BookCode{union}关键字，所以编译器不会把它和别的标识符弄混。
+
+\item \BookCode{struct}和\BookCode{union}的成员名属于一个命名空间。由于成员名总是通过\BookCode{.\BookSplit{}}或\BookCode{-\BookSplit{}\textgreater{}}运算符来访问而不会单独使用，所以编译器不会把它和别的标识符弄混。
+
+\item 所有其它标识符，例如变量名、函数名、宏定义、\BookCode{typedef}的类型名、\BookCode{enum}成员等等都属于同一个命名空间。如果有重名的话，宏定义覆盖所有其它标识符，因为它在预处理阶段而不是编译阶段处理，除了宏定义之外其它几类标识符按上面所说的规则处理，内层作用域覆盖外层作用域。
+\end{itemize}
+
+
+标识符的链接属性（Linkage）\BookAnchor{db.ch19s03.id2778755}有三种：
+
+
+\begin{itemize}
+
+\item 外部链接（External Linkage）\BookAnchor{db.ch19s03.id2778771}，如果最终的可执行文件由多个程序文件链接而成，一个标识符在任意程序文件中即使声明多次也都代表同一个变量或函数，则这个标识符具有External Linkage。具有External Linkage的标识符编译后在符号表中是\BookCode{GLOBAL}的符号。例如上例中\BookCode{main}函数外面的\BookCode{a}和\BookCode{c}，\BookCode{main}和\BookCode{printf}也算。
+
+\item 内部链接（Internal Linkage）\BookAnchor{db.ch19s03.id2778824}，如果一个标识符在某个程序文件中即使声明多次也都代表同一个变量或函数，则这个标识符具有Internal Linkage。例如上例中\BookCode{main}函数外面的\BookCode{b}。如果有另一个\BookCode{foo.\BookSplit{}c}程序和\BookCode{main.\BookSplit{}c}链接在一起，在\BookCode{foo.\BookSplit{}c}中也声明一个\BookCode{static int b;\BookSplit{}}，则那个\BookCode{b}和这个\BookCode{b}不代表同一个变量。具有Internal Linkage的标识符编译后在符号表中是\BookCode{LOCAL}的符号，但\BookCode{main}函数里面那个\BookCode{a}不能算Internal Linkage的，因为即使在同一个程序文件中，在不同的函数中声明多次，也不代表同一个变量。
+
+\item 无链接（No Linkage）\BookAnchor{db.ch19s03.id2778908}。除以上情况之外的标识符都属于No Linkage的，例如函数的局部变量，以及不表示变量和函数的其它标识符。
+\end{itemize}
+
+
+存储类修饰符（Storage Class Specifier）\BookAnchor{db.ch19s03.id2778922}有以下几种关键字，可以修饰变量或函数声明：
+
+
+\begin{itemize}
+
+\item \BookCode{static}，用它修饰的变量的存储空间是静态分配的，用它修饰的文件作用域的变量或函数具有Internal Linkage。
+
+\item \BookCode{auto}，用它修饰的变量在函数调用时自动在栈上分配存储空间，函数返回时自动释放，例如上例中\BookCode{main}函数里的\BookCode{b}其实就是用\BookCode{auto}修饰的，只不过\BookCode{auto}可以省略不写，\BookCode{auto}不能修饰文件作用域的变量。
+
+\item \BookCode{register}，编译器对于用\BookCode{register}修饰的变量会尽可能分配一个专门的寄存器来存储，但如果实在分配不开寄存器，编译器就把它当\BookCode{auto}变量处理了，\BookCode{register}不能修饰文件作用域的变量。现在一般编译器的优化都做得很好了，它自己会想办法有效地利用CPU的寄存器，所以现在\BookCode{register}关键字也用得比较少了。
+
+\item \BookCode{extern}，上面讲过，链接属性是根据一个标识符多次声明时是不是代表同一个变量或函数来分类的，\BookCode{extern}关键字就用于多次声明同一个标识符，下一章再详细介绍它的用法。
+
+\item \BookCode{typedef}，在\hyperlink{db.ch16s02.id2762676}{第 2.\BookSplit{}4 节 “sizeof运算符与typedef类型声明”}讲过这个关键字，它并不是用来修饰变量的，而是定义一个类型名。在那一节也讲过，看\BookCode{typedef}声明怎么看呢，首先去掉\BookCode{typedef}把它看成变量声明，看这个变量是什么类型的，那么\BookCode{typedef}就定义了一个什么类型，也就是说，\BookCode{typedef}在语法结构中出现的位置和前面几个关键字一样，也是修饰变量声明的，所以从语法（而不是语义）的角度把它和前面几个关键字归类到一起。
+\end{itemize}
+
+
+注意，上面介绍的\BookCode{const}关键字不是一个Storage Class Specifier，虽然看起来它也修饰一个变量声明，但是在以后介绍的更复杂的声明中\BookCode{const}在语法结构中允许出现的位置和Storage Class Specifier是不完全相同的。\BookCode{const}和以后要介绍的\BookCode{restrict}和\BookCode{volatile}关键字属于同一类语法元素，称为类型限定符（Type Qualifier）\BookAnchor{db.ch19s03.id2779137}。
+
+
+
+变量的生存期（Storage Duration，或者Lifetime）\BookAnchor{db.ch19s03.id2779152}分为以下几类：
+
+
+\begin{itemize}
+
+\item 静态生存期（Static Storage Duration）\BookAnchor{db.ch19s03.id2779166}，具有外部或内部链接属性，或者被\BookCode{static}修饰的变量，在程序开始执行时分配和初始化一次，此后便一直存在直到程序结束。这种变量通常位于\BookCode{.\BookSplit{}rodata}，\BookCode{.\BookSplit{}data}或\BookCode{.\BookSplit{}bss}段，例如上例中\BookCode{main}函数外的\BookCode{A}，\BookCode{a}，\BookCode{b}，\BookCode{c}，以及\BookCode{main}函数里的\BookCode{a}。
+
+\item 自动生存期（Automatic Storage Duration）\BookAnchor{db.ch19s03.id2779247}，链接属性为无链接并且没有被\BookCode{static}修饰的变量，这种变量在进入块作用域时在栈上或寄存器中分配，在退出块作用域时释放。例如上例中\BookCode{main}函数里的\BookCode{b}和\BookCode{c}。
+
+\item 动态分配生存期（Allocated Storage Duration）\BookAnchor{db.ch19s03.id2779286}，以后会讲到调用\BookCode{malloc}函数在进程的堆空间中分配内存，调用\BookCode{free}函数可以释放这种存储空间。
+\end{itemize}
+
+\BookNav{\hyperlink{db.ch19s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch19s04.html
+
+\section{结构体和联合体}
+\BookAnchor{db.ch19s04}\BookAnchor{db.ch19s04.id2779313}%
+我们继续用反汇编的方法研究一下C语言的结构体：
+
+
+\BookExampleTitle{研究结构体}\BookAnchor{db.ch19s04.id2779326}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch19s04/01.pv}{9}{19}
+
+
+\BookCode{main}函数中几条语句的反汇编结果如下：
+
+
+\BookTerminal{code/ch19s04/02.txt}{9}{8}
+
+
+从访问结构体成员的指令可以看出，结构体的四个成员在栈上是这样排列的：
+
+
+\BookFigure{结构体的存储布局}{\BookImage{images/asmc.struct.png}{0.212}}{\BookAnchor{db.ch19s04.id2779360}}
+
+
+虽然栈是从高地址向低地址增长的，但结构体成员也是从低地址向高地址排列的，这一点和数组类似。但有一点和数组不同，结构体的各成员并不是一个紧挨一个排列的，中间有空隙，称为填充（Padding）\BookAnchor{db.ch19s04.id2779381}，不仅如此，在这个结构体的末尾也有三个字节的填充，所以\BookCode{sizeof(\BookSplit{}s)\BookSplit{}}的值是12。注意，\BookCode{printf}的\BookCode{\%u}转换说明表示无符号数，\BookCode{sizeof}的值是\BookCode{size\_\BookSplit{}t}类型的，是某种无符号整型。
+
+
+
+为什么编译器要这样处理呢？有一个知识点我此前一直回避没讲，那就是大多数计算机体系统结构对于访问内存的指令是有限制的，在32位平台上，访问4字节的指令（比如上面的\BookCode{movl}）所访问的内存地址应该是4的整数倍，访问两字节的指令（比如上面的\BookCode{movw}）所访问的内存地址应该是两字节的整数倍，这称为对齐（Alignment）\BookAnchor{db.ch19s04.id2779442}。以前举的所有例子中的内存访问指令都满足这个限制条件，读者可以回头检验一下。如果指令所访问的内存地址没有正确对齐会怎么样呢？在有些平台上将不能访问内存，而是引发一个异常，在x86平台上倒是仍然能访问内存，但是不对齐的指令执行效率比对齐的指令要低，所以编译器在安排各种变量的地址时都会考虑到对齐的问题。对于本例中的结构体，编译器会把它的基地址对齐到4字节边界，也就是说，\BookCode{ebp-\BookSplit{}0x10}这个地址一定是4的整数倍。\BookCode{s.\BookSplit{}a}占一个字节，没有对齐的问题。\BookCode{s.\BookSplit{}b}占两个字节，如果\BookCode{s.\BookSplit{}b}紧挨在\BookCode{s.\BookSplit{}a}后面，它的地址就不能是两字节的整数倍了，所以编译器会在结构体中插入一个填充字节，使\BookCode{s.\BookSplit{}b}的地址也是两字节的整数倍。\BookCode{s.\BookSplit{}c}占4字节，紧挨在\BookCode{s.\BookSplit{}b}的后面就可以了，因为\BookCode{ebp-\BookSplit{}0xc}这个地址也是4的整数倍。那么为什么\BookCode{s.\BookSplit{}d}的后面也要有填充位填充到4字节边界呢？这是为了便于安排这个结构体后面的变量的地址，假如用这种结构体类型组成一个数组，那么后一个结构体只需和前一个结构体紧挨着排列就可以保证它的基地址仍然对齐到4字节边界了，因为在前一个结构体的末尾已经有了填充字节。事实上，C标准规定数组元素必须紧挨着排列，不能有空隙，这样才能保证每个元素的地址可以按“基地址+n×\BookSplit{}元素大小”简单计算出来。
+
+
+
+合理设计结构体各成员的排列顺序可以节省存储空间，例如上例中的结构体改成这样就可以避免产生填充字节：
+
+
+\BookSource{numbers=none}{code/ch19s04/03.pv}{8}{6}
+
+
+此外，\BookCode{gcc}提供了一种扩展语法可以消除结构体中的填充字节：
+
+
+\BookSource{numbers=none}{code/ch19s04/04.pv}{8}{6}
+
+
+这样就不能保证结构体成员的对齐了，在访问\BookCode{b}和\BookCode{c}的时候可能会有效率问题，所以除非有特别的理由，一般不要使用这种语法。
+
+
+
+以前我们使用的数据类型都是占几个字节，最小的类型也要占一个字节，而在结构体中还可以使用Bit-field\BookAnchor{db.ch19s04.id2779601}语法定义只占几个bit的成员。下面这个例子出自王聪的网站（www.\BookSplit{}wangcong.\BookSplit{}org）：
+
+
+\BookExampleTitle{Bit-field}\BookAnchor{db.ch19s04.id2779611}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch19s04/05.pv}{9}{21}
+
+
+\BookCode{s}这个结构体的布局如下图所示：
+
+
+\BookFigure{Bit-field的存储布局}{\BookImage{images/asmc.bitfield.png}{0.824}}{\BookAnchor{db.ch19s04.id2779629}}
+
+
+Bit-field成员的类型可以是\BookCode{int}或\BookCode{unsigned int}，表示有符号数或无符号数，但不表示它像普通的\BookCode{int}型一样占4个字节，它后面的数字是几就表示它占多少个bit，也可以像\BookCode{unsigned int :\BookSplit{}2;\BookSplit{}}这样定义一个未命名的Bit-field，即使不写未命名的Bit-field，编译器也有可能在两个成员之间插入填充位，如上图的\BookCode{five}和\BookCode{six}之间，这样\BookCode{six}这个成员就刚好单独占一个字节了，访问效率会比较高，这个结构体的末尾还填充了3个字节，以便对齐到4字节边界。以前我们说过x86的Byte Order是小端的，从上图中\BookCode{one}和\BookCode{two}的排列顺序可以看出，如果对一个字节再细分，则字节中的Bit Order也是小端的，因为排在结构体前面的成员（靠近低地址一边的成员）取字节中的低位。关于如何排列Bit-field在C标准中没有详细的规定，这跟Byte Order、Bit Order、对齐等问题都有关，不同的平台和编译器可能会排列得很不一样，要编写可移植的代码就不能假定Bit-field是按某一种固定方式排列的。Bit-field在驱动程序中是很有用的，因为经常需要单独操作设备寄存器中的一个或几个bit，但一定要小心使用，首先弄清楚每个Bit-field和实际bit的对应关系。
+
+
+
+和前面几个例子不一样，在上例中我没有给出反汇编结果，直接画了个图说这个结构体的布局是这样的，那我有什么证据这么说呢？上例的反汇编结果比较繁琐，我们可以通过另一种手段得到这个结构体的内存布局。C语言还有一种类型叫联合体，用关键字\BookCode{union}定义，其语法类似于结构体，例如：
+
+
+\BookExampleTitle{联合体}\BookAnchor{db.ch19s04.id2779759}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch19s04/06.pv}{9}{28}
+
+
+一个联合体的各个成员占用相同的内存空间，联合体的长度等于其中最长成员的长度。比如\BookCode{u}这个联合体占8个字节，如果访问成员\BookCode{u.\BookSplit{}bitfield}，则把这8个字节看成一个由Bit-field组成的结构体，如果访问成员\BookCode{u.\BookSplit{}byte}，则把这8个字节看成一个数组。联合体如果用Initializer初始化，则只初始化它的第一个成员，例如\BookCode{demo\_\BookSplit{}type u =\BookSplit{} \{\{ 1,\BookSplit{} 5,\BookSplit{} 513,\BookSplit{} 17,\BookSplit{} 129,\BookSplit{} 0x81 \}\};\BookSplit{}}初始化的是\BookCode{u.\BookSplit{}bitfield}，但是通过\BookCode{u.\BookSplit{}bitfield}的成员看不出这8个字节的内存布局，而通过\BookCode{u.\BookSplit{}byte}数组就可以看出每个字节分别是多少了。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch19s04.id2779834}%
+
+
+1、编写一个程序，测试运行它的平台是大端还是小端字节序。
+
+\BookNav{\hyperlink{db.ch19s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19s05}{下一页}}
+
+
+% https://akaedu.github.io/book/ch19s05.html
+
+\section{C内联汇编}
+\BookAnchor{db.ch19s05}\BookAnchor{db.ch19s05.id2779851}%
+用C写程序比直接用汇编写程序更简洁，可读性更好，但效率可能不如汇编程序，因为C程序毕竟要经由编译器生成汇编代码，尽管现代编译器的优化已经做得很好了，但还是不如手写的汇编代码。另外，有些平台相关的指令必须手写，在C语言中没有等价的语法，因为C语言的语法和概念是对各种平台的抽象，而各种平台特有的一些东西就不会在C语言中出现了，例如x86是端口I/\BookSplit{}O，而C语言就没有这个概念，所以\BookCode{in/\BookSplit{}out}指令必须用汇编来写。
+
+
+
+C语言简洁易读，容易组织规模较大的代码，而汇编效率高，而且写一些特殊指令必须用汇编，为了把这两方面的好处都占全了，\BookCode{gcc}提供了一种扩展语法可以在C代码中使用内联汇编（Inline Assembly）\BookAnchor{db.ch19s05.id2779900}。最简单的格式是\BookCode{\_\BookSplit{}\_\BookSplit{}asm\_\BookSplit{}\_\BookSplit{}(\BookSplit{}\BookQuoteChar{}assembly code\BookSplit{}\BookQuoteChar{})\BookSplit{};\BookSplit{}}，例如\BookCode{\_\BookSplit{}\_\BookSplit{}asm\_\BookSplit{}\_\BookSplit{}(\BookSplit{}\BookQuoteChar{}nop\BookQuoteChar{})\BookSplit{};\BookSplit{}} ，\BookCode{nop} 这条指令什么都不做，只是让CPU空转一个指令执行周期。如果需要执行多条汇编指令，则应该用\BookCode{\textbackslash{}n\textbackslash{}t}将各条指令分隔开，例如：
+
+
+\BookPlain{code/ch19s05/01.txt}{5}{3}
+
+
+通常 C 代码中的内联汇编需要和C的变量建立关联，需要用到完整的内联汇编格式：
+
+
+\BookPlain{code/ch19s05/02.txt}{7}{5}
+
+
+这种格式由四部分组成，第一部分是汇编指令，和上面的例子一样，第二部分和第三部分是约束条件，第二部分指示汇编指令的运算结果要输出到哪些C操作数中，C操作数应该是左值表达式，第三部分指示汇编指令需要从哪些C操作数获得输入，第四部分是在汇编指令中被修改过的寄存器列表，指示编译器哪些寄存器的值在执行这条\BookCode{\_\BookSplit{}\_\BookSplit{}asm\_\BookSplit{}\_\BookSplit{}}语句时会改变。后三个部分都是可选的，如果有就填写，没有就空着只写个\BookCode{:\BookSplit{}}号。例如：
+
+
+\BookExampleTitle{内联汇编}\BookAnchor{db.ch19s05.id2779984}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch19s05/03.pv}{9}{15}
+
+
+这个程序将变量\BookCode{a}的值赋给\BookCode{b}。\BookCode{\BookQuoteChar{}r\BookQuoteChar{}(\BookSplit{}a)\BookSplit{}}指示编译器分配一个寄存器保存变量\BookCode{a}的值，作为汇编指令的输入，也就是指令中的\BookCode{\%1}（按照约束条件的顺序，\BookCode{b}对应\BookCode{\%0}，\BookCode{a}对应\BookCode{1\%}），至于\BookCode{\%1}究竟代表哪个寄存器则由编译器自己决定。汇编指令首先把\BookCode{\%1}所代表的寄存器的值传给\BookCode{eax}（为了和\BookCode{\%1}这种占位符区分，\BookCode{eax}前面要求加两个\BookCode{\%}号），然后把\BookCode{eax}的值再传给\BookCode{\%0}所代表的寄存器。\BookCode{\BookQuoteChar{}=\BookSplit{}r\BookQuoteChar{}(\BookSplit{}b)\BookSplit{}}就表示把\BookCode{\%0}所代表的寄存器的值输出给变量\BookCode{b}。在执行这两条指令的过程中，寄存器\BookCode{eax}的值被改变了，所以把\BookCode{\BookQuoteChar{}\%eax\BookQuoteChar{}}写在第四部分，告诉编译器在执行这条\BookCode{\_\BookSplit{}\_\BookSplit{}asm\_\BookSplit{}\_\BookSplit{}}语句时\BookCode{eax}要被改写，所以在此期间不要用\BookCode{eax}保存其它值。
+
+
+
+我们看一下这个程序的反汇编结果：
+
+
+\BookTerminal{code/ch19s05/04.txt}{9}{10}
+
+
+可见\BookCode{\%0}和\BookCode{\%1}都代表\BookCode{edx}寄存器，首先把变量\BookCode{a}（位于\BookCode{ebp-\BookSplit{}8}的位置）的值传给\BookCode{edx}然后执行内联汇编的两条指令，然后把\BookCode{edx}的值传给\BookCode{b}（位于\BookCode{ebp-\BookSplit{}12}的位置）。
+
+
+
+关于内联汇编就介绍这么多，本书不做深入讨论。
+
+\BookNav{\hyperlink{db.ch19s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19s06}{下一页}}
+
+
+% https://akaedu.github.io/book/ch19s06.html
+
+\section{volatile限定符}
+\BookAnchor{db.ch19s06}\BookAnchor{db.ch19s06.id2780234}%
+现在探讨一下编译器优化会对生成的指令产生什么影响，在此基础上介绍C语言的\BookCode{volatile}限定符。看下面的例子。
+
+
+\BookExampleTitle{volatile限定符}\BookAnchor{db.ch19s06.id2780254}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch19s06/01.pv}{9}{18}
+
+
+我们用\BookCode{recv}和\BookCode{send}这两个全局变量来模拟设备寄存器。假设某种平台采用内存映射I/\BookSplit{}O，串口发送寄存器和串口接收寄存器位于固定的内存地址，而\BookCode{recv}和\BookCode{send}这两个全局变量也有固定的内存地址，所以在这个例子中把它们假想成串口接收寄存器和串口发送寄存器。在\BookCode{main}函数中，首先从串口接收三个字节存到\BookCode{buf}中，然后把这三个字节取反，依次从串口发送出去\BookAnchor{db.ch19s06.id2780312}\footnote[31]{\BookAnchor{db.ch19s06.ftn.id2780312}\BookFootnoteBack{db.ch19s06.id2780312}实际的串口设备通常有一些标志位指示是否有数据到达以及是否可以发送下一个字节的数据，通常要先查询这些标志位再做读写操作，在这个例子中我们抓主要矛盾，忽略这些细节。}。我们查看这段代码的反汇编结果：
+
+
+\BookTerminal{code/ch19s06/02.txt}{9}{21}
+
+
+\BookCode{movz}指令把字长较短的值存到字长较长的存储单元中，存储单元的高位用0填充。该指令可以有\BookCode{b}（byte）、\BookCode{w}（word）、\BookCode{l}（long）三种后缀，分别表示单字节、两字节和四字节。比如\BookCode{movzbl 0x804a0\BookSplit{}19,\BookSplit{}\%eax}表示把地址0x804a019处的一个字节存到\BookCode{eax}寄存器中，而\BookCode{eax}寄存器是四字节的，高三字节用0填充，而下一条指令\BookCode{mov \%al,\BookSplit{}0x804a01a}中的\BookCode{al}寄存器正是\BookCode{eax}寄存器的低字节，把这个字节存到地址0x804a01a处的一个字节中。可以用不同的名字单独访问x86寄存器的低8位、次低8位、低16位或者完整的32位，以\BookCode{eax}为例，\BookCode{al}表示低8位，\BookCode{ah}表示次低8位，\BookCode{ax}表示低16位，如下图所示。
+
+
+\BookFigure{eax寄存器}{\BookImage{images/asmc.eax.png}{0.245}}{\BookAnchor{db.ch19s06.id2780453}}
+
+
+但如果指定优化选项\BookCode{-\BookSplit{}O}编译，反汇编的结果就不一样了：
+
+
+\BookTerminal{code/ch19s06/03.txt}{9}{16}
+
+
+前三条语句从串口接收三个字节，而编译生成的指令显然不符合我们的意图：只有第一条语句从内存地址0x804a019读一个字节到寄存器\BookCode{eax}中，然后从寄存器\BookCode{al}保存到\BookCode{buf[\BookSplit{}0]\BookSplit{}}，后两条语句就不再从内存地址0x804a019读取，而是直接把寄存器\BookCode{al}的值保存到\BookCode{buf[\BookSplit{}1]\BookSplit{}}和\BookCode{buf[\BookSplit{}2]\BookSplit{}}。后三条语句把\BookCode{buf}中的三个字节取反再发送到串口，编译生成的指令也不符合我们的意图：只有最后一条语句把\BookCode{eax}的值取反写到内存地址0x804a018了，前两条语句形同虚设，根本不生成指令。
+
+
+
+为什么编译器优化的结果会错呢？因为编译器并不知道0x804a018和0x804a019是设备寄存器的地址，把它们当成普通的内存单元了。如果是普通的内存单元，只要程序不去改写它，它就不会变，可以先把内存单元里的值读到寄存器缓存起来，以后每次用到这个值就直接从寄存器读取，这样效率更高，我们知道读寄存器远比读内存要快。另一方面，如果对一个普通的内存单元连续做三次写操作，只有最后一次的值会保存到内存单元中，所以前两次写操作是多余的，可以优化掉。访问设备寄存器的代码这样优化就错了，因为设备寄存器往往具有以下特性：
+
+
+\begin{itemize}
+
+\item 设备寄存器中的数据不需要改写就可以自己发生变化，每次读上来的值都可能不一样。
+
+\item 连续多次向设备寄存器中写数据并不是在做无用功，而是有特殊意义的。
+\end{itemize}
+
+
+用优化选项编译生成的指令明显效率更高，但使用不当会出错，为了避免编译器自作聪明，把不该优化的也优化了，程序员应该明确告诉编译器哪些内存单元的访问是不能优化的，在C语言中可以用\BookCode{volatile}限定符修饰变量，就是告诉编译器，即使在编译时指定了优化选项，每次读这个变量仍然要老老实实从内存读取，每次写这个变量也仍然要老老实实写回内存，不能省略任何步骤。我们把代码的开头几行改成：
+
+
+\BookSource{numbers=none}{code/ch19s06/04.pv}{5}{3}
+
+
+然后指定优化选项\BookCode{-\BookSplit{}O}编译，查看反汇编的结果：
+
+
+\BookTerminal{code/ch19s06/05.txt}{9}{18}
+
+
+确实每次读\BookCode{recv}都从内存地址0x804a019读取，每次写\BookCode{send}也都写到内存地址0x804a018了。值得注意的是，每次写\BookCode{send}并不需要取出\BookCode{buf}中的值，而是取出先前缓存在寄存器\BookCode{eax}、\BookCode{edx}、\BookCode{ecx}中的值，做取反运算然后写下去，这是因为\BookCode{buf}并没有用\BookCode{volatile}限定，读者可以试着在\BookCode{buf}的定义前面也加上\BookCode{volatile}，再优化编译，再查看反汇编的结果。
+
+
+
+\BookCode{gcc}的编译优化选项有\BookCode{-\BookSplit{}O0}、\BookCode{-\BookSplit{}O}、\BookCode{-\BookSplit{}O1}、\BookCode{-\BookSplit{}O2}、\BookCode{-\BookSplit{}O3}、\BookCode{-\BookSplit{}Os}几种。\BookCode{-\BookSplit{}O0}表示不优化，这是缺省的选项。\BookCode{-\BookSplit{}O1}、\BookCode{-\BookSplit{}O2}和\BookCode{-\BookSplit{}O3}这几个选项一个比一个优化得更多，编译时间也更长。\BookCode{-\BookSplit{}O}和\BookCode{-\BookSplit{}O1}相同。\BookCode{-\BookSplit{}Os}表示为缩小目标文件的尺寸而优化。具体每种选项做了哪些优化请参考\BookCode{gcc(\BookSplit{}1)\BookSplit{}}的Man Page。
+
+
+
+从上面的例子还可以看到，如果在编译时指定了优化选项，源代码和生成指令的次序可能无法对应，甚至有些源代码可能不对应任何指令，被彻底优化掉了。这一点在用\BookCode{gdb}做源码级调试时尤其需要注意（做指令级调试没关系），在为调试而编译时不要指定优化选项，否则可能无法一步步跟踪源代码的执行过程。
+
+
+
+有了\BookCode{volatile}限定符，是可以防止编译器优化对设备寄存器的访问，但是对于有Cache的平台，仅仅这样还不够，还是无法防止Cache优化对设备寄存器的访问。在访问普通的内存单元时，Cache对程序员是透明的，比如执行了\BookCode{movzbl 0x804a0\BookSplit{}19,\BookSplit{}\%eax}这样一条指令，我们并不知道\BookCode{eax}的值是真的从内存地址0x804a019读到的，还是从Cache中读到的，如果Cache已经缓存了这个地址的数据就从Cache读，如果Cache没有缓存就从内存读，这些步骤都是硬件自动做的，而不是用指令控制Cache去做的，程序员写的指令中只有寄存器、内存地址，而没有Cache，程序员甚至不需要知道Cache的存在。同样道理，如果执行了\BookCode{mov \%al,\BookSplit{}0x804a01a}这样一条指令，我们并不知道寄存器的值是真的写回内存了，还是只写到了Cache中，以后再由Cache写回内存，即使只写到了Cache中而暂时没有写回内存，下次读0x804a01a这个地址时仍然可以从Cache中读到上次写的数据。然而，在读写设备寄存器时Cache的存在就不容忽视了，如果串口发送和接收寄存器的内存地址被Cache缓存了会有什么问题呢？如下图所示。
+
+
+\BookFigure{串口发送和接收寄存器被Cache缓存会有什么问题}{\BookImage{images/asmc.nocache.png}{0.494}}{\BookAnchor{db.ch19s06.id2780881}}
+
+
+如果串口发送寄存器的地址被Cahce缓存，CPU执行单元对串口发送寄存器做写操作都写到Cache中去了，串口发送寄存器并没有及时得到数据，也就不能及时发送，CPU执行单元先后发出的1、2、3三个字节都会写到Cache中的同一个单元，最后Cache中只保存了第3个字节，如果这时Cache把数据写回到串口发送寄存器，只能把第3个字节发送出去，前两个字节就丢失了。与此类似，如果串口接收寄存器的地址被Cache缓存，CPU执行单元在读第1个字节时，Cache会从串口接收寄存器读上来缓存，然而串口接收寄存器后面收到的2、3两个字节Cache并不知道，因为Cache把串口接收寄存器当作普通内存单元，并且相信内存单元中的数据是不会自己变的，以后每次读串口接收寄存器时，Cache都会把缓存的第1个字节提供给CPU执行单元。
+
+
+
+通常，有Cache的平台都有办法对某一段地址范围禁用Cache，一般是在页表中设置的，可以设定哪些页面允许Cache缓存，哪些页面不允许Cache缓存，MMU不仅要做地址转换和访问权限检查，也要和Cache协同工作。
+
+
+
+除了设备寄存器需要用\BookCode{volatile}限定之外，当一个全局变量被同一进程中的多个控制流程访问时也要用\BookCode{volatile}限定，比如信号处理函数和多线程。
+
+\BookNav{\hyperlink{db.ch19s05}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch19}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch20}{下一页}}

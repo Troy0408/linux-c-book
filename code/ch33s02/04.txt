@@ -1,0 +1,5 @@
+$ ./a.out &
+[1] 7940
+$ kill -SIGSEGV 7940
+$（再次回车）
+[1]+  Segmentation fault      (core dumped) ./a.out

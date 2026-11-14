@@ -1,0 +1,4 @@
+(gdb) x 0x804a008
+0x804a008 <_GLOBAL_OFFSET_TABLE_+20>:	0xb803f47c
+(gdb) x 0xb803f47c
+0xb803f47c <push>:	0x53e58955

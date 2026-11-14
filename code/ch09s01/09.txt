@@ -1,0 +1,4 @@
+int␣foo(int␣a,␣int␣b)
+{
+       →语句列表
+}

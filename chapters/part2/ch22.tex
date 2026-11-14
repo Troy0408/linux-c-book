@@ -1,0 +1,707 @@
+
+% https://akaedu.github.io/book/ch22.html
+
+\chapter{Makefile基础}
+\BookAnchor{db.ch22}\BookAnchor{db.ch22.id2802831}%
+
+
+\BookNav{\hyperlink{db.ch21s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt02}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch22s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch22s01.html
+
+\section{基本规则}
+\BookAnchor{db.ch22s01}\BookAnchor{db.ch22s01.id2802840}%
+除了Hello World这种极简单的程序之外，一般的程序都是由多个源文件编译链接而成的，这些源文件的处理步骤通常用Makefile来管理。Makefile起什么作用呢？我们先看一个例子，这个例子由\hyperlink{db.ch12s03.id2750166}{例 12.\BookSplit{}3 “用深度优先搜索解迷宫问题”}改写而成：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch22s01/01.pv}{9}{59}
+
+
+我们把堆栈和迷宫的代码分别转移到模块\BookCode{stack.\BookSplit{}c}和\BookCode{maze.\BookSplit{}c}中，\BookCode{main.\BookSplit{}c}包含它们提供的头文件\BookCode{stack.\BookSplit{}h}和\BookCode{maze.\BookSplit{}h}。
+
+
+\BookSource{numbers=none}{code/ch22s01/02.pv}{9}{10}
+
+
+在\BookCode{main.\BookSplit{}h}中定义了一个类型和两个常量，\BookCode{main.\BookSplit{}c}、\BookCode{stack.\BookSplit{}c}和\BookCode{maze.\BookSplit{}c}都要用到这些定义，都要包含这个头文件。
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch22s01/03.pv}{9}{20}
+
+\BookSource{numbers=none}{code/ch22s01/04.pv}{9}{11}
+
+
+\hyperlink{db.ch12s03.id2750166}{例 12.\BookSplit{}3 “用深度优先搜索解迷宫问题”}中的堆栈规定死了只能放\BookCode{char}型数据，现在我们做进一步抽象，堆栈中放\BookCode{item\_\BookSplit{}t}类型的数据，\BookCode{item\_\BookSplit{}t}可以定义为任意类型，只要它能够通过函数的参数和返回值传递并且支持赋值操作就行。这也是一种避免硬编码的策略，\BookCode{stack.\BookSplit{}c}中多次使用\BookCode{item\_\BookSplit{}t}类型，要改变它的定义只需改变\BookCode{main.\BookSplit{}h}中的一行代码。
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch22s01/05.pv}{9}{22}
+
+\BookSource{numbers=none}{code/ch22s01/06.pv}{9}{10}
+
+
+\BookCode{maze.\BookSplit{}c}中定义了一个\BookCode{maze}数组和一个\BookCode{print\_\BookSplit{}maze}函数，需要在头文件\BookCode{maze.\BookSplit{}h}中声明，以便提供给\BookCode{main.\BookSplit{}c}使用，注意\BookCode{print\_\BookSplit{}maze}的声明可以不加\BookCode{extern}，而\BookCode{maze}的声明必须加\BookCode{extern}。
+
+
+
+这些源文件可以这样编译：
+
+
+\BookTerminal{code/ch22s01/07.txt}{3}{1}
+
+
+但这不是个好办法，如果编译之后又对\BookCode{maze.\BookSplit{}c}做了修改，又要把所有源文件编译一遍，即使\BookCode{main.\BookSplit{}c}、\BookCode{stack.\BookSplit{}c}和那些头文件都没有修改也要跟着重新编译。一个大型的软件项目往往由上千个源文件组成，全部编译一遍需要几个小时，只改一个源文件就要求全部重新编译肯定是不合理的。
+
+
+
+这样编译也许更好一些：
+
+
+\BookTerminal{code/ch22s01/08.txt}{6}{4}
+
+
+如果编译之后又对\BookCode{maze.\BookSplit{}c}做了修改，要重新编译只需要做两步：
+
+
+\BookTerminal{code/ch22s01/09.txt}{4}{2}
+
+
+这样又有一个问题，每次编译敲的命令都不一样，很容易出错，比如我修改了三个源文件，可能有一个忘了重新编译，结果编译完了修改没生效，运行时出了Bug还满世界找原因呢。更复杂的问题是，假如我改了\BookCode{main.\BookSplit{}h}怎么办？所有包含\BookCode{main.\BookSplit{}h}的源文件都需要重新编译，我得挨个找哪些源文件包含了\BookCode{main.\BookSplit{}h}，有的还很不明显，例如\BookCode{stack.\BookSplit{}c}包含了\BookCode{stack.\BookSplit{}h}，而后者包含了\BookCode{main.\BookSplit{}h}。可见手动处理这些问题非常容易出错，那有没有自动的解决办法呢？有，就是写一个\BookCode{Makefile}文件和源代码放在同一个目录下：
+
+
+\BookSource{numbers=none}{code/ch22s01/10.pv}{9}{11}
+
+
+然后在这个目录下运行\BookCode{make}编译：
+
+
+\BookTerminal{code/ch22s01/11.txt}{7}{5}
+
+
+\BookCode{make}命令会自动读取当前目录下的\BookCode{Makefile}文件\BookAnchor{db.ch22s01.id2803212}\footnote[33]{\BookAnchor{db.ch22s01.ftn.id2803212}\BookFootnoteBack{db.ch22s01.id2803212}只要符合本章所描述的语法的文件我们都叫它Makefile，而它的文件名则不一定是\BookCode{Makefile}。事实上，执行\BookCode{make}命令时，是按照\BookCode{GNUmakefile}、\BookCode{makefile}、\BookCode{Makefile}的顺序找到第一个存在的文件并执行它，不过还是建议使用\BookCode{Makefile}做文件名。除了GNU \BookCode{make}，有些UNIX系统的\BookCode{make}命令不是GNU \BookCode{make}，不会查找\BookCode{GNUmakefile}这个文件名，如果你写的Makefile包含GNU \BookCode{make}的特殊语法，可以起名为\BookCode{GNUmakefile}，否则不建议用这个文件名。}，完成相应的编译步骤。Makefile由一组规则（Rule）\BookAnchor{db.ch22s01.id2803294}组成，每条规则的格式是：
+
+
+\BookPlain{code/ch22s01/12.txt}{7}{5}
+
+
+例如：
+
+
+\BookSource{numbers=none}{code/ch22s01/13.pv}{4}{2}
+
+
+\BookCode{main}是这条规则的目标（Target）\BookAnchor{db.ch22s01.id2803323}，\BookCode{main.\BookSplit{}o}、\BookCode{stack.\BookSplit{}o}和\BookCode{maze.\BookSplit{}o}是这条规则的条件（Prerequisite）\BookAnchor{db.ch22s01.id2803348}。目标和条件之间的关系是：\emph{欲更新目标，必须首先更新它的所有条件；所有条件中只要有一个条件被更新了，目标也必须随之被更新}。所谓“更新”就是执行一遍规则中的命令列表，命令列表中的每条命令必须以一个Tab开头，注意不能是空格，Makefile的格式不像C语言的缩进那么随意，对于Makefile中的每个以Tab开头的命令，\BookCode{make}会创建一个Shell进程去执行它。
+
+
+
+对于上面这个例子，\BookCode{make}执行如下步骤：
+
+
+\begin{enumerate}
+
+\item 尝试更新Makefile中第一条规则的目标\BookCode{main}，第一条规则的目标称为缺省目标，只要缺省目标更新了就算完成任务了，其它工作都是为这个目的而做的。由于我们是第一次编译，\BookCode{main}文件还没生成，显然需要更新，但规则说必须先更新了\BookCode{main.\BookSplit{}o}、\BookCode{stack.\BookSplit{}o}和\BookCode{maze.\BookSplit{}o}这三个条件，然后才能更新\BookCode{main}。
+
+\item 所以\BookCode{make}会进一步查找以这三个条件为目标的规则，这些目标文件也没有生成，也需要更新，所以执行相应的命令（\BookCode{gcc -\BookSplit{}c main.\BookSplit{}c}、\BookCode{gcc -\BookSplit{}c stack.\BookSplit{}c}和\BookCode{gcc -\BookSplit{}c maze.\BookSplit{}c}）更新它们。
+
+\item 最后执行\BookCode{gcc main.\BookSplit{}o stack.\BookSplit{}o maze.\BookSplit{}o -\BookSplit{}o main}更新\BookCode{main}。
+\end{enumerate}
+
+
+如果没有做任何改动，再次运行\BookCode{make}：
+
+
+\BookTerminal{code/ch22s01/14.txt}{4}{2}
+
+
+\BookCode{make}会提示缺省目标已经是最新的了，不需要执行任何命令更新它。再做个实验，如果修改了\BookCode{maze.\BookSplit{}h}（比如加个无关痛痒的空格）再运行\BookCode{make}：
+
+
+\BookTerminal{code/ch22s01/15.txt}{6}{4}
+
+
+\BookCode{make}会自动选择那些受影响的源文件重新编译，不受影响的源文件则不重新编译，这是怎么做到的呢？
+
+
+\begin{enumerate}
+
+\item \BookCode{make}仍然尝试更新缺省目标，首先检查目标\BookCode{main}是否需要更新，这就要检查三个条件\BookCode{main.\BookSplit{}o}、\BookCode{stack.\BookSplit{}o}和\BookCode{maze.\BookSplit{}o}是否需要更新。
+
+\item \BookCode{make}会进一步查找以这三个条件为目标的规则，然后发现\BookCode{main.\BookSplit{}o}和\BookCode{maze.\BookSplit{}o}需要更新，因为它们都有一个条件是\BookCode{maze.\BookSplit{}h}，而这个文件的修改时间比\BookCode{main.\BookSplit{}o}和\BookCode{maze.\BookSplit{}o}晚，所以执行相应的命令更新\BookCode{main.\BookSplit{}o}和\BookCode{maze.\BookSplit{}o}。
+
+\item 既然\BookCode{main}的三个条件中有两个被更新过了，那么\BookCode{main}也需要更新，所以执行命令\BookCode{gcc main.\BookSplit{}o stack.\BookSplit{}o maze.\BookSplit{}o -\BookSplit{}o main}更新\BookCode{main}。
+\end{enumerate}
+
+
+现在总结一下Makefile的规则，请读者结合上面的例子理解。如果一条规则的目标属于以下情况之一，就称为需要更新：
+
+
+\begin{itemize}
+
+\item 目标没有生成。
+
+\item 某个条件需要更新。
+
+\item 某个条件的修改时间比目标晚。
+\end{itemize}
+
+
+在一条规则被执行之前，规则的条件可能处于以下三种状态之一：
+
+
+\begin{itemize}
+
+\item 需要更新。能够找到以该条件为目标的规则，并且该规则中目标需要更新。
+
+\item 不需要更新。能够找到以该条件为目标的规则，但是该规则中目标不需要更新；或者不能找到以该条件为目标的规则，并且该条件已经生成。
+
+\item 错误。不能找到以该条件为目标的规则，并且该条件没有生成。
+\end{itemize}
+
+
+执行一条规则A的步骤如下：
+
+
+\begin{enumerate}
+
+\item 检查它的每个条件P：
+
+
+\begin{itemize}
+
+\item 如果P需要更新，就执行以P为目标的规则B。之后，无论是否生成文件P，都认为P已被更新。
+
+\item 如果找不到规则B，并且文件P已存在，表示P不需要更新。
+
+\item 如果找不到规则B，并且文件P不存在，则报错退出。
+\end{itemize}
+
+\item 在检查完规则A的所有条件后，检查它的目标T，如果属于以下情况之一，就执行它的命令列表：
+
+
+\begin{itemize}
+
+\item 文件T不存在。
+
+\item 文件T存在，但是某个条件的修改时间比它晚。
+
+\item 某个条件P已被更新（并不一定生成文件P）。
+\end{itemize}
+\end{enumerate}
+
+
+通常Makefile都会有一个\BookCode{clean}规则，用于清除编译过程中产生的二进制文件，保留源文件：
+
+
+\BookSource{numbers=none}{code/ch22s01/16.pv}{6}{4}
+
+
+把这条规则添加到我们的Makefile末尾，然后执行这条规则：
+
+
+\BookTerminal{code/ch22s01/17.txt}{6}{4}
+
+
+如果在\BookCode{make}的命令行中指定一个目标（例如\BookCode{clean}），则更新这个目标，如果不指定目标则更新Makefile中第一条规则的目标（缺省目标）。
+
+
+
+和前面介绍的规则不同，\BookCode{clean}目标不依赖于任何条件，并且执行它的命令列表不会生成\BookCode{clean}这个文件，刚才说过，只要执行了命令列表就算更新了目标，即使目标并没有生成也算。在这个例子还演示了命令前面加\BookCode{@\BookSplit{}}和\BookCode{-\BookSplit{}}字符的效果：如果\BookCode{make}执行的命令前面加了\BookCode{@\BookSplit{}}字符，则不显示命令本身而只显示它的结果；通常\BookCode{make}执行的命令如果出错（该命令的退出状态非0）就立刻终止，不再执行后续命令，但如果命令前面加了\BookCode{-\BookSplit{}}号，即使这条命令出错，\BookCode{make}也会继续执行后续命令。通常\BookCode{rm}命令和\BookCode{mkdir}命令前面要加\BookCode{-\BookSplit{}}号，因为\BookCode{rm}要删除的文件可能不存在，\BookCode{mkdir}要创建的目录可能已存在，这两个命令都有可能出错，但这种错误是应该忽略的。例如上面已经执行过一遍\BookCode{make clean}，再执行一遍就没有文件可删了，这时\BookCode{rm}会报错，但\BookCode{make}忽略这一错误，继续执行后面的\BookCode{echo}命令：
+
+
+\BookTerminal{code/ch22s01/18.txt}{9}{7}
+
+
+读者可以把命令前面的\BookCode{@\BookSplit{}}和\BookCode{-\BookSplit{}}去掉再试试，对比一下结果有何不同。这里还有一个问题，如果当前目录下存在一个文件叫\BookCode{clean}会怎么样呢？
+
+
+\BookTerminal{code/ch22s01/19.txt}{5}{3}
+
+
+如果存在\BookCode{clean}这个文件，\BookCode{clean}目标又不依赖于任何条件，\BookCode{make}就认为它不需要更新了。而我们希望把\BookCode{clean}当作一个特殊的名字使用，不管它存在不存在都要更新，可以添一条特殊规则，把\BookCode{clean}声明为一个伪目标：
+
+
+\BookPlain{code/ch22s01/20.txt}{3}{1}
+
+
+这条规则没有命令列表。类似\BookCode{.\BookSplit{}PHONY}这种\BookCode{make}内建的特殊目标还有很多，各有不同的用途，详见\hyperlink{db.bi01.bibli.make}{[GNUmake]}。在C语言中要求变量和函数先声明后使用，而Makefile不太一样，这条规则写在\BookCode{clean:\BookSplit{}}规则的后面也行，也能起到声明\BookCode{clean}是伪目标的作用：
+
+
+\BookSource{numbers=none}{code/ch22s01/21.pv}{8}{6}
+
+
+当然写在前面也行。\BookCode{gcc}处理一个C程序分为预处理和编译两个阶段，类似地，\BookCode{make}处理Makefile的过程也分为两个阶段：
+
+
+\begin{enumerate}
+
+\item 首先从前到后读取所有规则，建立起一个完整的依赖关系图，例如：
+
+
+\BookFigure{Makefile的依赖关系图}{\BookImage{images/make.graph.png}{0.491}}{\BookAnchor{db.ch22s01.id2804097}}
+
+\item 然后从缺省目标或者命令行指定的目标开始，根据依赖关系图选择适当的规则执行，执行Makefile中的规则和执行C代码不一样，并不是从前到后按顺序执行，也不是所有规则都要执行一遍，例如\BookCode{make}缺省目标时不会更新\BookCode{clean}目标，因为从上图可以看出，它跟缺省目标没有任何依赖关系。
+\end{enumerate}
+
+
+\BookCode{clean}目标是一个约定俗成的名字，在所有软件项目的Makefile中都表示清除编译生成的文件，类似这样的约定俗成的目标名字有：
+
+
+\begin{itemize}
+
+\item \BookCode{all}，执行主要的编译工作，通常用作缺省目标。
+
+\item \BookCode{install}，执行编译后的安装工作，把可执行文件、配置文件、文档等分别拷到不同的安装目录。
+
+\item \BookCode{clean}，删除编译生成的二进制文件。
+
+\item \BookCode{distclean}，不仅删除编译生成的二进制文件，也删除其它生成的文件，例如配置文件和格式转换后的文档，执行\BookCode{make distclean}之后应该清除所有这些文件，只留下源文件。
+\end{itemize}
+
+\BookNav{\hyperlink{db.ch22}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch22}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch22s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch22s02.html
+
+\section{隐含规则和模式规则}
+\BookAnchor{db.ch22s02}\BookAnchor{db.ch22s02.id2804203}%
+上一节的Makefile写得中规中矩，比较繁琐，是为了讲清楚基本概念，其实Makefile有很多灵活的写法，可以写得更简洁，同时减少出错的可能。本节我们来看看这样一个例子还有哪些改进的余地。
+
+
+
+一个目标依赖的所有条件不一定非得写在一条规则中，也可以拆开写，例如：
+
+
+\BookSource{numbers=none}{code/ch22s02/01.pv}{6}{4}
+
+
+就相当于：
+
+
+\BookSource{numbers=none}{code/ch22s02/02.pv}{4}{2}
+
+
+如果一个目标拆开写多条规则，其中只有一条规则允许有命令列表，其它规则应该没有命令列表，否则\BookCode{make}会报警告并且采用最后一条规则的命令列表。
+
+
+
+这样我们的例子可以改写成：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch22s02/03.pv}{9}{20}
+
+
+这不是比原来更繁琐了吗？现在可以把提出来的三条规则删去，写成：
+
+
+\BookSource{numbers=none}{code/ch22s02/04.pv}{9}{11}
+
+
+这就比原来简单多了。可是现在\BookCode{main.\BookSplit{}o}、\BookCode{stack.\BookSplit{}o}和\BookCode{maze.\BookSplit{}o}这三个目标连编译命令都没有了，怎么编译的呢？试试看：
+
+
+\BookTerminal{code/ch22s02/05.txt}{7}{5}
+
+
+现在解释一下前三条编译命令是怎么来。如果一个目标在Makefile中的所有规则都没有命令列表，\BookCode{make}会尝试在内建的隐含规则（Implicit Rule）\BookAnchor{db.ch22s02.id2804308}数据库中查找适用的规则。\BookCode{make}的隐含规则数据库可以用\BookCode{make -\BookSplit{}p}命令打印，打印出来的格式也是Makefile的格式，包括很多变量和规则，其中和我们这个例子有关的隐含规则有：
+
+
+\BookTerminal{code/ch22s02/06.txt}{9}{12}
+
+
+\BookCode{\#}号在Makefile中表示单行注释，就像C语言的\BookCode{/\BookSplit{}/\BookSplit{}}注释一样。\BookCode{CC}是一个Makefile变量，用\BookCode{CC =\BookSplit{} cc}定义和赋值，用\BookCode{\$(\BookSplit{}CC)\BookSplit{}}取它的值，其值应该是\BookCode{cc}。Makefile变量像C的宏定义一样，代表一串字符，在取值的地方展开。\BookCode{cc}是一个符号链接，通常指向\BookCode{gcc}，在有些UNIX系统上可能指向另外一种C编译器。
+
+
+\BookTerminal{code/ch22s02/07.txt}{8}{6}
+
+
+\BookCode{CFLAGS}这个变量没有定义，\BookCode{\$(\BookSplit{}CFLAGS)\BookSplit{}}展开是空，\BookCode{CPPFLAGS}和\BookCode{TARGET\_\BookSplit{}ARCH}也是如此。这样\BookCode{\$(\BookSplit{}COMPILE.\BookSplit{}c)\BookSplit{}}展开应该是\BookCode{cc\BookSymbol{␣}空\BookSymbol{␣}空\BookSymbol{␣}空\BookSymbol{␣}-\BookSplit{}c}，去掉所有的“空”得到\BookCode{cc\BookSymbol{␣}\BookSymbol{␣}\BookSymbol{␣}\BookSymbol{␣}-\BookSplit{}c}，注意中间留下4个空格，所以\BookCode{\%.\BookSplit{}o:\BookSplit{} \%.\BookSplit{}c}规则的命令\BookCode{\$(\BookSplit{}COMPILE.\BookSplit{}c)\BookSplit{}\BookSymbol{␣}\$(\BookSplit{}OUTPUT\_\BookSplit{}OPTION)\BookSplit{}\BookSymbol{␣}\$\textless{}}展开之后是\BookCode{cc\BookSymbol{␣}\BookSymbol{␣}\BookSymbol{␣}\BookSymbol{␣}-\BookSplit{}c\BookSymbol{␣}-\BookSplit{}o\BookSymbol{␣}\$@\BookSplit{}\BookSymbol{␣}\$\textless{}}，和上面的编译命令已经很接近了。
+
+
+
+\BookCode{\$@\BookSplit{}}和\BookCode{\$\textless{}}是两个特殊的变量，\BookCode{\$@\BookSplit{}}的取值为规则中的目标，\BookCode{\$\textless{}}的取值为规则中的第一个条件。\BookCode{\%.\BookSplit{}o:\BookSplit{} \%.\BookSplit{}c}是一种特殊的规则，称为模式规则（Pattern Rule）\BookAnchor{db.ch22s02.id2804506}。现在回顾一下整个过程，在我们的Makefile中以\BookCode{main.\BookSplit{}o}为目标的规则都没有命令列表，所以\BookCode{make}会查找隐含规则，发现隐含规则中有这样一条模式规则适用，\BookCode{main.\BookSplit{}o}符合\BookCode{\%.\BookSplit{}o}的模式，现在\BookCode{\%}就代表\BookCode{main}（称为\BookCode{main.\BookSplit{}o}这个名字的Stem\BookAnchor{db.ch22s02.id2804558}），再替换到\BookCode{\%.\BookSplit{}c}中就是\BookCode{main.\BookSplit{}c}。所以这条模式规则相当于：
+
+
+\BookSource{numbers=none}{code/ch22s02/08.pv}{4}{2}
+
+
+随后，在处理\BookCode{stack.\BookSplit{}o}目标时又用到这条模式规则，这时又相当于：
+
+
+\BookSource{numbers=none}{code/ch22s02/09.pv}{4}{2}
+
+
+\BookCode{maze.\BookSplit{}o}也同样处理。这三条规则可以由\BookCode{make}的隐含规则推导出来，所以不必写在Makefile中。
+
+
+
+先前我们写Makefile都是以目标为中心，一个目标依赖于若干条件，现在换个角度，以条件为中心，Makefile还可以这么写：
+
+
+\BookSource{numbers=none}{code/ch22s02/10.pv}{9}{11}
+
+
+我们知道，写规则的目的是让\BookCode{make}建立依赖关系图，不管怎么写，只要把所有的依赖关系都描述清楚了就行。对于多目标的规则，\BookCode{make}会拆成几条单目标的规则来处理，例如
+
+
+\BookPlain{code/ch22s02/11.txt}{4}{2}
+
+
+这样一条规则相当于：
+
+
+\BookSource{numbers=none}{code/ch22s02/12.pv}{7}{5}
+
+
+注意两条规则的命令列表是一样的，但\BookCode{\$@\BookSplit{}}的取值不同。
+
+\BookNav{\hyperlink{db.ch22s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch22}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch22s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch22s03.html
+
+\section{变量}
+\BookAnchor{db.ch22s03}\BookAnchor{db.ch22s03.id2804672}%
+这一节我们详细看看Makefile中关于变量的语法规则。先看一个简单的例子：
+
+
+\BookSource{numbers=none}{code/ch22s03/01.pv}{7}{5}
+
+
+我们执行\BookCode{make}将会打出\BookCode{Huh?}。当\BookCode{make}读到\BookCode{foo =\BookSplit{} \$(\BookSplit{}bar)\BookSplit{}}时，确定\BookCode{foo}的值是\BookCode{\$(\BookSplit{}bar)\BookSplit{}}，但并不立即展开\BookCode{\$(\BookSplit{}bar)\BookSplit{}}，然后读到\BookCode{bar =\BookSplit{} Huh?}，确定\BookCode{bar}的值是\BookCode{Huh?}，然后在执行规则\BookCode{all:\BookSplit{}}的命令列表时才需要展开\BookCode{\$(\BookSplit{}foo)\BookSplit{}}，得到\BookCode{\$(\BookSplit{}bar)\BookSplit{}}，再展开\BookCode{\$(\BookSplit{}bar)\BookSplit{}}，得到\BookCode{Huh?}。因此，虽然\BookCode{bar}的定义写在\BookCode{foo}之后，\BookCode{\$(\BookSplit{}foo)\BookSplit{}}展开还是能够取到\BookCode{\$(\BookSplit{}bar)\BookSplit{}}的值。
+
+
+
+这种特性有好处也有坏处。好处是我们可以把变量的值推迟到后面定义，例如：
+
+
+\BookSource{numbers=none}{code/ch22s03/02.pv}{8}{6}
+
+
+编译命令可以展开成\BookCode{gcc -\BookSplit{}O -\BookSplit{}g -\BookSplit{}Iinclude -\BookSplit{}c main.\BookSplit{}c}。通常把\BookCode{CFLAGS}定义成一些编译选项，例如\BookCode{-\BookSplit{}O}、\BookCode{-\BookSplit{}g}等，而把\BookCode{CPPFLAGS}定义成一些预处理选项，例如\BookCode{-\BookSplit{}D}、\BookCode{-\BookSplit{}I}等。用\BookCode{=\BookSplit{}}号定义变量的延迟展开特性也有坏处，就是有可能写出无穷递归的定义，例如\BookCode{CFLAGS =\BookSplit{} \$(\BookSplit{}CFLAGS)\BookSplit{} -\BookSplit{}O}，或者：
+
+
+\BookPlain{code/ch22s03/03.txt}{4}{2}
+
+
+当然，\BookCode{make}有能力检测出这样的错误而不会陷入死循环。有时候我们希望\BookCode{make}在遇到变量定义时立即展开，可以用\BookCode{:\BookSplit{}=\BookSplit{}}运算符，例如：
+
+
+\BookSource{numbers=none}{code/ch22s03/04.pv}{7}{5}
+
+
+当\BookCode{make}读到\BookCode{y :\BookSplit{}=\BookSplit{} \$(\BookSplit{}x)\BookSplit{} bar}定义时，立即把\BookCode{\$(\BookSplit{}x)\BookSplit{}}展开，使变量\BookCode{y}的取值是\BookCode{foo bar}，如果把这两行颠倒过来：
+
+
+\BookPlain{code/ch22s03/05.txt}{4}{2}
+
+
+那么当\BookCode{make}读到\BookCode{y :\BookSplit{}=\BookSplit{} \$(\BookSplit{}x)\BookSplit{} bar}时，\BookCode{x}还没有定义，展开为空值，所以\BookCode{y}的取值是\BookCode{\BookSymbol{␣}bar}，注意\BookCode{bar}前面有个空格。一个变量的定义从\BookCode{=\BookSplit{}}后面的第一个非空白字符开始（从\BookCode{\$(\BookSplit{}x)\BookSplit{}}的\BookCode{\$}开始），包括后面的所有字符，直到注释或换行之前结束。如果要定义一个变量的值是一个空格，可以这样：
+
+
+\BookPlain{code/ch22s03/06.txt}{4}{2}
+
+
+\BookCode{nullstring}的值为空，\BookCode{space}的值是一个空格，后面写个注释是为了增加可读性，如果不写注释就换行，则很难看出\BookCode{\$(\BookSplit{}nullstring)\BookSplit{}}后面有个空格。
+
+
+
+还有一个比较有用的赋值运算符是\BookCode{?=\BookSplit{}}，例如\BookCode{foo ?=\BookSplit{} \$(\BookSplit{}bar)\BookSplit{}}的意思是：如果\BookCode{foo}没有定义过，那么\BookCode{?=\BookSplit{}}相当于\BookCode{=\BookSplit{}}，定义\BookCode{foo}的值是\BookCode{\$(\BookSplit{}bar)\BookSplit{}}，但不立即展开；如果先前已经定义了\BookCode{foo}，则什么也不做，不会给\BookCode{foo}重新赋值。
+
+
+
+\BookCode{+\BookSplit{}=\BookSplit{}}运算符可以给变量追加值，例如：
+
+
+\BookPlain{code/ch22s03/07.txt}{5}{3}
+
+
+\BookCode{object}是用\BookCode{=\BookSplit{}}定义的，\BookCode{+\BookSplit{}=\BookSplit{}}仍然保持\BookCode{=\BookSplit{}}的特性，\BookCode{objects}的值是\BookCode{main.\BookSplit{}o \$(\BookSplit{}foo)\BookSplit{}}（注意\BookCode{\$(\BookSplit{}foo)\BookSplit{}}前面自动添一个空格），但不立即展开，等到后面需要展开\BookCode{\$(\BookSplit{}objects)\BookSplit{}}时会展开成\BookCode{main.\BookSplit{}o foo.\BookSplit{}o bar.\BookSplit{}o}。
+
+
+
+再比如：
+
+
+\BookPlain{code/ch22s03/08.txt}{5}{3}
+
+
+\BookCode{object}是用\BookCode{:\BookSplit{}=\BookSplit{}}定义的，\BookCode{+\BookSplit{}=\BookSplit{}}保持\BookCode{:\BookSplit{}=\BookSplit{}}的特性，\BookCode{objects}的值是\BookCode{main.\BookSplit{}o \$(\BookSplit{}foo)\BookSplit{}}，立即展开得到\BookCode{main.\BookSplit{}o}（这时\BookCode{foo}还没定义），注意\BookCode{main.\BookSplit{}o}后面的空格仍保留。
+
+
+
+如果变量还没有定义过就直接用\BookCode{+\BookSplit{}=\BookSplit{}}赋值，那么\BookCode{+\BookSplit{}=\BookSplit{}}相当于\BookCode{=\BookSplit{}}。
+
+
+
+上一节我们用到了特殊变量\BookCode{\$@\BookSplit{}}和\BookCode{\$\textless{}}，这两个变量的特点是不需要给它们赋值，在不同的上下文中它们自动取不同的值。常用的特殊变量有：
+
+
+\begin{itemize}
+
+\item \BookCode{\$@\BookSplit{}}，表示规则中的目标。
+
+\item \BookCode{\$\textless{}}，表示规则中的第一个条件。
+
+\item \BookCode{\$?}，表示规则中所有比目标新的条件，组成一个列表，以空格分隔。
+
+\item \BookCode{\$\textasciicircum{}}，表示规则中的所有条件，组成一个列表，以空格分隔。
+\end{itemize}
+
+
+例如前面写过的这条规则：
+
+
+\BookSource{numbers=none}{code/ch22s03/09.pv}{4}{2}
+
+
+可以改写成：
+
+
+\BookSource{numbers=none}{code/ch22s03/10.pv}{4}{2}
+
+
+这样即使以后又往条件里添加了新的目标文件，编译命令也不需要修改，减少了出错的可能。
+
+
+
+\BookCode{\$?}变量也很有用，有时候希望只对更新过的条件进行操作，例如有一个库文件\BookCode{libsome.\BookSplit{}a}依赖于几个目标文件：
+
+
+\BookSource{numbers=none}{code/ch22s03/11.pv}{5}{3}
+
+
+这样，只有更新过的目标文件才需要重新打包到\BookCode{libsome.\BookSplit{}a}中，没更新过的目标文件原本已经在\BookCode{libsome.\BookSplit{}a}中了，不必重新打包。
+
+
+
+在上一节我们看到\BookCode{make}的隐含规则数据库中用到了很多变量，有些变量没有定义（例如\BookCode{CFLAGS}），有些变量定义了缺省值（例如\BookCode{CC}），我们写Makefile时可以重新定义这些变量的值，也可以在缺省值的基础上追加。以下列举一些常用的变量，请读者体会其中的规律。
+
+
+\begin{description}
+\item[{\BookCode{AR}}]
+
+
+静态库打包命令的名字，缺省值是\BookCode{ar}。
+
+\item[{\BookCode{ARFLAGS}}]
+
+
+静态库打包命令的选项，缺省值是\BookCode{rv}。
+
+\item[{\BookCode{AS}}]
+
+
+汇编器的名字，缺省值是\BookCode{as}。
+
+\item[{\BookCode{ASFLAGS}}]
+
+
+汇编器的选项，没有定义。
+
+\item[{CC}]
+
+
+C编译器的名字，缺省值是\BookCode{cc}。
+
+\item[{CFLAGS}]
+
+
+C编译器的选项，没有定义。
+
+\item[{CXX}]
+
+
+C+\BookSplit{}+\BookSplit{}编译器的名字，缺省值是\BookCode{g+\BookSplit{}+\BookSplit{}}。
+
+\item[{CXXFLAGS}]
+
+
+C+\BookSplit{}+\BookSplit{}编译器的选项，没有定义。
+
+\item[{CPP}]
+
+
+C预处理器的名字，缺省值是\BookCode{\$(\BookSplit{}CC)\BookSplit{} -\BookSplit{}E}。
+
+\item[{CPPFLAGS}]
+
+
+C预处理器的选项，没有定义。
+
+\item[{LD}]
+
+
+链接器的名字，缺省值是\BookCode{ld}。
+
+\item[{LDFLAGS}]
+
+
+链接器的选项，没有定义。
+
+\item[{TARGET\_\BookSplit{}ARCH}]
+
+
+和目标平台相关的命令行选项，没有定义。
+
+\item[{OUTPUT\_\BookSplit{}OPTION}]
+
+
+输出的命令行选项，缺省值是\BookCode{-\BookSplit{}o \$@\BookSplit{}}。
+
+\item[{LINK.\BookSplit{}o}]
+
+
+把\BookCode{.\BookSplit{}o}文件链接在一起的命令行，缺省值是\BookCode{\$(\BookSplit{}CC)\BookSplit{} \$(\BookSplit{}LDFLAGS)\BookSplit{} \$(\BookSplit{}TARGET\_\BookSplit{}ARCH)\BookSplit{}}。
+
+\item[{LINK.\BookSplit{}c}]
+
+
+把\BookCode{.\BookSplit{}c}文件链接在一起的命令行，缺省值是\BookCode{\$(\BookSplit{}CC)\BookSplit{} \$(\BookSplit{}CFLAGS)\BookSplit{} \$(\BookSplit{}CPPFLAGS)\BookSplit{} \$(\BookSplit{}LDFLAGS)\BookSplit{} \$(\BookSplit{}TARGET\_\BookSplit{}ARCH)\BookSplit{}}。
+
+\item[{LINK.\BookSplit{}cc}]
+
+
+把\BookCode{.\BookSplit{}cc}文件（C+\BookSplit{}+\BookSplit{}源文件）链接在一起的命令行，缺省值是\BookCode{\$(\BookSplit{}CXX)\BookSplit{} \$(\BookSplit{}CXXFLAGS)\BookSplit{} \$(\BookSplit{}CPPFLAGS)\BookSplit{} \$(\BookSplit{}LDFLAGS)\BookSplit{} \$(\BookSplit{}TARGET\_\BookSplit{}ARCH)\BookSplit{}}。
+
+\item[{COMPILE.\BookSplit{}c}]
+
+
+编译\BookCode{.\BookSplit{}c}文件的命令行，缺省值是\BookCode{\$(\BookSplit{}CC)\BookSplit{} \$(\BookSplit{}CFLAGS)\BookSplit{} \$(\BookSplit{}CPPFLAGS)\BookSplit{} \$(\BookSplit{}TARGET\_\BookSplit{}ARCH)\BookSplit{} -\BookSplit{}c}。
+
+\item[{COMPILE.\BookSplit{}cc}]
+
+
+编译\BookCode{.\BookSplit{}cc}文件的命令行，缺省值是\BookCode{\$(\BookSplit{}CXX)\BookSplit{} \$(\BookSplit{}CXXFLAGS)\BookSplit{} \$(\BookSplit{}CPPFLAGS)\BookSplit{} \$(\BookSplit{}TARGET\_\BookSplit{}ARCH)\BookSplit{} -\BookSplit{}c}。
+
+\item[{RM}]
+
+
+删除命令的名字，缺省值是\BookCode{rm -\BookSplit{}f}。
+
+
+\end{description}
+
+\BookNav{\hyperlink{db.ch22s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch22}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch22s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch22s04.html
+
+\section{自动处理头文件的依赖关系}
+\BookAnchor{db.ch22s04}\BookAnchor{db.ch22s04.id2805744}%
+现在我们的Makefile写成这样：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch22s04/01.pv}{9}{13}
+
+
+按照惯例，用\BookCode{all}做缺省目标。现在还有一点比较麻烦，在写\BookCode{main.\BookSplit{}o}、\BookCode{stack.\BookSplit{}o}和\BookCode{maze.\BookSplit{}o}这三个目标的规则时要查看源代码，找出它们依赖于哪些头文件，这很容易出错，一是因为有的头文件包含在另一个头文件中，在写规则时很容易遗漏，二是如果以后修改源代码改变了依赖关系，很可能忘记修改Makefile的规则。为了解决这个问题，可以用\BookCode{gcc}的\BookCode{-\BookSplit{}M}选项自动生成目标文件和源文件的依赖关系：
+
+
+\BookTerminal{code/ch22s04/02.txt}{9}{10}
+
+
+\BookCode{-\BookSplit{}M}选项把\BookCode{stdio.\BookSplit{}h}以及它所包含的系统头文件也找出来了，如果我们不需要输出系统头文件的依赖关系，可以用\BookCode{-\BookSplit{}MM}选项：
+
+
+\BookTerminal{code/ch22s04/03.txt}{6}{4}
+
+
+接下来的问题是怎么把这些规则包含到Makefile中，GNU \BookCode{make}的官方手册建议这样写：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch22s04/04.pv}{9}{19}
+
+
+\BookCode{sources}变量包含我们要编译的所有\BookCode{.\BookSplit{}c}文件，\BookCode{\$(\BookSplit{}sources:\BookSplit{}.\BookSplit{}c=\BookSplit{}.\BookSplit{}d)\BookSplit{}}是一个变量替换语法，把\BookCode{sources}变量中每一项的\BookCode{.\BookSplit{}c}替换成\BookCode{.\BookSplit{}d}，所以\BookCode{include}这一句相当于：
+
+
+\BookPlain{code/ch22s04/05.txt}{3}{1}
+
+
+类似于C语言的\BookCode{\#include}指示，这里的\BookCode{include}表示包含三个文件\BookCode{main.\BookSplit{}d}、\BookCode{stack.\BookSplit{}d}和\BookCode{maze.\BookSplit{}d}，这三个文件也应该符合Makefile的语法。如果现在你的工作目录是干净的，只有\BookCode{.\BookSplit{}c}文件、\BookCode{.\BookSplit{}h}文件和\BookCode{Makefile}，运行\BookCode{make}的结果是：
+
+
+\BookTerminal{code/ch22s04/06.txt}{9}{20}
+
+
+一开始找不到\BookCode{.\BookSplit{}d}文件，所以\BookCode{make}会报警告。但是\BookCode{make}会把\BookCode{include}的文件名也当作目标来尝试更新，而这些目标适用模式规则\BookCode{\%.\BookSplit{}d:\BookSplit{} \%c}，所以执行它的命令列表，比如生成\BookCode{maze.\BookSplit{}d}的命令：
+
+
+\BookTerminal{code/ch22s04/07.txt}{6}{4}
+
+
+注意，虽然在Makefile中这个命令写了四行，但其实是一条命令，\BookCode{make}只创建一个Shell进程执行这条命令，这条命令分为5个子命令，用\BookCode{;\BookSplit{}}号隔开，并且为了美观，用续行符\BookCode{\textbackslash{}}拆成四行来写。执行步骤为：
+
+
+\begin{enumerate}
+
+\item \BookCode{set -\BookSplit{}e}命令设置当前Shell进程为这样的状态：如果它执行的任何一条命令的退出状态非零则立刻终止，不再执行后续命令。
+
+\item 把原来的\BookCode{maze.\BookSplit{}d}删掉。
+
+\item 重新生成\BookCode{maze.\BookSplit{}c}的依赖关系，保存成文件\BookCode{maze.\BookSplit{}d.\BookSplit{}1234}（假设当前Shell进程的id是1234）。注意，在Makefile中\BookCode{\$}有特殊含义，如果要表示它的字面意思则需要写两个\$，所以Makefile中的四个\$传给Shell变成两个\$，两个\$在Shell中表示当前进程的id，一般用它给临时文件起名，以保证文件名唯一。
+
+\item 这个\BookCode{sed}命令比较复杂，就不细讲了，主要作用是查找替换。\BookCode{maze.\BookSplit{}d.\BookSplit{}1234}的内容应该是\BookCode{maze.\BookSplit{}o:\BookSplit{} maze.\BookSplit{}c maze.\BookSplit{}h main.\BookSplit{}h}，经过\BookCode{sed}处理之后存为\BookCode{maze.\BookSplit{}d}，其内容是\BookCode{maze.\BookSplit{}o maze.\BookSplit{}d:\BookSplit{} maze.\BookSplit{}c maze.\BookSplit{}h main.\BookSplit{}h}。
+
+\item 最后把临时文件\BookCode{maze.\BookSplit{}d.\BookSplit{}1234}删掉。
+\end{enumerate}
+
+
+不管是Makefile本身还是被它包含的文件，只要有一个文件在\BookCode{make}过程中被更新了，\BookCode{make}就会重新读取整个Makefile以及被它包含的所有文件，现在\BookCode{main.\BookSplit{}d}、\BookCode{stack.\BookSplit{}d}和\BookCode{maze.\BookSplit{}d}都生成了，就可以正常包含进来了（假如这时还没有生成，\BookCode{make}就要报错而不是报警告了），相当于在Makefile中添了三条规则：
+
+
+\BookPlain{code/ch22s04/08.txt}{5}{3}
+
+
+如果我在\BookCode{main.\BookSplit{}c}中加了一行\BookCode{\#include \BookQuoteChar{}foo.\BookSplit{}h\BookQuoteChar{}}，那么：
+
+
+
+1、\BookCode{main.\BookSplit{}c}的修改日期变了，根据规则\BookCode{main.\BookSplit{}o main.\BookSplit{}d:\BookSplit{} main.\BookSplit{}c main.\BookSplit{}h stack.\BookSplit{}h maze.\BookSplit{}h}要重新生成\BookCode{main.\BookSplit{}o}和\BookCode{main.\BookSplit{}d}。生成\BookCode{main.\BookSplit{}o}的规则有两条：
+
+
+\BookSource{numbers=none}{code/ch22s04/09.pv}{6}{4}
+
+
+第一条是把规则\BookCode{main.\BookSplit{}o main.\BookSplit{}d:\BookSplit{} main.\BookSplit{}c main.\BookSplit{}h stack.\BookSplit{}h maze.\BookSplit{}h}拆开写得到的，第二条是隐含规则，因此执行\BookCode{cc}命令重新编译\BookCode{main.\BookSplit{}o}。生成\BookCode{main.\BookSplit{}d}的规则也有两条：
+
+
+\BookSource{numbers=none}{code/ch22s04/10.pv}{8}{6}
+
+
+因此\BookCode{main.\BookSplit{}d}的内容被更新为\BookCode{main.\BookSplit{}o main.\BookSplit{}d:\BookSplit{} main.\BookSplit{}c main.\BookSplit{}h stack.\BookSplit{}h maze.\BookSplit{}h foo.\BookSplit{}h}。
+
+
+
+2、由于\BookCode{main.\BookSplit{}d}被Makefile包含，\BookCode{main.\BookSplit{}d}被更新又导致\BookCode{make}重新读取整个Makefile，把新的\BookCode{main.\BookSplit{}d}包含进来，于是新的依赖关系生效了。
+
+\BookNav{\hyperlink{db.ch22s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch22}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch22s05}{下一页}}
+
+
+% https://akaedu.github.io/book/ch22s05.html
+
+\section{常用的\BookCode{make}命令行选项}
+\BookAnchor{db.ch22s05}\BookAnchor{db.ch22s05.id2806383}%
+\BookCode{-\BookSplit{}n}选项只打印要执行的命令，而不会真的执行命令，这个选项有助于我们检查Makefile写得是否正确，由于Makefile不是顺序执行的，用这个选项可以先看看命令的执行顺序，确认无误了再真正执行命令。
+
+
+
+\BookCode{-\BookSplit{}C}选项可以切换到另一个目录执行那个目录下的Makefile，比如先退到上一级目录再执行我们的Makefile（假设我们的源代码都放在\BookCode{testmake}目录下）：
+
+
+\BookTerminal{code/ch22s05/01.txt}{9}{8}
+
+
+一些规模较大的项目会把不同的模块或子系统的源代码放在不同的子目录中，然后在每个子目录下都写一个该目录的Makefile，然后在一个总的Makefile中用\BookCode{make -\BookSplit{}C}命令执行每个子目录下的Makefile。例如Linux内核源代码根目录下有\BookCode{Makefile}，子目录\BookCode{fs}、\BookCode{net}等也有各自的\BookCode{Makefile}，二级子目录\BookCode{fs/\BookSplit{}ramfs}、\BookCode{net/\BookSplit{}ipv4}等也有各自的\BookCode{Makefile}。
+
+
+
+在\BookCode{make}命令行也可以用\BookCode{=\BookSplit{}}或\BookCode{:\BookSplit{}=\BookSplit{}}定义变量，如果这次编译我想加调试选项\BookCode{-\BookSplit{}g}，但我不想每次编译都加\BookCode{-\BookSplit{}g}选项，可以在命令行定义\BookCode{CFLAGS}变量，而不必修改Makefile编译完了再改回来：
+
+
+\BookTerminal{code/ch22s05/02.txt}{7}{5}
+
+
+如果在Makefile中也定义了\BookCode{CFLAGS}变量，则命令行的值覆盖Makefile中的值。
+
+\BookNav{\hyperlink{db.ch22s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch22}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23}{下一页}}

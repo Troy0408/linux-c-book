@@ -1,0 +1,11 @@
+$ cat &
+[1] 11121
+$ ps
+  PID TTY          TIME CMD
+ 6994 pts/0    00:00:05 bash
+11121 pts/0    00:00:00 cat
+11122 pts/0    00:00:00 ps
+
+[1]+  Stopped                 cat
+$ kill -KILL 11121
+[1]+  Killed                  cat

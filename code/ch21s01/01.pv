@@ -1,0 +1,2 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define STR \BKZdq{}hello, \BKZdq{}\BKZbs{}}
+\BK{c+cp}{		\BKZdq{}world\BKZdq{}}

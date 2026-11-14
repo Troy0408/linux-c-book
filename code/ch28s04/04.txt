@@ -1,0 +1,7 @@
+$ ./a.out 
+hello（回车）
+hello
+$ ./a.out 
+hello world（回车）
+hello worl$ d
+bash: d: command not found

@@ -1,0 +1,2 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{getenv}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{name}\BK{p}{)}\BK{p}{;}

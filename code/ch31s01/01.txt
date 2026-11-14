@@ -1,0 +1,3 @@
+$ ls /bin/sh /bin/dash -l
+-rwxr-xr-x 1 root root 79988 2008-03-12 19:22 /bin/dash
+lrwxrwxrwx 1 root root     4 2008-07-04 05:58 /bin/sh -> dash

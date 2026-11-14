@@ -1,0 +1,9 @@
+\BK{c+cm}{/* para\BKZus{}callback.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}para\BKZus{}callback.h\BKZdq{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{repeat\BKZus{}three\BKZus{}times}\BK{p}{(}\BK{n}{callback\BKZus{}t}\BK{+w}{ }\BK{n}{f}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{para}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{n}{f}\BK{p}{(}\BK{n}{para}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{n}{f}\BK{p}{(}\BK{n}{para}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{n}{f}\BK{p}{(}\BK{n}{para}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

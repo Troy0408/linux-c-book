@@ -1,0 +1,6 @@
+\BK{c+ch}{\BKZsh{}! /bin/sh}
+
+foo\BK{o}{(}\BK{o}{)}\BK{o}{\BKZob{}}\BK{+w}{ }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}Function foo is called\BKZdq{}}\BK{p}{;}\BK{o}{\BKZcb{}}
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}\BKZhy{}=start=\BKZhy{}\BKZdq{}}
+foo
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}\BKZhy{}=end=\BKZhy{}\BKZdq{}}

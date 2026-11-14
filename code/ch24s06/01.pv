@@ -1,0 +1,1 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{printf}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{format}\BK{p}{,}\BK{+w}{ }\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{p}{)}\BK{p}{;}

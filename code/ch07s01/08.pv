@@ -1,0 +1,4 @@
+\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mf}{3.0}\BK{p}{;}
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z1}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{n}{x}\BK{p}{,}\BK{+w}{ }\BK{l+m+mf}{4.0}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* z1.x=3.0, z1.y=4.0 */}
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z2}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{l+m+mf}{3.0}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* z2.x=3.0, z2.y=0.0 */}
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z3}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* z3.x=0.0, z3.y=0.0 */}

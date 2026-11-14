@@ -1,0 +1,24 @@
+\BK{c+ch}{\BKZsh{}! /bin/sh}
+
+is\BKZus{}directory\BK{o}{(}\BK{o}{)}
+\BK{o}{\BKZob{}}
+\BK{+w}{  }\BK{n+nv}{DIR\BKZus{}NAME}\BK{o}{=}\BK{n+nv}{\BKZdl{}1}
+\BK{+w}{  }\BK{k}{if}\BK{+w}{ }\BK{o}{[}\BK{+w}{ }!\BK{+w}{ }\BKZhy{}d\BK{+w}{ }\BK{n+nv}{\BKZdl{}DIR\BKZus{}NAME}\BK{+w}{ }\BK{o}{]}\BK{p}{;}\BK{+w}{ }\BK{k}{then}
+\BK{+w}{    }\BK{k}{return}\BK{+w}{ }\BK{l+m}{1}
+\BK{+w}{  }\BK{k}{else}
+\BK{+w}{    }\BK{k}{return}\BK{+w}{ }\BK{l+m}{0}
+\BK{+w}{  }\BK{k}{fi}
+\BK{o}{\BKZcb{}}
+
+\BK{k}{for}\BK{+w}{ }DIR\BK{+w}{ }\BK{k}{in}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{n+nv}{\BKZdl{}@}\BK{l+s+s2}{\BKZdq{}}\BK{p}{;}\BK{+w}{ }\BK{k}{do}
+\BK{+w}{  }\BK{k}{if}\BK{+w}{ }is\BKZus{}directory\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{n+nv}{\BKZdl{}DIR}\BK{l+s+s2}{\BKZdq{}}
+\BK{+w}{  }\BK{k}{then}\BK{+w}{ }:
+\BK{+w}{  }\BK{k}{else}
+\BK{+w}{    }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{n+nv}{\BKZdl{}DIR}\BK{l+s+s2}{ doesn\BKZsq{}t exist. Creating it now...}\BK{l+s+s2}{\BKZdq{}}
+\BK{+w}{    }mkdir\BK{+w}{ }\BK{n+nv}{\BKZdl{}DIR}\BK{+w}{ }\BKZgt{}\BK{+w}{ }/dev/null\BK{+w}{ }\BK{l+m}{2}\BKZgt{}\BK{p}{\BKZam{}}\BK{l+m}{1}
+\BK{+w}{    }\BK{k}{if}\BK{+w}{ }\BK{o}{[}\BK{+w}{ }\BK{n+nv}{\BKZdl{}?}\BK{+w}{ }\BKZhy{}ne\BK{+w}{ }\BK{l+m}{0}\BK{+w}{ }\BK{o}{]}\BK{p}{;}\BK{+w}{ }\BK{k}{then}
+\BK{+w}{      }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{l+s+s2}{Cannot create directory }\BK{n+nv}{\BKZdl{}DIR}\BK{l+s+s2}{\BKZdq{}}
+\BK{+w}{      }\BK{n+nb}{exit}\BK{+w}{ }\BK{l+m}{1}
+\BK{+w}{    }\BK{k}{fi}
+\BK{+w}{  }\BK{k}{fi}
+\BK{k}{done}

@@ -1,0 +1,12 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{,}\BK{+w}{ }\BK{n}{j}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{o}{=}\BK{l+m+mi}{1}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{\BKZlt{}}\BK{o}{=}\BK{l+m+mi}{9}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{j}\BK{o}{=}\BK{l+m+mi}{1}\BK{p}{;}\BK{+w}{ }\BK{n}{j}\BK{o}{\BKZlt{}}\BK{o}{=}\BK{l+m+mi}{9}\BK{p}{;}\BK{+w}{ }\BK{n}{j}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{			}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d  }\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{i}\BK{o}{*}\BK{n}{j}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

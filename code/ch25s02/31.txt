@@ -1,0 +1,12 @@
+$ gcc writerec.c -o writerec
+$ gcc readrec.c -o readrec
+$ ./writerec
+$ od -tx1 -tc -Ax recfile 
+000000 4b 65 6e 00 00 00 00 00 00 00 00 00 18 00 00 00
+         K   e   n  \0  \0  \0  \0  \0  \0  \0  \0  \0 030  \0  \0  \0
+000010 4b 6e 75 74 68 00 00 00 00 00 00 00 1c 00 00 00
+         K   n   u   t   h  \0  \0  \0  \0  \0  \0  \0 034  \0  \0  \0
+000020
+$ ./readrec 
+Name1: Ken	Age1: 24
+Name2: Knuth	Age2: 28

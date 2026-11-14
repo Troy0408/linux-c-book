@@ -1,0 +1,3 @@
+$ touch clean
+$ make clean
+make: `clean' is up to date.

@@ -1,0 +1,24 @@
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}linux/config.h\BKZgt{}}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{k}{static}\BK{+w}{ }\BK{k+kt}{int}
+\BK{n}{isdn\BKZus{}ioctl}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{inode}\BK{+w}{ }\BK{o}{*}\BK{n}{inode}\BK{p}{,}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{file}\BK{+w}{ }\BK{o}{*}\BK{n}{file}\BK{p}{,}\BK{+w}{ }\BK{n}{uint}\BK{+w}{ }\BK{n}{cmd}\BK{p}{,}\BK{+w}{ }\BK{n}{ulong}\BK{+w}{ }\BK{n}{arg}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifdef CONFIG\BKZus{}NETDEVICES}
+\BK{+w}{                        }\BK{k}{case}\BK{+w}{ }\BK{n+no}{IIOCNETGPN}\BK{p}{:}
+\BK{+w}{                                }\BK{c+cm}{/* Get peer phone number of a connected}
+\BK{c+cm}{                                 * isdn network interface */}
+\BK{+w}{                                }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{arg}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{                                        }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{copy\BKZus{}from\BKZus{}user}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{phone}\BK{p}{,}\BK{+w}{ }\BK{n}{argp}\BK{p}{,}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{phone}\BK{p}{)}\BK{p}{)}\BK{p}{)}
+\BK{+w}{                                                }\BK{k}{return}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{n}{EFAULT}\BK{p}{;}
+\BK{+w}{                                        }\BK{k}{return}\BK{+w}{ }\BK{n}{isdn\BKZus{}net\BKZus{}getpeer}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{phone}\BK{p}{,}\BK{+w}{ }\BK{n}{argp}\BK{p}{)}\BK{p}{;}
+\BK{+w}{                                }\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}
+\BK{+w}{                                        }\BK{k}{return}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{n}{EINVAL}\BK{p}{;}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifdef CONFIG\BKZus{}NETDEVICES}
+\BK{+w}{                        }\BK{k}{case}\BK{+w}{ }\BK{n+no}{IIOCNETAIF}\BK{p}{:}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif                          }\BK{c+cm}{/* CONFIG\BKZus{}NETDEVICES */}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}

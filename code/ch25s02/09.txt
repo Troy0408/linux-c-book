@@ -1,0 +1,4 @@
+if ( (fp = fopen("/tmp/file1", "r")) == NULL) {
+	fputs("Error open file /tmp/file1\n", stderr);
+	exit(1);
+}

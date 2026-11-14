@@ -1,0 +1,4 @@
+$ gcc foo.c main.c
+/tmp/ccRC2Yjn.o: In function `main':
+main.c:(.text+0x12): undefined reference to `foo'
+collect2: ld returned 1 exit status

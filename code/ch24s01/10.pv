@@ -1,0 +1,1 @@
+\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{shrink\BKZus{}space}\BK{p}{(}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{dest}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{src}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{n}\BK{p}{)}\BK{p}{;}

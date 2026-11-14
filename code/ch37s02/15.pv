@@ -1,0 +1,84 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}errno.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/socket.h\BKZgt{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{perr\BKZus{}exit}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{s}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{perror}\BK{p}{(}\BK{n}{s}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{Accept}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{n}{sa}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{socklen\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{salenptr}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+
+\BK{n+nl}{again}\BK{p}{:}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{+w}{ }\BK{p}{(}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{accept}\BK{p}{(}\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{sa}\BK{p}{,}\BK{+w}{ }\BK{n}{salenptr}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{p}{(}\BK{n}{errno}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{ECONNABORTED}\BK{p}{)}\BK{+w}{ }\BK{o}{|}\BK{o}{|}\BK{+w}{ }\BK{p}{(}\BK{n}{errno}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{EINTR}\BK{p}{)}\BK{p}{)}
+\BK{+w}{			}\BK{k}{goto}\BK{+w}{ }\BK{n}{again}\BK{p}{;}
+\BK{+w}{		}\BK{k}{else}
+\BK{+w}{			}\BK{n}{perr\BKZus{}exit}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{accept error}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{Bind}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{n}{sa}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{socklen\BKZus{}t}\BK{+w}{ }\BK{n}{salen}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{bind}\BK{p}{(}\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{sa}\BK{p}{,}\BK{+w}{ }\BK{n}{salen}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{		}\BK{n}{perr\BKZus{}exit}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{bind error}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{Connect}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{n}{sa}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{socklen\BKZus{}t}\BK{+w}{ }\BK{n}{salen}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{connect}\BK{p}{(}\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{sa}\BK{p}{,}\BK{+w}{ }\BK{n}{salen}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{		}\BK{n}{perr\BKZus{}exit}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{connect error}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{Listen}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{backlog}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{listen}\BK{p}{(}\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{backlog}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{		}\BK{n}{perr\BKZus{}exit}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{listen error}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{Socket}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{family}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{type}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{protocol}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{+w}{ }\BK{p}{(}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{socket}\BK{p}{(}\BK{n}{family}\BK{p}{,}\BK{+w}{ }\BK{n}{type}\BK{p}{,}\BK{+w}{ }\BK{n}{protocol}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{		}\BK{n}{perr\BKZus{}exit}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{socket error}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{ssize\BKZus{}t}\BK{+w}{ }\BK{n+nf}{Read}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{ptr}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{nbytes}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{ssize\BKZus{}t}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+
+\BK{n+nl}{again}\BK{p}{:}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{+w}{ }\BK{p}{(}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{read}\BK{p}{(}\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{ptr}\BK{p}{,}\BK{+w}{ }\BK{n}{nbytes}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{errno}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{EINTR}\BK{p}{)}
+\BK{+w}{			}\BK{k}{goto}\BK{+w}{ }\BK{n}{again}\BK{p}{;}
+\BK{+w}{		}\BK{k}{else}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}1}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{ssize\BKZus{}t}\BK{+w}{ }\BK{n+nf}{Write}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{ptr}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{nbytes}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{ssize\BKZus{}t}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+
+\BK{n+nl}{again}\BK{p}{:}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{+w}{ }\BK{p}{(}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{write}\BK{p}{(}\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{ptr}\BK{p}{,}\BK{+w}{ }\BK{n}{nbytes}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{errno}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{EINTR}\BK{p}{)}
+\BK{+w}{			}\BK{k}{goto}\BK{+w}{ }\BK{n}{again}\BK{p}{;}
+\BK{+w}{		}\BK{k}{else}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}1}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{Close}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{close}\BK{p}{(}\BK{n}{fd}\BK{p}{)}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}
+\BK{+w}{		}\BK{n}{perr\BKZus{}exit}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{close error}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

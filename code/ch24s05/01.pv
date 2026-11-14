@@ -1,0 +1,8 @@
+\BK{c+cm}{/* para\BKZus{}callback.h */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifndef PARA\BKZus{}CALLBACK\BKZus{}H}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define PARA\BKZus{}CALLBACK\BKZus{}H}
+
+\BK{k}{typedef}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{callback\BKZus{}t}\BK{p}{)}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{p}{;}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{repeat\BKZus{}three\BKZus{}times}\BK{p}{(}\BK{n}{callback\BKZus{}t}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{p}{;}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

@@ -1,0 +1,14 @@
+\BK{c+cm}{/* stdarg.h standard header */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifndef \BKZus{}STDARG}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define \BKZus{}STDARG}
+
+\BK{c+cm}{/* type definitions */}
+\BK{k}{typedef}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{k+kt}{va\BKZus{}list}\BK{p}{;}
+\BK{c+cm}{/* macros */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define va\BKZus{}arg(ap, T) \BKZbs{}}
+\BK{c+cp}{	(* (T *)(((ap) += \BKZus{}Bnd(T, 3U)) \BKZhy{} \BKZus{}Bnd(T, 3U)))}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define va\BKZus{}end(ap) (void)0}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define va\BKZus{}start(ap, A) \BKZbs{}}
+\BK{c+cp}{	(void)((ap) = (char *)\BKZam{}(A) + \BKZus{}Bnd(A, 3U))}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define \BKZus{}Bnd(X, bnd) (sizeof (X) + (bnd) \BKZam{} \BKZti{}(bnd))}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

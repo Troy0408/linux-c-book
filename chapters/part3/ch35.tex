@@ -1,0 +1,464 @@
+
+% https://akaedu.github.io/book/ch35.html
+
+\chapter{线程}
+\BookAnchor{db.ch35}\BookAnchor{db.ch35.id2895478}%
+
+
+\BookNav{\hyperlink{db.ch34s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt03}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch35s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch35s01.html
+
+\section{线程的概念}
+\BookAnchor{db.ch35s01}\BookAnchor{db.ch35s01.id2895482}%
+我们知道，进程在各自独立的地址空间中运行，进程之间共享数据需要用\BookCode{mmap}或者进程间通信机制，本节我们学习如何在一个进程的地址空间中执行多个线程。有些情况需要在一个进程中同时执行多个控制流程，这时候线程就派上了用场，比如实现一个图形界面的下载软件，一方面需要和用户交互，等待和处理用户的鼠标键盘事件，另一方面又需要同时下载多个文件，等待和处理从多个网络主机发来的数据，这些任务都需要一个“等待-处理”的循环，可以用多线程实现，一个线程专门负责与用户交互，另外几个线程每个线程负责和一个网络主机通信。
+
+
+
+以前我们讲过，\BookCode{main}函数和信号处理函数是同一个进程地址空间中的多个控制流程，多线程也是如此，但是比信号处理函数更加灵活，信号处理函数的控制流程只是在信号递达时产生，在处理完信号之后就结束，而多线程的控制流程可以长期并存，操作系统会在各线程之间调度和切换，就像在多个进程之间调度和切换一样。由于同一进程的多个线程共享同一地址空间，因此Text Segment、Data Segment都是共享的，如果定义一个函数，在各线程中都可以调用，如果定义一个全局变量，在各线程中都可以访问到，除此之外，各线程还共享以下进程资源和环境：
+
+
+\begin{itemize}
+
+\item 文件描述符表
+
+\item 每种信号的处理方式（\BookCode{SIG\_\BookSplit{}IGN}、\BookCode{SIG\_\BookSplit{}DFL}或者自定义的信号处理函数）
+
+\item 当前工作目录
+
+\item 用户id和组id
+\end{itemize}
+
+
+但有些资源是每个线程各有一份的：
+
+
+\begin{itemize}
+
+\item 线程id
+
+\item 上下文，包括各种寄存器的值、程序计数器和栈指针
+
+\item 栈空间
+
+\item \BookCode{errno}变量
+
+\item 信号屏蔽字
+
+\item 调度优先级
+\end{itemize}
+
+
+我们将要学习的线程库函数是由POSIX标准定义的，称为POSIX thread或者pthread。在Linux上线程函数位于\BookCode{libpthread}共享库中，因此在编译时要加上\BookCode{-\BookSplit{}lpthread}选项。
+
+\BookNav{\hyperlink{db.ch35}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch35}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch35s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch35s02.html
+
+\section{线程控制}
+\BookAnchor{db.ch35s02}\BookAnchor{db.ch35s02.id2895627}%
+\subsection{创建线程}
+\BookAnchor{db.ch35s02.id2895632}%
+
+\BookSource{numbers=none}{code/ch35s02/01.pv}{7}{5}
+
+
+返回值：成功返回0，失败返回错误号。以前学过的系统函数都是成功返回0，失败返回-1，而错误号保存在全局变量\BookCode{errno}中，而pthread库的函数都是通过返回值返回错误号，虽然每个线程也都有一个\BookCode{errno}，但这是为了兼容其它函数接口而提供的，pthread库本身并不使用它，通过返回值返回错误码更加清晰。
+
+
+
+在一个线程中调用pthread\_\BookSplit{}create()创建新的线程后，当前线程从pthread\_\BookSplit{}create()返回继续往下执行，而新的线程所执行的代码由我们传给\BookCode{pthread\_\BookSplit{}create}的函数指针\BookCode{start\_\BookSplit{}routine}决定。\BookCode{start\_\BookSplit{}routine}函数接收一个参数，是通过\BookCode{pthread\_\BookSplit{}create}的\BookCode{arg}参数传递给它的，该参数的类型为\BookCode{void *}，这个指针按什么类型解释由调用者自己定义。\BookCode{start\_\BookSplit{}routine}的返回值类型也是\BookCode{void *}，这个指针的含义同样由调用者自己定义。\BookCode{start\_\BookSplit{}routine}返回时，这个线程就退出了，其它线程可以调用\BookCode{pthread\_\BookSplit{}join}得到\BookCode{start\_\BookSplit{}routine}的返回值，类似于父进程调用\BookCode{wait(\BookSplit{}2)\BookSplit{}}得到子进程的退出状态，稍后详细介绍\BookCode{pthread\_\BookSplit{}join}。
+
+
+
+\BookCode{pthread\_\BookSplit{}create}成功返回后，新创建的线程的id被填写到\BookCode{thread}参数所指向的内存单元。我们知道进程id的类型是\BookCode{pid\_\BookSplit{}t}，每个进程的id在整个系统中是唯一的，调用\BookCode{getpid(\BookSplit{}2)\BookSplit{}}可以获得当前进程的id，是一个正整数值。线程id的类型是\BookCode{thread\_\BookSplit{}t}，它只在当前进程中保证是唯一的，在不同的系统中\BookCode{thread\_\BookSplit{}t}这个类型有不同的实现，它可能是一个整数值，也可能是一个结构体，也可能是一个地址，所以不能简单地当成整数用\BookCode{printf}打印，调用\BookCode{pthread\_\BookSplit{}self(\BookSplit{}3)\BookSplit{}}可以获得当前线程的id。
+
+
+
+\BookCode{attr}参数表示线程属性，本章不深入讨论线程属性，所有代码例子都传\BookCode{NULL}给\BookCode{attr}参数，表示线程属性取缺省值，感兴趣的读者可以参考\hyperlink{db.bi01.bibli.apue}{[APUE2e]}。首先看一个简单的例子：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch35s02/02.pv}{9}{39}
+
+
+编译运行结果如下：
+
+
+\BookTerminal{code/ch35s02/03.txt}{6}{4}
+
+
+可知在Linux上，\BookCode{thread\_\BookSplit{}t}类型是一个地址值，属于同一进程的多个线程调用\BookCode{getpid(\BookSplit{}2)\BookSplit{}}可以得到相同的进程号，而调用\BookCode{pthread\_\BookSplit{}self(\BookSplit{}3)\BookSplit{}}得到的线程号各不相同。
+
+
+
+由于\BookCode{pthread\_\BookSplit{}create}的错误码不保存在\BookCode{errno}中，因此不能直接用\BookCode{perror(\BookSplit{}3)\BookSplit{}}打印错误信息，可以先用\BookCode{strerror(\BookSplit{}3)\BookSplit{}}把错误码转换成错误信息再打印。
+
+
+
+如果任意一个线程调用了\BookCode{exit}或\BookCode{\_\BookSplit{}exit}，则整个进程的所有线程都终止，由于从\BookCode{main}函数\BookCode{return}也相当于调用\BookCode{exit}，为了防止新创建的线程还没有得到执行就终止，我们在\BookCode{main}函数\BookCode{return}之前延时1秒，这只是一种权宜之计，即使主线程等待1秒，内核也不一定会调度新创建的线程执行，下一节我们会看到更好的办法。
+
+
+
+思考题：主线程在一个全局变量\BookCode{ntid}中保存了新创建的线程的id，如果新创建的线程不调用\BookCode{pthread\_\BookSplit{}self}而是直接打印这个\BookCode{ntid}，能不能达到同样的效果？
+
+
+\subsection{终止线程}
+\BookAnchor{db.ch35s02.id2896029}%
+
+
+如果需要只终止某个线程而不终止整个进程，可以有三种方法：
+
+
+\begin{itemize}
+
+\item 从线程函数\BookCode{return}。这种方法对主线程不适用，从\BookCode{main}函数\BookCode{return}相当于调用\BookCode{exit}。
+
+\item 一个线程可以调用\BookCode{pthread\_\BookSplit{}cancel}终止同一进程中的另一个线程。
+
+\item 线程可以调用\BookCode{pthread\_\BookSplit{}exit}终止自己。
+\end{itemize}
+
+
+用\BookCode{pthread\_\BookSplit{}cancel}终止一个线程分同步和异步两种情况，比较复杂，本章不打算详细介绍，读者可以参考\hyperlink{db.bi01.bibli.apue}{[APUE2e]}。下面介绍\BookCode{pthread\_\BookSplit{}exit}的和\BookCode{pthread\_\BookSplit{}join}的用法。
+
+
+\BookSource{numbers=none}{code/ch35s02/04.pv}{5}{3}
+
+
+\BookCode{value\_\BookSplit{}ptr}是\BookCode{void *}类型，和线程函数返回值的用法一样，其它线程可以调用\BookCode{pthread\_\BookSplit{}join}获得这个指针。
+
+
+
+需要注意，\BookCode{pthread\_\BookSplit{}exit}或者\BookCode{return}返回的指针所指向的内存单元必须是全局的或者是用\BookCode{malloc}分配的，不能在线程函数的栈上分配，因为当其它线程得到这个返回指针时线程函数已经退出了。
+
+
+\BookSource{numbers=none}{code/ch35s02/05.pv}{5}{3}
+
+
+返回值：成功返回0，失败返回错误号
+
+
+
+调用该函数的线程将挂起等待，直到id为\BookCode{thread}的线程终止。\BookCode{thread}线程以不同的方法终止，通过\BookCode{pthread\_\BookSplit{}join}得到的终止状态是不同的，总结如下：
+
+
+\begin{itemize}
+
+\item 如果\BookCode{thread}线程通过\BookCode{return}返回，\BookCode{value\_\BookSplit{}ptr}所指向的单元里存放的是\BookCode{thread}线程函数的返回值。
+
+\item 如果\BookCode{thread}线程被别的线程调用\BookCode{pthread\_\BookSplit{}cancel}异常终止掉，\BookCode{value\_\BookSplit{}ptr}所指向的单元里存放的是常数\BookCode{PTHREAD\_\BookSplit{}CANCELED}。
+
+\item 如果\BookCode{thread}线程是自己调用\BookCode{pthread\_\BookSplit{}exit}终止的，\BookCode{value\_\BookSplit{}ptr}所指向的单元存放的是传给\BookCode{pthread\_\BookSplit{}exit}的参数。
+\end{itemize}
+
+
+如果对\BookCode{thread}线程的终止状态不感兴趣，可以传\BookCode{NULL}给\BookCode{value\_\BookSplit{}ptr}参数。
+
+
+
+看下面的例子（省略了出错处理）：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch35s02/06.pv}{9}{46}
+
+
+运行结果是：
+
+
+\BookTerminal{code/ch35s02/07.txt}{9}{9}
+
+
+可见在Linux的pthread库中常数\BookCode{PTHREAD\_\BookSplit{}CANCELED}的值是-1。可以在头文件\BookCode{pthread.\BookSplit{}h}中找到它的定义：
+
+
+\BookSource{numbers=none}{code/ch35s02/08.pv}{3}{1}
+
+
+一般情况下，线程终止后，其终止状态一直保留到其它线程调用\BookCode{pthread\_\BookSplit{}join}获取它的状态为止。但是线程也可以被置为detach状态，这样的线程一旦终止就立刻回收它占用的所有资源，而不保留终止状态。不能对一个已经处于detach状态的线程调用\BookCode{pthread\_\BookSplit{}join}，这样的调用将返回\BookCode{EINVAL}。对一个尚未detach的线程调用\BookCode{pthread\_\BookSplit{}join}或\BookCode{pthread\_\BookSplit{}detach}都可以把该线程置为detach状态，也就是说，不能对同一线程调用两次\BookCode{pthread\_\BookSplit{}join}，或者如果已经对一个线程调用了\BookCode{pthread\_\BookSplit{}detach}就不能再调用\BookCode{pthread\_\BookSplit{}join}了。
+
+
+\BookSource{numbers=none}{code/ch35s02/09.pv}{5}{3}
+
+
+返回值：成功返回0，失败返回错误号。
+
+\BookNav{\hyperlink{db.ch35s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch35}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch35s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch35s03.html
+
+\section{线程间同步}
+\BookAnchor{db.ch35s03}\BookAnchor{db.ch35s03.id2896458}%
+\subsection{mutex}
+\BookAnchor{db.ch35s03.id2896462}%
+
+
+多个线程同时访问共享数据时可能会冲突，这跟前面讲信号时所说的可重入性是同样的问题。比如两个线程都要把某个全局变量增加1，这个操作在某平台需要三条指令完成：
+
+
+\begin{enumerate}
+
+\item 从内存读变量值到寄存器
+
+\item 寄存器的值加1
+
+\item 将寄存器的值写回内存
+\end{enumerate}
+
+
+假设两个线程在多处理器平台上同时执行这三条指令，则可能导致下图所示的结果，最后变量只加了一次而非两次。
+
+
+\BookFigure{并行访问冲突}{\BookImage{images/thread.corrupt.png}{0.577}}{\BookAnchor{db.ch35s03.id2896510}}
+
+
+思考一下，如果这两个线程在单处理器平台上执行，能够避免这样的问题吗？
+
+
+
+我们通过一个简单的程序观察这一现象。上图所描述的现象从理论上是存在这种可能的，但实际运行程序时很难观察到，为了使现象更容易观察到，我们把上述三条指令做的事情用更多条指令来做：
+
+
+\BookSource{numbers=none}{code/ch35s03/01.pv}{5}{3}
+
+
+我们在“读取变量的值”和“把变量的新值保存回去”这两步操作之间插入一个\BookCode{printf}调用，它会执行\BookCode{write}系统调用进内核，为内核调度别的线程执行提供了一个很好的时机。我们在一个循环中重复上述操作几千次，就会观察到访问冲突的现象。
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch35s03/02.pv}{9}{41}
+
+
+我们创建两个线程，各自把\BookCode{counter}增加5000次，正常情况下最后\BookCode{counter}应该等于10000，但事实上每次运行该程序的结果都不一样，有时候数到5000多，有时候数到6000多。
+
+
+\BookTerminal{code/ch35s03/03.txt}{9}{16}
+
+
+对于多线程的程序，访问冲突的问题是很普遍的，解决的办法是引入互斥锁（Mutex，Mutual Exclusive Lock）\BookAnchor{db.ch35s03.id2896624}，获得锁的线程可以完成“读-修改-写”的操作，然后释放锁给其它线程，没有获得锁的线程只能等待而不能访问共享数据，这样“读-修改-写”三步操作组成一个原子操作，要么都执行，要么都不执行，不会执行到中间被打断，也不会在其它处理器上并行做这个操作。
+
+
+
+Mutex用\BookCode{pthread\_\BookSplit{}mutex\_\BookSplit{}t}类型的变量表示，可以这样初始化和销毁：
+
+
+\BookSource{numbers=none}{code/ch35s03/04.pv}{8}{6}
+
+
+返回值：成功返回0，失败返回错误号。
+
+
+
+\BookCode{pthread\_\BookSplit{}mutex\_\BookSplit{}init}函数对Mutex做初始化，参数\BookCode{attr}设定Mutex的属性，如果\BookCode{attr}为\BookCode{NULL}则表示缺省属性，本章不详细介绍Mutex属性，感兴趣的读者可以参考\hyperlink{db.bi01.bibli.apue}{[APUE2e]}。用\BookCode{pthread\_\BookSplit{}mutex\_\BookSplit{}init}函数初始化的Mutex可以用\BookCode{pthread\_\BookSplit{}mutex\_\BookSplit{}destroy}销毁。如果Mutex变量是静态分配的（全局变量或\BookCode{static}变量），也可以用宏定义\BookCode{PTHREAD\_\BookSplit{}MUTEX\_\BookSplit{}INITIALIZER}来初始化，相当于用\BookCode{pthread\_\BookSplit{}mutex\_\BookSplit{}init}初始化并且\BookCode{attr}参数为\BookCode{NULL}。Mutex的加锁和解锁操作可以用下列函数：
+
+
+\BookSource{numbers=none}{code/ch35s03/05.pv}{7}{5}
+
+
+返回值：成功返回0，失败返回错误号。
+
+
+
+一个线程可以调用pthread\_\BookSplit{}mutex\_\BookSplit{}lock获得Mutex，如果这时另一个线程已经调用pthread\_\BookSplit{}mutex\_\BookSplit{}lock获得了该Mutex，则当前线程需要挂起等待，直到另一个线程调用pthread\_\BookSplit{}mutex\_\BookSplit{}unlock释放Mutex，当前线程被唤醒，才能获得该Mutex并继续执行。
+
+
+
+如果一个线程既想获得锁，又不想挂起等待，可以调用pthread\_\BookSplit{}mutex\_\BookSplit{}trylock，如果Mutex已经被另一个线程获得，这个函数会失败返回EBUSY，而不会使线程挂起等待。
+
+
+
+现在我们用Mutex解决先前的问题：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch35s03/06.pv}{9}{47}
+
+
+这样运行结果就正常了，每次运行都能数到10000。
+
+
+
+看到这里，读者一定会好奇：Mutex的两个基本操作lock和unlock是如何实现的呢？假设Mutex变量的值为1表示互斥锁空闲，这时某个进程调用lock可以获得锁，而Mutex的值为0表示互斥锁已经被某个线程获得，其它线程再调用lock只能挂起等待。那么lock和unlock的伪代码如下：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch35s03/07.pv}{9}{12}
+
+
+unlock操作中唤醒等待线程的步骤可以有不同的实现，可以只唤醒一个等待线程，也可以唤醒所有等待该Mutex的线程，然后让被唤醒的这些线程去竞争获得这个Mutex，竞争失败的线程继续挂起等待。
+
+
+
+细心的读者应该已经看出问题了：对Mutex变量的读取、判断和修改不是原子操作。如果两个线程同时调用lock，这时Mutex是1，两个线程都判断mutex\textgreater{}0成立，然后其中一个线程置mutex=\BookSplit{}0，而另一个线程并不知道这一情况，也置mutex=\BookSplit{}0，于是两个线程都以为自己获得了锁。
+
+
+
+为了实现互斥锁操作，大多数体系结构都提供了swap或exchange指令，该指令的作用是把寄存器和内存单元的数据相交换，由于只有一条指令，保证了原子性，即使是多处理器平台，访问内存的总线周期也有先后，一个处理器上的交换指令执行时另一个处理器的交换指令只能等待总线周期。现在我们把lock和unlock的伪代码改一下（以x86的xchg指令为例）：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch35s03/08.pv}{9}{13}
+
+
+unlock中的释放锁操作同样只用一条指令实现，以保证它的原子性。
+
+
+
+也许还有读者好奇，“挂起等待”和“唤醒等待线程”的操作如何实现？每个Mutex有一个等待队列，一个线程要在Mutex上挂起等待，首先在把自己加入等待队列中，然后置线程状态为睡眠，然后调用调度器函数切换到别的线程。一个线程要唤醒等待队列中的其它线程，只需从等待队列中取出一项，把它的状态从睡眠改为就绪，加入就绪队列，那么下次调度器函数执行时就有可能切换到被唤醒的线程。
+
+
+
+一般情况下，如果同一个线程先后两次调用lock，在第二次调用时，由于锁已经被占用，该线程会挂起等待别的线程释放锁，然而锁正是被自己占用着的，该线程又被挂起而没有机会释放锁，因此就永远处于挂起等待状态了，这叫做死锁（Deadlock）。另一种典型的死锁情形是这样：线程A获得了锁1，线程B获得了锁2，这时线程A调用lock试图获得锁2，结果是需要挂起等待线程B释放锁2，而这时线程B也调用lock试图获得锁1，结果是需要挂起等待线程A释放锁1，于是线程A和B都永远处于挂起状态了。不难想象，如果涉及到更多的线程和更多的锁，有没有可能死锁的问题将会变得复杂和难以判断。
+
+
+
+写程序时应该尽量避免同时获得多个锁，如果一定有必要这么做，则有一个原则：如果所有线程在需要多个锁时都按相同的先后顺序（常见的是按Mutex变量的地址顺序）获得锁，则不会出现死锁。比如一个程序中用到锁1、锁2、锁3，它们所对应的Mutex变量的地址是锁1\textless{}锁2\textless{}锁3，那么所有线程在需要同时获得2个或3个锁时都应该按锁1、锁2、锁3的顺序获得。如果要为所有的锁确定一个先后顺序比较困难，则应该尽量使用pthread\_\BookSplit{}mutex\_\BookSplit{}trylock调用代替pthread\_\BookSplit{}mutex\_\BookSplit{}lock调用，以免死锁。
+
+
+\subsection{Condition Variable}
+\BookAnchor{db.ch35s03.id2895424}%
+
+
+线程间的同步还有这样一种情况：线程A需要等某个条件成立才能继续往下执行，现在这个条件不成立，线程A就阻塞等待，而线程B在执行过程中使这个条件成立了，就唤醒线程A继续执行。在pthread库中通过条件变量（Condition Variable）\BookAnchor{db.ch35s03.id2895445}来阻塞等待一个条件，或者唤醒等待这个条件的线程。Condition Variable用\BookCode{pthread\_\BookSplit{}cond\_\BookSplit{}t}类型的变量表示，可以这样初始化和销毁：
+
+
+\BookSource{numbers=none}{code/ch35s03/09.pv}{8}{6}
+
+
+返回值：成功返回0，失败返回错误号。
+
+
+
+和Mutex的初始化和销毁类似，\BookCode{pthread\_\BookSplit{}cond\_\BookSplit{}init}函数初始化一个Condition Variable，\BookCode{attr}参数为\BookCode{NULL}则表示缺省属性，\BookCode{pthread\_\BookSplit{}cond\_\BookSplit{}destroy}函数销毁一个Condition Variable。如果Condition Variable是静态分配的，也可以用宏定义\BookCode{PTHEAD\_\BookSplit{}COND\_\BookSplit{}INITIALIZER}初始化，相当于用\BookCode{pthread\_\BookSplit{}cond\_\BookSplit{}init}函数初始化并且\BookCode{attr}参数为\BookCode{NULL}。Condition Variable的操作可以用下列函数：
+
+
+\BookSource{numbers=none}{code/ch35s03/10.pv}{9}{9}
+
+
+返回值：成功返回0，失败返回错误号。
+
+
+
+可见，一个Condition Variable总是和一个Mutex搭配使用的。一个线程可以调用\BookCode{pthread\_\BookSplit{}cond\_\BookSplit{}wait}在一个Condition Variable上阻塞等待，这个函数做以下三步操作：
+
+
+\begin{enumerate}
+
+\item 释放Mutex
+
+\item 阻塞等待
+
+\item 当被唤醒时，重新获得Mutex并返回
+\end{enumerate}
+
+
+\BookCode{pthread\_\BookSplit{}cond\_\BookSplit{}timedwait}函数还有一个额外的参数可以设定等待超时，如果到达了\BookCode{abstime}所指定的时刻仍然没有别的线程来唤醒当前线程，就返回\BookCode{ETIMEDOUT}。一个线程可以调用\BookCode{pthread\_\BookSplit{}cond\_\BookSplit{}signal}唤醒在某个Condition Variable上等待的另一个线程，也可以调用\BookCode{pthread\_\BookSplit{}cond\_\BookSplit{}broadcast}唤醒在这个Condition Variable上等待的所有线程。
+
+
+
+下面的程序演示了一个生产者-消费者的例子，生产者生产一个结构体串在链表的表头上，消费者从表头取走结构体。
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch35s03/11.pv}{9}{57}
+
+
+执行结果如下：
+
+
+\BookTerminal{code/ch35s03/12.txt}{9}{11}
+
+\subsubsection*{习题}
+\BookAnchor{db.ch35s03.id2897298}%
+
+
+1、在本节的例子中，生产者和消费者访问链表的顺序是LIFO的，请修改程序，把访问顺序改成FIFO。
+
+
+\subsection{Semaphore}
+\BookAnchor{db.ch35s03.id2897332}%
+
+
+Mutex变量是非0即1的，可看作一种资源的可用数量，初始化时Mutex是1，表示有一个可用资源，加锁时获得该资源，将Mutex减到0，表示不再有可用资源，解锁时释放该资源，将Mutex重新加到1，表示又有了一个可用资源。
+
+
+
+信号量（Semaphore）\BookAnchor{db.ch35s03.id2897351}和Mutex类似，表示可用资源的数量，和Mutex不同的是这个数量可以大于1。
+
+
+
+本节介绍的是POSIX semaphore库函数，详见sem\_\BookSplit{}overview(7)，这种信号量不仅可用于同一进程的线程间同步，也可用于不同进程间的同步。
+
+
+\BookSource{numbers=none}{code/ch35s03/13.pv}{9}{7}
+
+
+semaphore变量的类型为sem\_\BookSplit{}t，sem\_\BookSplit{}init()初始化一个semaphore变量，value参数表示可用资源的数量，pshared参数为0表示信号量用于同一进程的线程间同步，本节只介绍这种情况。在用完semaphore变量之后应该调用sem\_\BookSplit{}destroy()释放与semaphore相关的资源。
+
+
+
+调用sem\_\BookSplit{}wait()可以获得资源，使semaphore的值减1，如果调用sem\_\BookSplit{}wait()时semaphore的值已经是0，则挂起等待。如果不希望挂起等待，可以调用sem\_\BookSplit{}trywait()。调用sem\_\BookSplit{}post()可以释放资源，使semaphore的值加1，同时唤醒挂起等待的线程。
+
+
+
+上一节生产者－消费者的例子是基于链表的，其空间可以动态分配，现在基于固定大小的环形队列重写这个程序：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch35s03/14.pv}{9}{49}
+
+\subsubsection*{习题}
+\BookAnchor{db.ch35s03.id2897407}%
+
+
+1、本节和上一节的例子给出一个重要的提示：用Condition Variable可以实现Semaphore。请用Condition Variable实现Semaphore，然后用自己实现的Semaphore重写本节的程序。
+
+
+\subsection{其它线程间同步机制}
+\BookAnchor{db.ch35s03.id2897423}%
+
+
+如果共享数据是只读的，那么各线程读到的数据应该总是一致的，不会出现访问冲突。只要有一个线程可以改写数据，就必须考虑线程间同步的问题。由此引出了读者写者锁（Reader-Writer Lock）的概念，Reader之间并不互斥，可以同时读共享数据，而Writer是独占的（exclusive），在Writer修改数据时其它Reader或Writer不能访问数据，可见Reader-Writer Lock比Mutex具有更好的并发性。
+
+
+
+用挂起等待的方式解决访问冲突不见得是最好的办法，因为这样毕竟会影响系统的并发性，在某些情况下解决访问冲突的问题可以尽量避免挂起某个线程，例如Linux内核的Seqlock、RCU（read-copy-update）等机制。
+
+
+
+关于这些同步机制的细节，有兴趣的读者可以参考\hyperlink{db.bi01.bibli.apue}{[APUE2e]}和\hyperlink{db.bi01.bibli.ulk}{[ULK]}。
+
+\BookNav{\hyperlink{db.ch35s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch35}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch35s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch35s04.html
+
+\section{编程练习}
+\BookAnchor{db.ch35s04}\BookAnchor{db.ch35s04.id2897498}%
+哲学家就餐问题。这是由计算机科学家Dijkstra提出的经典死锁场景。
+
+
+
+原版的故事里有五个哲学家(不过我们写的程序可以有N个哲学家)，这些哲学家们只做两件事－－思考和吃饭，他们思考的时候不需要任何共享资源，但是吃饭的时候就必须使用餐具，而餐桌上的餐具是有限的，原版的故事里，餐具是叉子，吃饭的时候要用两把叉子把面条从碗里捞出来。很显然把叉子换成筷子会更合理，所以：一个哲学家需要两根筷子才能吃饭。
+
+
+
+现在引入问题的关键：这些哲学家很穷，只买得起五根筷子。他们坐成一圈，两个人的中间放一根筷子。哲学家吃饭的时候必须同时得到左手边和右手边的筷子。如果他身边的任何一位正在使用筷子，那他只有等着。
+
+
+
+假设哲学家的编号是A、B、C、D、E，筷子编号是1、2、3、4、5，哲学家和筷子围成一圈如下图所示：
+
+
+\BookFigure{哲学家问题}{\BookImage{images/thread.philosopher.png}{0.241}}{\BookAnchor{db.ch35s04.id2897541}}
+
+
+每个哲学家都是一个单独的线程，每个线程循环做以下动作：思考rand()\%10秒，然后先拿左手边的筷子再拿右手边的筷子（筷子这种资源可以用mutex表示），有任何一边拿不到就一直等着，全拿到就吃饭rand()\%10秒，然后放下筷子。
+
+
+
+编写程序仿真哲学家就餐的场景：
+
+
+\BookTerminal{code/ch35s04/01.txt}{9}{9}
+
+
+分析一下，这个过程有没有可能产生死锁？调用usleep(3)函数可以实现微秒级的延时，试着用usleep(3)加快仿真的速度，看能不能观察到死锁现象。然后修改上述算法避免产生死锁。
+
+\BookNav{\hyperlink{db.ch35s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch35}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch36}{下一页}}

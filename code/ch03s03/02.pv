@@ -1,0 +1,4 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{print\BKZus{}time}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{hour}\BK{p}{,}\BK{+w}{ }\BK{n}{minute}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d:\BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{hour}\BK{p}{,}\BK{+w}{ }\BK{n}{minute}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

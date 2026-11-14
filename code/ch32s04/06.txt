@@ -1,0 +1,1 @@
+$ awk '/^ *$/ {x=x+1;} END {print x;}' testfile

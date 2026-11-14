@@ -1,0 +1,6 @@
+...
+Relocation section '.rel.text' at offset 0x2b0 contains 2 entries:
+ Offset     Info    Type            Sym.Value  Sym. Name
+00000008  00000201 R_386_32          00000000   .data
+00000017  00000201 R_386_32          00000000   .data
+...

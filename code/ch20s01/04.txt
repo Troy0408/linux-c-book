@@ -1,0 +1,3 @@
+$ gcc -c main.c
+$ gcc -c stack.c
+$ gcc main.o stack.o -o main

@@ -1,0 +1,12 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{c+cm}{/* }
+\BK{c+cm}{ * comment1}
+\BK{c+cm}{ * main: generate some simple output}
+\BK{c+cm}{ */}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{c+cm}{/* comment2 */}\BK{l+s}{\BKZdq{}}\BK{l+s}{Hello, world.}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* comment3 */}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

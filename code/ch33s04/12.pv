@@ -1,0 +1,3 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}signal.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sigsuspend}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{sigset\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{sigmask}\BK{p}{)}\BK{p}{;}

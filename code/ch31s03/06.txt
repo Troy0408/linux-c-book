@@ -1,0 +1,4 @@
+$ ls /dev/ttyS*
+$ ls ch0?.doc
+$ ls ch0[0-2].doc
+$ ls ch[012][0-9].doc

@@ -1,0 +1,1 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{signal}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{signum}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{handler}\BK{p}{)}\BK{p}{(}\BK{k+kt}{int}\BK{p}{)}\BK{p}{)}\BK{p}{)}\BK{p}{(}\BK{k+kt}{int}\BK{p}{)}\BK{p}{;}

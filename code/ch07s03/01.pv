@@ -1,0 +1,5 @@
+\BK{k}{enum}\BK{+w}{ }\BK{n}{coordinate\BKZus{}type}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{n}{RECTANGULAR}\BK{p}{,}\BK{+w}{ }\BK{n}{POLAR}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{enum}\BK{+w}{ }\BK{n}{coordinate\BKZus{}type}\BK{+w}{ }\BK{n}{t}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{p}{;}

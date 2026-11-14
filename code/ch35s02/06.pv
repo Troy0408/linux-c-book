@@ -1,0 +1,46 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}pthread.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{thr\BKZus{}fn1}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{arg}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{thread 1 returning}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{l+m+mi}{1}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{thr\BKZus{}fn2}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{arg}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{thread 2 exiting}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}exit}\BK{p}{(}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{l+m+mi}{2}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{thr\BKZus{}fn3}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{arg}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{while}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{thread 3 writing}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{sleep}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}t}\BK{+w}{   }\BK{n}{tid}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{void}\BK{+w}{        }\BK{o}{*}\BK{n}{tret}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{pthread\BKZus{}create}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{tid}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{,}\BK{+w}{ }\BK{n}{thr\BKZus{}fn1}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}join}\BK{p}{(}\BK{n}{tid}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{tret}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{thread 1 exit code \BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{p}{(}\BK{k+kt}{int}\BK{p}{)}\BK{n}{tret}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{pthread\BKZus{}create}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{tid}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{,}\BK{+w}{ }\BK{n}{thr\BKZus{}fn2}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}join}\BK{p}{(}\BK{n}{tid}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{tret}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{thread 2 exit code \BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{p}{(}\BK{k+kt}{int}\BK{p}{)}\BK{n}{tret}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{pthread\BKZus{}create}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{tid}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{,}\BK{+w}{ }\BK{n}{thr\BKZus{}fn3}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{sleep}\BK{p}{(}\BK{l+m+mi}{3}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}cancel}\BK{p}{(}\BK{n}{tid}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}join}\BK{p}{(}\BK{n}{tid}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{tret}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{thread 3 exit code \BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{p}{(}\BK{k+kt}{int}\BK{p}{)}\BK{n}{tret}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

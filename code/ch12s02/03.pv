@@ -1,0 +1,2 @@
+\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{LEN}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{\BKZhy{}}\BK{o}{\BKZhy{}}\BK{p}{)}
+\BK{+w}{	}\BK{n}{putchar}\BK{p}{(}\BK{n}{buf}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{p}{)}\BK{p}{;}

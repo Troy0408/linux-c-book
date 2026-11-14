@@ -1,0 +1,2 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{node}\BK{+w}{ }\BK{n}{sentinel}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{sentinel}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{sentinel}\BK{p}{\BKZcb{}}\BK{p}{;}
+\BK{k}{static}\BK{+w}{ }\BK{n}{link}\BK{+w}{ }\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{sentinel}\BK{p}{;}

@@ -1,0 +1,4 @@
+HTTP/1.1 200 OK
+Content-Type: image/jpg
+
+（这里是mypic.jpg的二进制数据）

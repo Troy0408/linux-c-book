@@ -1,0 +1,1 @@
+$ gcc -c -g stack/stack.c stack/push.c stack/pop.c stack/is_empty.c

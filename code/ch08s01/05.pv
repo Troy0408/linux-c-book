@@ -1,0 +1,2 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{10}\BK{p}{;}
+\BK{n}{count}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{count}\BK{p}{[}\BK{n}{i}\BK{o}{+}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{;}

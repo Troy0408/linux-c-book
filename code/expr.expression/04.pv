@@ -1,0 +1,1 @@
+\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d:\BKZpc{}d is \BKZpc{}d minutes after 00:00}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{hour}\BK{p}{,}\BK{+w}{ }\BK{n}{minute}\BK{p}{,}\BK{+w}{ }\BK{n}{hour}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{l+m+mi}{60}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{minute}\BK{p}{)}\BK{p}{;}

@@ -1,0 +1,8 @@
+$ jobs
+[1]+  Stopped                 cat
+$ fg %1
+cat
+hello（回车）
+hello
+^Z
+[1]+  Stopped                 cat

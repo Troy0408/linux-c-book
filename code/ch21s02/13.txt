@@ -1,0 +1,36 @@
+$ gcc main.c -g -O
+$ objdump -dS a.out
+...
+int max(int n)
+{
+ 8048355:       55                      push   %ebp
+ 8048356:       89 e5                   mov    %esp,%ebp
+ 8048358:       53                      push   %ebx
+ 8048359:       83 ec 04                sub    $0x4,%esp
+ 804835c:       8b 5d 08                mov    0x8(%ebp),%ebx
+        return n == 0 ? a[0] : MAX(a[n], max(n-1));
+ 804835f:       85 db                   test   %ebx,%ebx
+ 8048361:       75 07                   jne    804836a <max+0x15>
+ 8048363:       a1 a0 95 04 08          mov    0x80495a0,%eax
+ 8048368:       eb 18                   jmp    8048382 <max+0x2d>
+ 804836a:       8d 43 ff                lea    -0x1(%ebx),%eax
+ 804836d:       89 04 24                mov    %eax,(%esp)
+ 8048370:       e8 e0 ff ff ff          call   8048355 <max>
+inline int MAX(int a, int b)
+{
+        return a > b ? a : b;
+ 8048375:       8b 14 9d a0 95 04 08    mov    0x80495a0(,%ebx,4),%edx
+ 804837c:       39 d0                   cmp    %edx,%eax
+ 804837e:       7d 02                   jge    8048382 <max+0x2d>
+ 8048380:       89 d0                   mov    %edx,%eax
+int a[] = { 9, 3, 5, 2, 1, 0, 8, 7, 6, 4 };
+
+int max(int n)
+{
+        return n == 0 ? a[0] : MAX(a[n], max(n-1));
+}
+ 8048382:       83 c4 04                add    $0x4,%esp
+ 8048385:       5b                      pop    %ebx
+ 8048386:       5d                      pop    %ebp
+ 8048387:       c3                      ret    
+...

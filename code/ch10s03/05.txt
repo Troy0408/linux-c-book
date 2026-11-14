@@ -1,0 +1,20 @@
+(gdb) l
+6		char input[5];
+7	
+8		while (1) {
+9			sum = 0;
+10			scanf("%s", input);
+11			for (i = 0; input[i] != '\0'; i++)
+12				sum = sum*10 + input[i] - '0';
+13			printf("input=%d\n", sum);
+14		}
+15		return 0;
+(gdb) b 12 if i == 4
+Breakpoint 2 at 0x80483e6: file main.c, line 12.
+(gdb) c
+Continuing.
+
+Breakpoint 2, main () at main.c:12
+12				sum = sum*10 + input[i] - '0';
+(gdb) p sum
+$2 = 1234

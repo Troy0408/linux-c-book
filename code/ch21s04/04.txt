@@ -1,0 +1,4 @@
+$ gcc main.c xassert.c
+$ ./a.out
+main.c:6 2>3 -- assertion failed
+Aborted

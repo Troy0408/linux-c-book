@@ -1,0 +1,1 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define DEBUGP(format, ...) printk(format, \BKZsh{}\BKZsh{} \BKZus{}\BKZus{}VA\BKZus{}ARGS\BKZus{}\BKZus{})}

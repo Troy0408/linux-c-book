@@ -1,0 +1,7 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{临时变量}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{o}{!}\BK{p}{(}\BK{n}{x}\BK{+w}{ }\BK{o}{\BKZpc{}}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{)}\BK{p}{;}
+\BK{n}{函数退出}\BK{err}{，}\BK{n}{局部变量x的存储空间释放}\BK{p}{;}
+\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{临时变量}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{c+cm}{/* 临时变量用完就释放 */}
+\BK{+w}{	}\BK{c+cm}{/* do something */}
+\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{c+cm}{/* do some other thing */}
+\BK{p}{\BKZcb{}}

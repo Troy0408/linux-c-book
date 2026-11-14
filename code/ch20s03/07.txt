@@ -1,0 +1,11 @@
+$ tree
+.
+|-- main.c
+`-- stack
+    |-- is_empty.c
+    |-- pop.c
+    |-- push.c
+    |-- stack.c
+    `-- stack.h
+
+1 directory, 6 files

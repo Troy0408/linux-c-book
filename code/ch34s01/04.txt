@@ -1,0 +1,4 @@
+$ ./a.out
+fd 0: /dev/tty1
+fd 1: /dev/tty1
+fd 2: /dev/tty1

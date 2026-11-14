@@ -1,0 +1,5 @@
+\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{str}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{25 Dec 1988}\BK{l+s}{\BKZdq{}}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{day}\BK{p}{,}\BK{+w}{ }\BK{n}{year}\BK{p}{;}
+\BK{k+kt}{char}\BK{+w}{ }\BK{n}{monthname}\BK{p}{[}\BK{l+m+mi}{20}\BK{p}{]}\BK{p}{;}
+
+\BK{n}{sscanf}\BK{p}{(}\BK{n}{str}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d \BKZpc{}s \BKZpc{}d}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{day}\BK{p}{,}\BK{+w}{ }\BK{n}{monthname}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{year}\BK{p}{)}\BK{p}{;}

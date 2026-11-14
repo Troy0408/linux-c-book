@@ -1,0 +1,15 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{printf}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{format}\BK{p}{,}\BK{+w}{ }\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{fprintf}\BK{p}{(}\BK{k+kt}{FILE}\BK{+w}{ }\BK{o}{*}\BK{n}{stream}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{format}\BK{p}{,}\BK{+w}{ }\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sprintf}\BK{p}{(}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{str}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{format}\BK{p}{,}\BK{+w}{ }\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{snprintf}\BK{p}{(}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{str}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{size}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{format}\BK{p}{,}\BK{+w}{ }\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{p}{)}\BK{p}{;}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdarg.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{vprintf}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{format}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{va\BKZus{}list}\BK{+w}{ }\BK{n}{ap}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{vfprintf}\BK{p}{(}\BK{k+kt}{FILE}\BK{+w}{ }\BK{o}{*}\BK{n}{stream}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{format}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{va\BKZus{}list}\BK{+w}{ }\BK{n}{ap}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{vsprintf}\BK{p}{(}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{str}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{format}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{va\BKZus{}list}\BK{+w}{ }\BK{n}{ap}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{vsnprintf}\BK{p}{(}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{str}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{size}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{format}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{va\BKZus{}list}\BK{+w}{ }\BK{n}{ap}\BK{p}{)}\BK{p}{;}
+
+\BK{n}{返回值}\BK{err}{：}\BK{n}{成功返回格式化输出的字节数}\BK{err}{（}\BK{n}{不包括字符串的结尾}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{\BKZbs{}0}\BK{l+s+sc}{\BKZsq{}}\BK{err}{）}\BK{err}{，}\BK{n}{出错返回一个负值}

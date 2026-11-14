@@ -1,0 +1,81 @@
+\BK{c+cm}{/* linkedlist.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}linkedlist.h\BKZdq{}}
+
+\BK{k}{static}\BK{+w}{ }\BK{n}{link}\BK{+w}{ }\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{;}
+
+\BK{n}{link}\BK{+w}{ }\BK{n+nf}{make\BKZus{}node}\BK{p}{(}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{item}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{malloc}\BK{p}{(}\BK{k}{sizeof}\BK{+w}{ }\BK{o}{*}\BK{n}{p}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{item}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{item}\BK{p}{;}
+\BK{+w}{	}\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{free\BKZus{}node}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{free}\BK{p}{(}\BK{n}{p}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{n}{link}\BK{+w}{ }\BK{n+nf}{search}\BK{p}{(}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{key}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{;}\BK{+w}{ }\BK{n}{p}\BK{p}{;}\BK{+w}{ }\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{)}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{item}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{key}\BK{p}{)}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{insert}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{;}
+\BK{+w}{	}\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{delete}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{link}\BK{+w}{ }\BK{n}{pre}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{;}
+\BK{+w}{		}\BK{k}{return}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{pre}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{;}\BK{+w}{ }\BK{n}{pre}\BK{p}{;}\BK{+w}{ }\BK{n}{pre}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{pre}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{)}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{pre}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{			}\BK{n}{pre}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{;}
+\BK{+w}{			}\BK{k}{return}\BK{p}{;}
+\BK{+w}{		}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{traverse}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{visit}\BK{p}{)}\BK{p}{(}\BK{n}{link}\BK{p}{)}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{;}\BK{+w}{ }\BK{n}{p}\BK{p}{;}\BK{+w}{ }\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{)}
+\BK{+w}{		}\BK{n}{visit}\BK{p}{(}\BK{n}{p}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{destroy}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{link}\BK{+w}{ }\BK{n}{q}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{;}
+\BK{+w}{	}\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{;}
+\BK{+w}{	}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{q}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{+w}{		}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{;}
+\BK{+w}{		}\BK{n}{free\BKZus{}node}\BK{p}{(}\BK{n}{q}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{push}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{insert}\BK{p}{(}\BK{n}{p}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{n}{link}\BK{+w}{ }\BK{n+nf}{pop}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}
+\BK{+w}{		}\BK{k}{return}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{;}
+\BK{+w}{	}\BK{k}{else}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{;}
+\BK{+w}{		}\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{;}
+\BK{+w}{		}\BK{k}{return}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}

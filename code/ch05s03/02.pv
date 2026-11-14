@@ -1,0 +1,10 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{factorial}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{n}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{		}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{	}\BK{k}{else}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{recurse}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{factorial}\BK{p}{(}\BK{n}{n}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{result}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{n}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{recurse}\BK{p}{;}
+\BK{+w}{		}\BK{k}{return}\BK{+w}{ }\BK{n}{result}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}

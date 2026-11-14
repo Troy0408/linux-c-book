@@ -1,0 +1,2 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define CONCAT(a, b) a\BKZsh{}\BKZsh{}b}
+\BK{n}{CONCAT}\BK{p}{(}\BK{n}{con}\BK{p}{,}\BK{+w}{ }\BK{n}{cat}\BK{p}{)}

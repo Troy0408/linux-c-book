@@ -1,0 +1,13 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}locale.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{o}{!}\BK{n}{setlocale}\BK{p}{(}\BK{n}{LC\BKZus{}CTYPE}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{fprintf}\BK{p}{(}\BK{n}{stderr}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Can\BKZsq{}t set the specified locale! }\BK{l+s}{\BKZdq{}}
+\BK{+w}{			}\BK{l+s}{\BKZdq{}}\BK{l+s}{Check LANG, LC\BKZus{}CTYPE, LC\BKZus{}ALL.}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}ls}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s+sa}{L}\BK{l+s}{\BKZdq{}}\BK{l+s}{你好}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

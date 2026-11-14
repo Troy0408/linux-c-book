@@ -1,0 +1,5 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}string.h\BKZgt{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{memcpy}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{dest}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{src}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{n}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{memmove}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{dest}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{src}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{n}\BK{p}{)}\BK{p}{;}
+\BK{n}{返回值}\BK{err}{：}\BK{n}{dest指向哪}\BK{err}{，}\BK{n}{返回的指针就指向哪}

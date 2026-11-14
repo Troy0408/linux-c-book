@@ -1,0 +1,4 @@
+$ echo $SHELL
+$ echo $SHELLabc
+$ echo $SHELL abc
+$ echo ${SHELL}abc

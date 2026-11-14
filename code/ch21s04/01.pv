@@ -1,0 +1,13 @@
+\BK{c+cm}{/* assert.h standard header */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{undef assert	}\BK{c+cm}{/* remove existing definition */}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifdef NDEBUG}
+\BK{+w}{	}\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define assert(test)	((void)0)}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{else		}\BK{c+cm}{/* NDEBUG not defined */}
+\BK{+w}{	}\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{\BKZus{}Assert}\BK{p}{(}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{c+cm}{/* macros */}
+\BK{+w}{	}\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define \BKZus{}STR(x) \BKZus{}VAL(x)}
+\BK{+w}{	}\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define \BKZus{}VAL(x) \BKZsh{}x}
+\BK{+w}{	}\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define assert(test)	((test) ? (void)0 \BKZbs{}}
+\BK{c+cp}{		: \BKZus{}Assert(\BKZus{}\BKZus{}FILE\BKZus{}\BKZus{} \BKZdq{}:\BKZdq{} \BKZus{}STR(\BKZus{}\BKZus{}LINE\BKZus{}\BKZus{}) \BKZdq{} \BKZdq{} \BKZsh{}test))}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

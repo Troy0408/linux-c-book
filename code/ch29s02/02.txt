@@ -1,0 +1,4 @@
+$ ls -l /dev
+...
+prw-r-----  1 syslog adm            0 2008-10-25 11:39 xconsole
+crw-rw-rw-  1 root   root      1,   5 2008-10-24 16:44 zero

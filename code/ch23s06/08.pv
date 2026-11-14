@@ -1,0 +1,3 @@
+\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{o}{*}\BK{n}{p}\BK{p}{;}
+\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{k}{const}\BK{+w}{ }\BK{o}{*}\BK{n}{p}\BK{p}{;}
+\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{o}{*}\BK{k}{const}\BK{+w}{ }\BK{n}{p}\BK{p}{;}

@@ -1,0 +1,16 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{sum}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{input}\BK{p}{[}\BK{l+m+mi}{5}\BK{p}{]}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{sum}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{+w}{		}\BK{n}{scanf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}s}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{input}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{n}{input}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{\BKZbs{}0}\BK{l+s+sc}{\BKZsq{}}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{			}\BK{n}{sum}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{sum}\BK{o}{*}\BK{l+m+mi}{10}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{input}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{0}\BK{l+s+sc}{\BKZsq{}}\BK{p}{;}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{input=\BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{sum}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

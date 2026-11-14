@@ -1,0 +1,2 @@
+main: main.c:33: binarysearch: Assertion `is_sorted()' failed.
+Aborted

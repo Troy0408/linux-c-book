@@ -1,0 +1,8 @@
+\BK{c+ch}{\BKZsh{}! /bin/sh}
+
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}Enter password:\BKZdq{}}
+\BK{n+nb}{read}\BK{+w}{ }TRY
+\BK{k}{while}\BK{+w}{ }\BK{o}{[}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{n+nv}{\BKZdl{}TRY}\BK{l+s+s2}{\BKZdq{}}\BK{+w}{ }!\BK{o}{=}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}secret\BKZdq{}}\BK{+w}{ }\BK{o}{]}\BK{p}{;}\BK{+w}{ }\BK{k}{do}
+\BK{+w}{  }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}Sorry, try again\BKZdq{}}
+\BK{+w}{  }\BK{n+nb}{read}\BK{+w}{ }TRY
+\BK{k}{done}

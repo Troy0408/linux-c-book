@@ -1,0 +1,24 @@
+\BK{c+cm}{/* ret\BKZus{}allocator.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}string.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}ret\BKZus{}allocator.h\BKZdq{}}
+
+\BK{n}{unit\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{alloc\BKZus{}unit}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{n}{unit\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{malloc}\BK{p}{(}\BK{k}{sizeof}\BK{p}{(}\BK{n}{unit\BKZus{}t}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{k}{if}\BK{p}{(}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	  }\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{out of memory}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	  }\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{p}{\BKZcb{}}
+\BK{+w}{     }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{number}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{3}\BK{p}{;}
+\BK{+w}{     }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{msg}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{malloc}\BK{p}{(}\BK{l+m+mi}{20}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{n}{strcpy}\BK{p}{(}\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{msg}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Hello world!}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{k}{return}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{free\BKZus{}unit}\BK{p}{(}\BK{n}{unit\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{n}{free}\BK{p}{(}\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{msg}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{n}{free}\BK{p}{(}\BK{n}{p}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

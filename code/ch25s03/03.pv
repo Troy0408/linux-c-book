@@ -1,0 +1,44 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}limits.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}errno.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{argc}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{argv}\BK{p}{[}\BK{p}{]}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{base}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{endptr}\BK{p}{,}\BK{+w}{ }\BK{o}{*}\BK{n}{str}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{long}\BK{+w}{ }\BK{n}{val}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{argc}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{fprintf}\BK{p}{(}\BK{n}{stderr}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Usage: \BKZpc{}s str [base]}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{argv}\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{n}{EXIT\BKZus{}FAILURE}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+
+\BK{+w}{	}\BK{n}{str}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{argv}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{;}
+\BK{+w}{	}\BK{n}{base}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{(}\BK{n}{argc}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{)}\BK{+w}{ }\BK{o}{?}\BK{+w}{ }\BK{n}{atoi}\BK{p}{(}\BK{n}{argv}\BK{p}{[}\BK{l+m+mi}{2}\BK{p}{]}\BK{p}{)}\BK{+w}{ }\BK{o}{:}\BK{+w}{ }\BK{l+m+mi}{10}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{errno}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{    }\BK{c+cm}{/* To distinguish success/failure after call */}
+\BK{+w}{	}\BK{n}{val}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{strtol}\BK{p}{(}\BK{n}{str}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{endptr}\BK{p}{,}\BK{+w}{ }\BK{n}{base}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{c+cm}{/* Check for various possible errors */}
+
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{p}{(}\BK{n}{errno}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{ERANGE}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{p}{(}\BK{n}{val}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{LONG\BKZus{}MAX}\BK{+w}{ }\BK{o}{|}\BK{o}{|}\BK{+w}{ }\BK{n}{val}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{LONG\BKZus{}MIN}\BK{p}{)}\BK{p}{)}
+\BK{+w}{	    }\BK{o}{|}\BK{o}{|}\BK{+w}{ }\BK{p}{(}\BK{n}{errno}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{val}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{strtol}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{n}{EXIT\BKZus{}FAILURE}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{endptr}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{str}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{fprintf}\BK{p}{(}\BK{n}{stderr}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{No digits were found}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{n}{EXIT\BKZus{}FAILURE}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+
+\BK{+w}{	}\BK{c+cm}{/* If we got here, strtol() successfully parsed a number */}
+
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{strtol() returned \BKZpc{}ld}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{val}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{endptr}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{\BKZbs{}0}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{+w}{        }\BK{c+cm}{/* Not necessarily an error... */}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Further characters after number: \BKZpc{}s}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{endptr}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{exit}\BK{p}{(}\BK{n}{EXIT\BKZus{}SUCCESS}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

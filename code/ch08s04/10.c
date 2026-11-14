@@ -1,0 +1,1 @@
+printf("string: %s\n", str);

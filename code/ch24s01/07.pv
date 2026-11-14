@@ -1,0 +1,6 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{foo}\BK{p}{(}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{str}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{buf}\BK{p}{[}\BK{l+m+mi}{10}\BK{p}{]}\BK{p}{;}
+\BK{+w}{	}\BK{n}{strcpy}\BK{p}{(}\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{n}{str}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{p}{\BKZcb{}}

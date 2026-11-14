@@ -1,0 +1,5 @@
+\BK{c+cm}{/* End of file character.}
+\BK{c+cm}{   Some things throughout the library rely on this being \BKZhy{}1.  */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifndef EOF}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ define EOF (\BKZhy{}1)}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

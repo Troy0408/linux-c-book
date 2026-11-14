@@ -1,0 +1,4 @@
+\BK{c+ch}{\BKZsh{}! /bin/sh}
+\BK{n+nv}{VAR}\BK{o}{=}\BK{l+m}{1}
+\BK{n+nv}{VAR}\BK{o}{=}\BK{k}{\BKZdl{}((}\BK{n+nv}{\BKZdl{}VAR}\BK{o}{+}\BK{l+m}{1}\BK{k}{))}
+\BK{n+nb}{echo}\BK{+w}{ }\BK{n+nv}{\BKZdl{}VAR}

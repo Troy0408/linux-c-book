@@ -1,0 +1,5 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{insert}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{;}
+\BK{+w}{	}\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,8 @@
+$ gdb main
+...
+(gdb) start
+Breakpoint 1 at 0x80483ad: file main.c, line 14.
+Starting program: /home/akaedu/main 
+main () at main.c:14
+14		result[0] = add_range(1, 10);
+(gdb)

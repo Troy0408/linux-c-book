@@ -1,0 +1,15 @@
+$ ./main
+123a
+Invalid input!
+input=-1
+dead
+Invalid input!
+input=-1
+1234578
+Invalid input!
+input=-1
+1234567890abcdef
+Invalid input!
+input=-1
+23
+input=23

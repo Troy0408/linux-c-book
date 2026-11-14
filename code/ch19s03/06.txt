@@ -1,0 +1,10 @@
+ Section to Segment mapping:
+  Segment Sections...
+   00     
+   01     .interp 
+   02     .interp .note.ABI-tag .hash .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rel.dyn .rel.plt .init .plt .text .fini .rodata .eh_frame 
+   03     .ctors .dtors .jcr .dynamic .got .got.plt .data .bss 
+   04     .dynamic 
+   05     .note.ABI-tag 
+   06     
+   07     .ctors .dtors .jcr .dynamic .got 

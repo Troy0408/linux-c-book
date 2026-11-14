@@ -1,0 +1,18 @@
+...
+Disassembly of section .text:
+
+080482e0 <_start>:
+ 80482e0:       31 ed                   xor    %ebp,%ebp
+ 80482e2:       5e                      pop    %esi
+ 80482e3:       89 e1                   mov    %esp,%ecx
+ 80482e5:       83 e4 f0                and    $0xfffffff0,%esp
+ 80482e8:       50                      push   %eax
+ 80482e9:       54                      push   %esp
+ 80482ea:       52                      push   %edx
+ 80482eb:       68 00 84 04 08          push   $0x8048400
+ 80482f0:       68 10 84 04 08          push   $0x8048410
+ 80482f5:       51                      push   %ecx
+ 80482f6:       56                      push   %esi
+ 80482f7:       68 c4 83 04 08          push   $0x80483c4
+ 80482fc:       e8 c3 ff ff ff          call   80482c4 <__libc_start_main@plt>
+...

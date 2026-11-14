@@ -1,0 +1,6 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}pthread.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}cond\BKZus{}destroy}\BK{p}{(}\BK{n}{pthread\BKZus{}cond\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{cond}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}cond\BKZus{}init}\BK{p}{(}\BK{n}{pthread\BKZus{}cond\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{k+kr}{restrict}\BK{+w}{ }\BK{n}{cond}\BK{p}{,}
+\BK{+w}{       }\BK{k}{const}\BK{+w}{ }\BK{n}{pthread\BKZus{}condattr\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{k+kr}{restrict}\BK{+w}{ }\BK{n}{attr}\BK{p}{)}\BK{p}{;}
+\BK{n}{pthread\BKZus{}cond\BKZus{}t}\BK{+w}{ }\BK{n}{cond}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{PTHREAD\BKZus{}COND\BKZus{}INITIALIZER}\BK{p}{;}

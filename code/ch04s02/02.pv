@@ -1,0 +1,7 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{print\BKZus{}parity}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{x}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{x}\BK{+w}{ }\BK{o}{\BKZpc{}}\BK{+w}{ }\BK{l+m+mi}{2}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{x is even.}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{else}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{x is odd.}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,5 @@
+$ ./main 
+1234567890abcdef
+Invalid input!
+input=-1
+Segmentation fault

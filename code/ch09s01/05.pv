@@ -1,0 +1,2 @@
+\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{This is such a long sentence that }\BK{l+s}{\BKZdq{}}
+\BK{+w}{       }\BK{l+s}{\BKZdq{}}\BK{l+s}{it cannot be held within a line}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}

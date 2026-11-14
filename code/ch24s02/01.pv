@@ -1,0 +1,12 @@
+\BK{c+cm}{/* populator.h */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifndef POPULATOR\BKZus{}H}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define POPULATOR\BKZus{}H}
+
+\BK{k}{typedef}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{number}\BK{p}{;}
+\BK{+w}{     }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{msg}\BK{p}{[}\BK{l+m+mi}{20}\BK{p}{]}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{n}{unit\BKZus{}t}\BK{p}{;}
+
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{set\BKZus{}unit}\BK{p}{(}\BK{n}{unit\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{p}{;}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

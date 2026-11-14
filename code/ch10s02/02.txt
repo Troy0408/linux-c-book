@@ -1,0 +1,8 @@
+$ gcc main.c -g -o main
+$ ./main 
+123
+input=123
+234
+input=123234
+（Ctrl-C退出程序）
+$

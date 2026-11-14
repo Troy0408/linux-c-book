@@ -1,0 +1,7 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x}\BK{p}{,}\BK{+w}{ }\BK{n}{y}\BK{p}{;}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z}\BK{p}{;}
+\BK{+w}{	}\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{p}{\BKZcb{}}

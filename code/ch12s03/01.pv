@@ -1,0 +1,7 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{maze}\BK{p}{[}\BK{l+m+mi}{5}\BK{p}{]}\BK{p}{[}\BK{l+m+mi}{5}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{p}{\BKZcb{}}\BK{p}{;}

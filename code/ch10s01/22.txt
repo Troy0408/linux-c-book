@@ -1,0 +1,12 @@
+(gdb) set var sum=0
+(gdb) finish
+Run till exit from #0  add_range (low=1, high=100) at main.c:6
+0x080483db in main () at main.c:15
+15		result[1] = add_range(1, 100);
+Value returned is $4 = 5050
+(gdb) n
+16		printf("result[0]=%d\nresult[1]=%d\n", result[0], result[1]);
+(gdb) （直接回车）
+result[0]=55
+result[1]=5050
+17		return 0;

@@ -1,0 +1,7 @@
+\BK{c+ch}{\BKZsh{}! /bin/sh}
+
+\BK{k}{if}\BK{+w}{ }\BK{o}{[}\BK{+w}{ }\BKZhy{}f\BK{+w}{ }/bin/bash\BK{+w}{ }\BK{o}{]}
+\BK{k}{then}\BK{+w}{ }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}/bin/bash is a file\BKZdq{}}
+\BK{k}{else}\BK{+w}{ }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}/bin/bash is NOT a file\BKZdq{}}
+\BK{k}{fi}
+\BK{k}{if}\BK{+w}{ }:\BK{p}{;}\BK{+w}{ }\BK{k}{then}\BK{+w}{ }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}always true\BKZdq{}}\BK{p}{;}\BK{+w}{ }\BK{k}{fi}

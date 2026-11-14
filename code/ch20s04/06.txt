@@ -1,0 +1,45 @@
+$ gcc -c -g -fPIC stack/stack.c stack/push.c stack/pop.c stack/is_empty.c
+$ objdump -dS push.o
+
+push.o:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <push>:
+/* push.c */
+extern char stack[512];
+extern int top;
+
+void push(char c)
+{
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	53                   	push   %ebx
+   4:	83 ec 04             	sub    $0x4,%esp
+   7:	e8 fc ff ff ff       	call   8 <push+0x8>
+   c:	81 c3 02 00 00 00    	add    $0x2,%ebx
+  12:	8b 45 08             	mov    0x8(%ebp),%eax
+  15:	88 45 f8             	mov    %al,-0x8(%ebp)
+	stack[++top] = c;
+  18:	8b 83 00 00 00 00    	mov    0x0(%ebx),%eax
+  1e:	8b 00                	mov    (%eax),%eax
+  20:	8d 50 01             	lea    0x1(%eax),%edx
+  23:	8b 83 00 00 00 00    	mov    0x0(%ebx),%eax
+  29:	89 10                	mov    %edx,(%eax)
+  2b:	8b 83 00 00 00 00    	mov    0x0(%ebx),%eax
+  31:	8b 08                	mov    (%eax),%ecx
+  33:	8b 93 00 00 00 00    	mov    0x0(%ebx),%edx
+  39:	0f b6 45 f8          	movzbl -0x8(%ebp),%eax
+  3d:	88 04 0a             	mov    %al,(%edx,%ecx,1)
+}
+  40:	83 c4 04             	add    $0x4,%esp
+  43:	5b                   	pop    %ebx
+  44:	5d                   	pop    %ebp
+  45:	c3                   	ret    
+
+Disassembly of section .text.__i686.get_pc_thunk.bx:
+
+00000000 <__i686.get_pc_thunk.bx>:
+   0:	8b 1c 24             	mov    (%esp),%ebx
+   3:	c3                   	ret

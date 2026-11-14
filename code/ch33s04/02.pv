@@ -1,0 +1,9 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sigaction}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{   }\BK{k+kt}{void}\BK{+w}{      }\BK{p}{(}\BK{o}{*}\BK{n}{sa\BKZus{}handler}\BK{p}{)}\BK{p}{(}\BK{k+kt}{int}\BK{p}{)}\BK{p}{;}\BK{+w}{   }\BK{c+cm}{/* addr of signal handler, */}
+\BK{+w}{                                       }\BK{c+cm}{/* or SIG\BKZus{}IGN, or SIG\BKZus{}DFL */}
+\BK{+w}{   }\BK{k+kt}{sigset\BKZus{}t}\BK{+w}{ }\BK{n}{sa\BKZus{}mask}\BK{p}{;}\BK{+w}{               }\BK{c+cm}{/* additional signals to block */}
+\BK{+w}{   }\BK{k+kt}{int}\BK{+w}{      }\BK{n}{sa\BKZus{}flags}\BK{p}{;}\BK{+w}{              }\BK{c+cm}{/* signal options, Figure 10.16 */}
+
+\BK{+w}{   }\BK{c+cm}{/* alternate handler */}
+\BK{+w}{   }\BK{k+kt}{void}\BK{+w}{     }\BK{p}{(}\BK{o}{*}\BK{n}{sa\BKZus{}sigaction}\BK{p}{)}\BK{p}{(}\BK{k+kt}{int}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{siginfo\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{p}{;}

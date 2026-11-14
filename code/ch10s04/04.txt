@@ -1,0 +1,4 @@
+$ ./main 
+1234567890
+Invalid input!
+input=-1

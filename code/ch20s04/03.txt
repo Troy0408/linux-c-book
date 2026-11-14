@@ -1,0 +1,29 @@
+$ objdump -dS push.o 
+
+push.o:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <push>:
+/* push.c */
+extern char stack[512];
+extern int top;
+
+void push(char c)
+{
+   0:	55                   	push   %ebp
+   1:	89 e5                	mov    %esp,%ebp
+   3:	83 ec 04             	sub    $0x4,%esp
+   6:	8b 45 08             	mov    0x8(%ebp),%eax
+   9:	88 45 fc             	mov    %al,-0x4(%ebp)
+	stack[++top] = c;
+   c:	a1 00 00 00 00       	mov    0x0,%eax
+  11:	83 c0 01             	add    $0x1,%eax
+  14:	a3 00 00 00 00       	mov    %eax,0x0
+  19:	8b 15 00 00 00 00    	mov    0x0,%edx
+  1f:	0f b6 45 fc          	movzbl -0x4(%ebp),%eax
+  23:	88 82 00 00 00 00    	mov    %al,0x0(%edx)
+}
+  29:	c9                   	leave  
+  2a:	c3                   	ret

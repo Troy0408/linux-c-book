@@ -1,0 +1,1 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{open}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{pathname}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{flags}\BK{p}{,}\BK{+w}{ }\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{p}{)}\BK{p}{;}

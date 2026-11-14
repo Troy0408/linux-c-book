@@ -1,0 +1,33 @@
+$ ifconfig
+eth0      Link encap:Ethernet  HWaddr 00:0C:29:C2:8D:7E
+          inet addr:192.168.10.223  Bcast:192.168.10.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:10 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:100
+          RX bytes:0 (0.0 b)  TX bytes:420 (420.0 b)
+          Interrupt:10 Base address:0x10a0
+
+eth1      Link encap:Ethernet  HWaddr 00:0C:29:C2:8D:88
+          inet addr:192.168.56.136  Bcast:192.168.56.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:603 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:110 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:100
+          RX bytes:55551 (54.2 Kb)  TX bytes:7601 (7.4 Kb)
+          Interrupt:9 Base address:0x10c0
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:37 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:37 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:3020 (2.9 Kb)  TX bytes:3020 (2.9 Kb)
+$ route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+192.168.10.0    *               255.255.255.0   U     0      0        0 eth0
+192.168.56.0    *               255.255.255.0   U     0      0        0 eth1
+127.0.0.0       *               255.0.0.0       U     0      0        0 lo
+default         192.168.10.1    0.0.0.0         UG    0      0        0 eth0

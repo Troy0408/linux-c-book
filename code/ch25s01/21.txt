@@ -1,0 +1,9 @@
+$ ./a.out 'a/bbb///cc;xxx:yyy:' ':;' '/'
+1: a/bbb///cc
+ --> a
+ --> bbb
+ --> cc
+2: xxx
+ --> xxx
+3: yyy
+ --> yyy

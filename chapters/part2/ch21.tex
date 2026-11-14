@@ -1,0 +1,498 @@
+
+% https://akaedu.github.io/book/ch21.html
+
+\chapter{预处理}
+\BookAnchor{db.ch21}\BookAnchor{db.ch21.id2796862}%
+
+
+\BookNav{\hyperlink{db.ch20s05}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt02}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch21s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch21s01.html
+
+\section{预处理的步骤}
+\BookAnchor{db.ch21s01}\BookAnchor{db.ch21s01.id2796242}%
+现在我们全面了解一下C编译器做语法解析之前的预处理步骤：
+
+
+
+1、把\hyperlink{db.ch02s02.id2707837}{第 2 节 “常量”}提到过的三连符替换成相应的单字符。
+
+
+
+2、把用\BookCode{\textbackslash{}}字符续行的多行代码接成一行。例如：
+
+
+\BookSource{numbers=none}{code/ch21s01/01.pv}{4}{2}
+
+
+经过这个预处理步骤之后接成一行：
+
+
+\BookSource{numbers=none}{code/ch21s01/02.pv}{3}{1}
+
+
+这种续行的写法要求\BookCode{\textbackslash{}}后面紧跟换行，中间不能有其它空白字符。
+
+
+
+3、把注释（不管是单行注释还是多行注释）都替换成一个空格。
+
+
+
+4、经过以上两步之后去掉了一些换行，有的换行在续行过程中去掉了，有的换行在多行注释之中，也随着注释一起去掉了，剩下的代码行称为逻辑代码行。然后预处理器把逻辑代码行划分成Token和空白字符，这时的Token称为预处理Token，包括标识符、整数常量、浮点数常量、字符常量、字符串、运算符和其它符号。继续上面的例子，两个源代码行被接成一个逻辑代码行，然后这个逻辑代码行被划分成Token和空白字符：\BookCode{\#}，\BookCode{define}，空格，\BookCode{STR}，空格，\BookCode{\BookQuoteChar{}hello,\BookSplit{} \BookQuoteChar{}}，Tab，Tab，\BookCode{\BookQuoteChar{}world\BookQuoteChar{}}。
+
+
+
+5、在Token中识别出预处理指示，做相应的预处理动作，如果遇到\BookCode{\#include}预处理指示，则把相应的源文件包含进来，并对源文件做以上1-4步预处理。如果遇到宏定义则做宏展开。
+
+
+
+我们早在\hyperlink{db.ch08s02.id2733695}{第 2 节 “数组应用实例：统计随机数”}就认识了预处理指示这个概念，现在给出它的严格定义。一条预处理指示由一个逻辑代码行组成，以\BookCode{\#}开头，后面跟若干个预处理Token，在预处理指示中允许使用的空白字符只有空格和Tab。
+
+
+
+6、找出字符常量或字符串中的转义序列，用相应的字节来替换它，比如把\BookCode{\textbackslash{}n}替换成字节0x0a。
+
+
+
+7、把相邻的字符串连接起来。继续上面的例子，如果代码中有：
+
+
+\BookSource{numbers=none}{code/ch21s01/03.pv}{4}{2}
+
+
+经过第4步处理划分成以下Token：\BookCode{printf}，\BookCode{(\BookSplit{}}，换行，Tab，\BookCode{STR}，\BookCode{)\BookSplit{}}，\BookCode{;\BookSplit{}}，换行。经过第5步宏展开后变成以下Token：\BookCode{printf}，\BookCode{(\BookSplit{}}，换行，Tab，\BookCode{\BookQuoteChar{}hello,\BookSplit{} \BookQuoteChar{}}，Tab，Tab，\BookCode{\BookQuoteChar{}world\BookQuoteChar{}}，\BookCode{)\BookSplit{}}，\BookCode{;\BookSplit{}}，换行。然后把相邻的字符串连接起来，变成以下Token：\BookCode{printf}，\BookCode{(\BookSplit{}}，换行，Tab，\BookCode{\BookQuoteChar{}hello,\BookSplit{} world\BookQuoteChar{}}，\BookCode{)\BookSplit{}}，\BookCode{;\BookSplit{}}，换行。
+
+
+
+8、经过以上处理之后，把空白字符丢掉，把Token交给C编译器做语法解析，这时就不再是预处理Token，而称为C Token了。这里丢掉的空白字符包括空格、换行、水平Tab、垂直Tab、分页符。继续上面的例子，最后交给C编译器做语法解析的Token是：\BookCode{printf}，\BookCode{(\BookSplit{}}，\BookCode{\BookQuoteChar{}hello,\BookSplit{} world\BookQuoteChar{}}，\BookCode{)\BookSplit{}}，\BookCode{;\BookSplit{}}。注意，把一个预处理指示写成多行要用\BookCode{\textbackslash{}}续行，因为根据定义，一条预处理指示只能由一个逻辑代码行组成，而把C代码写成多行则不需要用\BookCode{\textbackslash{}}续行，因为换行在C代码中只不过是一种空白字符，在做语法解析时所有空白字符都已经丢掉了。
+
+\BookNav{\hyperlink{db.ch21}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch21}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch21s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch21s02.html
+
+\section{宏定义}
+\BookAnchor{db.ch21s02}\BookAnchor{db.ch21s02.id2797195}%
+较大的项目都会用大量的宏定义来组织代码，你可以看看\BookCode{/\BookSplit{}usr/\BookSplit{}include}下面的头文件中用了多少个宏定义。看起来宏展开就是做个替换而已，其实里面有比较复杂的规则，C语言有很多复杂但不常用的语法规则本书并不涉及，但有关宏展开的语法规则本节却力图做全面讲解，因为它很重要也很常用。
+
+
+\subsection{函数式宏定义}
+\BookAnchor{db.ch21s02.id2797214}%
+
+
+以前我们用过的\BookCode{\#define N 20}或\BookCode{\#define STR \BookQuoteChar{}h\BookSplit{}ello,\BookSplit{} world\BookQuoteChar{}}这种宏定义可以称为变量式宏定义（Object-like Macro）\BookAnchor{db.ch21s02.id2797239}，宏定义名可以像变量一样在代码中使用。另外一种宏定义可以像函数调用一样在代码中使用，称为函数式宏定义（Function-like Macro）\BookAnchor{db.ch21s02.id2797249}。例如编辑一个文件\BookCode{main.\BookSplit{}c}：
+
+
+\BookSource{numbers=none}{code/ch21s02/01.pv}{4}{2}
+
+
+我们想看第二行的表达式展开成什么样，可以用\BookCode{gcc}的\BookCode{-\BookSplit{}E}选项或\BookCode{cpp}命令，尽管这个C程序不合语法，但没关系，我们只做预处理而不编译，不会检查程序是否符合C语法。
+
+
+\BookTerminal{code/ch21s02/02.txt}{9}{7}
+
+
+就像函数调用一样，把两个实参分别替换到宏定义中形参\BookCode{a}和\BookCode{b}的位置。注意这种函数式宏定义和真正的函数调用有什么不同：
+
+
+
+1、函数式宏定义的参数没有类型，预处理器只负责做形式上的替换，而不做参数类型检查，所以传参时要格外小心。
+
+
+
+2、调用真正函数的代码和调用函数式宏定义的代码编译生成的指令不同。如果\BookCode{MAX}是个真正的函数，那么它的函数体\BookCode{return a \textgreater{} b ?\BookSplit{} a :\BookSplit{} b;\BookSplit{}}要编译生成指令，代码中出现的每次调用也要编译生成传参指令和\BookCode{call}指令。而如果\BookCode{MAX}是个函数式宏定义，这个宏定义本身倒不必编译生成指令，但是代码中出现的每次调用编译生成的指令都相当于一个函数体，而不是简单的几条传参指令和\BookCode{call}指令。所以，使用函数式宏定义编译生成的目标文件会比较大。
+
+
+
+3、定义这种宏要格外小心，如果上面的定义写成\BookCode{\#define MAX(\BookSplit{}a,\BookSplit{} b)\BookSplit{} (\BookSplit{}a\textgreater{}b?a:\BookSplit{}b)\BookSplit{}}，省去内层括号，则宏展开就成了\BookCode{k =\BookSplit{} (\BookSplit{}i\&0x0f\textgreater{}j\&0x0f?\BookSplit{}i\&0x0f:\BookSplit{}j\&0x0f)\BookSplit{}}，运算的优先级就错了。同样道理，这个宏定义的外层括号也是不能省的，想一想为什么。
+
+
+
+4、调用函数时先求实参表达式的值再传给形参，如果实参表达式有Side Effect，那么这些Side Effect只发生一次。例如\BookCode{MAX(\BookSplit{}+\BookSplit{}+\BookSplit{}a,\BookSplit{} +\BookSplit{}+\BookSplit{}b)\BookSplit{}}，如果\BookCode{MAX}是个真正的函数，\BookCode{a}和\BookCode{b}只增加一次。但如果\BookCode{MAX}是上面那样的宏定义，则要展开成\BookCode{k =\BookSplit{} (\BookSplit{}(\BookSplit{}+\BookSplit{}+\BookSplit{}a)\BookSplit{}\textgreater{}(\BookSplit{}+\BookSplit{}+\BookSplit{}b)\BookSplit{}?(\BookSplit{}+\BookSplit{}+\BookSplit{}a)\BookSplit{}:\BookSplit{}(\BookSplit{}+\BookSplit{}+\BookSplit{}b)\BookSplit{})\BookSplit{}}，\BookCode{a}和\BookCode{b}就不一定是增加一次还是两次了。
+
+
+
+5、即使实参没有Side Effect，使用函数式宏定义也往往会导致较低的代码执行效率。下面举一个极端的例子，也是个很有意思的例子。
+
+
+\BookExampleTitle{函数式宏定义}\BookAnchor{db.ch21s02.id2797453}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch21s02/03.pv}{9}{14}
+
+
+这段代码从一个数组中找出最大的数，如果\BookCode{MAX}是个真正的函数，这个算法就是从前到后遍历一遍数组，时间复杂度是Θ(n)，而现在\BookCode{MAX}是这样一个函数式宏定义，思考一下这个算法的时间复杂度是多少？
+
+
+
+尽管函数式宏定义和真正的函数相比有很多缺点，但只要小心使用还是会显著提高代码的执行效率，毕竟省去了分配和释放栈帧、传参、传返回值等一系列工作，因此那些简短并且被频繁调用的函数经常用函数式宏定义来代替实现。例如C标准库的很多函数都提供两种实现，一种是真正的函数实现，一种是宏定义实现，这一点以后还要详细解释。
+
+
+
+函数式宏定义经常写成这样的形式（取自内核代码\BookCode{include/\BookSplit{}linux/\BookSplit{}pm.\BookSplit{}h}）：
+
+
+\BookSource{numbers=none}{code/ch21s02/04.pv}{7}{5}
+
+
+为什么要用\BookCode{do \{ .\BookSplit{}.\BookSplit{}.\BookSplit{} \} while(\BookSplit{}0)\BookSplit{}}括起来呢？不括起来会有什么问题呢？
+
+
+\BookSource{numbers=none}{code/ch21s02/05.pv}{8}{6}
+
+
+这样宏展开之后，函数体的第二条语句不在\BookCode{if}条件中。那么简单地用\BookCode{\{ .\BookSplit{}.\BookSplit{}.\BookSplit{} \}}括起来组成一个语句块不行吗？
+
+
+\BookSource{numbers=none}{code/ch21s02/06.pv}{9}{8}
+
+
+问题出在\BookCode{device\_\BookSplit{}init\_\BookSplit{}wakeup(\BookSplit{}d,\BookSplit{} v)\BookSplit{};\BookSplit{}}末尾的\BookCode{;\BookSplit{}}号，如果不允许写这个\BookCode{;\BookSplit{}}号，看起来不像个函数调用，可如果写了这个\BookCode{;\BookSplit{}}号，宏展开之后就有语法错误，\BookCode{if}语句被这个\BookCode{;\BookSplit{}}号结束掉了，没法跟\BookCode{else}配对。因此，\BookCode{do \{ .\BookSplit{}.\BookSplit{}.\BookSplit{} \} while(\BookSplit{}0)\BookSplit{}}是一种比较好的解决办法。
+
+
+
+如果在一个程序文件中重复定义一个宏，C语言规定这些重复的宏定义必须一模一样。例如这样的重复定义是允许的：
+
+
+\BookSource{numbers=none}{code/ch21s02/07.pv}{4}{2}
+
+
+在定义的前后多些空白（空格、Tab、注释）没有关系，在定义之中多些空白或少些空白也没有关系，但在定义之中有空白和没有空白被认为是不同的，所以这样的重复定义是不允许的：
+
+
+\BookSource{numbers=none}{code/ch21s02/08.pv}{4}{2}
+
+
+如果需要重新定义一个宏，和原来的定义不同，可以先用\BookCode{\#undef}取消原来的定义，再重新定义，例如：
+
+
+\BookSource{numbers=none}{code/ch21s02/09.pv}{8}{6}
+
+\subsection{内联函数}
+\BookAnchor{db.ch21s02.id2797661}%
+
+
+C99引入一个新关键字\BookCode{inline}，用于定义内联函数（inline function）\BookAnchor{db.ch21s02.id2797678}。这种用法在内核代码中很常见，例如\BookCode{include/\BookSplit{}linux/\BookSplit{}rwsem.\BookSplit{}h}中：
+
+
+\BookSource{numbers=none}{code/ch21s02/10.pv}{9}{7}
+
+
+\BookCode{inline}关键字告诉编译器，这个函数的调用要尽可能快，可以当普通的函数调用实现，也可以用宏展开的办法实现。我们做个实验，把上一节的例子改一下：
+
+
+\BookExampleTitle{内联函数}\BookAnchor{db.ch21s02.id2797711}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch21s02/11.pv}{9}{17}
+
+
+按往常的步骤编译然后反汇编：
+
+
+\BookTerminal{code/ch21s02/12.txt}{9}{28}
+
+
+可以看到\BookCode{MAX}是作为普通函数调用的。如果指定优化选项编译，然后反汇编：
+
+
+\BookTerminal{code/ch21s02/13.txt}{9}{36}
+
+
+可以看到，并没有\BookCode{call}指令调用\BookCode{MAX}函数，\BookCode{MAX}函数的指令是内联在\BookCode{max}函数中的，由于源代码和指令的次序无法对应，\BookCode{max}和\BookCode{MAX}函数的源代码也交错在一起显示。
+
+
+\subsection{\BookCode{\#}、\BookCode{\#\#}运算符和可变参数}
+\BookAnchor{db.ch21s02.id2797840}%
+
+
+在函数式宏定义中，\BookCode{\#}运算符用于创建字符串，\BookCode{\#}运算符后面应该跟一个形参（中间可以有空格或Tab），例如：
+
+
+\BookSource{numbers=none}{code/ch21s02/14.pv}{4}{2}
+
+
+用\BookCode{cpp}命令预处理之后是\BookCode{\BookQuoteChar{}hello\BookSymbol{␣}world\BookQuoteChar{}}，自动用\BookCode{\BookQuoteChar{}}号把实参括起来成为一个字符串，并且实参中的连续多个空白字符被替换成一个空格。
+
+
+
+再比如：
+
+
+\BookSource{numbers=none}{code/ch21s02/15.pv}{5}{3}
+
+
+预处理之后是\BookCode{fputs(\BookSplit{}\BookQuoteChar{}strncmp(\BookSplit{}\textbackslash{}\BookQuoteChar{}ab\textbackslash{}\textbackslash{}\textbackslash{}\BookQuoteChar{}c\textbackslash{}\textbackslash{}0d\textbackslash{}\BookSplit{}\BookQuoteChar{},\BookSplit{} \textbackslash{}\BookQuoteChar{}abc\textbackslash{}\BookQuoteChar{},\BookSplit{} '\textbackslash{}\textbackslash{}4\textbackslash{}\BookQuoteChar{}')\BookSplit{} =\BookSplit{}=\BookSplit{} 0\BookQuoteChar{} \BookQuoteChar{}:\BookSplit{} @\BookSplit{}\textbackslash{}n\BookQuoteChar{},\BookSplit{} s)\BookSplit{};\BookSplit{}}，注意如果实参中包含字符常量或字符串，则宏展开之后字符串的界定符\BookCode{\BookQuoteChar{}}要替换成\BookCode{\textbackslash{}\BookQuoteChar{}}，字符常量或字符串中的\BookCode{\textbackslash{}}和\BookCode{\BookQuoteChar{}}字符要替换成\BookCode{\textbackslash{}\textbackslash{}}和\BookCode{\textbackslash{}\BookQuoteChar{}}。
+
+
+
+在宏定义中可以用\BookCode{\#\#}运算符把前后两个预处理Token连接成一个预处理Token，和\BookCode{\#}运算符不同，\BookCode{\#\#}运算符不仅限于函数式宏定义，变量式宏定义也可以用。例如：
+
+
+\BookSource{numbers=none}{code/ch21s02/16.pv}{4}{2}
+
+
+预处理之后是\BookCode{concat}。再比如，要定义一个宏展开成两个\BookCode{\#}号，可以这样定义：
+
+
+\BookSource{numbers=none}{code/ch21s02/17.pv}{3}{1}
+
+
+中间的\BookCode{\#\#}是运算符，宏展开时前后两个\BookCode{\#}号被这个运算符连接在一起。注意中间的两个空格是不可少的，如果写成\BookCode{\#\#\#\#}，会被划分成\BookCode{\#\#}和\BookCode{\#\#}两个Token，而根据定义\BookCode{\#\#}运算符用于连接前后两个预处理Token，不能出现在宏定义的开头或末尾，所以会报错。
+
+
+
+我们知道\BookCode{printf}函数带有可变参数，函数式宏定义也可以带可变参数，同样是在参数列表中用\BookCode{.\BookSplit{}.\BookSplit{}.\BookSplit{}}表示可变参数。例如：
+
+
+\BookSource{numbers=none}{code/ch21s02/18.pv}{7}{5}
+
+
+预处理之后变成：
+
+
+\BookSource{numbers=none}{code/ch21s02/19.pv}{4}{2}
+
+
+在宏定义中，可变参数的部分用\BookCode{\_\BookSplit{}\_\BookSplit{}VA\_\BookSplit{}ARGS\_\BookSplit{}\_\BookSplit{}}表示，实参中对应\BookCode{.\BookSplit{}.\BookSplit{}.\BookSplit{}}的几个参数可以看成一个参数替换到宏定义中\BookCode{\_\BookSplit{}\_\BookSplit{}VA\_\BookSplit{}ARGS\_\BookSplit{}\_\BookSplit{}}所在的地方。
+
+
+
+调用函数式宏定义允许传空参数，这一点和函数调用不同，通过下面几个例子理解空参数的用法。
+
+
+\BookSource{numbers=none}{code/ch21s02/20.pv}{4}{2}
+
+
+预处理之后变成\BookCode{foo}。\BookCode{FOO}在定义时不带参数，在调用时也不允许传参数给它。
+
+
+\BookSource{numbers=none}{code/ch21s02/21.pv}{5}{3}
+
+
+预处理之后变成：
+
+
+\BookPlain{code/ch21s02/22.txt}{4}{2}
+
+
+\BookCode{FOO}在定义时带一个参数，在调用时必须传一个参数给它，如果不传参数则表示传了一个空参数。
+
+
+\BookSource{numbers=none}{code/ch21s02/23.pv}{7}{5}
+
+
+预处理之后变成：
+
+
+\BookPlain{code/ch21s02/24.txt}{6}{4}
+
+
+\BookCode{FOO}在定义时带三个参数，在调用时也必须传三个参数给它，空参数的位置可以空着，但必须给够三个参数，\BookCode{FOO(\BookSplit{}1,\BookSplit{}2)\BookSplit{}}这样的调用是错误的。
+
+
+\BookSource{numbers=none}{code/ch21s02/25.pv}{5}{3}
+
+
+预处理之后变成：
+
+
+\BookPlain{code/ch21s02/26.txt}{4}{2}
+
+
+\BookCode{FOO(\BookSplit{}1)\BookSplit{}}这个调用相当于可变参数部分传了一个空参数，\BookCode{FOO(\BookSplit{}1,\BookSplit{}2,\BookSplit{}3,\BookSplit{})\BookSplit{}}这个调用相当于可变参数部分传了三个参数，第三个是空参数。
+
+
+
+\BookCode{gcc}有一种扩展语法，如果\BookCode{\#\#}运算符用在\BookCode{\_\BookSplit{}\_\BookSplit{}VA\_\BookSplit{}ARGS\_\BookSplit{}\_\BookSplit{}}前面，除了起连接作用之外还有特殊的含义，例如内核代码\BookCode{net/\BookSplit{}netfilter/\BookSplit{}nf\_\BookSplit{}conntrack\_\BookSplit{}proto\_\BookSplit{}sctp.\BookSplit{}c}中的：
+
+
+\BookSource{numbers=none}{code/ch21s02/27.pv}{3}{1}
+
+
+\BookCode{printk}这个内核函数相当于\BookCode{printf}，也带有格式化字符串和可变参数，由于内核不能调用\BookCode{libc}的函数，所以另外实现了一个打印函数。这个函数式宏定义可以这样调用：\BookCode{DEBUGP(\BookSplit{}\BookQuoteChar{}info no.\BookSplit{} \%d\BookQuoteChar{},\BookSplit{} 1)\BookSplit{}}。也可以这样调用：\BookCode{DEBUGP(\BookSplit{}\BookQuoteChar{}info\BookQuoteChar{})\BookSplit{}}。后者相当于可变参数部分传了一个空参数，但展开后并不是\BookCode{printk(\BookSplit{}\BookQuoteChar{}info\BookQuoteChar{},\BookSplit{})\BookSplit{}}，而是\BookCode{printk(\BookSplit{}\BookQuoteChar{}info\BookQuoteChar{})\BookSplit{}}，当\BookCode{\_\BookSplit{}\_\BookSplit{}VA\_\BookSplit{}ARGS}是空参数时，\BookCode{\#\#}运算符把它前面的\BookCode{,\BookSplit{}}号“吃”掉了。
+
+
+\subsection{宏展开的步骤}
+\BookAnchor{db.ch21s02.id2798306}%
+
+
+以上举的宏展开的例子都是最简单的，有些宏展开的过程要做多次替换，例如：
+
+
+\BookSource{numbers=none}{code/ch21s02/28.pv}{5}{3}
+
+
+\BookCode{sh(\BookSplit{}sub\_\BookSplit{}z)\BookSplit{}}要用\BookCode{sh(\BookSplit{}x)\BookSplit{}}这个宏定义来展开，形参\BookCode{x}对应的实参是\BookCode{sub\_\BookSplit{}z}，替换过程如下：
+
+
+\begin{enumerate}
+
+\item \BookCode{\#x}要替换成\BookCode{\BookQuoteChar{}sub\_\BookSplit{}z\BookQuoteChar{}}。
+
+\item \BookCode{n\#\#x}要替换成\BookCode{nsub\_\BookSplit{}z}。
+
+\item 除了带\BookCode{\#}和\BookCode{\#\#}运算符的参数之外，其它参数在替换之前要对实参本身做充分的展开，所以应该先把\BookCode{sub\_\BookSplit{}z}展开成26再替换到\BookCode{alt[\BookSplit{}x]\BookSplit{}}中\BookCode{x}的位置。
+
+\item 现在展开成了\BookCode{printf(\BookSplit{}\BookQuoteChar{}n\BookQuoteChar{} \BookQuoteChar{}sub\_\BookSplit{}z\BookQuoteChar{} \BookQuoteChar{}=\BookSplit{}\%d,\BookSplit{} or \%d\textbackslash{}n\BookQuoteChar{},\BookSplit{}nsub\_\BookSplit{}z,\BookSplit{}alt[\BookSplit{}26]\BookSplit{})\BookSplit{}}，所有参数都替换完了，这时编译器会再扫描一遍，再找出可以展开的宏定义来展开，假设\BookCode{nsub\_\BookSplit{}z}或\BookCode{alt}是变量式宏定义，这时会进一步展开。
+\end{enumerate}
+
+
+再举一个例子：
+
+
+\BookSource{numbers=none}{code/ch21s02/29.pv}{9}{8}
+
+
+展开的步骤是：
+
+
+\begin{enumerate}
+
+\item 先把\BookCode{g}展开成\BookCode{f}再替换到\BookCode{\#define t(\BookSplit{}a)\BookSplit{} a}中，得到\BookCode{t(\BookSplit{}f(\BookSplit{}0)\BookSplit{} +\BookSplit{} t)\BookSplit{}(\BookSplit{}1)\BookSplit{};\BookSplit{}}。
+
+\item 根据\BookCode{\#define f(\BookSplit{}a)\BookSplit{} f(\BookSplit{}x * (\BookSplit{}a)\BookSplit{})\BookSplit{}}，得到\BookCode{t(\BookSplit{}f(\BookSplit{}x * (\BookSplit{}0)\BookSplit{})\BookSplit{} +\BookSplit{} t)\BookSplit{}(\BookSplit{}1)\BookSplit{};\BookSplit{}}。
+
+\item 把\BookCode{x}替换成2，得到\BookCode{t(\BookSplit{}f(\BookSplit{}2 * (\BookSplit{}0)\BookSplit{})\BookSplit{} +\BookSplit{} t)\BookSplit{}(\BookSplit{}1)\BookSplit{};\BookSplit{}}。注意，一开始定义\BookCode{x}为3，但是后来用\BookCode{\#undef x}取消了\BookCode{x}的定义，又重新定义\BookCode{x}为2。当处理到\BookCode{t(\BookSplit{}t(\BookSplit{}g)\BookSplit{}(\BookSplit{}0)\BookSplit{} +\BookSplit{} t)\BookSplit{}(\BookSplit{}1)\BookSplit{};\BookSplit{}}这一行代码时\BookCode{x}已经定义成2了，所以用2来替换。还要注意一点，现在得到的\BookCode{t(\BookSplit{}f(\BookSplit{}2 * (\BookSplit{}0)\BookSplit{})\BookSplit{} +\BookSplit{} t)\BookSplit{}(\BookSplit{}1)\BookSplit{};\BookSplit{}}中仍然有\BookCode{f}，但不能再次根据\BookCode{\#define f(\BookSplit{}a)\BookSplit{} f(\BookSplit{}x * (\BookSplit{}a)\BookSplit{})\BookSplit{}}展开了，\BookCode{f(\BookSplit{}2 * (\BookSplit{}0)\BookSplit{})\BookSplit{}}就是由展开\BookCode{f(\BookSplit{}0)\BookSplit{}}得到的，这里面再遇到\BookCode{f}就不展开了，这样规定可以避免无穷展开（类似于无穷递归），因此我们可以放心地使用递归定义，例如\BookCode{\#define a a[\BookSplit{}0]\BookSplit{}}，\BookCode{\#define a a.\BookSplit{}member}等。
+
+\item 根据\BookCode{\#define t(\BookSplit{}a)\BookSplit{} a}，最终展开成\BookCode{f(\BookSplit{}2 * (\BookSplit{}0)\BookSplit{})\BookSplit{} +\BookSplit{} t(\BookSplit{}1)\BookSplit{};\BookSplit{}}。这时不能再展开\BookCode{t(\BookSplit{}1)\BookSplit{}}了，因为这里的\BookCode{t}就是由展开\BookCode{t(\BookSplit{}f(\BookSplit{}2 * (\BookSplit{}0)\BookSplit{})\BookSplit{} +\BookSplit{} t)\BookSplit{}}得到的，所以不能再展开了。
+\end{enumerate}
+
+\BookNav{\hyperlink{db.ch21s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch21}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch21s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch21s03.html
+
+\section{条件预处理指示}
+\BookAnchor{db.ch21s03}\BookAnchor{db.ch21s03.id2798658}%
+我们在\hyperlink{db.ch20s02.id2788051}{第 2.\BookSplit{}2 节 “头文件”}中见过Header Guard的用法：
+
+
+\BookSource{numbers=none}{code/ch21s03/01.pv}{6}{4}
+
+
+条件预处理指示也常用于源代码的配置管理，例如：
+
+
+\BookSource{numbers=none}{code/ch21s03/02.pv}{9}{7}
+
+
+假设这段程序是为多种平台编写的，在68000平台上需要定义\BookCode{x}为\BookCode{int}型，在8086平台上需要定义\BookCode{x}为\BookCode{long}型，对其它平台暂不提供支持，就可以用条件预处理指示来写。如果在预处理这段代码之前，\BookCode{MACHINE}被定义为68000，则包含\BookCode{intx;\BookSplit{}}这段代码；否则如果\BookCode{MACHINE}被定义为8086，则包含\BookCode{long x;\BookSplit{}}这段代码；否则（\BookCode{MACHINE}没有定义，或者定义为其它值），包含\BookCode{\#error UNKNOWN\BookSplit{} TARGET MACHIN\BookSplit{}E}这段代码，编译器遇到这个预处理指示就报错退出，错误信息就是\BookCode{UNKNOWN TARGET\BookSplit{} MACHINE}。
+
+
+
+如果要为8086平台编译这段代码，有几种可选的办法：
+
+
+
+1、手动编辑代码，在前面添一行\BookCode{\#define MACHIN\BookSplit{}E 8086}。这样做的缺点是难以管理，如果这个项目中有很多源文件都需要定义\BookCode{MACHINE}，每次要为8086平台编译就得把这些定义全部改成8086，每次要为68000平台编译就得把这些定义全部改成68000。
+
+
+
+2、在所有需要配置的源文件开头包含一个头文件，在头文件中定义\BookCode{\#define MACHIN\BookSplit{}E 8086}，这样只需要改一个头文件就可以影响所有包含它的源文件。通常这个头文件由配置工具生成，比如在Linux内核源代码的目录下运行\BookCode{make menuconfi\BookSplit{}g}命令可以出来一个配置菜单，在其中配置的选项会自动转换成头文件\BookCode{include/\BookSplit{}linux/\BookSplit{}autoconf.\BookSplit{}h}中的宏定义。
+
+
+
+举一个具体的例子，在内核配置菜单中用回车键和方向键进入\BookCode{Device Drivers\BookSplit{} -\BookSplit{}-\BookSplit{}-\BookSplit{}\textgreater{} Network devi\BookSplit{}ce support}，然后用空格键选中\BookCode{Network device\BookSplit{} support}（菜单项左边的\BookCode{[\BookSplit{} ]\BookSplit{}}括号内会出现一个\BookCode{*}号），然后保存退出，会生成一个名为\BookCode{.\BookSplit{}config}的隐藏文件，其内容类似于：
+
+
+\BookPlain{code/ch21s03/03.txt}{9}{10}
+
+
+然后运行\BookCode{make}命令编译内核，这时根据\BookCode{.\BookSplit{}config}文件生成头文件\BookCode{include/\BookSplit{}linux/\BookSplit{}autoconf.\BookSplit{}h}，其内容类似于：
+
+
+\BookSource{numbers=none}{code/ch21s03/04.pv}{9}{10}
+
+
+上面的代码用\BookCode{\#undef}确保取消一些宏的定义，如果先前没有定义过\BookCode{CONFIG\_\BookSplit{}DUMMY}，用\BookCode{\#undef CONFIG\_\BookSplit{}DUMMY}取消它的定义没有任何作用，也不算错。
+
+
+
+\BookCode{include/\BookSplit{}linux/\BookSplit{}autoconf.\BookSplit{}h}被另一个头文件\BookCode{include/\BookSplit{}linux/\BookSplit{}config.\BookSplit{}h}所包含，通常内核代码包含后一个头文件，例如\BookCode{net/\BookSplit{}core/\BookSplit{}sock.\BookSplit{}c}：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch21s03/05.pv}{9}{14}
+
+
+再比如\BookCode{drivers/\BookSplit{}isdn/\BookSplit{}i4l/\BookSplit{}isdn\_\BookSplit{}common.\BookSplit{}c}：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch21s03/06.pv}{9}{24}
+
+
+这样，在配置菜单中所做的配置通过条件预处理最终决定了哪些代码被编译到内核中。\BookCode{\#ifdef}或\BookCode{\#if}可以嵌套使用，但预处理指示通常都顶头写不缩进，为了区分嵌套的层次，可以像上面的代码中最后一行那样，在\BookCode{\#endif}处用注释写清楚它结束的是哪个\BookCode{\#if}或\BookCode{\#ifdef}。
+
+
+
+3、要定义一个宏不一定非得在代码中用\BookCode{\#define}定义，早在\hyperlink{db.ch11s06.id2746698}{第 6 节 “折半查找”}我们就见过用\BookCode{gcc}的\BookCode{-\BookSplit{}D}选项定义一个宏\BookCode{NDEBUG}。对于上面的例子，我们需要给\BookCode{MACHINE}定义一个值，可以写成类似这样的命令：\BookCode{gcc -\BookSplit{}c -\BookSplit{}DMACHINE=\BookSplit{}8086 main.\BookSplit{}c}。这种办法需要给每个编译命令都加上适当的选项，和第2种方法相比似乎也很麻烦，第2种方法在头文件中只写一次宏定义就可以在很多源文件中生效，第3种方法能不能做到“只写一次到处生效”呢？等以后学习了Makefile就有办法了。
+
+
+
+最后通过下面的例子说一下\BookCode{\#if}后面的表达式：
+
+
+\BookSource{numbers=none}{code/ch21s03/07.pv}{4}{2}
+
+\begin{enumerate}
+
+\item 首先处理\BookCode{defined}运算符，\BookCode{defined}运算符一般用作表达式中的一部分，如果单独使用，\BookCode{\#if defined x}相当于\BookCode{\#ifdef x}，而\BookCode{\#if !defined x}相当于\BookCode{\#ifndef x}。在这个例子中，如果\BookCode{x}这个宏有定义，则把\BookCode{defined x}替换为1，否则替换为0，因此变成\BookCode{\#if 0 |\BookSplit{}|\BookSplit{} y |\BookSplit{}|\BookSplit{} VERSION \textless{} 3}。
+
+\item 然后把有定义的宏展开，变成\BookCode{\#if 0 |\BookSplit{}|\BookSplit{} y |\BookSplit{}|\BookSplit{} 2 \textless{} 3}。
+
+\item 把没有定义的宏替换成0，变成\BookCode{\#if 0 |\BookSplit{}|\BookSplit{} 0 |\BookSplit{}|\BookSplit{} 2 \textless{} 3}，注意，即使前面定义了一个变量名是\BookCode{y}，在这一步也还是替换成0，因为\BookCode{\#if}的表达式必须在编译时求值，其中包含的名字只能是宏定义。
+
+\item 把得到的表达式\BookCode{0 |\BookSplit{}|\BookSplit{} 0 |\BookSplit{}|\BookSplit{} 2 \textless{} 3}像C表达式一样求值，求值的结果是\BookCode{\#if 1}，因此条件成立。
+\end{enumerate}
+
+\BookNav{\hyperlink{db.ch21s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch21}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch21s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch21s04.html
+
+\section{其它预处理特性}
+\BookAnchor{db.ch21s04}\BookAnchor{db.ch21s04.id2799358}%
+\BookCode{\#pragma}预处理指示供编译器实现一些非标准的特性，C标准没有规定\BookCode{\#pragma}后面应该写什么以及起什么作用，由编译器自己规定。有的编译器用\BookCode{\#pragma}定义一些特殊功能寄存器名，有的编译器用\BookCode{\#pragma}定位链接地址，本书不做深入讨论。如果编译器在代码中碰到不认识的\BookCode{\#pragma}指示则忽略它，例如\BookCode{gcc}的\BookCode{\#pragma}指示都是\BookCode{\#pragma GCC .\BookSplit{}.\BookSplit{}.\BookSplit{}}这种形式，用别的编译器编译则忽略这些指示。
+
+
+
+C标准规定了几个特殊的宏，在不同的地方使用可以自动展开成不同的值，常用的有\BookCode{\_\BookSplit{}\_\BookSplit{}FILE\_\BookSplit{}\_\BookSplit{}}和\BookCode{\_\BookSplit{}\_\BookSplit{}LINE\_\BookSplit{}\_\BookSplit{}}，\BookCode{\_\BookSplit{}\_\BookSplit{}FILE\_\BookSplit{}\_\BookSplit{}}展开为当前源文件的文件名，是一个字符串，\BookCode{\_\BookSplit{}\_\BookSplit{}LINE\_\BookSplit{}\_\BookSplit{}}展开为当前代码行的行号，是一个整数。这两个宏在源代码中不同的位置使用会自动取不同的值，显然不是用\BookCode{\#define}能定义得出来的，它们是编译器内建的特殊的宏。在打印调试信息时打印这两个宏可以给开发者非常有用的提示，例如在\hyperlink{db.ch11s06.id2746698}{第 6 节 “折半查找”}我们看到\BookCode{assert}函数打印的错误信息就有\BookCode{\_\BookSplit{}\_\BookSplit{}FILE\_\BookSplit{}\_\BookSplit{}}和\BookCode{\_\BookSplit{}\_\BookSplit{}LINE\_\BookSplit{}\_\BookSplit{}}的值。现在我们自己实现这个\BookCode{assert}函数，以理解它的原理。这个实现出自\hyperlink{db.bi01.bibli.standardclib}{[Standard C Library]}：
+
+
+\BookExampleTitle{assert.h的一种实现}\BookAnchor{db.ch21s04.id2799502}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch21s04/01.pv}{9}{13}
+
+
+通过这个例子可以全面复习本章所讲的知识。C标准规定\BookCode{assert}应该实现为宏定义而不是一个真正的函数，并且\BookCode{assert(\BookSplit{}test)\BookSplit{}}这个表达式的值应该是\BookCode{void}类型的。首先用\BookCode{\#undef assert}确保取消前面对\BookCode{assert}的定义，然后分两种情况：如果定义了\BookCode{NDEBUG}，那么\BookCode{assert(\BookSplit{}test)\BookSplit{}}直接定义成一个\BookCode{void}类型的值，什么也不做；如果没有定义\BookCode{NDEBUG}，则要判断测试条件\BookCode{test}是否成立，如果条件成立就什么也不做，如果不成立则调用\BookCode{\_\BookSplit{}Assert}函数。假设在\BookCode{main.\BookSplit{}c}文件的第\BookCode{33}行调用\BookCode{assert(\BookSplit{}is\_\BookSplit{}sorted(\BookSplit{})\BookSplit{})\BookSplit{}}，那么\BookCode{\_\BookSplit{}\_\BookSplit{}FILE\_\BookSplit{}\_\BookSplit{}}是字符串\BookCode{\BookQuoteChar{}main.\BookSplit{}c\BookQuoteChar{}}，\BookCode{\_\BookSplit{}\_\BookSplit{}LINE\_\BookSplit{}\_\BookSplit{}}是整数\BookCode{33}，\BookCode{\#test}是字符串\BookCode{\BookQuoteChar{}is\_\BookSplit{}sorted(\BookSplit{})\BookSplit{}\BookQuoteChar{}}。注意\BookCode{\_\BookSplit{}STR(\BookSplit{}\_\BookSplit{}\_\BookSplit{}LINE\_\BookSplit{}\_\BookSplit{})\BookSplit{}}的展开过程：首先展开成\BookCode{\_\BookSplit{}VAL(\BookSplit{}33)\BookSplit{}}，然后进一步展开成字符串\BookCode{\BookQuoteChar{}33\BookQuoteChar{}}。这样，最后\BookCode{\_\BookSplit{}Assert}调用的形式是\BookCode{\_\BookSplit{}Assert(\BookSplit{}\BookQuoteChar{}main.\BookSplit{}c\BookQuoteChar{} \BookQuoteChar{}:\BookSplit{}\BookQuoteChar{} \BookQuoteChar{}33\BookQuoteChar{} \BookQuoteChar{} \BookQuoteChar{} \BookQuoteChar{}is\_\BookSplit{}sorted(\BookSplit{})\BookSplit{}\BookQuoteChar{})\BookSplit{}}，传给\BookCode{\_\BookSplit{}Assert}函数的字符串是\BookCode{\BookQuoteChar{}main.\BookSplit{}c:\BookSplit{}33 is\_\BookSplit{}sorted(\BookSplit{})\BookSplit{}\BookQuoteChar{}}。\BookCode{\_\BookSplit{}Assert}函数是我们自己定义的，在另一个源文件中：
+
+
+\BookSource{numbers=none}{code/ch21s04/02.pv}{9}{10}
+
+
+注意，在头文件\BookCode{assert.\BookSplit{}h}中自己定义的内部使用的标识符都以\BookCode{\_\BookSplit{}}线开头，例如\BookCode{\_\BookSplit{}STR}，\BookCode{\_\BookSplit{}VAL}，\BookCode{\_\BookSplit{}Assert}，因为我们在模拟C标准库的实现，在\hyperlink{db.expr.variable}{第 3 节 “变量”}讲过，以\BookCode{\_\BookSplit{}}线开头的标识符通常由编译器和C语言库使用，在\BookCode{/\BookSplit{}usr/\BookSplit{}include}下的头文件中你可以看到大量\BookCode{\_\BookSplit{}}线开头的标识符。另外一个问题，为什么我们不直接在\BookCode{assert}的宏定义中调用\BookCode{fputs}和\BookCode{abort}呢？因为调用这两个函数需要包含\BookCode{stdio.\BookSplit{}h}和\BookCode{stdlib.\BookSplit{}h}，C标准库的头文件应该是相互独立的，一个程序只要包含\BookCode{assert.\BookSplit{}h}就应该能使用\BookCode{assert}，而不应该再依赖于别的头文件。\BookCode{\_\BookSplit{}Assert}中的\BookCode{fputs}向标准错误输出打印错误信息，\BookCode{abort}异常终止当前进程，这些函数以后再详细讨论。
+
+
+
+现在测试一下我们的\BookCode{assert}实现，把\BookCode{assert.\BookSplit{}h}和\BookCode{xassert.\BookSplit{}c}和测试代码\BookCode{main.\BookSplit{}c}放在同一个目录下。
+
+
+\BookSource{numbers=none}{code/ch21s04/03.pv}{9}{8}
+
+
+注意\BookCode{\#include \BookQuoteChar{}asse\BookSplit{}rt.\BookSplit{}h\BookQuoteChar{}}要用\BookCode{\BookQuoteChar{}}引号而不要用\BookCode{\textless{}\textgreater{}}括号，以保证包含的是我们自己写的\BookCode{assert.\BookSplit{}h}而非C标准库的头文件。然后编译运行：
+
+
+\BookTerminal{code/ch21s04/04.txt}{6}{4}
+
+
+在打印调试信息时除了文件名和行号之外还可以打印出当前函数名，C99引入一个特殊的标识符\BookCode{\_\BookSplit{}\_\BookSplit{}func\_\BookSplit{}\_\BookSplit{}}支持这一功能。这个标识符应该是一个变量名而不是宏定义，不属于预处理的范畴，但它的作用和\BookCode{\_\BookSplit{}\_\BookSplit{}FILE\_\BookSplit{}\_\BookSplit{}}、\BookCode{\_\BookSplit{}\_\BookSplit{}LINE\_\BookSplit{}\_\BookSplit{}}类似，所以放在一起讲。例如：
+
+
+\BookExampleTitle{特殊标识符\_\_func\_\_}\BookAnchor{db.ch21s04.id2799927}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch21s04/05.pv}{9}{13}
+
+\BookTerminal{code/ch21s04/06.txt}{6}{4}
+
+\BookNav{\hyperlink{db.ch21s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch21}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch22}{下一页}}

@@ -1,0 +1,13 @@
+\BK{o}{\BKZlt{}}\BK{o}{!}\BK{o}{\BKZhy{}}\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{n}{Configuration}\BK{+w}{ }\BK{n}{of}\BK{+w}{ }\BK{n}{http}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}
+\BK{o}{\BKZlt{}}\BK{n}{http}\BK{o}{\BKZgt{}}
+\BK{+w}{        }\BK{o}{\BKZlt{}}\BK{n}{domain}\BK{o}{\BKZgt{}}\BK{n}{www}\BK{p}{.}\BK{n}{mysite}\BK{p}{.}\BK{n}{com}\BK{o}{\BKZlt{}}\BK{o}{/}\BK{n}{domain}\BK{o}{\BKZgt{}}
+\BK{+w}{        }\BK{o}{\BKZlt{}}\BK{n}{port}\BK{o}{\BKZgt{}}\BK{l+m+mi}{8080}\BK{o}{\BKZlt{}}\BK{o}{/}\BK{n}{port}\BK{o}{\BKZgt{}}
+\BK{+w}{        }\BK{o}{\BKZlt{}}\BK{n}{cgihome}\BK{o}{\BKZgt{}}\BK{o}{/}\BK{n}{cgi}\BK{o}{\BKZhy{}}\BK{n}{bin}\BK{o}{\BKZlt{}}\BK{o}{/}\BK{n}{cgihome}\BK{o}{\BKZgt{}}
+\BK{o}{\BKZlt{}}\BK{o}{/}\BK{n}{http}\BK{o}{\BKZgt{}}
+
+\BK{o}{\BKZlt{}}\BK{o}{!}\BK{o}{\BKZhy{}}\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{n}{Configuration}\BK{+w}{ }\BK{n}{of}\BK{+w}{ }\BK{n}{db}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}
+\BK{o}{\BKZlt{}}\BK{n}{database}\BK{o}{\BKZgt{}}
+\BK{+w}{        }\BK{o}{\BKZlt{}}\BK{n}{server}\BK{o}{\BKZgt{}}\BK{n}{mysql}\BK{o}{\BKZlt{}}\BK{o}{/}\BK{n}{server}\BK{o}{\BKZgt{}}
+\BK{+w}{        }\BK{o}{\BKZlt{}}\BK{n}{user}\BK{o}{\BKZgt{}}\BK{n}{myname}\BK{o}{\BKZlt{}}\BK{o}{/}\BK{n}{user}\BK{o}{\BKZgt{}}
+\BK{+w}{        }\BK{o}{\BKZlt{}}\BK{n}{password}\BK{o}{\BKZgt{}}\BK{n}{toopendatabase}\BK{o}{\BKZlt{}}\BK{o}{/}\BK{n}{password}\BK{o}{\BKZgt{}}
+\BK{o}{\BKZlt{}}\BK{o}{/}\BK{n}{database}\BK{o}{\BKZgt{}}

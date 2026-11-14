@@ -1,0 +1,4 @@
+set -e; rm -f maze.d; \
+	cc -MM  maze.c > maze.d.$$; \
+	sed 's,\(maze\)\.o[ :]*,\1.o maze.d : ,g' < maze.d.$$ > maze.d; \
+	rm -f maze.d.$$

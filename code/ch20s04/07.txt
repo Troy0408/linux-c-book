@@ -1,0 +1,8 @@
+Relocation section '.rel.text' at offset 0x94c contains 6 entries:
+ Offset     Info    Type            Sym.Value  Sym. Name
+00000008  00001202 R_386_PC32        00000000   __i686.get_pc_thunk.bx
+0000000e  0000130a R_386_GOTPC       00000000   _GLOBAL_OFFSET_TABLE_
+0000001a  00001403 R_386_GOT32       00000000   top
+00000025  00001403 R_386_GOT32       00000000   top
+0000002d  00001403 R_386_GOT32       00000000   top
+00000035  00001503 R_386_GOT32       00000000   stack

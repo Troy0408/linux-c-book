@@ -1,0 +1,13 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{insertion\BKZus{}sort}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{+w}{			}\BK{n}{执行时间}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{,}\BK{+w}{ }\BK{n}{j}\BK{p}{,}\BK{+w}{ }\BK{n}{key}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{j}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}\BK{+w}{ }\BK{n}{j}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{LEN}\BK{p}{;}\BK{+w}{ }\BK{n}{j}\BK{o}{+}\BK{o}{+}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{key}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{a}\BK{p}{[}\BK{n}{j}\BK{p}{]}\BK{p}{;}\BK{+w}{			}\BK{n}{c1}
+\BK{+w}{		}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{j}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}\BK{+w}{			}\BK{n}{c2}
+\BK{+w}{		}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{a}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{n}{key}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{			}\BK{n}{a}\BK{p}{[}\BK{n}{i}\BK{o}{+}\BK{l+m+mi}{1}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{a}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{p}{;}\BK{+w}{		}\BK{n}{c3}
+\BK{+w}{			}\BK{n}{i}\BK{o}{\BKZhy{}}\BK{o}{\BKZhy{}}\BK{p}{;}\BK{+w}{			}\BK{n}{c4}
+\BK{+w}{		}\BK{p}{\BKZcb{}}
+\BK{+w}{		}\BK{n}{a}\BK{p}{[}\BK{n}{i}\BK{o}{+}\BK{l+m+mi}{1}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{key}\BK{p}{;}\BK{+w}{			}\BK{n}{c5}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}

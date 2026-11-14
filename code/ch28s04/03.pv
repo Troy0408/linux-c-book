@@ -1,0 +1,15 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{buf}\BK{p}{[}\BK{l+m+mi}{10}\BK{p}{]}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+\BK{+w}{	}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{read}\BK{p}{(}\BK{n}{STDIN\BKZus{}FILENO}\BK{p}{,}\BK{+w}{ }\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{10}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{n}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{read STDIN\BKZus{}FILENO}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{write}\BK{p}{(}\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{,}\BK{+w}{ }\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{n}{n}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,5 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}string.h\BKZgt{}}
+
+\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{strtok}\BK{p}{(}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{str}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{delim}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{strtok\BKZus{}r}\BK{p}{(}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{str}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{delim}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{o}{*}\BK{n}{saveptr}\BK{p}{)}\BK{p}{;}
+\BK{n}{返回值}\BK{err}{：}\BK{n}{返回指向下一个Token的指针}\BK{err}{，}\BK{n}{如果没有下一个Token了就返回NULL}

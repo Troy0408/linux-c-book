@@ -1,0 +1,4 @@
+\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{表达式1}\BK{p}{)}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{表达式2}\BK{p}{;}
+\BK{k}{else}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{表达式3}\BK{p}{;}

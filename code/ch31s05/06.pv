@@ -1,0 +1,13 @@
+\BK{c+ch}{\BKZsh{}! /bin/sh}
+
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}Is it morning? Please answer yes or no.\BKZdq{}}
+\BK{n+nb}{read}\BK{+w}{ }YES\BKZus{}OR\BKZus{}NO
+\BK{k}{if}\BK{+w}{ }\BK{o}{[}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{n+nv}{\BKZdl{}YES\BKZus{}OR\BKZus{}NO}\BK{l+s+s2}{\BKZdq{}}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}yes\BKZdq{}}\BK{+w}{ }\BK{o}{]}\BK{p}{;}\BK{+w}{ }\BK{k}{then}
+\BK{+w}{  }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}Good morning!\BKZdq{}}
+\BK{k}{elif}\BK{+w}{ }\BK{o}{[}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{n+nv}{\BKZdl{}YES\BKZus{}OR\BKZus{}NO}\BK{l+s+s2}{\BKZdq{}}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}no\BKZdq{}}\BK{+w}{ }\BK{o}{]}\BK{p}{;}\BK{+w}{ }\BK{k}{then}
+\BK{+w}{  }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}Good afternoon!\BKZdq{}}
+\BK{k}{else}
+\BK{+w}{  }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{l+s+s2}{Sorry, }\BK{n+nv}{\BKZdl{}YES\BKZus{}OR\BKZus{}NO}\BK{l+s+s2}{ not recognized. Enter yes or no.}\BK{l+s+s2}{\BKZdq{}}
+\BK{+w}{  }\BK{n+nb}{exit}\BK{+w}{ }\BK{l+m}{1}
+\BK{k}{fi}
+\BK{n+nb}{exit}\BK{+w}{ }\BK{l+m}{0}

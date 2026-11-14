@@ -1,0 +1,13 @@
+(gdb) l
+5		int sum = 0, i;
+6		char input[5];
+7	
+8		while (1) {
+9			scanf("%s", input);
+10			for (i = 0; input[i] != '\0'; i++)
+11				sum = sum*10 + input[i] - '0';
+12			printf("input=%d\n", sum);
+13		}
+14		return 0;
+(gdb) b 9
+Breakpoint 2 at 0x80483bc: file main.c, line 9.

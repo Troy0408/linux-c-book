@@ -1,0 +1,1 @@
+char *shrink_space(char *dest, const char *src, size_t n);

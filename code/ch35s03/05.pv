@@ -1,0 +1,5 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}pthread.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}mutex\BKZus{}lock}\BK{p}{(}\BK{n}{pthread\BKZus{}mutex\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{mutex}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}mutex\BKZus{}trylock}\BK{p}{(}\BK{n}{pthread\BKZus{}mutex\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{mutex}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}mutex\BKZus{}unlock}\BK{p}{(}\BK{n}{pthread\BKZus{}mutex\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{mutex}\BK{p}{)}\BK{p}{;}

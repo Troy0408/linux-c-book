@@ -1,0 +1,2 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{point}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{row}\BK{p}{,}\BK{+w}{ }\BK{n}{col}\BK{p}{,}\BK{+w}{ }\BK{n}{predecessor}\BK{p}{;}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{n}{queue}\BK{p}{[}\BK{l+m+mi}{512}\BK{p}{]}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{n}{tail}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}

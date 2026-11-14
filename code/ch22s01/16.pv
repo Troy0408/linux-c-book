@@ -1,0 +1,4 @@
+\BK{n+nf}{clean}\BK{o}{:}
+\BK{+w}{	}@echo\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}cleanning project\BKZdq{}}
+\BK{+w}{	}\BKZhy{}rm\BK{+w}{ }main\BK{+w}{ }*.o
+\BK{+w}{	}\BK{err}{@}\BK{err}{e}\BK{err}{c}\BK{err}{h}\BK{err}{o}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}clean completed\BKZdq{}}

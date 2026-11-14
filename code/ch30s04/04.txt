@@ -1,0 +1,9 @@
+$ ls -l /var/run/
+total 52
+srw-rw-rw- 1 root        root           0 2008-10-30 00:24 acpid.socket
+...
+srw-rw-rw- 1 root        root           0 2008-10-30 00:25 gdm_socket
+...
+srw-rw-rw- 1 root        root           0 2008-10-30 00:24 sdp
+...
+srwxr-xr-x 1 root        root           0 2008-10-30 00:42 synaptic.socket

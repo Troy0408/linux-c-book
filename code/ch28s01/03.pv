@@ -1,0 +1,10 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+
+\BK{k+kt}{char}\BK{+w}{ }\BK{n}{msg}\BK{p}{[}\BK{l+m+mi}{14}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Hello, world!}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{;}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define len 14}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{write}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{n}{msg}\BK{p}{,}\BK{+w}{ }\BK{n}{len}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{\BKZus{}exit}\BK{p}{(}\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,1 @@
+ .globl _start

@@ -1,0 +1,4 @@
+$ VAR=1
+$ VAR=$(($VAR+1))
+$ echo $VAR
+2

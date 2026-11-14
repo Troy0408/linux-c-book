@@ -1,0 +1,3 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}pthread.h\BKZgt{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}exit}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{value\BKZus{}ptr}\BK{p}{)}\BK{p}{;}

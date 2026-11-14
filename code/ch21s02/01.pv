@@ -1,0 +1,2 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define MAX(a, b) ((a)\BKZgt{}(b)?(a):(b))}
+\BK{n}{k}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{MAX}\BK{p}{(}\BK{n}{i}\BK{o}{\BKZam{}}\BK{l+m+mh}{0x0f}\BK{p}{,}\BK{+w}{ }\BK{n}{j}\BK{o}{\BKZam{}}\BK{l+m+mh}{0x0f}\BK{p}{)}

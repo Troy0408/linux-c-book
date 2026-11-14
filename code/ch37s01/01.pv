@@ -1,0 +1,6 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}arpa/inet.h\BKZgt{}}
+
+\BK{k+kt}{uint32\BKZus{}t}\BK{+w}{ }\BK{n+nf}{htonl}\BK{p}{(}\BK{k+kt}{uint32\BKZus{}t}\BK{+w}{ }\BK{n}{hostlong}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{uint16\BKZus{}t}\BK{+w}{ }\BK{n+nf}{htons}\BK{p}{(}\BK{k+kt}{uint16\BKZus{}t}\BK{+w}{ }\BK{n}{hostshort}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{uint32\BKZus{}t}\BK{+w}{ }\BK{n+nf}{ntohl}\BK{p}{(}\BK{k+kt}{uint32\BKZus{}t}\BK{+w}{ }\BK{n}{netlong}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{uint16\BKZus{}t}\BK{+w}{ }\BK{n+nf}{ntohs}\BK{p}{(}\BK{k+kt}{uint16\BKZus{}t}\BK{+w}{ }\BK{n}{netshort}\BK{p}{)}\BK{p}{;}

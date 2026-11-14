@@ -1,0 +1,1 @@
+char str[14] = "Hello, world.\n";

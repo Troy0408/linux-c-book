@@ -1,0 +1,9 @@
+$ gcc main.c -g
+$ readelf -a a.out
+...
+    68: 08048540     4 OBJECT  GLOBAL DEFAULT   15 A
+    69: 0804a018     4 OBJECT  GLOBAL DEFAULT   23 a
+    52: 0804a01c     4 OBJECT  LOCAL  DEFAULT   23 b
+    53: 0804a020     4 OBJECT  LOCAL  DEFAULT   23 a.1589
+    81: 0804a02c     4 OBJECT  GLOBAL DEFAULT   24 c
+...

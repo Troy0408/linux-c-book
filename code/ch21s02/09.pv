@@ -1,0 +1,6 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define X 3}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{+w}{ }\BK{c+cm}{/* X is 3 */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{undef X}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{+w}{ }\BK{c+cm}{/* X has no definition */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define X 2}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}\BK{+w}{ }\BK{c+cm}{/* X is 2 */}

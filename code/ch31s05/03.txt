@@ -1,0 +1,6 @@
+$ unset VAR
+$ [ -d Desktop -a $VAR = 'abc' ]
+bash: [: too many arguments
+$ [ -d Desktop -a "$VAR" = 'abc' ]
+$ echo $?
+1

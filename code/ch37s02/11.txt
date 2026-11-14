@@ -1,0 +1,2 @@
+$ netstat -apn|grep 8000
+ tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN     8148/server

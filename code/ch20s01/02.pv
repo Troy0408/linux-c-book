@@ -1,0 +1,17 @@
+\BK{c+cm}{/* main.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{push}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{a}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{push}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{b}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{push}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{c}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}
+\BK{+w}{	}\BK{k}{while}\BK{p}{(}\BK{o}{!}\BK{n}{is\BKZus{}empty}\BK{p}{(}\BK{p}{)}\BK{p}{)}
+\BK{+w}{		}\BK{n}{putchar}\BK{p}{(}\BK{n}{pop}\BK{p}{(}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{putchar}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{\BKZbs{}n}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

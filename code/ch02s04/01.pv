@@ -1,0 +1,5 @@
+\BK{k+kt}{char}\BK{+w}{ }\BK{n}{firstletter}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{hour}\BK{p}{,}\BK{+w}{ }\BK{n}{minute}\BK{p}{;}
+\BK{n}{firstletter}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{a}\BK{l+s+sc}{\BKZsq{}}\BK{p}{;}\BK{+w}{   }\BK{c+cm}{/* give firstletter the value \BKZsq{}a\BKZsq{} */}
+\BK{n}{hour}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{11}\BK{p}{;}\BK{+w}{           }\BK{c+cm}{/* assign the value 11 to hour */}
+\BK{n}{minute}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{59}\BK{p}{;}\BK{+w}{         }\BK{c+cm}{/* set minute to 59 */}

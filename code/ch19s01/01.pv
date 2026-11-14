@@ -1,0 +1,16 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{bar}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{c}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{d}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{e}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{c}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{d}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{e}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{foo}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{b}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{bar}\BK{p}{(}\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{foo}\BK{p}{(}\BK{l+m+mi}{2}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{3}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

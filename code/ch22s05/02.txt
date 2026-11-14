@@ -1,0 +1,5 @@
+$ make CFLAGS=-g
+cc -g   -c -o main.o main.c
+cc -g   -c -o stack.o stack.c
+cc -g   -c -o maze.o maze.c
+gcc main.o stack.o maze.o -o main

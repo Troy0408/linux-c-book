@@ -1,0 +1,2 @@
+int *ptri;
+ptri = pi;

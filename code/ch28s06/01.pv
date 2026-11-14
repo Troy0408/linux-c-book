@@ -1,0 +1,6 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}fcntl.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{fcntl}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{cmd}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{fcntl}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{cmd}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{arg}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{fcntl}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{cmd}\BK{p}{,}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{flock}\BK{+w}{ }\BK{o}{*}\BK{n}{lock}\BK{p}{)}\BK{p}{;}

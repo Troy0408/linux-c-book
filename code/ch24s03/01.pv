@@ -1,0 +1,7 @@
+\BK{c+cm}{/* redirect\BKZus{}ptr.h */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifndef REDIRECT\BKZus{}PTR\BKZus{}H}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define REDIRECT\BKZus{}PTR\BKZus{}H}
+
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{get\BKZus{}a\BKZus{}day}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{o}{*}\BK{p}{)}\BK{p}{;}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

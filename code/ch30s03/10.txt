@@ -1,0 +1,5 @@
+$ ./upper
+hello THERE
+HELLO THERE
+（按Ctrl-D表示EOF）
+$

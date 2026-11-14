@@ -1,0 +1,32 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}fcntl.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}errno.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}string.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define MSG\BKZus{}TRY \BKZdq{}try again\BKZbs{}n\BKZdq{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{buf}\BK{p}{[}\BK{l+m+mi}{10}\BK{p}{]}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+\BK{+w}{	}\BK{n}{fd}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{open}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{/dev/tty}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{O\BKZus{}RDONLY}\BK{o}{|}\BK{n}{O\BKZus{}NONBLOCK}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{p}{(}\BK{n}{fd}\BK{o}{\BKZlt{}}\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{open /dev/tty}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{n+nl}{tryagain}\BK{p}{:}
+\BK{+w}{	}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{read}\BK{p}{(}\BK{n}{fd}\BK{p}{,}\BK{+w}{ }\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{10}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{n}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{errno}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{EAGAIN}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{			}\BK{n}{sleep}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{			}\BK{n}{write}\BK{p}{(}\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{,}\BK{+w}{ }\BK{n}{MSG\BKZus{}TRY}\BK{p}{,}\BK{+w}{ }\BK{n}{strlen}\BK{p}{(}\BK{n}{MSG\BKZus{}TRY}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{			}\BK{k}{goto}\BK{+w}{ }\BK{n}{tryagain}\BK{p}{;}
+\BK{+w}{		}\BK{p}{\BKZcb{}}\BK{+w}{	}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{read /dev/tty}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{write}\BK{p}{(}\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{,}\BK{+w}{ }\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{n}{n}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{close}\BK{p}{(}\BK{n}{fd}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

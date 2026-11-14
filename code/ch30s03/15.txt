@@ -1,0 +1,8 @@
+$ ./a.out &
+[1] 6130
+$ ps u
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+akaedu    6016  0.0  0.3   5724  3140 pts/0    Ss   08:41   0:00 bash
+akaedu    6130 97.2  0.0   1536   284 pts/0    R    08:44  14:33 ./a.out
+akaedu    6131  0.0  0.0      0     0 pts/0    Z    08:44   0:00 [a.out] <defunct>
+akaedu    6163  0.0  0.0   2620  1000 pts/0    R+   08:59   0:00 ps u

@@ -1,0 +1,12 @@
+(gdb) disable breakpoints 3
+(gdb) i breakpoints 
+Num     Type           Disp Enb Address    What
+3       breakpoint     keep n   0x08048411 in main at main.c:12
+(gdb) enable 3
+(gdb) i breakpoints 
+Num     Type           Disp Enb Address    What
+3       breakpoint     keep y   0x08048411 in main at main.c:12
+(gdb) delete breakpoints 
+Delete all breakpoints? (y or n) y
+(gdb) i breakpoints
+No breakpoints or watchpoints.

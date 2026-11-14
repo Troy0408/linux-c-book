@@ -1,0 +1,11 @@
+\BK{c+cm}{/* redirect\BKZus{}ptr.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}redirect\BKZus{}ptr.h\BKZdq{}}
+
+\BK{k}{static}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{msg}\BK{p}{[}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+s}{\BKZdq{}}\BK{l+s}{Sunday}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Monday}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Tuesday}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Wednesday}\BK{l+s}{\BKZdq{}}\BK{p}{,}
+\BK{+w}{			}\BK{l+s}{\BKZdq{}}\BK{l+s}{Thursday}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Friday}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Saturday}\BK{l+s}{\BKZdq{}}\BK{p}{\BKZcb{}}\BK{p}{;}
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{get\BKZus{}a\BKZus{}day}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{o}{*}\BK{n}{pp}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{k}{static}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{+w}{     }\BK{o}{*}\BK{n}{pp}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{msg}\BK{p}{[}\BK{n}{i}\BK{o}{\BKZpc{}}\BK{l+m+mi}{7}\BK{p}{]}\BK{p}{;}
+\BK{+w}{     }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{;}
+\BK{p}{\BKZcb{}}

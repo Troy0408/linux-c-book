@@ -1,0 +1,6 @@
+$ echo '$SHELL'
+$SHELL
+$ echo 'ABC\（回车）
+> DE'（再按一次回车结束命令）
+ABC\
+DE

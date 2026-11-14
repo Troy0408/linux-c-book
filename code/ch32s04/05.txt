@@ -1,0 +1,4 @@
+$ awk '$2<75 {printf "%s\t%s\n", $0, "REORDER";} $2>=75 {print $0;}' testfile
+ProductA  30    REORDER
+ProductB  76
+ProductC  55    REORDER

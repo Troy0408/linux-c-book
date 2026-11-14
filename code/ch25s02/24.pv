@@ -1,0 +1,18 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{FILE}\BK{o}{*}\BK{+w}{ }\BK{n}{fp}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{+w}{ }\BK{p}{(}\BK{n}{fp}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{fopen}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{textfile}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{l+s}{\BKZdq{}}\BK{l+s}{r+}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Open file textfile}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{fseek}\BK{p}{(}\BK{n}{fp}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{10}\BK{p}{,}\BK{+w}{ }\BK{n}{SEEK\BKZus{}SET}\BK{p}{)}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Seek file textfile}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{fputc}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{K}\BK{l+s+sc}{\BKZsq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{fp}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{fclose}\BK{p}{(}\BK{n}{fp}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

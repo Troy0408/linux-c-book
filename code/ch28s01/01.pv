@@ -1,0 +1,27 @@
+\BK{err}{.}\BK{err}{d}\BK{err}{a}\BK{err}{t}\BK{err}{a}\BK{+w}{					}\BK{c}{\BKZsh{} section declaration}
+
+\BK{n+nf}{msg}\BK{o}{:}
+\BK{+w}{	}.ascii\BK{+w}{	}\BK{l+s+s2}{\BKZdq{}Hello, world!\BKZbs{}n\BKZdq{}}\BK{+w}{	}\BK{c+c1}{\BKZsh{} our dear string}
+\BK{+w}{	}\BK{n+nv}{len}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }.\BK{+w}{ }\BKZhy{}\BK{+w}{ }msg\BK{+w}{			}\BK{c+c1}{\BKZsh{} length of our dear string}
+
+\BK{err}{.}\BK{err}{t}\BK{err}{e}\BK{err}{x}\BK{err}{t}\BK{+w}{					}\BK{c}{\BKZsh{} section declaration}
+
+\BK{c}{			\BKZsh{} we must export the entry point to the ELF linker or}
+\BK{+w}{    }.global\BK{+w}{ }\BKZus{}start\BK{+w}{	}\BK{c+c1}{\BKZsh{} loader. They conventionally recognize \BKZus{}start as their}
+\BK{c}{			\BKZsh{} entry point. Use ld \BKZhy{}e foo to override the default.}
+
+\BK{n+nf}{\BKZus{}start}\BK{o}{:}
+
+\BK{c}{\BKZsh{} write our string to stdout}
+
+\BK{+w}{	}movl\BK{+w}{	}\BK{n+nv}{\BKZdl{}len},\BKZpc{}edx\BK{+w}{	}\BK{c+c1}{\BKZsh{} third argument: message length}
+\BK{+w}{	}movl\BK{+w}{	}\BK{n+nv}{\BKZdl{}msg},\BKZpc{}ecx\BK{+w}{	}\BK{c+c1}{\BKZsh{} second argument: pointer to message to write}
+\BK{+w}{	}movl\BK{+w}{	}\BK{n+nv}{\BKZdl{}1},\BKZpc{}ebx\BK{+w}{		}\BK{c+c1}{\BKZsh{} first argument: file handle (stdout)}
+\BK{+w}{	}movl\BK{+w}{	}\BK{n+nv}{\BKZdl{}4},\BKZpc{}eax\BK{+w}{		}\BK{c+c1}{\BKZsh{} system call number (sys\BKZus{}write)}
+\BK{+w}{	}int\BK{+w}{	}\BK{n+nv}{\BKZdl{}0}x80\BK{+w}{		}\BK{c+c1}{\BKZsh{} call kernel}
+
+\BK{c}{\BKZsh{} and exit}
+
+\BK{+w}{	}movl\BK{+w}{	}\BK{n+nv}{\BKZdl{}0},\BKZpc{}ebx\BK{+w}{		}\BK{c+c1}{\BKZsh{} first argument: exit code}
+\BK{+w}{	}movl\BK{+w}{	}\BK{n+nv}{\BKZdl{}1},\BKZpc{}eax\BK{+w}{		}\BK{c+c1}{\BKZsh{} system call number (sys\BKZus{}exit)}
+\BK{+w}{	}\BK{err}{i}\BK{err}{n}\BK{err}{t}\BK{+w}{	}\BK{err}{\BKZdl{}}\BK{err}{0}\BK{err}{x}\BK{err}{8}\BK{err}{0}\BK{+w}{		}\BK{err}{\BKZsh{}}\BK{+w}{ }\BK{err}{c}\BK{err}{a}\BK{err}{l}\BK{err}{l}\BK{+w}{ }\BK{err}{k}\BK{err}{e}\BK{err}{r}\BK{err}{n}\BK{err}{e}\BK{err}{l}

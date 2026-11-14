@@ -1,0 +1,10 @@
+$ VAR=2
+$ test $VAR -gt 1
+$ echo $?
+0
+$ test $VAR -gt 3
+$ echo $?
+1
+$ [ $VAR -gt 3 ]
+$ echo $?
+1

@@ -1,0 +1,2 @@
+$ ls -l textfile 
+-rw-r--r-- 1 akaedu akaedu 5 2009-03-20 10:58 textfile

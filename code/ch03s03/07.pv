@@ -1,0 +1,12 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{increment}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{x}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{x}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{x}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{n}{j}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{;}
+\BK{+w}{	}\BK{n}{increment}\BK{p}{(}\BK{n}{i}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* i now becomes 2 */}
+\BK{+w}{	}\BK{n}{increment}\BK{p}{(}\BK{n}{j}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* j now becomes 3 */}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

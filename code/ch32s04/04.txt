@@ -1,0 +1,4 @@
+$ awk '{print $2;}' testfile
+30
+76
+55

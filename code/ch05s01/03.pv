@@ -1,0 +1,6 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{19}\BK{p}{;}
+\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{is\BKZus{}even}\BK{p}{(}\BK{n}{i}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{c+cm}{/* do something */}
+\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{c+cm}{/* do some other thing */}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,7 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{if MACHINE == 68000}
+\BK{+w}{    }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{x}\BK{p}{;}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{elif MACHINE == 8086}
+\BK{+w}{    }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{x}\BK{p}{;}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{else    }\BK{c+cm}{/* all others */}
+\BK{+w}{    }\BK{c+cp}{\BKZsh{}}\BK{c+cp}{error UNKNOWN TARGET MACHINE}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

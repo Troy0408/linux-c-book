@@ -1,0 +1,4 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{segment}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{start}\BK{p}{;}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{end}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{p}{;}

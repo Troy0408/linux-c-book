@@ -1,0 +1,653 @@
+
+% https://akaedu.github.io/book/ch23.html
+
+\chapter{指针}
+\BookAnchor{db.ch23}\BookAnchor{db.ch23.id2810495}%
+
+
+\BookNav{\hyperlink{db.ch22s05}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt02}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch23s01.html
+
+\section{指针的基本概念}
+\BookAnchor{db.ch23s01}\BookAnchor{db.ch23s01.id2809880}%
+在\hyperlink{db.ch12.id2749812}{第 12 章 \emph{栈与队列}}讲过，堆栈有栈顶指针，队列有头指针和尾指针，这些概念中的“指针”本质上是一个整数，是数组的索引，通过指针访问数组中的某个元素。在\hyperlink{db.ch20s04.id2790289}{图 20.\BookSplit{}3 “间接寻址”}我们又看到另外一种指针的概念，把一个变量所在的内存单元的地址保存在另外一个内存单元中，保存地址的这个内存单元称为指针，通过指针和间接寻址访问变量，这种指针在C语言中可以用一个指针类型的变量表示，例如某程序中定义了以下全局变量：
+
+
+\BookSource{numbers=none}{code/ch23s01/01.pv}{6}{4}
+
+
+这几个变量的内存布局如下图所示，在初学阶段经常要借助于这样的图来理解指针。
+
+
+\BookFigure{指针的基本概念}{\BookImage{images/pointer.pointer0.png}{0.332}}{\BookAnchor{db.ch23s01.id2810538}}
+
+
+这里的\BookCode{\&}是取地址运算符（Address Operator）\BookAnchor{db.ch23s01.id2810563}，\BookCode{\&i}表示取变量\BookCode{i}的地址，\BookCode{int *pi =\BookSplit{} \&i;\BookSplit{}}表示定义一个指向\BookCode{int}型的指针变量\BookCode{pi}，并用\BookCode{i}的地址来初始化\BookCode{pi}。我们讲过全局变量只能用常量表达式初始化，如果定义\BookCode{int p =\BookSplit{} i;\BookSplit{}}就错了，因为\BookCode{i}不是常量表达式，然而用\BookCode{i}的地址来初始化一个指针却没有错，因为\BookCode{i}的地址是在编译链接时能确定的，而不需要到运行时才知道，\BookCode{\&i}是常量表达式。后面两行代码定义了一个字符型变量\BookCode{c}和一个指向\BookCode{c}的字符型指针\BookCode{pc}，注意\BookCode{pi}和\BookCode{pc}虽然是不同类型的指针变量，但它们的内存单元都占4个字节，因为要保存32位的虚拟地址，同理，在64位平台上指针变量都占8个字节。
+
+
+
+我们知道，在同一个语句中定义多个数组，每一个都要有\BookCode{[\BookSplit{}]\BookSplit{}}号：\BookCode{int a[\BookSplit{}5]\BookSplit{},\BookSplit{} b[\BookSplit{}5]\BookSplit{};\BookSplit{}}。同样道理，在同一个语句中定义多个指针变量，每一个都要有\BookCode{*}号，例如：
+
+
+\BookSource{numbers=none}{code/ch23s01/02.pv}{3}{1}
+
+
+如果写成\BookCode{int* p,\BookSplit{} q;\BookSplit{}}就错了，这样是定义了一个整型指针\BookCode{p}和一个整型变量\BookCode{q}，定义数组的\BookCode{[\BookSplit{}]\BookSplit{}}号写在变量后面，而定义指针的\BookCode{*}号写在变量前面，更容易看错。定义指针的\BookCode{*}号前后空格都可以省，写成\BookCode{int*p,\BookSplit{}*q;\BookSplit{}}也算对，但\BookCode{*}号通常和类型\BookCode{int}之间留空格而和变量名写在一起，这样看\BookCode{int *p,\BookSplit{} q;\BookSplit{}}就很明显是定义了一个指针和一个整型变量，就不容易看错了。
+
+
+
+如果要让\BookCode{pi}指向另一个整型变量\BookCode{j}，可以重新对\BookCode{pi}赋值：
+
+
+\BookPlain{code/ch23s01/03.txt}{3}{1}
+
+
+如果要改变\BookCode{pi}所指向的整型变量的值，比如把变量\BookCode{j}的值增加10，可以写：
+
+
+\BookPlain{code/ch23s01/04.txt}{3}{1}
+
+
+这里的\BookCode{*}号是指针间接寻址运算符（Indirection Operator）\BookAnchor{db.ch23s01.id2810828}，\BookCode{*pi}表示取指针\BookCode{pi}所指向的变量的值，也称为Dereference\BookAnchor{db.ch23s01.id2810848}操作，指针有时称为变量的引用（Reference）\BookAnchor{db.ch23s01.id2810856}，所以根据指针找到变量称为Dereference。
+
+
+
+\BookCode{\&}运算符的操作数必须是左值，因为只有左值才表示一个内存单元，才会有地址，运算结果是指针类型。\BookCode{*}运算符的操作数必须是指针类型，运算结果可以做左值。所以，如果表达式\BookCode{E}可以做左值，\BookCode{*\&E}和\BookCode{E}等价，如果表达式\BookCode{E}是指针类型，\BookCode{\&*E}和\BookCode{E}等价。
+
+
+
+指针之间可以相互赋值，也可以用一个指针初始化另一个指针，例如：
+
+
+\BookSource{numbers=none}{code/ch23s01/05.pv}{3}{1}
+
+
+或者：
+
+
+\BookSource{numbers=none}{code/ch23s01/06.pv}{4}{2}
+
+
+表示\emph{\BookCode{pi}指向哪就让\BookCode{ptri}也指向哪}，本质上就是把变量\BookCode{pi}所保存的地址值赋给变量\BookCode{ptri}。
+
+
+
+用一个指针给另一个指针赋值时要注意，两个指针必须是同一类型的。在我们的例子中，\BookCode{pi}是\BookCode{int *}型的，\BookCode{pc}是\BookCode{char *}型的，\BookCode{pi =\BookSplit{} pc;\BookSplit{}}这样赋值就是错误的。但是可以先强制类型转换然后赋值：
+
+
+\BookSource{numbers=none}{code/ch23s01/07.pv}{3}{1}
+
+\BookFigure{把\BookCode{char *}指针的值赋给\BookCode{int *}指针}{\BookImage{images/pointer.pointer1.png}{0.359}}{\BookAnchor{db.ch23s01.id2811004}}
+
+
+现在\BookCode{pi}指向的地址和\BookCode{pc}一样，但是通过\BookCode{*pc}只能访问到一个字节，而通过\BookCode{*pi}可以访问到4个字节，后3个字节已经不属于变量\BookCode{c}了，除非你很确定变量\BookCode{c}的一个字节和后面3个字节组合而成的\BookCode{int}值是有意义的，否则就不应该给\BookCode{pi}这么赋值。因此使用指针要特别小心，很容易将指针指向错误的地址，访问这样的地址可能导致段错误，可能读到无意义的值，也可能意外改写了某些数据，使得程序在随后的运行中出错。有一种情况需要特别注意，定义一个指针类型的局部变量而没有初始化：
+
+
+\BookSource{numbers=none}{code/ch23s01/08.pv}{9}{7}
+
+
+我们知道，在堆栈上分配的变量初始值是不确定的，也就是说指针\BookCode{p}所指向的内存地址是不确定的，后面用\BookCode{*p}访问不确定的地址就会导致不确定的后果，如果导致段错误还比较容易改正，如果意外改写了数据而导致随后的运行中出错，就很难找到错误原因了。像这种指向不确定地址的指针称为“野指针”（Unbound Pointer）\BookAnchor{db.ch23s01.id2811122}，为避免出现野指针，在定义指针变量时就应该给它明确的初值，或者把它初始化为\BookCode{NULL}：
+
+
+\BookSource{numbers=none}{code/ch23s01/09.pv}{9}{7}
+
+
+\BookCode{NULL}在C标准库的头文件\BookCode{stddef.\BookSplit{}h}中定义：
+
+
+\BookSource{numbers=none}{code/ch23s01/10.pv}{3}{1}
+
+
+就是把地址0转换成指针类型，称为空指针，它的特殊之处在于，操作系统不会把任何数据保存在地址0及其附近，也不会把地址0\textasciitilde{}\BookSplit{}0xfff的页面映射到物理内存，所以任何对地址0的访问都会立刻导致段错误。\BookCode{*p =\BookSplit{} 0;\BookSplit{}}会导致段错误，就像放在眼前的炸弹一样很容易找到，相比之下，野指针的错误就像埋下地雷一样，更难发现和排除，这次走过去没事，下次走过去就有事。
+
+
+
+讲到这里就该讲一下\BookCode{void *}类型了。在编程时经常需要一种通用指针，可以转换为任意其它类型的指针，任意其它类型的指针也可以转换为通用指针，最初C语言没有\BookCode{void *}类型，就把\BookCode{char *}当通用指针，需要转换时就用类型转换运算符\BookCode{(\BookSplit{})\BookSplit{}}，ANSI在将C语言标准化时引入了\BookCode{void *}类型，\BookCode{void *}指针与其它类型的指针之间可以隐式转换，而不必用类型转换运算符。注意，只能定义\BookCode{void *}指针，而不能定义\BookCode{void}型的变量，因为\BookCode{void *}指针和别的指针一样都占4个字节，而如果定义\BookCode{void}型变量（也就是类型暂时不确定的变量），编译器不知道该分配几个字节给变量。同样道理，\BookCode{void *}指针不能直接Dereference，而必须先转换成别的类型的指针再做Dereference。\BookCode{void *}指针常用于函数接口，比如：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch23s01/11.pv}{9}{14}
+
+
+下一章讲函数接口时再详细介绍\BookCode{void *}指针的用处。
+
+\BookNav{\hyperlink{db.ch23}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch23s02.html
+
+\section{指针类型的参数和返回值}
+\BookAnchor{db.ch23s02}\BookAnchor{db.ch23s02.id2811286}%
+首先看以下程序：
+
+
+\BookExampleTitle{指针参数和返回值}\BookAnchor{db.ch23s02.id2811296}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch23s02/01.pv}{9}{18}
+
+
+我们知道，调用函数的传参过程相当于用实参定义并初始化形参，\BookCode{swap(\BookSplit{}\&i,\BookSplit{} \&j)\BookSplit{}}这个调用相当于：
+
+
+\BookSource{numbers=none}{code/ch23s02/02.pv}{4}{2}
+
+
+所以\BookCode{px}和\BookCode{py}分别指向\BookCode{main}函数的局部变量\BookCode{i}和\BookCode{j}，在\BookCode{swap}函数中读写\BookCode{*px}和\BookCode{*py}其实是读写\BookCode{main}函数的\BookCode{i}和\BookCode{j}。尽管在\BookCode{swap}函数的作用域中访问不到\BookCode{i}和\BookCode{j}这两个变量名，却可以通过地址访问它们，最终\BookCode{swap}函数将\BookCode{i}和\BookCode{j}的值做了交换。
+
+
+
+上面的例子还演示了函数返回值是指针的情况，\BookCode{return px;\BookSplit{}}语句相当于定义了一个临时变量并用\BookCode{px}初始化：
+
+
+\BookSource{numbers=none}{code/ch23s02/03.pv}{3}{1}
+
+
+然后临时变量\BookCode{tmp}的值成为表达式\BookCode{swap(\BookSplit{}\&i,\BookSplit{} \&j)\BookSplit{}}的值，然后在\BookCode{main}函数中又把这个值赋给了p，相当于：
+
+
+\BookSource{numbers=none}{code/ch23s02/04.pv}{3}{1}
+
+
+最后的结果是\BookCode{swap}函数的\BookCode{px}指向哪就让\BookCode{main}函数的\BookCode{p}指向哪。我们知道\BookCode{px}指向\BookCode{i}，所以\BookCode{p}也指向\BookCode{i}。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch23s02.id2811527}%
+
+
+1、对照本节的描述，像\hyperlink{db.ch23s01.id2810538}{图 23.\BookSplit{}1 “指针的基本概念”}那样画图理解函数的调用和返回过程。在下一章我们会看到更复杂的参数和返回值形式，在初学阶段对每个程序都要画图理解它的运行过程，只要基本概念清晰，无论多复杂的形式都应该能正确分析。
+
+
+
+2、现在回头看\hyperlink{db.ch03s03.id2713785}{第 3 节 “形参和实参”}的习题1，那个程序应该怎么改？
+
+\BookNav{\hyperlink{db.ch23s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch23s03.html
+
+\section{指针与数组}
+\BookAnchor{db.ch23s03}\BookAnchor{db.ch23s03.id2811560}%
+先看个例子，有如下语句：
+
+
+\BookSource{numbers=none}{code/ch23s03/01.pv}{5}{3}
+
+
+首先指针\BookCode{pa}指向\BookCode{a[\BookSplit{}0]\BookSplit{}}的地址，注意后缀运算符的优先级高于单目运算符，所以是取\BookCode{a[\BookSplit{}0]\BookSplit{}}的地址，而不是取\BookCode{a}的地址。然后\BookCode{pa+\BookSplit{}+\BookSplit{}}让\BookCode{pa}指向下一个元素（也就是\BookCode{a[\BookSplit{}1]\BookSplit{}}），由于\BookCode{pa}是\BookCode{int *}指针，一个\BookCode{int}型元素占4个字节，所以\BookCode{pa+\BookSplit{}+\BookSplit{}}使\BookCode{pa}所指向的地址加4，注意不是加1。
+
+
+
+下面画图理解。从前面的例子我们发现，地址的具体数值其实无关紧要，关键是要说明地址之间的关系（\BookCode{a[\BookSplit{}1]\BookSplit{}}位于\BookCode{a[\BookSplit{}0]\BookSplit{}}之后4个字节处）以及指针与变量之间的关系（指针保存的是变量的地址），现在我们换一种画法，省略地址的具体数值，用方框表示存储空间，用箭头表示指针和变量之间的关系。
+
+
+\BookFigure{指针与数组}{\BookImage{images/pointer.array.png}{0.547}}{\BookAnchor{db.ch23s03.id2811671}}
+
+
+既然指针可以用\BookCode{+\BookSplit{}+\BookSplit{}}运算符，当然也可以用\BookCode{+\BookSplit{}}、\BookCode{-\BookSplit{}}运算符，\BookCode{pa+\BookSplit{}2}这个表达式也是有意义的，如上图所示，\BookCode{pa}指向\BookCode{a[\BookSplit{}1]\BookSplit{}}，那么\BookCode{pa+\BookSplit{}2}指向a[3]。事实上，\BookCode{E1[\BookSplit{}E2]\BookSplit{}}这种写法和\BookCode{(\BookSplit{}*(\BookSplit{}(\BookSplit{}E1)\BookSplit{}+\BookSplit{}(\BookSplit{}E2)\BookSplit{})\BookSplit{})\BookSplit{}}是等价的，\BookCode{*(\BookSplit{}pa+\BookSplit{}2)\BookSplit{}}也可以写成\BookCode{pa[\BookSplit{}2]\BookSplit{}}，\BookCode{pa}就像数组名一样，其实数组名也没有什么特殊的，\BookCode{a[\BookSplit{}2]\BookSplit{}}之所以能取数组的第2个元素，是因为它等价于\BookCode{*(\BookSplit{}a+\BookSplit{}2)\BookSplit{}}，在\hyperlink{db.ch08s01.id2733213}{第 1 节 “数组的基本概念”}讲过数组名做右值时自动转换成指向首元素的指针，所以\BookCode{a[\BookSplit{}2]\BookSplit{}}和\BookCode{pa[\BookSplit{}2]\BookSplit{}}本质上是一样的，都是通过指针间接寻址访问元素。由于\BookCode{(\BookSplit{}*(\BookSplit{}(\BookSplit{}E1)\BookSplit{}+\BookSplit{}(\BookSplit{}E2)\BookSplit{})\BookSplit{})\BookSplit{}}显然可以写成\BookCode{(\BookSplit{}*(\BookSplit{}(\BookSplit{}E2)\BookSplit{}+\BookSplit{}(\BookSplit{}E1)\BookSplit{})\BookSplit{})\BookSplit{}}，所以\BookCode{E1[\BookSplit{}E2]\BookSplit{}}也可以写成\BookCode{E2[\BookSplit{}E1]\BookSplit{}}，这意味着\BookCode{2[\BookSplit{}a]\BookSplit{}}、\BookCode{2[\BookSplit{}pa]\BookSplit{}}这种写法也是对的，但一般不这么写。另外，由于\BookCode{a}做右值使用时和\BookCode{\&a[\BookSplit{}0]\BookSplit{}}是一个意思，所以\BookCode{int *pa =\BookSplit{} \&a[\BookSplit{}0]\BookSplit{};\BookSplit{}}通常不这么写，而是写成更简洁的形式\BookCode{int *pa =\BookSplit{} a;\BookSplit{}}。
+
+
+
+在\hyperlink{db.ch08s01.id2733213}{第 1 节 “数组的基本概念”}还讲过C语言允许数组下标是负数，现在你该明白为什么这样规定了。在上面的例子中，表达式\BookCode{pa[\BookSplit{}-\BookSplit{}1]\BookSplit{}}是合法的，它和\BookCode{a[\BookSplit{}0]\BookSplit{}}表示同一个元素。
+
+
+
+现在猜一下，两个指针变量做比较运算（\BookCode{\textgreater{}}、\BookCode{\textgreater{}=\BookSplit{}}、\BookCode{\textless{}}、\BookCode{\textless{}=\BookSplit{}}、\BookCode{=\BookSplit{}=\BookSplit{}}、\BookCode{!=\BookSplit{}}）表示什么意义？两个指针变量做减法运算又表示什么意义？
+
+
+
+根据什么来猜？根据\hyperlink{db.ch03s03.id2713785}{第 3 节 “形参和实参”}讲过的Rule of Least Surprise原则。你理解了指针和常数加减的概念，再根据以往使用比较运算的经验，就应该猜到\BookCode{pa +\BookSplit{} 2 \textgreater{} pa}，\BookCode{pa -\BookSplit{} 1 =\BookSplit{}=\BookSplit{} a}，所以指针之间的比较运算比的是地址，C语言正是这样规定的，不过C语言的规定更为严谨，只有指向同一个数组中元素的指针之间相互比较才有意义，否则没有意义。那么两个指针相减表示什么？\BookCode{pa -\BookSplit{} a}等于几？因为\BookCode{pa -\BookSplit{} 1 =\BookSplit{}=\BookSplit{} a}，所以\BookCode{pa -\BookSplit{} a}显然应该等于1，指针相减表示两个指针之间相差的元素个数，同样只有指向同一个数组中元素的指针之间相减才有意义。两个指针相加表示什么？想不出来它能有什么意义，因此C语言也规定两个指针不能相加。假如C语言为指针相加也规定了一种意义，那就相当Surprise了，不符合一般的经验。无论是设计编程语言还是设计函数接口或人机界面都是这个道理，应该尽可能让用户根据以往的经验知识就能推断出该系统的基本用法。
+
+
+
+在取数组元素时用数组名和用指针的语法一样，但如果把数组名做左值使用，和指针就有区别了。例如\BookCode{pa+\BookSplit{}+\BookSplit{}}是合法的，但\BookCode{a+\BookSplit{}+\BookSplit{}}就不合法，\BookCode{pa =\BookSplit{} a +\BookSplit{} 1}是合法的，但\BookCode{a =\BookSplit{} pa +\BookSplit{} 1}就不合法。数组名做右值时转换成指向首元素的指针，但做左值仍然表示整个数组的存储空间，而不是首元素的存储空间，数组名做左值还有一点特殊之处，不支持\BookCode{+\BookSplit{}+\BookSplit{}}、赋值这些运算符，但支持取地址运算符\BookCode{\&}，所以\BookCode{\&a}是合法的，我们将在\hyperlink{db.ch23s07.id2813032}{第 7 节 “指向数组的指针与多维数组”}介绍这种语法。
+
+
+
+在函数原型中，如果参数是数组，则等价于参数是指针的形式，例如：
+
+
+\BookSource{numbers=none}{code/ch23s03/02.pv}{6}{4}
+
+
+等价于：
+
+
+\BookSource{numbers=none}{code/ch23s03/03.pv}{6}{4}
+
+
+第一种形式方括号中的数字可以不写，仍然是等价的：
+
+
+\BookSource{numbers=none}{code/ch23s03/04.pv}{6}{4}
+
+
+参数写成指针形式还是数组形式对编译器来说没区别，都表示这个参数是指针，之所以规定两种形式是为了给读代码的人提供有用的信息，如果这个参数指向一个元素，通常写成指针的形式，如果这个参数指向一串元素中的首元素，则经常写成数组的形式。
+
+\BookNav{\hyperlink{db.ch23s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch23s04.html
+
+\section{指针与\BookCode{const}限定符}
+\BookAnchor{db.ch23s04}\BookAnchor{db.ch23s04.id2812089}%
+\BookCode{const}限定符和指针结合起来常见的情况有以下几种。
+
+
+\BookSource{numbers=none}{code/ch23s04/01.pv}{4}{2}
+
+
+这两种写法是一样的，\BookCode{a}是一个指向\BookCode{const int}型的指针，\BookCode{a}所指向的内存单元不可改写，所以\BookCode{(\BookSplit{}*a)\BookSplit{}+\BookSplit{}+\BookSplit{}}是不允许的，但\BookCode{a}可以改写，所以\BookCode{a+\BookSplit{}+\BookSplit{}}是允许的。
+
+
+\BookSource{numbers=none}{code/ch23s04/02.pv}{3}{1}
+
+
+\BookCode{a}是一个指向\BookCode{int}型的\BookCode{const}指针，\BookCode{*a}是可以改写的，但\BookCode{a}不允许改写。
+
+
+\BookSource{numbers=none}{code/ch23s04/03.pv}{3}{1}
+
+
+\BookCode{a}是一个指向\BookCode{const int}型的\BookCode{const}指针，因此\BookCode{*a}和\BookCode{a}都不允许改写。
+
+
+
+指向非\BookCode{const}变量的指针或者非\BookCode{const}变量的地址可以传给指向\BookCode{const}变量的指针，编译器可以做隐式类型转换，例如：
+
+
+\BookSource{numbers=none}{code/ch23s04/04.pv}{4}{2}
+
+
+但是，指向\BookCode{const}变量的指针或者\BookCode{const}变量的地址不可以传给指向非\BookCode{const}变量的指针，以免透过后者意外改写了前者所指向的内存单元，例如对下面的代码编译器会报警告：
+
+
+\BookSource{numbers=none}{code/ch23s04/05.pv}{4}{2}
+
+
+即使不用\BookCode{const}限定符也能写出功能正确的程序，但良好的编程习惯应该尽可能多地使用\BookCode{const}，因为：
+
+
+\begin{enumerate}
+
+\item \BookCode{const}给读代码的人传达非常有用的信息。比如一个函数的参数是\BookCode{const char *}，你在调用这个函数时就可以放心地传给它\BookCode{char *}或\BookCode{const char *}指针，而不必担心指针所指的内存单元被改写。
+
+\item 尽可能多地使用\BookCode{const}限定符，把不该变的都声明成只读，这样可以依靠编译器检查程序中的Bug，防止意外改写数据。
+
+\item \BookCode{const}对编译器优化是一个有用的提示，编译器也许会把\BookCode{const}变量优化成常量。
+\end{enumerate}
+
+
+在\hyperlink{db.ch19s03.id2777491}{第 3 节 “变量的存储布局”}我们看到，字符串字面值通常分配在\BookCode{.\BookSplit{}rodata}段，而在\hyperlink{db.ch08s04.id2734544}{第 4 节 “字符串”}提到，字符串字面值类似于数组名，做右值使用时自动转换成指向首元素的指针，这种指针应该是\BookCode{const char *}型。我们知道\BookCode{printf}函数原型的第一个参数是\BookCode{const char *}型，可以把\BookCode{char *}或\BookCode{const char *}指针传给它，所以下面这些调用都是合法的：
+
+
+\BookSource{numbers=none}{code/ch23s04/06.pv}{9}{7}
+
+
+注意上面第一行，如果要定义一个指针指向字符串字面值，这个指针应该是\BookCode{const char *}型，如果写成\BookCode{char *p =\BookSplit{} \BookQuoteChar{}abcd\BookQuoteChar{};\BookSplit{}}就不好了，有隐患，例如：
+
+
+\BookSource{numbers=none}{code/ch23s04/07.pv}{9}{7}
+
+
+\BookCode{p}指向\BookCode{.\BookSplit{}rodata}段，不允许改写，但编译器不会报错，在运行时会出现段错误。
+
+\BookNav{\hyperlink{db.ch23s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23s05}{下一页}}
+
+
+% https://akaedu.github.io/book/ch23s05.html
+
+\section{指针与结构体}
+\BookAnchor{db.ch23s05}\BookAnchor{db.ch23s05.id2812463}%
+首先定义一个结构体类型，然后定义这种类型的变量和指针：
+
+
+\BookSource{numbers=none}{code/ch23s05/01.pv}{8}{6}
+
+
+要通过指针\BookCode{p}访问结构体成员可以写成\BookCode{(\BookSplit{}*p)\BookSplit{}.\BookSplit{}c}和\BookCode{(\BookSplit{}*p)\BookSplit{}.\BookSplit{}num}，为了书写方便，C语言提供了\BookCode{-\BookSplit{}\textgreater{}}运算符，也可以写成\BookCode{p-\BookSplit{}\textgreater{}c}和\BookCode{p-\BookSplit{}\textgreater{}num}。
+
+\BookNav{\hyperlink{db.ch23s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23s06}{下一页}}
+
+
+% https://akaedu.github.io/book/ch23s06.html
+
+\section{指向指针的指针与指针数组}
+\BookAnchor{db.ch23s06}\BookAnchor{db.ch23s06.id2812522}%
+指针可以指向基本类型，也可以指向复合类型，因此也可以指向另外一个指针变量，称为指向指针的指针。
+
+
+\BookSource{numbers=none}{code/ch23s06/01.pv}{5}{3}
+
+
+这样定义之后，表达式\BookCode{*ppi}取\BookCode{pi}的值，表达式\BookCode{**ppi}取\BookCode{i}的值。请读者自己画图理解\BookCode{i}、\BookCode{pi}、\BookCode{ppi}这三个变量之间的关系。
+
+
+
+很自然地，也可以定义指向“指向指针的指针”的指针，但是很少用到：
+
+
+\BookSource{numbers=none}{code/ch23s06/02.pv}{3}{1}
+
+
+数组中的每个元素可以是基本类型，也可以复合类型，因此也可以是指针类型。例如定义一个数组\BookCode{a}由10个元素组成，每个元素都是\BookCode{int *}指针：
+
+
+\BookSource{numbers=none}{code/ch23s06/03.pv}{3}{1}
+
+
+这称为指针数组。\BookCode{int *a[\BookSplit{}10]\BookSplit{};\BookSplit{}}和\BookCode{int **pa;\BookSplit{}}之间的关系类似于\BookCode{int a[\BookSplit{}10]\BookSplit{};\BookSplit{}}和\BookCode{int *pa;\BookSplit{}}之间的关系：\BookCode{a}是由一种元素组成的数组，\BookCode{pa}则是指向这种元素的指针。所以，如果\BookCode{pa}指向\BookCode{a}的首元素：
+
+
+\BookSource{numbers=none}{code/ch23s06/04.pv}{4}{2}
+
+
+则\BookCode{pa[\BookSplit{}0]\BookSplit{}}和\BookCode{a[\BookSplit{}0]\BookSplit{}}取的是同一个元素，唯一比原来复杂的地方在于这个元素是一个\BookCode{int *}指针，而不是基本类型。
+
+
+
+我们知道main函数的标准原型应该是\BookCode{int main(\BookSplit{}int argc,\BookSplit{} char *argv[\BookSplit{}]\BookSplit{})\BookSplit{};\BookSplit{}}。\BookCode{argc}是命令行参数的个数。而\BookCode{argv}是一个指向指针的指针，为什么不是指针数组呢？因为前面讲过，函数原型中的\BookCode{[\BookSplit{}]\BookSplit{}}表示指针而不表示数组，等价于\BookCode{char **argv}。那为什么要写成\BookCode{char *argv[\BookSplit{}]\BookSplit{}}而不写成\BookCode{char **argv}呢？这样写给读代码的人提供了有用信息，\BookCode{argv}不是指向单个指针，而是指向一个指针数组的首元素。数组中每个元素都是\BookCode{char *}指针，指向一个命令行参数字符串。
+
+
+\BookExampleTitle{打印命令行参数}\BookAnchor{db.ch23s06.id2812763}
+
+\BookSource{numbers=none}{code/ch23s06/05.pv}{9}{9}
+
+
+编译执行：
+
+
+\BookTerminal{code/ch23s06/06.txt}{9}{11}
+
+
+注意程序名也算一个命令行参数，所以执行\BookCode{.\BookSplit{}/\BookSplit{}a.\BookSplit{}out a b c}这个命令时，\BookCode{argc}是4，\BookCode{argv}如下图所示：
+
+
+\BookFigure{\BookCode{argv}指针数组}{\BookImage{images/pointer.argv.png}{0.342}}{\BookAnchor{db.ch23s06.id2812809}}
+
+
+由于\BookCode{argv[\BookSplit{}4]\BookSplit{}}是\BookCode{NULL}，我们也可以这样循环遍历\BookCode{argv}：
+
+
+\BookSource{numbers=none}{code/ch23s06/07.pv}{3}{1}
+
+
+\BookCode{NULL}标识着\BookCode{argv}的结尾，这个循环碰到\BookCode{NULL}就结束，因而不会访问越界，这种用法很形象地称为Sentinel\BookAnchor{db.ch23s06.id2812874}，\BookCode{NULL}就像一个哨兵守卫着数组的边界。
+
+
+
+在这个例子中我们还看到，如果给程序建立符号链接，然后通过符号链接运行这个程序，就可以得到不同的\BookCode{argv[\BookSplit{}0]\BookSplit{}}。通常，程序会根据不同的命令行参数做不同的事情，例如\BookCode{ls -\BookSplit{}l}和\BookCode{ls -\BookSplit{}R}打印不同的文件列表，而有些程序会根据不同的\BookCode{argv[\BookSplit{}0]\BookSplit{}}做不同的事情，例如专门针对嵌入式系统的开源项目Busybox，将各种Linux命令裁剪后集于一身，编译成一个可执行文件\BookCode{busybox}，安装时将\BookCode{busybox}程序拷到嵌入式系统的\BookCode{/\BookSplit{}bin}目录下，同时在\BookCode{/\BookSplit{}bin}、\BookCode{/\BookSplit{}sbin}、\BookCode{/\BookSplit{}usr/\BookSplit{}bin}、\BookCode{/\BookSplit{}usr/\BookSplit{}sbin}等目录下创建很多指向\BookCode{/\BookSplit{}bin/\BookSplit{}busybox}的符号链接，命名为\BookCode{cp}、\BookCode{ls}、\BookCode{mv}、\BookCode{ifconfig}等等，不管执行哪个命令其实最终都是在执行\BookCode{/\BookSplit{}bin/\BookSplit{}busybox}，它会根据\BookCode{argv[\BookSplit{}0]\BookSplit{}}来区分不同的命令。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch23s06.id2813010}%
+
+
+1、想想以下定义中的\BookCode{const}分别起什么作用？编写程序验证你的猜测。
+
+
+\BookSource{numbers=none}{code/ch23s06/08.pv}{5}{3}
+
+\BookNav{\hyperlink{db.ch23s05}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23s07}{下一页}}
+
+
+% https://akaedu.github.io/book/ch23s07.html
+
+\section{指向数组的指针与多维数组}
+\BookAnchor{db.ch23s07}\BookAnchor{db.ch23s07.id2813032}%
+指针可以指向复合类型，上一节讲了指向指针的指针，这一节学习指向数组的指针。以下定义一个指向数组的指针，该数组有10个\BookCode{int}元素：
+
+
+\BookSource{numbers=none}{code/ch23s07/01.pv}{3}{1}
+
+
+和上一节指针数组的定义\BookCode{int *a[\BookSplit{}10]\BookSplit{};\BookSplit{}}相比，仅仅多了一个\BookCode{(\BookSplit{})\BookSplit{}}括号。如何记住和区分这两种定义呢？我们可以认为\BookCode{[\BookSplit{}]\BookSplit{}}比\BookCode{*}有更高的优先级，如果\BookCode{a}先和\BookCode{*}结合则表示\BookCode{a}是一个指针，如果\BookCode{a}先和\BookCode{[\BookSplit{}]\BookSplit{}}结合则表示\BookCode{a}是一个数组。\BookCode{int *a[\BookSplit{}10]\BookSplit{};\BookSplit{}}这个定义可以拆成两句：
+
+
+\BookSource{numbers=none}{code/ch23s07/02.pv}{4}{2}
+
+
+\BookCode{t}代表\BookCode{int *}类型，\BookCode{a}则是由这种类型的元素组成的数组。\BookCode{int (\BookSplit{}*a)\BookSplit{}[\BookSplit{}10]\BookSplit{};\BookSplit{}}这个定义也可以拆成两句：
+
+
+\BookSource{numbers=none}{code/ch23s07/03.pv}{4}{2}
+
+
+\BookCode{t}代表由10个\BookCode{int}组成的数组类型，\BookCode{a}则是指向这种类型的指针。
+
+
+
+现在看指向数组的指针如何使用：
+
+
+\BookSource{numbers=none}{code/ch23s07/04.pv}{4}{2}
+
+
+\BookCode{a}是一个数组，在\BookCode{\&a}这个表达式中，数组名做左值，取整个数组的首地址赋给指针\BookCode{pa}。注意，\BookCode{\&a[\BookSplit{}0]\BookSplit{}}表示数组\BookCode{a}的首元素的首地址，而\BookCode{\&a}表示数组\BookCode{a}的首地址，显然这两个地址的数值相同，但这两个表达式的类型是两种不同的指针类型，前者的类型是\BookCode{int *}，而后者的类型是\BookCode{int (\BookSplit{}*)\BookSplit{}[\BookSplit{}10]\BookSplit{}}。\BookCode{*pa}就表示\BookCode{pa}所指向的数组\BookCode{a}，所以取数组的\BookCode{a[\BookSplit{}0]\BookSplit{}}元素可以用表达式\BookCode{(\BookSplit{}*pa)\BookSplit{}[\BookSplit{}0]\BookSplit{}}。注意到\BookCode{*pa}可以写成\BookCode{pa[\BookSplit{}0]\BookSplit{}}，所以\BookCode{(\BookSplit{}*pa)\BookSplit{}[\BookSplit{}0]\BookSplit{}}这个表达式也可以改写成\BookCode{pa[\BookSplit{}0]\BookSplit{}[\BookSplit{}0]\BookSplit{}}，\BookCode{pa}就像一个二维数组的名字，它表示什么含义呢？下面把\BookCode{pa}和二维数组放在一起做个分析。
+
+
+
+\BookCode{int a[\BookSplit{}5]\BookSplit{}[\BookSplit{}10]\BookSplit{};\BookSplit{}}和\BookCode{int (\BookSplit{}*pa)\BookSplit{}[\BookSplit{}10]\BookSplit{};\BookSplit{}}之间的关系同样类似于\BookCode{int a[\BookSplit{}10]\BookSplit{};\BookSplit{}}和\BookCode{int *pa;\BookSplit{}}之间的关系：\BookCode{a}是由一种元素组成的数组，\BookCode{pa}则是指向这种元素的指针。所以，如果\BookCode{pa}指向\BookCode{a}的首元素：
+
+
+\BookSource{numbers=none}{code/ch23s07/05.pv}{4}{2}
+
+
+则\BookCode{pa[\BookSplit{}0]\BookSplit{}}和\BookCode{a[\BookSplit{}0]\BookSplit{}}取的是同一个元素，唯一比原来复杂的地方在于这个元素是由10个\BookCode{int}组成的数组，而不是基本类型。这样，我们可以把\BookCode{pa}当成二维数组名来使用，\BookCode{pa[\BookSplit{}1]\BookSplit{}[\BookSplit{}2]\BookSplit{}}和\BookCode{a[\BookSplit{}1]\BookSplit{}[\BookSplit{}2]\BookSplit{}}取的也是同一个元素，而且\BookCode{pa}比\BookCode{a}用起来更灵活，数组名不支持赋值、自增等运算，而指针可以支持，\BookCode{pa+\BookSplit{}+\BookSplit{}}使\BookCode{pa}跳过二维数组的一行（40个字节），指向\BookCode{a[\BookSplit{}1]\BookSplit{}}的首地址。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch23s07.id2813445}%
+
+
+1、定义以下变量：
+
+
+\BookSource{numbers=none}{code/ch23s07/06.pv}{9}{7}
+
+
+要想通过\BookCode{pa}或\BookCode{ppa}访问数组\BookCode{a}中的\BookCode{'r'}元素，分别应该怎么写？
+
+\BookNav{\hyperlink{db.ch23s06}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23s08}{下一页}}
+
+
+% https://akaedu.github.io/book/ch23s08.html
+
+\section{函数类型和函数指针类型}
+\BookAnchor{db.ch23s08}\BookAnchor{db.ch23s08.id2813491}%
+在C语言中，函数也是一种类型，可以定义指向函数的指针。我们知道，指针变量的内存单元存放一个地址值，而函数指针存放的就是函数的入口地址（位于\BookCode{.\BookSplit{}text}段）。下面看一个简单的例子：
+
+
+\BookExampleTitle{函数指针}\BookAnchor{db.ch23s08.id2813509}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch23s08/01.pv}{9}{13}
+
+
+分析一下变量\BookCode{f}的类型声明\BookCode{void (\BookSplit{}*f)\BookSplit{}(\BookSplit{}const char *)\BookSplit{}}，\BookCode{f}首先跟\BookCode{*}号结合在一起，因此是一个指针。\BookCode{(\BookSplit{}*f)\BookSplit{}}外面是一个函数原型的格式，参数是\BookCode{const char *}，返回值是\BookCode{void}，所以\BookCode{f}是指向这种函数的指针。而\BookCode{say\_\BookSplit{}hello}的参数是\BookCode{const char *}，返回值是\BookCode{void}，正好是这种函数，因此\BookCode{f}可以指向\BookCode{say\_\BookSplit{}hello}。注意，\BookCode{say\_\BookSplit{}hello}是一种函数类型，而函数类型和数组类型类似，做右值使用时自动转换成函数指针类型，所以可以直接赋给\BookCode{f}，当然也可以写成\BookCode{void (\BookSplit{}*f)\BookSplit{}(\BookSplit{}const char *)\BookSplit{} =\BookSplit{} \&say\_\BookSplit{}hello;\BookSplit{}}，把函数\BookCode{say\_\BookSplit{}hello}先取地址再赋给\BookCode{f}，就不需要自动类型转换了。
+
+
+
+可以直接通过函数指针调用函数，如上面的\BookCode{f(\BookSplit{}\BookQuoteChar{}Guys\BookQuoteChar{})\BookSplit{}}，也可以先用\BookCode{*f}取出它所指的函数类型，再调用函数，即\BookCode{(\BookSplit{}*f)\BookSplit{}(\BookSplit{}\BookQuoteChar{}Guys\BookQuoteChar{})\BookSplit{}}。可以这么理解：函数调用运算符\BookCode{(\BookSplit{})\BookSplit{}}要求操作数是函数指针，所以\BookCode{f(\BookSplit{}\BookQuoteChar{}Guys\BookQuoteChar{})\BookSplit{}}是最直接的写法，而\BookCode{say\_\BookSplit{}hello(\BookSplit{}\BookQuoteChar{}Guys\BookQuoteChar{})\BookSplit{}}或\BookCode{(\BookSplit{}*f)\BookSplit{}(\BookSplit{}\BookQuoteChar{}Guys\BookQuoteChar{})\BookSplit{}}则是把函数类型自动转换成函数指针然后做函数调用。
+
+
+
+下面再举几个例子区分函数类型和函数指针类型。首先定义函数类型F：
+
+
+\BookSource{numbers=none}{code/ch23s08/02.pv}{3}{1}
+
+
+这种类型的函数不带参数，返回值是\BookCode{int}。那么可以这样声明\BookCode{f}和\BookCode{g}：
+
+
+\BookPlain{code/ch23s08/03.txt}{3}{1}
+
+
+相当于声明：
+
+
+\BookSource{numbers=none}{code/ch23s08/04.pv}{4}{2}
+
+
+下面这个函数声明是错误的：
+
+
+\BookPlain{code/ch23s08/05.txt}{3}{1}
+
+
+因为函数可以返回\BookCode{void}类型、标量类型、结构体、联合体，但不能返回函数类型，也不能返回数组类型。而下面这个函数声明是正确的：
+
+
+\BookPlain{code/ch23s08/06.txt}{3}{1}
+
+
+函数\BookCode{e}返回一个\BookCode{F *}类型的函数指针。如果给\BookCode{e}多套几层括号仍然表示同样的意思：
+
+
+\BookPlain{code/ch23s08/07.txt}{3}{1}
+
+
+但如果把\BookCode{*}号也套在括号里就不一样了：
+
+
+\BookSource{numbers=none}{code/ch23s08/08.pv}{3}{1}
+
+
+这样声明了一个函数指针，而不是声明一个函数。\BookCode{fp}也可以这样声明：
+
+
+\BookPlain{code/ch23s08/09.txt}{3}{1}
+
+
+通过函数指针调用函数和直接调用函数相比有什么好处呢？我们研究一个例子。回顾\hyperlink{db.ch07s03.id2731288}{第 3 节 “数据类型标志”}的习题1，由于结构体中多了一个类型字段，需要重新实现\BookCode{real\_\BookSplit{}part}、\BookCode{img\_\BookSplit{}part}、\BookCode{magnitude}、\BookCode{angle}这些函数，你当时是怎么实现的？大概是这样吧：
+
+
+\BookSource{numbers=none}{code/ch23s08/10.pv}{9}{7}
+
+
+现在类型字段有两种取值，\BookCode{RECTANGULAR}和\BookCode{POLAR}，每个函数都要\BookCode{if .\BookSplit{}.\BookSplit{}.\BookSplit{} else .\BookSplit{}.\BookSplit{}.\BookSplit{}}，如果类型字段有三种取值呢？每个函数都要\BookCode{if .\BookSplit{}.\BookSplit{}.\BookSplit{} else if .\BookSplit{}.\BookSplit{}.\BookSplit{} else}，或者\BookCode{switch .\BookSplit{}.\BookSplit{}.\BookSplit{} case .\BookSplit{}.\BookSplit{}.\BookSplit{}}。这样维护代码是不够理想的，现在我用函数指针给出一种实现：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch23s08/11.pv}{9}{54}
+
+
+当调用\BookCode{real\_\BookSplit{}part(\BookSplit{}z)\BookSplit{}}时，用类型字段\BookCode{z.\BookSplit{}t}做索引，从指针数组\BookCode{real\_\BookSplit{}part\_\BookSplit{}tbl}中取出相应的函数指针来调用，也可以达到\BookCode{if .\BookSplit{}.\BookSplit{}.\BookSplit{} else .\BookSplit{}.\BookSplit{}.\BookSplit{}}的效果，但相比之下这种实现更好，每个函数都只做一件事情，而不必用\BookCode{if .\BookSplit{}.\BookSplit{}.\BookSplit{} else .\BookSplit{}.\BookSplit{}.\BookSplit{}}兼顾好几件事情，比如\BookCode{rect\_\BookSplit{}real\_\BookSplit{}part}和\BookCode{pol\_\BookSplit{}real\_\BookSplit{}part}各做各的，互相独立，而不必把它们的代码都耦合到一个函数中。“低耦合，高内聚”（Low Coupling, High Cohesion）\BookAnchor{db.ch23s08.id2813970}是程序设计的一条基本原则，这样可以更好地复用现有代码，使代码更容易维护。如果类型字段\BookCode{z.\BookSplit{}t}又多了一种取值，只需要添加一组新的函数，修改函数指针数组，原有的函数仍然可以不加改动地复用。
+
+\BookNav{\hyperlink{db.ch23s07}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23s09}{下一页}}
+
+
+% https://akaedu.github.io/book/ch23s09.html
+
+\section{不完全类型和复杂声明}
+\BookAnchor{db.ch23s09}\BookAnchor{db.ch23s09.id2813989}%
+在\hyperlink{db.ch07s01.id2730146}{第 1 节 “复合类型与结构体”}讲过算术类型、标量类型的概念，现在又学习了几种类型，我们完整地总结一下C语言的类型。下图出自\hyperlink{db.bi01.bibli.standardc}{[Standard C]}。
+
+
+\BookFigure{C语言类型总结}{\BookImage{images/derived/pointer.type.gif.png}{0.671}}{\BookAnchor{db.ch23s09.id2814014}}
+
+
+C语言的类型分为函数类型、对象类型和不完全类型三大类。对象类型又分为标量类型和非标量类型。指针类型属于标量类型，因此也可以做逻辑与、或、非运算的操作数和\BookCode{if}、\BookCode{for}、\BookCode{while}的控制表达式，\BookCode{NULL}指针表示假，非\BookCode{NULL}指针表示真。不完全类型是暂时没有完全定义好的类型，编译器不知道这种类型该占几个字节的存储空间，例如：
+
+
+\BookSource{numbers=none}{code/ch23s09/01.pv}{5}{3}
+
+
+具有不完全类型的变量可以通过多次声明组合成一个完全类型，比如数组\BookCode{str}声明两次：
+
+
+\BookSource{numbers=none}{code/ch23s09/02.pv}{4}{2}
+
+
+当编译器碰到第一个声明时，认为\BookCode{str}是一个不完全类型，碰到第二个声明时\BookCode{str}就组合成完全类型了，如果编译器处理到程序文件的末尾仍然无法把\BookCode{str}组合成一个完全类型，就会报错。读者可能会想，这个语法有什么用呢？为何不在第一次声明时就把\BookCode{str}声明成完全类型？有些情况下这么做有一定的理由，比如第一个声明是写在头文件里的，第二个声明写在\BookCode{.\BookSplit{}c}文件里，这样如果要改数组长度，只改\BookCode{.\BookSplit{}c}文件就行了，头文件可以不用改。
+
+
+
+不完全的结构体类型有重要作用：
+
+
+\BookSource{numbers=none}{code/ch23s09/03.pv}{9}{7}
+
+
+\BookCode{struct s}和\BookCode{struct t}各有一个指针成员指向另一种类型。编译器从前到后依次处理，当看到\BookCode{struct s \{ str\BookSplit{}uct t* pt;\BookSplit{} \};\BookSplit{}}时，认为\BookCode{struct t}是一个不完全类型，\BookCode{pt}是一个指向不完全类型的指针，尽管如此，这个指针却是完全类型，因为不管什么指针都占4个字节存储空间，这一点很明确。然后编译器又看到\BookCode{struct t \{ str\BookSplit{}uct s *ps;\BookSplit{} \};\BookSplit{}}，这时\BookCode{struct t}有了完整的定义，就组合成一个完全类型了，\BookCode{pt}的类型就组合成一个指向完全类型的指针。由于\BookCode{struct s}在前面有完整的定义，所以\BookCode{struct s *ps;\BookSplit{}}也定义了一个指向完全类型的指针。
+
+
+
+这样的类型定义是错误的：
+
+
+\BookSource{numbers=none}{code/ch23s09/04.pv}{9}{7}
+
+
+编译器看到\BookCode{struct s \{ str\BookSplit{}uct t ot;\BookSplit{} \};\BookSplit{}}时，认为\BookCode{struct t}是一个不完全类型，无法定义成员\BookCode{ot}，因为不知道它该占几个字节。所以结构体中可以递归地定义指针成员，但不能递归地定义变量成员，你可以设想一下，假如允许递归地定义变量成员，\BookCode{struct s}中有一个\BookCode{struct t}，\BookCode{struct t}中又有一个\BookCode{struct s}，\BookCode{struct s}又中有一个\BookCode{struct t}，这就成了一个无穷递归的定义。
+
+
+
+以上是两个结构体构成的递归定义，一个结构体也可以递归定义：
+
+
+\BookSource{numbers=none}{code/ch23s09/05.pv}{6}{4}
+
+
+当编译器处理到第一行\BookCode{struct s \{}时，认为\BookCode{struct s}是一个不完全类型，当处理到第三行\BookCode{struct s *next;\BookSplit{}}时，认为\BookCode{next}是一个指向不完全类型的指针，当处理到第四行\BookCode{\};\BookSplit{}}时，\BookCode{struct s}成了一个完全类型，\BookCode{next}也成了一个指向完全类型的指针。类似这样的结构体是很多种数据结构的基本组成单元，如链表、二叉树等，我们将在后面详细介绍。下图示意了由几个\BookCode{struct s}结构体组成的链表，这些结构体称为链表的节点（Node）\BookAnchor{db.ch23s09.id2814359}。
+
+
+\BookFigure{链表}{\BookImage{images/pointer.linkedlist.png}{0.806}}{\BookAnchor{db.ch23s09.id2814368}}
+
+
+\BookCode{head}指针是链表的头指针，指向第一个节点，每个节点的\BookCode{next}指针域指向下一个节点，最后一个节点的\BookCode{next}指针域为\BookCode{NULL}，在图中用0表示。
+
+
+
+可以想像得到，如果把指针和数组、函数、结构体层层组合起来可以构成非常复杂的类型，下面看几个复杂的声明。
+
+
+\BookSource{numbers=none}{code/ch23s09/06.pv}{4}{2}
+
+
+这个声明来自\BookCode{signal(\BookSplit{}2)\BookSplit{}}。\BookCode{sighandler\_\BookSplit{}t}是一个函数指针，它所指向的函数带一个参数，返回值为\BookCode{void}，\BookCode{signal}是一个函数，它带两个参数，一个\BookCode{int}参数，一个\BookCode{sighandler\_\BookSplit{}t}参数，返回值也是\BookCode{sighandler\_\BookSplit{}t}参数。如果把这两行合成一行写，就是：
+
+
+\BookSource{numbers=none}{code/ch23s09/07.pv}{3}{1}
+
+
+在分析复杂声明时，要借助\BookCode{typedef}把复杂声明分解成几种基本形式：
+
+
+\begin{itemize}
+
+\item \BookCode{T *p;\BookSplit{}}，\BookCode{p}是指向\BookCode{T}类型的指针。
+
+\item \BookCode{T a[\BookSplit{}]\BookSplit{};\BookSplit{}}，\BookCode{a}是由\BookCode{T}类型的元素组成的数组，但有一个例外，如果\BookCode{a}是函数的形参，则相当于\BookCode{T *a;\BookSplit{}}
+
+\item \BookCode{T1 f(\BookSplit{}T2,\BookSplit{} T3.\BookSplit{}.\BookSplit{}.\BookSplit{})\BookSplit{};\BookSplit{}}，\BookCode{f}是一个函数，参数类型是\BookCode{T2}、\BookCode{T3}等等，返回值类型是\BookCode{T1}。
+\end{itemize}
+
+
+我们分解一下这个复杂声明：
+
+
+\BookSource{numbers=none}{code/ch23s09/08.pv}{3}{1}
+
+
+1、\BookCode{fp}和\BookCode{*}号括在一起，说明\BookCode{fp}是一个指针，指向\BookCode{T1}类型：
+
+
+\BookSource{numbers=none}{code/ch23s09/09.pv}{4}{2}
+
+
+2、\BookCode{T1}应该是一个函数类型，参数是\BookCode{void *}，返回值是\BookCode{T2}类型：
+
+
+\BookSource{numbers=none}{code/ch23s09/10.pv}{5}{3}
+
+
+3、\BookCode{T2}和\BookCode{*}号括在一起，应该也是个指针，指向\BookCode{T3}类型：
+
+
+\BookSource{numbers=none}{code/ch23s09/11.pv}{6}{4}
+
+
+显然，\BookCode{T3}是一个\BookCode{int}数组，由10个元素组成。分解完毕。
+
+\BookNav{\hyperlink{db.ch23s08}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch23}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24}{下一页}}

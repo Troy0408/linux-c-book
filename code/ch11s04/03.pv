@@ -1,0 +1,17 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{partition}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{start}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{end}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{从a}\BK{p}{[}\BK{n}{start}\BK{p}{.}\BK{p}{.}\BK{n}{end}\BK{p}{]}\BK{n}{中选取一个pivot元素}\BK{err}{（}\BK{n}{比如选a}\BK{p}{[}\BK{n}{start}\BK{p}{]}\BK{n}{为pivot}\BK{err}{）}\BK{p}{;}
+\BK{+w}{	}\BK{n}{在一个循环中移动a}\BK{p}{[}\BK{n}{start}\BK{p}{.}\BK{p}{.}\BK{n}{end}\BK{p}{]}\BK{n}{的数据}\BK{err}{，}\BK{n}{将a}\BK{p}{[}\BK{n}{start}\BK{p}{.}\BK{p}{.}\BK{n}{end}\BK{p}{]}\BK{n}{分成两半}\BK{err}{，}
+\BK{+w}{	}\BK{n}{使a}\BK{p}{[}\BK{n}{start}\BK{p}{.}\BK{p}{.}\BK{n}{mid}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{]}\BK{n}{比pivot元素小}\BK{err}{，}\BK{n}{a}\BK{p}{[}\BK{n}{mid}\BK{o}{+}\BK{l+m+mf}{1.}\BK{p}{.}\BK{n}{end}\BK{p}{]}\BK{n}{比pivot元素大}\BK{err}{，}\BK{n}{而a}\BK{p}{[}\BK{n}{mid}\BK{p}{]}\BK{n}{就是pivot元素}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{mid}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{quicksort}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{start}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{end}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{mid}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{end}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{n}{start}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{mid}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{partition}\BK{p}{(}\BK{n}{start}\BK{p}{,}\BK{+w}{ }\BK{n}{end}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{quicksort}\BK{p}{(}\BK{n}{start}\BK{p}{,}\BK{+w}{ }\BK{n}{mid}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{quicksort}\BK{p}{(}\BK{n}{mid}\BK{o}{+}\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{n}{end}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}

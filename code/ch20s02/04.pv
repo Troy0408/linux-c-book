@@ -1,0 +1,2 @@
+\BK{c+cm}{/* foo.c */}
+\BK{k}{static}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{foo}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{p}{\BKZcb{}}

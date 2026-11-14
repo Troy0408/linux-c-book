@@ -1,0 +1,2 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{minute}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{360}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{hour}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{minute}\BK{+w}{ }\BK{o}{/}\BK{+w}{ }\BK{l+m+mi}{60}\BK{p}{;}

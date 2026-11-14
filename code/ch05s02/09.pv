@@ -1,0 +1,2 @@
+\BK{k+kt}{double}\BK{+w}{ }\BK{n}{radius}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{distance}\BK{p}{(}\BK{l+m+mf}{1.0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mf}{2.0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mf}{4.0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mf}{6.0}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{double}\BK{+w}{ }\BK{n}{result}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{area}\BK{p}{(}\BK{n}{radius}\BK{p}{)}\BK{p}{;}

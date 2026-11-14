@@ -1,0 +1,3 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}signal.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sigaction}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{signo}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sigaction}\BK{+w}{ }\BK{o}{*}\BK{n}{act}\BK{p}{,}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sigaction}\BK{+w}{ }\BK{o}{*}\BK{n}{oact}\BK{p}{)}\BK{p}{;}

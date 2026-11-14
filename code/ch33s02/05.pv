@@ -1,0 +1,4 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}signal.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{kill}\BK{p}{(}\BK{k+kt}{pid\BKZus{}t}\BK{+w}{ }\BK{n}{pid}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{signo}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{raise}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{signo}\BK{p}{)}\BK{p}{;}

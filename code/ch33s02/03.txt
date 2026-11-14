@@ -1,0 +1,6 @@
+$ ./a.out
+（按Ctrl-C）
+$ ./a.out
+（按Ctrl-\）Quit (core dumped)
+$ ls -l core*
+-rw------- 1 akaedu akaedu 147456 2008-11-05 23:40 core

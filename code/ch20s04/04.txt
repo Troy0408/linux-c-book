@@ -1,0 +1,6 @@
+Relocation section '.rel.text' at offset 0x848 contains 4 entries:
+ Offset     Info    Type            Sym.Value  Sym. Name
+0000000d  00001001 R_386_32          00000000   top
+00000015  00001001 R_386_32          00000000   top
+0000001b  00001001 R_386_32          00000000   top
+00000025  00001101 R_386_32          00000000   stack

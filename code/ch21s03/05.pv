@@ -1,0 +1,14 @@
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}linux/config.h\BKZgt{}}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{sock\BKZus{}setsockopt}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{socket}\BK{+w}{ }\BK{o}{*}\BK{n}{sock}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{level}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{optname}\BK{p}{,}
+\BK{+w}{                    }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{\BKZus{}\BKZus{}user}\BK{+w}{ }\BK{o}{*}\BK{n}{optval}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{optlen}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifdef CONFIG\BKZus{}NETDEVICES}
+\BK{+w}{                }\BK{k}{case}\BK{+w}{ }\BK{n+no}{SO\BKZus{}BINDTODEVICE}\BK{p}{:}
+\BK{+w}{                }\BK{p}{\BKZob{}}
+\BK{+w}{			}\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{+w}{                }\BK{p}{\BKZcb{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}

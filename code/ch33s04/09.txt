@@ -1,0 +1,5 @@
+	/* register a sighandler */
+	while(!a); /* wait until a changes in sighandler */
+ 8048352:       a1 3c 95 04 08          mov    0x804953c,%eax
+ 8048357:       85 c0                   test   %eax,%eax
+ 8048359:       74 f7                   je     8048352 <main+0xe>

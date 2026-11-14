@@ -1,0 +1,1 @@
+fputs(strerror(n), stderr);

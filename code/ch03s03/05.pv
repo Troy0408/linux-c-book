@@ -1,0 +1,3 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{hour}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{h}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{minute}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{m}\BK{p}{;}
+\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d:\BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{hour}\BK{p}{,}\BK{+w}{ }\BK{n}{minute}\BK{p}{)}\BK{p}{;}

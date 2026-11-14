@@ -1,0 +1,4 @@
+\BK{c+ch}{\BKZsh{}! /bin/sh}
+
+\BK{n+nb}{cd}\BK{+w}{ }..
+ls

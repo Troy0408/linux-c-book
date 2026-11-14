@@ -1,0 +1,5 @@
+\BK{n+nf}{ret}\BK{+w}{ }\BK{err}{=}\BK{+w}{ }\BK{n+no}{scanf}\BK{p}{(}\BK{err}{\BKZdq{}}\BK{n+nv}{\BKZpc{}d}\BK{err}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{err}{\BKZam{}}\BK{n+no}{man}\BK{p}{)}\BK{c+c1}{;}
+\BK{n+nf}{if}\BK{+w}{ }\BK{p}{(}\BK{n+no}{ret}\BK{+w}{ }\BK{p}{!}\BK{err}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{+w}{ }\BK{err}{|}\BK{err}{|}\BK{+w}{ }\BK{n+no}{man}\BK{+w}{ }\BK{err}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{+w}{ }\BK{err}{|}\BK{err}{|}\BK{+w}{ }\BK{n+no}{man}\BK{+w}{ }\BK{err}{\BKZgt{}}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n+nf}{printf}\BK{p}{(}\BK{err}{\BKZdq{}}\BK{n+no}{Invalid}\BK{+w}{ }\BK{n+no}{input}\BK{p}{!}\BK{+w}{ }\BK{n+no}{Please}\BK{+w}{ }\BK{n+no}{input}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{+w}{ }\BK{n+no}{or}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{.}\BK{err}{\BKZbs{}}\BK{n+no}{n}\BK{err}{\BKZdq{}}\BK{p}{)}\BK{c+c1}{;}
+\BK{+w}{	}\BK{n+nf}{continue}\BK{c+c1}{;}
+\BK{err}{\BKZcb{}}

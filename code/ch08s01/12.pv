@@ -1,0 +1,4 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{foo}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{a}\BK{p}{[}\BK{l+m+mi}{5}\BK{p}{]}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{p}{\BKZcb{}}

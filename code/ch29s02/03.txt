@@ -1,0 +1,6 @@
+$ touch hello
+$ ln -s ./hello halo
+$ ls -l
+total 0
+lrwxrwxrwx 1 akaedu akaedu 7 2008-10-25 15:04 halo -> ./hello
+-rw-r--r-- 1 akaedu akaedu 0 2008-10-25 15:04 hello

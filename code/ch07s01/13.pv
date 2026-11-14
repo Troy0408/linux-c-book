@@ -1,0 +1,2 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{l+m+mf}{3.0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mf}{4.0}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}
+\BK{n}{z}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{add\BKZus{}complex}\BK{p}{(}\BK{n}{z}\BK{p}{,}\BK{+w}{ }\BK{n}{z}\BK{p}{)}\BK{p}{;}

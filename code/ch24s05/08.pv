@@ -1,0 +1,17 @@
+\BK{c+cm}{/* registry.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}registry.h\BKZdq{}}
+
+\BK{k}{static}\BK{+w}{ }\BK{n}{registry\BKZus{}t}\BK{+w}{ }\BK{n}{func}\BK{p}{;}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{register\BKZus{}func}\BK{p}{(}\BK{n}{registry\BKZus{}t}\BK{+w}{ }\BK{n}{f}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{n}{func}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{f}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k}{static}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{on\BKZus{}some\BKZus{}event}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{+w}{     }\BK{n}{func}\BK{p}{(}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{p}{\BKZcb{}}

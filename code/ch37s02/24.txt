@@ -1,0 +1,4 @@
+$ netstat -apn |grep 8000
+ tcp        0      0 127.0.0.1:8000          127.0.0.1:44685         TIME_WAIT  -
+ $ ./server
+ bind error: Address already in use

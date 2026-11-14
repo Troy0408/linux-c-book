@@ -1,0 +1,2 @@
+$ gcc main.c -O1 -g
+$ objdump -dS a.out

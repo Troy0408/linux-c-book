@@ -1,0 +1,18 @@
+(gdb) help files
+Specifying and examining files.
+
+List of commands:
+
+add-shared-symbol-files -- Load the symbols from shared objects in the dynamic linker's link map
+add-symbol-file -- Load symbols from FILE
+add-symbol-file-from-memory -- Load the symbols out of memory from a dynamically loaded object file
+cd -- Set working directory to DIR for debugger and program being debugged
+core-file -- Use FILE as core dump for examining memory and registers
+directory -- Add directory DIR to beginning of search path for source files
+edit -- Edit specified file or function
+exec-file -- Use FILE as program for getting contents of pure memory
+file -- Use FILE as program to be debugged
+forward-search -- Search for regular expression (see regex(3)) from last line listed
+generate-core-file -- Save a core file with the current state of the debugged process
+list -- List specified function or line
+...

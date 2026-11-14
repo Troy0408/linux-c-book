@@ -1,0 +1,3 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{abort}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{;}

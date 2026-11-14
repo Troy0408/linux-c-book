@@ -1,0 +1,61 @@
+(gdb) start
+...
+main () at main.c:14
+14		foo(2, 3);
+(gdb) s
+foo (a=2, b=3) at main.c:9
+9		return bar(a, b);
+(gdb) s
+bar (c=2, d=3) at main.c:3
+3		int e = c + d;
+(gdb) disassemble 
+Dump of assembler code for function bar:
+0x08048394 <bar+0>:	push   %ebp
+0x08048395 <bar+1>:	mov    %esp,%ebp
+0x08048397 <bar+3>:	sub    $0x10,%esp
+0x0804839a <bar+6>:	mov    0xc(%ebp),%edx
+0x0804839d <bar+9>:	mov    0x8(%ebp),%eax
+0x080483a0 <bar+12>:	add    %edx,%eax
+0x080483a2 <bar+14>:	mov    %eax,-0x4(%ebp)
+0x080483a5 <bar+17>:	mov    -0x4(%ebp),%eax
+0x080483a8 <bar+20>:	leave  
+0x080483a9 <bar+21>:	ret    
+End of assembler dump.
+(gdb) si
+0x0804839d	3		int e = c + d;
+(gdb) si
+0x080483a0	3		int e = c + d;
+(gdb) si
+0x080483a2	3		int e = c + d;
+(gdb) si
+4		return e;
+(gdb) si
+5	}
+(gdb) bt
+#0  bar (c=2, d=3) at main.c:5
+#1  0x080483c2 in foo (a=2, b=3) at main.c:9
+#2  0x080483e9 in main () at main.c:14
+(gdb) info registers 
+eax            0x5	5
+ecx            0xbff1c440	-1074674624
+edx            0x3	3
+ebx            0xb7fe6ff4	-1208061964
+esp            0xbff1c3f4	0xbff1c3f4
+ebp            0xbff1c404	0xbff1c404
+esi            0x8048410	134513680
+edi            0x80482e0	134513376
+eip            0x80483a8	0x80483a8 <bar+20>
+eflags         0x200206	[ PF IF ID ]
+cs             0x73	115
+ss             0x7b	123
+ds             0x7b	123
+es             0x7b	123
+fs             0x0	0
+gs             0x33	51
+(gdb) x/20 $esp
+0xbff1c3f4:	0x00000000	0xbff1c6f7	0xb7efbdae	0x00000005
+0xbff1c404:	0xbff1c414	0x080483c2	0x00000002	0x00000003
+0xbff1c414:	0xbff1c428	0x080483e9	0x00000002	0x00000003
+0xbff1c424:	0xbff1c440	0xbff1c498	0xb7ea3685	0x08048410
+0xbff1c434:	0x080482e0	0xbff1c498	0xb7ea3685	0x00000001
+(gdb)

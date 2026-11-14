@@ -1,0 +1,20 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define LEN 3}
+
+\BK{k+kt}{char}\BK{+w}{ }\BK{n}{buf}\BK{p}{[}\BK{n}{LEN}\BK{p}{]}\BK{o}{=}\BK{p}{\BKZob{}}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{a}\BK{l+s+sc}{\BKZsq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{b}\BK{l+s+sc}{\BKZsq{}}\BK{p}{,}\BK{+w}{ }\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{c}\BK{l+s+sc}{\BKZsq{}}\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{print\BKZus{}backward}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{pos}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{k}{if}\BK{p}{(}\BK{n}{pos}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{LEN}\BK{p}{)}
+\BK{+w}{	  }\BK{k}{return}\BK{p}{;}
+\BK{+w}{     }\BK{n}{print\BKZus{}backward}\BK{p}{(}\BK{n}{pos}\BK{o}{+}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{n}{putchar}\BK{p}{(}\BK{n}{buf}\BK{p}{[}\BK{n}{pos}\BK{p}{]}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{n}{print\BKZus{}backward}\BK{p}{(}\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{n}{putchar}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{\BKZbs{}n}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }
+\BK{+w}{     }\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,8 @@
+$ readelf -a main
+...
+Dynamic section at offset 0xf10 contains 23 entries:
+  Tag        Type                         Name/Value
+ 0x00000001 (NEEDED)                     Shared library: [libstack.so]
+ 0x00000001 (NEEDED)                     Shared library: [libc.so.6]
+ 0x0000000f (RPATH)                      Library rpath: [/home/akaedu/somedir]
+...

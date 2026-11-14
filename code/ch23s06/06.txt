@@ -1,0 +1,11 @@
+$ gcc main.c
+$ ./a.out a b c
+argv[0]=./a.out
+argv[1]=a
+argv[2]=b
+argv[3]=c
+$ ln -s a.out printargv
+$ ./printargv d e 
+argv[0]=./printargv
+argv[1]=d
+argv[2]=e

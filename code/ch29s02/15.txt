@@ -1,0 +1,3 @@
+$ debugfs fs
+debugfs 1.40.2 (12-Jul-2007)
+debugfs:  help

@@ -1,0 +1,8 @@
+$ cd ..
+$ make -C testmake
+make: Entering directory `/home/akaedu/testmake'
+cc    -c -o main.o main.c
+cc    -c -o stack.o stack.c
+cc    -c -o maze.o maze.c
+gcc main.o stack.o maze.o -o main
+make: Leaving directory `/home/akaedu/testmake'

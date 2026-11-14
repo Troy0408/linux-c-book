@@ -1,0 +1,3 @@
+main.o main.d: main.c main.h stack.h maze.h
+maze.o maze.d: maze.c maze.h main.h
+stack.o stack.d: stack.c stack.h main.h

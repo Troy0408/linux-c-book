@@ -1,0 +1,5 @@
+$ ls -l
+total 32
+drwxr-xr-x 114 akaedu akaedu 12288 2008-10-25 11:33 akaedu
+drwxr-xr-x 114 ftp    ftp     4096 2008-10-25 10:30 ftp
+drwx------   2 root   root   16384 2008-07-04 05:58 lost+found

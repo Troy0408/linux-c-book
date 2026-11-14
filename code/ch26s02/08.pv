@@ -1,0 +1,35 @@
+\BK{c+cm}{/* main.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}time.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}bst.h\BKZdq{}}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define RANGE 100}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define N 6}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{print\BKZus{}item}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{item}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{,}\BK{+w}{ }\BK{n}{key}\BK{p}{;}
+\BK{+w}{	}\BK{n}{link}\BK{+w}{ }\BK{n}{root}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{;}
+\BK{+w}{	}\BK{n}{srand}\BK{p}{(}\BK{n}{time}\BK{p}{(}\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{N}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{		}\BK{n}{root}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{insert}\BK{p}{(}\BK{n}{root}\BK{p}{,}\BK{+w}{ }\BK{n}{rand}\BK{p}{(}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZpc{}}\BK{+w}{ }\BK{n}{RANGE}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s+se}{\BKZbs{}t}\BK{l+s+se}{\BKZbs{}\BKZbs{}}\BK{l+s}{tree}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{print\BKZus{}tree}\BK{p}{(}\BK{n}{root}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s+se}{\BKZbs{}n}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{root}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{key}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{rand}\BK{p}{(}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZpc{}}\BK{+w}{ }\BK{n}{RANGE}\BK{p}{;}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{search}\BK{p}{(}\BK{n}{root}\BK{p}{,}\BK{+w}{ }\BK{n}{key}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{			}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{delete \BKZpc{}d in tree}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{key}\BK{p}{)}\BK{p}{;}
+\BK{+w}{			}\BK{n}{root}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{delete}\BK{p}{(}\BK{n}{root}\BK{p}{,}\BK{+w}{ }\BK{n}{key}\BK{p}{)}\BK{p}{;}
+\BK{+w}{			}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s+se}{\BKZbs{}t}\BK{l+s+se}{\BKZbs{}\BKZbs{}}\BK{l+s}{tree}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{			}\BK{n}{print\BKZus{}tree}\BK{p}{(}\BK{n}{root}\BK{p}{)}\BK{p}{;}
+\BK{+w}{			}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s+se}{\BKZbs{}n}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}

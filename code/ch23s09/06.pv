@@ -1,0 +1,2 @@
+\BK{k}{typedef}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{k+kt}{sighandler\BKZus{}t}\BK{p}{)}\BK{p}{(}\BK{k+kt}{int}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{sighandler\BKZus{}t}\BK{+w}{ }\BK{n+nf}{signal}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{signum}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{sighandler\BKZus{}t}\BK{+w}{ }\BK{n}{handler}\BK{p}{)}\BK{p}{;}

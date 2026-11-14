@@ -1,0 +1,125 @@
+
+% https://akaedu.github.io/book/ch27.html
+
+\chapter{本阶段总结}
+\BookAnchor{db.ch27}\BookAnchor{db.ch27.id2848940}%
+在这一阶段我们又学习了很多新的语法规则，首先读者应该回到\hyperlink{db.ch13.id2752091}{第 13 章 \emph{本阶段总结}}把那些知识点重新总结一遍。然后我们总结一下各种开发调试工具的用法。
+
+
+
+1、gcc
+
+
+\begin{description}
+\item[{\BookCode{-\BookSplit{}c}}]
+
+
+编译生成目标文件（Relocatable），详见\hyperlink{db.ch19s02.id2776173}{第 2 节 “\BookCode{main}函数和启动例程”}。
+
+\item[{\BookCode{-\BookSplit{}Dmacro[\BookSplit{}=\BookSplit{}defn]\BookSplit{}}}]
+
+
+定义一个宏，详见\hyperlink{db.ch21s03.id2798658}{第 3 节 “条件预处理指示”}。
+
+\item[{\BookCode{-\BookSplit{}E}}]
+
+
+只做预处理而不编译，\BookCode{cpp}命令也可以达到同样的效果，详见\hyperlink{db.ch21s02.id2797214}{第 2.\BookSplit{}1 节 “函数式宏定义”}。
+
+\item[{\BookCode{-\BookSplit{}g}}]
+
+
+在生成的目标文件中添加调试信息，所谓调试信息就是源代码和指令之间的对应关系，在\BookCode{gdb}调试和\BookCode{objdump}反汇编时要用到这些信息，详见\hyperlink{db.ch10s01.id2740199}{第 1 节 “单步执行和跟踪函数调用”}。
+
+\item[{\BookCode{-\BookSplit{}Idir}}]
+
+
+\BookCode{dir}是头文件所在的目录，详见\hyperlink{db.ch20s02.id2788051}{第 2.\BookSplit{}2 节 “头文件”}。
+
+\item[{\BookCode{-\BookSplit{}Ldir}}]
+
+
+\BookCode{dir}是库文件所在的目录，详见\hyperlink{db.ch20s03.id2789183}{第 3 节 “静态库”}。
+
+\item[{\BookCode{-\BookSplit{}M}和\BookCode{-\BookSplit{}MM}}]
+
+
+输出“\BookCode{.\BookSplit{}o}文件: \BookCode{.\BookSplit{}c}文件 \BookCode{.\BookSplit{}h}文件”这种形式的Makefile规则，\BookCode{-\BookSplit{}MM}的输出不包括系统头文件，详见\hyperlink{db.ch22s04.id2805744}{第 4 节 “自动处理头文件的依赖关系”}。
+
+\item[{\BookCode{-\BookSplit{}o outfile}}]
+
+
+\BookCode{outfile}输出文件的文件名，详见\hyperlink{db.ch19s02.id2776173}{第 2 节 “\BookCode{main}函数和启动例程”}。
+
+\item[{\BookCode{-\BookSplit{}O?}}]
+
+
+各种编译优化选项，详见\hyperlink{db.ch19s06.id2780234}{第 6 节 “volatile限定符”}。
+
+\item[{\BookCode{-\BookSplit{}print-\BookSplit{}search-\BookSplit{}dirs}}]
+
+
+打印库文件的默认搜索路径，详见\hyperlink{db.ch20s03.id2789183}{第 3 节 “静态库”}。
+
+\item[{\BookCode{-\BookSplit{}S}}]
+
+
+编译生成汇编代码，详见\hyperlink{db.ch19s02.id2776173}{第 2 节 “\BookCode{main}函数和启动例程”}。
+
+\item[{\BookCode{-\BookSplit{}v}}]
+
+
+打印详细的编译链接过程，详见\hyperlink{db.ch19s02.id2776173}{第 2 节 “\BookCode{main}函数和启动例程”}。
+
+\item[{\BookCode{-\BookSplit{}Wall}}]
+
+
+打印所有的警告信息，详见\hyperlink{db.intro.helloworld}{第 4 节 “第一个程序”}。
+
+\item[{\BookCode{-\BookSplit{}Wl,\BookSplit{}options}}]
+
+
+\BookCode{options}是传递给链接器的选项，详见\hyperlink{db.ch20s04.id2789683}{第 4 节 “共享库”}。
+
+
+\end{description}
+
+
+2、gdb
+
+
+\begin{enumerate}
+
+\item 在\hyperlink{db.ch10.id2740153}{第 10 章 \emph{gdb}}集中介绍了\BookCode{gdb}的基本命令和调试方法。
+
+\item 在\hyperlink{db.ch19s01.id2774377}{第 1 节 “函数调用”}提到了\BookCode{gdb}的指令级调试和反汇编命令。
+
+\item 如果一个程序由多个\BookCode{.\BookSplit{}c}文件编译链接而成，用\BookCode{gdb}调试时如何定位某个源文件中的某一行代码呢？在\hyperlink{db.ch20s01.id2786161}{第 1 节 “多目标文件的链接”}有介绍。
+
+\item 在\hyperlink{db.ch23s06.id2812522}{第 6 节 “指向指针的指针与指针数组”}提到了用\BookCode{gdb}调试时如何给程序提供命令行参数。
+\end{enumerate}
+
+
+3、其它开发调试工具
+
+
+\begin{enumerate}
+
+\item \BookCode{as}，汇编器，用法详见\hyperlink{db.ch18s01.id2769136}{例 18.\BookSplit{}1 “最简单的汇编程序”}。
+
+\item \BookCode{ld}，链接器，用法详见\hyperlink{db.ch18s01.id2769136}{例 18.\BookSplit{}1 “最简单的汇编程序”}，用\BookCode{-\BookSplit{}-\BookSplit{}verbose}选项可以显示默认链接脚本，详见\hyperlink{db.ch20s01.id2786161}{第 1 节 “多目标文件的链接”}。
+
+\item \BookCode{readelf}，读ELF文件信息，用法详见\hyperlink{db.ch18s05.id2770854}{第 5.\BookSplit{}1 节 “目标文件”}。
+
+\item \BookCode{objdump}，显示目标文件中的信息，本书主要用它做反汇编，用法详见\hyperlink{db.ch18s05.id2770854}{第 5.\BookSplit{}1 节 “目标文件”}。
+
+\item \BookCode{hexdump}，以十六进制或ASCII码显示一个文件，用法详见\hyperlink{db.ch18s05.id2770854}{第 5.\BookSplit{}1 节 “目标文件”}。
+
+\item \BookCode{ar}，把目标文件打包成静态库，用法详见\hyperlink{db.ch20s03.id2789183}{第 3 节 “静态库”}。
+
+\item \BookCode{ranlib}，给\BookCode{ar}打包的静态库建索引，用法详见\hyperlink{db.ch20s03.id2789183}{第 3 节 “静态库”}。
+
+\item \BookCode{nm}，查看符号表，用法详见\hyperlink{db.ch19s02.id2776173}{第 2 节 “\BookCode{main}函数和启动例程”}。
+\end{enumerate}
+
+\BookNav{\hyperlink{db.ch26s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt02}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.pt03}{下一页}}

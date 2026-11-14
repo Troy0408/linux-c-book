@@ -1,0 +1,42 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stddef.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/stat.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/socket.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/un.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}errno.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{serv\BKZus{}accept}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{listenfd}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{uid\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{uidptr}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{                 }\BK{n}{clifd}\BK{p}{,}\BK{+w}{ }\BK{n}{len}\BK{p}{,}\BK{+w}{ }\BK{n}{err}\BK{p}{,}\BK{+w}{ }\BK{n}{rval}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{time\BKZus{}t}\BK{+w}{              }\BK{n}{staletime}\BK{p}{;}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr\BKZus{}un}\BK{+w}{  }\BK{n}{un}\BK{p}{;}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{stat}\BK{+w}{         }\BK{n}{statbuf}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{len}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{un}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{p}{(}\BK{n}{clifd}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{accept}\BK{p}{(}\BK{n}{listenfd}\BK{p}{,}\BK{+w}{ }\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{o}{\BKZam{}}\BK{n}{un}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{len}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{		}\BK{k}{return}\BK{p}{(}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}\BK{p}{;}\BK{+w}{     }\BK{c+cm}{/* often errno=EINTR, if signal caught */}
+
+\BK{+w}{	}\BK{c+cm}{/* obtain the client\BKZsq{}s uid from its calling address */}
+\BK{+w}{	}\BK{n}{len}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{o}{=}\BK{+w}{ }\BK{n}{offsetof}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr\BKZus{}un}\BK{p}{,}\BK{+w}{ }\BK{n}{sun\BKZus{}path}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* len of pathname */}
+\BK{+w}{	}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}path}\BK{p}{[}\BK{n}{len}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{           }\BK{c+cm}{/* null terminate */}
+
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{stat}\BK{p}{(}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}path}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{statbuf}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{rval}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}2}\BK{p}{;}
+\BK{+w}{		}\BK{k}{goto}\BK{+w}{ }\BK{n}{errout}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{S\BKZus{}ISSOCK}\BK{p}{(}\BK{n}{statbuf}\BK{p}{.}\BK{n}{st\BKZus{}mode}\BK{p}{)}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{rval}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}3}\BK{p}{;}\BK{+w}{      }\BK{c+cm}{/* not a socket */}
+\BK{+w}{		}\BK{k}{goto}\BK{+w}{ }\BK{n}{errout}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{uidptr}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}
+\BK{+w}{		}\BK{o}{*}\BK{n}{uidptr}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{statbuf}\BK{p}{.}\BK{n}{st\BKZus{}uid}\BK{p}{;}\BK{+w}{   }\BK{c+cm}{/* return uid of caller */}
+\BK{+w}{	}\BK{n}{unlink}\BK{p}{(}\BK{n}{un}\BK{p}{.}\BK{n}{sun\BKZus{}path}\BK{p}{)}\BK{p}{;}\BK{+w}{        }\BK{c+cm}{/* we\BKZsq{}re done with pathname now */}
+\BK{+w}{	}\BK{k}{return}\BK{p}{(}\BK{n}{clifd}\BK{p}{)}\BK{p}{;}
+
+\BK{n+nl}{errout}\BK{p}{:}
+\BK{+w}{	}\BK{n}{err}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{errno}\BK{p}{;}
+\BK{+w}{	}\BK{n}{close}\BK{p}{(}\BK{n}{clifd}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{errno}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{err}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{p}{(}\BK{n}{rval}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

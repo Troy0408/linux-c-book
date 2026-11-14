@@ -1,0 +1,12 @@
+$ echo "$SHELL"
+/bin/bash
+$ echo "`date`"
+Sun Apr 20 11:22:06 CEST 2003
+$ echo "I'd say: \"Go for it\""
+I'd say: "Go for it"
+$ echo "\"（回车）
+>"（再按一次回车结束命令）
+"
+
+$ echo "\\"
+\

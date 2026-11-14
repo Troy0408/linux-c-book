@@ -1,0 +1,4 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{fclose}\BK{p}{(}\BK{k+kt}{FILE}\BK{+w}{ }\BK{o}{*}\BK{n}{fp}\BK{p}{)}\BK{p}{;}
+\BK{n}{返回值}\BK{err}{：}\BK{n}{成功返回0}\BK{err}{，}\BK{n}{出错返回EOF并设置errno}

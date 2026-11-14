@@ -1,0 +1,17 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k}{const}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{A}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{10}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{a}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{20}\BK{p}{;}
+\BK{k}{static}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{b}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{30}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{c}\BK{p}{;}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{static}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{a}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{40}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{b}\BK{p}{[}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{Hello world}\BK{l+s}{\BKZdq{}}\BK{p}{;}
+\BK{+w}{	}\BK{k}{register}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{c}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{50}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Hello world \BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{c}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

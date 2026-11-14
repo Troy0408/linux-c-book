@@ -1,0 +1,3 @@
+$ gcc main.c -g -L. -lstack -Istack -o main
+$ ./main 
+./main: error while loading shared libraries: libstack.so: cannot open shared object file: No such file or directory

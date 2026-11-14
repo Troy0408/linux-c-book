@@ -1,0 +1,41 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}pthread.h\BKZgt{}}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define NLOOP 5000}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{counter}\BK{p}{;}\BK{+w}{                }\BK{c+cm}{/* incremented by threads */}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{doit}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{p}{;}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{argc}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{o}{*}\BK{n}{argv}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}t}\BK{+w}{ }\BK{n}{tidA}\BK{p}{,}\BK{+w}{ }\BK{n}{tidB}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{pthread\BKZus{}create}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{tidA}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{doit}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}create}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{tidB}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{doit}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{        }\BK{c+cm}{/* wait for both threads to terminate */}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}join}\BK{p}{(}\BK{n}{tidA}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}join}\BK{p}{(}\BK{n}{tidB}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{doit}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{vptr}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{    }\BK{n}{i}\BK{p}{,}\BK{+w}{ }\BK{n}{val}\BK{p}{;}
+
+\BK{+w}{	}\BK{c+cm}{/*}
+\BK{c+cm}{	 * Each thread fetches, prints, and increments the counter NLOOP times.}
+\BK{c+cm}{	 * The value of the counter should increase monotonically.}
+\BK{c+cm}{	 */}
+
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{NLOOP}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{val}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{counter}\BK{p}{;}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}x: \BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{p}{(}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{p}{)}\BK{n}{pthread\BKZus{}self}\BK{p}{(}\BK{p}{)}\BK{p}{,}\BK{+w}{ }\BK{n}{val}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{counter}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{val}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,2 @@
+\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{The first, second, and third items.}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{p}{(}\BK{p}{(}\BK{n}{x}\BK{o}{\BKZgt{}}\BK{n}{y}\BK{p}{)}\BK{o}{?}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{x\BKZgt{}y}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{o}{:}\BK{+w}{ }\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{x is \BKZpc{}d but y is \BKZpc{}d}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{x}\BK{p}{,}\BK{+w}{ }\BK{n}{y}\BK{p}{)}\BK{p}{)}\BK{p}{;}

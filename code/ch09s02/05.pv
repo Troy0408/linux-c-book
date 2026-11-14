@@ -1,0 +1,68 @@
+\BK{c+cm}{/*}
+\BK{c+cm}{ * This is the main, per\BKZhy{}CPU runqueue data structure.}
+\BK{c+cm}{ *}
+\BK{c+cm}{ * Locking rule: those places that want to lock multiple runqueues}
+\BK{c+cm}{ * (such as the load balancing or the thread migration code), lock}
+\BK{c+cm}{ * acquire operations must be ordered by ascending \BKZam{}runqueue.}
+\BK{c+cm}{ */}
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{runqueue}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{        }\BK{n}{spinlock\BKZus{}t}\BK{+w}{ }\BK{n}{lock}\BK{p}{;}
+
+\BK{+w}{        }\BK{c+cm}{/*}
+\BK{c+cm}{         * nr\BKZus{}running and cpu\BKZus{}load should be in the same cacheline because}
+\BK{c+cm}{         * remote CPUs use both these fields when doing load calculation.}
+\BK{c+cm}{         */}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{nr\BKZus{}running}\BK{p}{;}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifdef CONFIG\BKZus{}SMP}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{cpu\BKZus{}load}\BK{p}{[}\BK{l+m+mi}{3}\BK{p}{]}\BK{p}{;}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{nr\BKZus{}switches}\BK{p}{;}
+
+\BK{+w}{        }\BK{c+cm}{/*}
+\BK{c+cm}{         * This is part of a global counter where only the total sum}
+\BK{c+cm}{         * over all CPUs matters. A task can increase this counter on}
+\BK{c+cm}{         * one CPU and if it got migrated afterwards it may decrease}
+\BK{c+cm}{         * it on another CPU. Always updated under the runqueue lock:}
+\BK{c+cm}{         */}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{nr\BKZus{}uninterruptible}\BK{p}{;}
+
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{expired\BKZus{}timestamp}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{timestamp\BKZus{}last\BKZus{}tick}\BK{p}{;}
+\BK{+w}{        }\BK{n}{task\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{curr}\BK{p}{,}\BK{+w}{ }\BK{o}{*}\BK{n}{idle}\BK{p}{;}
+\BK{+w}{        }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{mm\BKZus{}struct}\BK{+w}{ }\BK{o}{*}\BK{n}{prev\BKZus{}mm}\BK{p}{;}
+\BK{+w}{        }\BK{n}{prio\BKZus{}array\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{active}\BK{p}{,}\BK{+w}{ }\BK{o}{*}\BK{n}{expired}\BK{p}{,}\BK{+w}{ }\BK{n}{arrays}\BK{p}{[}\BK{l+m+mi}{2}\BK{p}{]}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{best\BKZus{}expired\BKZus{}prio}\BK{p}{;}
+\BK{+w}{        }\BK{n}{atomic\BKZus{}t}\BK{+w}{ }\BK{n}{nr\BKZus{}iowait}\BK{p}{;}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifdef CONFIG\BKZus{}SMP}
+\BK{+w}{        }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sched\BKZus{}domain}\BK{+w}{ }\BK{o}{*}\BK{n}{sd}\BK{p}{;}
+
+\BK{+w}{        }\BK{c+cm}{/* For active balancing */}
+\BK{+w}{        }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{active\BKZus{}balance}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{push\BKZus{}cpu}\BK{p}{;}
+
+\BK{+w}{        }\BK{n}{task\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{migration\BKZus{}thread}\BK{p}{;}
+\BK{+w}{        }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{list\BKZus{}head}\BK{+w}{ }\BK{n}{migration\BKZus{}queue}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{cpu}\BK{p}{;}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifdef CONFIG\BKZus{}SCHEDSTATS}
+\BK{+w}{        }\BK{c+cm}{/* latency stats */}
+\BK{+w}{        }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sched\BKZus{}info}\BK{+w}{ }\BK{n}{rq\BKZus{}sched\BKZus{}info}\BK{p}{;}
+
+\BK{+w}{        }\BK{c+cm}{/* sys\BKZus{}sched\BKZus{}yield() stats */}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{yld\BKZus{}exp\BKZus{}empty}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{yld\BKZus{}act\BKZus{}empty}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{yld\BKZus{}both\BKZus{}empty}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{yld\BKZus{}cnt}\BK{p}{;}
+
+\BK{+w}{        }\BK{c+cm}{/* schedule() stats */}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{sched\BKZus{}switch}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{sched\BKZus{}cnt}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{sched\BKZus{}goidle}\BK{p}{;}
+
+\BK{+w}{        }\BK{c+cm}{/* try\BKZus{}to\BKZus{}wake\BKZus{}up() stats */}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{ttwu\BKZus{}cnt}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{ttwu\BKZus{}local}\BK{p}{;}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}
+\BK{p}{\BKZcb{}}\BK{p}{;}

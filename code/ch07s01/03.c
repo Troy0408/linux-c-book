@@ -1,0 +1,1 @@
+struct complex_struct z3, z4;

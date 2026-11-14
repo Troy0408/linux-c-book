@@ -1,0 +1,63 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}assert.h\BKZgt{}}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define LEN 8}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{a}\BK{p}{[}\BK{n}{LEN}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{5}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{6}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{8}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{9}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{is\BKZus{}sorted}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{LEN}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{a}\BK{p}{[}\BK{n}{i}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{]}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{n}{a}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{p}{)}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{mustbe}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{start}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{end}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{number}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{start}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{a}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{number}\BK{p}{)}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{end}\BK{o}{+}\BK{l+m+mi}{1}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{LEN}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{a}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{number}\BK{p}{)}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{contains}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{n}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{LEN}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{a}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{n}\BK{p}{)}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{binarysearch}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{number}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{mid}\BK{p}{,}\BK{+w}{ }\BK{n}{start}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{n}{end}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{LEN}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{assert}\BK{p}{(}\BK{n}{is\BKZus{}sorted}\BK{p}{(}\BK{p}{)}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* Precondition */}
+\BK{+w}{	}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{start}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{o}{=}\BK{+w}{ }\BK{n}{end}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{assert}\BK{p}{(}\BK{n}{mustbe}\BK{p}{(}\BK{n}{start}\BK{p}{,}\BK{+w}{ }\BK{n}{end}\BK{p}{,}\BK{+w}{ }\BK{n}{number}\BK{p}{)}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* Maintenance */}
+\BK{+w}{		}\BK{n}{mid}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{(}\BK{n}{start}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{end}\BK{p}{)}\BK{+w}{ }\BK{o}{/}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{;}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{a}\BK{p}{[}\BK{n}{mid}\BK{p}{]}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{number}\BK{p}{)}
+\BK{+w}{			}\BK{n}{start}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{mid}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{		}\BK{k}{else}\BK{+w}{ }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{a}\BK{p}{[}\BK{n}{mid}\BK{p}{]}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{n}{number}\BK{p}{)}
+\BK{+w}{			}\BK{n}{end}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{mid}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{		}\BK{k}{else}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{			}\BK{n}{assert}\BK{p}{(}\BK{n}{mid}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{o}{=}\BK{+w}{ }\BK{n}{start}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{mid}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{o}{=}\BK{+w}{ }\BK{n}{end}
+\BK{+w}{			       }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{a}\BK{p}{[}\BK{n}{mid}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{number}\BK{p}{)}\BK{+w}{ }\BK{c+cm}{/* Postcondition 1 */}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BK{n}{mid}\BK{p}{;}
+\BK{+w}{		}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{assert}\BK{p}{(}\BK{o}{!}\BK{n}{contains}\BK{p}{(}\BK{n}{number}\BK{p}{)}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* Postcondition 2 */}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}1}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{binarysearch}\BK{p}{(}\BK{l+m+mi}{5}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

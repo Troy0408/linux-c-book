@@ -1,0 +1,2 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{total\BKZus{}minute}\BK{p}{,}\BK{+w}{ }\BK{n}{total}\BK{p}{;}
+\BK{n}{total}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{total\BKZus{}minute}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{hour}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{l+m+mi}{60}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{minute}\BK{p}{;}

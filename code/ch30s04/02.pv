@@ -1,0 +1,30 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define MAXLINE 80}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{[}\BK{l+m+mi}{2}\BK{p}{]}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{pid\BKZus{}t}\BK{+w}{ }\BK{n}{pid}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{line}\BK{p}{[}\BK{n}{MAXLINE}\BK{p}{]}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{pipe}\BK{p}{(}\BK{n}{fd}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{pipe}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{p}{(}\BK{n}{pid}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{fork}\BK{p}{(}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{fork}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{pid}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{c+cm}{/* parent */}
+\BK{+w}{		}\BK{n}{close}\BK{p}{(}\BK{n}{fd}\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{write}\BK{p}{(}\BK{n}{fd}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{hello world}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{12}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{wait}\BK{p}{(}\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{       }\BK{c+cm}{/* child */}
+\BK{+w}{		}\BK{n}{close}\BK{p}{(}\BK{n}{fd}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{read}\BK{p}{(}\BK{n}{fd}\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{n}{line}\BK{p}{,}\BK{+w}{ }\BK{n}{MAXLINE}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{write}\BK{p}{(}\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{,}\BK{+w}{ }\BK{n}{line}\BK{p}{,}\BK{+w}{ }\BK{n}{n}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

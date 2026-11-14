@@ -1,0 +1,1 @@
+int connect(int sockfd, const struct sockaddr *servaddr, socklen_t addrlen);

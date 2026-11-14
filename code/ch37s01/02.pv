@@ -1,0 +1,3 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr\BKZus{}in}\BK{+w}{ }\BK{n}{servaddr}\BK{p}{;}
+\BK{c+cm}{/* initialize servaddr */}
+\BK{n}{bind}\BK{p}{(}\BK{n}{listen\BKZus{}fd}\BK{p}{,}\BK{+w}{ }\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{o}{\BKZam{}}\BK{n}{servaddr}\BK{p}{,}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{servaddr}\BK{p}{)}\BK{p}{)}\BK{p}{;}

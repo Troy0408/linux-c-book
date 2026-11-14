@@ -1,0 +1,1 @@
+\BK{k}{return}\BK{+w}{ }\BK{n}{area}\BK{p}{(}\BK{n}{distance}\BK{p}{(}\BK{n}{x1}\BK{p}{,}\BK{+w}{ }\BK{n}{y1}\BK{p}{,}\BK{+w}{ }\BK{n}{x2}\BK{p}{,}\BK{+w}{ }\BK{n}{y2}\BK{p}{)}\BK{p}{)}\BK{p}{;}

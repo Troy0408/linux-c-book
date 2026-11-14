@@ -1,0 +1,57 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}pthread.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{msg}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{msg}\BK{+w}{ }\BK{o}{*}\BK{n}{next}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{num}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{msg}\BK{+w}{ }\BK{o}{*}\BK{n}{head}\BK{p}{;}
+\BK{n}{pthread\BKZus{}cond\BKZus{}t}\BK{+w}{ }\BK{n}{has\BKZus{}product}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{PTHREAD\BKZus{}COND\BKZus{}INITIALIZER}\BK{p}{;}
+\BK{n}{pthread\BKZus{}mutex\BKZus{}t}\BK{+w}{ }\BK{n}{lock}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{PTHREAD\BKZus{}MUTEX\BKZus{}INITIALIZER}\BK{p}{;}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{consumer}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{msg}\BK{+w}{ }\BK{o}{*}\BK{n}{mp}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{p}{;}\BK{p}{;}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{pthread\BKZus{}mutex\BKZus{}lock}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{lock}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}
+\BK{+w}{			}\BK{n}{pthread\BKZus{}cond\BKZus{}wait}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{has\BKZus{}product}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{lock}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{mp}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{;}
+\BK{+w}{		}\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{mp}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{;}
+\BK{+w}{		}\BK{n}{pthread\BKZus{}mutex\BKZus{}unlock}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{lock}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Consume \BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{mp}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{num}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{free}\BK{p}{(}\BK{n}{mp}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{sleep}\BK{p}{(}\BK{n}{rand}\BK{p}{(}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZpc{}}\BK{+w}{ }\BK{l+m+mi}{5}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{producer}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{msg}\BK{+w}{ }\BK{o}{*}\BK{n}{mp}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{p}{;}\BK{p}{;}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{mp}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{malloc}\BK{p}{(}\BK{k}{sizeof}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{msg}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{mp}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{num}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{rand}\BK{p}{(}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZpc{}}\BK{+w}{ }\BK{l+m+mi}{1000}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Produce \BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{mp}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{num}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{pthread\BKZus{}mutex\BKZus{}lock}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{lock}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{mp}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{;}
+\BK{+w}{		}\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{mp}\BK{p}{;}
+\BK{+w}{		}\BK{n}{pthread\BKZus{}mutex\BKZus{}unlock}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{lock}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{pthread\BKZus{}cond\BKZus{}signal}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{has\BKZus{}product}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{sleep}\BK{p}{(}\BK{n}{rand}\BK{p}{(}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZpc{}}\BK{+w}{ }\BK{l+m+mi}{5}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{argc}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{argv}\BK{p}{[}\BK{p}{]}\BK{p}{)}\BK{+w}{ }
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}t}\BK{+w}{ }\BK{n}{pid}\BK{p}{,}\BK{+w}{ }\BK{n}{cid}\BK{p}{;}\BK{+w}{  }
+
+\BK{+w}{	}\BK{n}{srand}\BK{p}{(}\BK{n}{time}\BK{p}{(}\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}create}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{pid}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{,}\BK{+w}{ }\BK{n}{producer}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}create}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{cid}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{,}\BK{+w}{ }\BK{n}{consumer}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}join}\BK{p}{(}\BK{n}{pid}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{pthread\BKZus{}join}\BK{p}{(}\BK{n}{cid}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

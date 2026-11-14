@@ -1,0 +1,19 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{void}\BK{+w}{ }\BK{n}{push}\BK{p}{(}\BK{k+kt}{char}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{pop}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{is\BKZus{}empty}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{top}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{push}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{a}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{push}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{b}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{push}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{c}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{top}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}
+\BK{+w}{	}\BK{k}{while}\BK{p}{(}\BK{o}{!}\BK{n}{is\BKZus{}empty}\BK{p}{(}\BK{p}{)}\BK{p}{)}
+\BK{+w}{		}\BK{n}{putchar}\BK{p}{(}\BK{n}{pop}\BK{p}{(}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{putchar}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{\BKZbs{}n}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{top}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

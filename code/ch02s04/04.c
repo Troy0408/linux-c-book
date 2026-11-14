@@ -1,0 +1,1 @@
+printf("Current time is %d:%d", hour, minute);

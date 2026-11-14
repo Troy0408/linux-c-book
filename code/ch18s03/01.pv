@@ -1,0 +1,42 @@
+\BK{c+c1}{\BKZsh{}PURPOSE: This program finds the maximum number of a}
+\BK{c+c1}{\BKZsh{}	  set of data items.}
+\BK{c+c1}{\BKZsh{}}
+\BK{c+c1}{\BKZsh{}VARIABLES: The registers have the following uses:}
+\BK{c+c1}{\BKZsh{}}
+\BK{c+c1}{\BKZsh{} \BKZpc{}edi \BKZhy{} Holds the index of the data item being examined}
+\BK{c+c1}{\BKZsh{} \BKZpc{}ebx \BKZhy{} Largest data item found}
+\BK{c+c1}{\BKZsh{} \BKZpc{}eax \BKZhy{} Current data item}
+\BK{c+c1}{\BKZsh{}}
+\BK{c+c1}{\BKZsh{} The following memory locations are used:}
+\BK{c+c1}{\BKZsh{}}
+\BK{c+c1}{\BKZsh{} data\BKZus{}items \BKZhy{} contains the item data. A 0 is used}
+\BK{c+c1}{\BKZsh{} to terminate the data}
+\BK{c+c1}{\BKZsh{}}
+\BK{+w}{ }\BK{n+na}{.section}\BK{+w}{ }\BK{n+no}{.data}
+\BK{n+nl}{data\BKZus{}items:}\BK{+w}{ 		}\BK{c+c1}{\BKZsh{}These are the data items}
+\BK{+w}{ }\BK{n+na}{.long}\BK{+w}{ }\BK{l+m+mi}{3}\BK{p}{,}\BK{l+m+mi}{67}\BK{p}{,}\BK{l+m+mi}{34}\BK{p}{,}\BK{l+m+mi}{222}\BK{p}{,}\BK{l+m+mi}{45}\BK{p}{,}\BK{l+m+mi}{75}\BK{p}{,}\BK{l+m+mi}{54}\BK{p}{,}\BK{l+m+mi}{34}\BK{p}{,}\BK{l+m+mi}{44}\BK{p}{,}\BK{l+m+mi}{33}\BK{p}{,}\BK{l+m+mi}{22}\BK{p}{,}\BK{l+m+mi}{11}\BK{p}{,}\BK{l+m+mi}{66}\BK{p}{,}\BK{l+m+mi}{0}
+
+\BK{+w}{ }\BK{n+na}{.section}\BK{+w}{ }\BK{n+no}{.text}
+\BK{+w}{ }\BK{n+na}{.globl}\BK{+w}{ }\BK{n+no}{\BKZus{}start}
+\BK{n+nl}{\BKZus{}start:}
+\BK{+w}{ }\BK{n+nf}{movl}\BK{+w}{ }\BK{n+no}{\BKZdl{}0}\BK{p}{,}\BK{+w}{ }\BK{n+nv}{\BKZpc{}edi}\BK{+w}{  	}\BK{c+c1}{\BKZsh{} move 0 into the index register}
+\BK{+w}{ }\BK{n+nf}{movl}\BK{+w}{ }\BK{n+no}{data\BKZus{}items}\BK{p}{(,}\BK{n+nv}{\BKZpc{}edi}\BK{p}{,}\BK{l+m+mi}{4}\BK{p}{),}\BK{+w}{ }\BK{n+nv}{\BKZpc{}eax}\BK{+w}{ }\BK{c+c1}{\BKZsh{} load the first byte of data}
+\BK{+w}{ }\BK{n+nf}{movl}\BK{+w}{ }\BK{n+nv}{\BKZpc{}eax}\BK{p}{,}\BK{+w}{ }\BK{n+nv}{\BKZpc{}ebx}\BK{+w}{ 	}\BK{c+c1}{\BKZsh{} since this is the first item, \BKZpc{}eax is}
+\BK{+w}{			}\BK{c+c1}{\BKZsh{} the biggest}
+
+\BK{n+nl}{start\BKZus{}loop:}\BK{+w}{ 		}\BK{c+c1}{\BKZsh{} start loop}
+\BK{+w}{ }\BK{n+nf}{cmpl}\BK{+w}{ }\BK{n+no}{\BKZdl{}0}\BK{p}{,}\BK{+w}{ }\BK{n+nv}{\BKZpc{}eax}\BK{+w}{  	}\BK{c+c1}{\BKZsh{} check to see if we\BKZsq{}ve hit the end}
+\BK{+w}{ }\BK{n+nf}{je}\BK{+w}{ }\BK{n+no}{loop\BKZus{}exit}
+\BK{+w}{ }\BK{n+nf}{incl}\BK{+w}{ }\BK{n+nv}{\BKZpc{}edi}\BK{+w}{ 		}\BK{c+c1}{\BKZsh{} load next value}
+\BK{+w}{ }\BK{n+nf}{movl}\BK{+w}{ }\BK{n+no}{data\BKZus{}items}\BK{p}{(,}\BK{n+nv}{\BKZpc{}edi}\BK{p}{,}\BK{l+m+mi}{4}\BK{p}{),}\BK{+w}{ }\BK{n+nv}{\BKZpc{}eax}
+\BK{+w}{ }\BK{n+nf}{cmpl}\BK{+w}{ }\BK{n+nv}{\BKZpc{}ebx}\BK{p}{,}\BK{+w}{ }\BK{n+nv}{\BKZpc{}eax}\BK{+w}{ 	}\BK{c+c1}{\BKZsh{} compare values}
+\BK{+w}{ }\BK{n+nf}{jle}\BK{+w}{ }\BK{n+no}{start\BKZus{}loop}\BK{+w}{ 	}\BK{c+c1}{\BKZsh{} jump to loop beginning if the new}
+\BK{+w}{ 			}\BK{c+c1}{\BKZsh{} one isn\BKZsq{}t bigger}
+\BK{+w}{ }\BK{n+nf}{movl}\BK{+w}{ }\BK{n+nv}{\BKZpc{}eax}\BK{p}{,}\BK{+w}{ }\BK{n+nv}{\BKZpc{}ebx}\BK{+w}{ 	}\BK{c+c1}{\BKZsh{} move the value as the largest}
+\BK{+w}{ }\BK{n+nf}{jmp}\BK{+w}{ }\BK{n+no}{start\BKZus{}loop}\BK{+w}{ 	}\BK{c+c1}{\BKZsh{} jump to loop beginning}
+
+\BK{n+nl}{loop\BKZus{}exit:}
+\BK{+w}{ }\BK{c+c1}{\BKZsh{} \BKZpc{}ebx is the status code for the \BKZus{}exit system call}
+\BK{+w}{ }\BK{c+c1}{\BKZsh{} and it already has the maximum number}
+\BK{+w}{ }\BK{n+nf}{movl}\BK{+w}{ }\BK{n+no}{\BKZdl{}1}\BK{p}{,}\BK{+w}{ }\BK{n+nv}{\BKZpc{}eax}\BK{+w}{  	}\BK{l+m+mi}{\BKZsh{}1}\BK{+w}{ }\BK{n+no}{is}\BK{+w}{ }\BK{n+no}{the}\BK{+w}{ }\BK{n+no}{\BKZus{}exit}\BK{p}{()}\BK{+w}{ }\BK{n+no}{syscall}
+\BK{+w}{ }\BK{n+nf}{int}\BK{+w}{ }\BK{n+no}{\BKZdl{}0x80}

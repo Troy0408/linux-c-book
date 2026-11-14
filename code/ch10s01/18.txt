@@ -1,0 +1,10 @@
+(gdb) s
+7			sum = sum + i;
+(gdb) （直接回车）
+6		for (i = low; i <= high; i++)
+(gdb) （直接回车）
+7			sum = sum + i;
+(gdb) （直接回车）
+6		for (i = low; i <= high; i++)
+(gdb) p sum
+$1 = 3

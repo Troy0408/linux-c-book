@@ -1,0 +1,3 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define STDIN\BKZus{}FILENO 0}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define STDOUT\BKZus{}FILENO 1}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define STDERR\BKZus{}FILENO 2}

@@ -1,0 +1,3 @@
+$ touch file123
+$ ls -l file123
+-rw-r--r-- 1 akaedu akaedu 0 2009-03-08 15:07 file123

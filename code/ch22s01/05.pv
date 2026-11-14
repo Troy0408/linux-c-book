@@ -1,0 +1,22 @@
+\BK{c+cm}{/* maze.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}maze.h\BKZdq{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{maze}\BK{p}{[}\BK{n}{MAX\BKZus{}ROW}\BK{p}{]}\BK{p}{[}\BK{n}{MAX\BKZus{}COL}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{print\BKZus{}maze}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{,}\BK{+w}{ }\BK{n}{j}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{MAX\BKZus{}ROW}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{j}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{n}{j}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{MAX\BKZus{}COL}\BK{p}{;}\BK{+w}{ }\BK{n}{j}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{			}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d }\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{maze}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{p}{[}\BK{n}{j}\BK{p}{]}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{putchar}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{\BKZbs{}n}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{*********}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,366 @@
+
+% https://akaedu.github.io/book/ch15.html
+
+\chapter{数据类型详解}
+\BookAnchor{db.ch15}\BookAnchor{db.ch15.id2756555}%
+
+
+\BookNav{\hyperlink{db.ch14s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt02}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch15s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch15s01.html
+
+\section{整型}
+\BookAnchor{db.ch15s01}\BookAnchor{db.ch15s01.id2756569}%
+我们知道，在C语言中\BookCode{char}型占一个字节的存储空间，一个字节通常是8个bit。如果这8个bit按无符号整数来解释，取值范围是0\textasciitilde{}\BookSplit{}255，如果按有符号整数来解释，采用2's Complement表示法，取值范围是-128\textasciitilde{}\BookSplit{}127。C语言规定了\BookCode{signed}和\BookCode{unsigned}两个关键字，\BookCode{unsigned char}型表示无符号数，\BookCode{signed char}型表示有符号数。
+
+
+
+那么以前我们常用的不带\BookCode{signed}或\BookCode{unsigned}关键字的\BookCode{char}型是无符号数还是有符号数呢？C标准规定这是Implementation Defined，编译器可以定义\BookCode{char}型是无符号的，也可以定义\BookCode{char}型是有符号的，在该编译器所对应的体系结构上哪种实现效率高就可以采用哪种实现，x86平台的\BookCode{gcc}定义\BookCode{char}型是有符号的。这也是C标准的Rationale之一：\emph{优先考虑效率，而可移植性尚在其次}。这就要求程序员非常清楚这些规则，如果你要写可移植的代码，就必须清楚哪些写法是不可移植的，应该避免使用。另一方面，写不可移植的代码有时候也是必要的，比如Linux内核代码使用了很多只有\BookCode{gcc}支持的语法特性以得到最佳的执行效率，在写这些代码的时候就没打算用别的编译器编译，也就没考虑可移植性的问题。如果要写不可移植的代码，你也必须清楚代码中的哪些部分是不可移植的，以及为什么要这样写，如果不是为了效率，一般来说就没有理由故意写不可移植的代码。从现在开始，我们会接触到很多Implementation Defined的特性，C语言与平台和编译器是密不可分的，离开了具体的平台和编译器讨论C语言，就只能讨论到本书第一部分的程度了。注意，ASCII码的取值范围是0\textasciitilde{}\BookSplit{}127，所以不管\BookCode{char}型是有符号的还是无符号的，存一个ASCII码都没有问题，一般来说，如果用\BookCode{char}型存ASCII码字符，就不必明确写是\BookCode{signed}还是\BookCode{unsigned}，如果用\BookCode{char}型表示8位的整数，为了可移植性就必须写明是\BookCode{signed}还是\BookCode{unsigned}。
+
+
+\begin{BookNote}
+\BookNoteTitle{Implementation-defined、Unspecified和Undefined}
+
+
+在C标准中没有做明确规定的地方会用Implementation-defined\BookAnchor{db.ch15s01.id2756724}、Unspecified\BookAnchor{db.ch15s01.id2756731}或Undefined\BookAnchor{db.ch15s01.id2756738}来表述，在本书中有时把这三种情况统称为“未明确定义”的。这三种情况到底有什么不同呢？
+
+
+
+我们刚才看到一种Implementation-defined的情况，C标准没有明确规定\BookCode{char}是有符号的还是无符号的，但是要求编译器必须对此做出明确规定，并写在编译器的文档中。
+
+
+
+而对于Unspecified的情况，往往有几种可选的处理方式，C标准没有明确规定按哪种方式处理，编译器可以自己决定，并且也不必写在编译器的文档中，这样即便用同一个编译器的不同版本来编译也可能得到不同的结果，因为编译器没有在文档中明确写它会怎么处理，那么不同版本的编译器就可以选择不同的处理方式，比如下一章我们会讲到一个函数调用的各个实参表达式按什么顺序求值是Unspecified的。
+
+
+
+Undefined的情况则是完全不确定的，C标准没规定怎么处理，编译器很可能也没规定，甚至也没做出错处理，有很多Undefined的情况编译器是检查不出来的，最终会导致运行时错误，比如数组访问越界就是Undefined的。
+
+
+
+初学者看到这些规则通常会很不舒服，觉得这不是在学编程而是在啃法律条文，结果越学越泄气。是的，C语言并不像一个数学定理那么完美，现实世界里的东西总是不够完美的。但还好啦，C程序员已经很幸福了，只要严格遵照C标准来写代码，不要去触碰那些阴暗角落，写出来的代码就有很好的可移植性。想想那些可怜的JavaScript程序员吧，他们甚至连一个可以遵照的标准都没有，一个浏览器一个样，甚至同一个浏览器的不同版本也差别很大，程序员不得不为每一种浏览器的每一个版本分别写不同的代码。
+
+\end{BookNote}
+
+
+除了\BookCode{char}型之外，整型还包括\BookCode{short int}（或者简写为\BookCode{short}）、\BookCode{int}、\BookCode{long int}（或者简写为\BookCode{long}）、\BookCode{long long int}（或者简写为\BookCode{long long}）等几种\BookAnchor{db.ch15s01.id2756873}\footnote[25]{\BookAnchor{db.ch15s01.ftn.id2756873}\BookFootnoteBack{db.ch15s01.id2756873}我们在\hyperlink{db.ch19s04.id2779313}{第 4 节 “结构体和联合体”}还要介绍一种特殊的整型－－Bit-field。}，这些类型都可以加上\BookCode{signed}或\BookCode{unsigned}关键字表示有符号或无符号数。其实，对于有符号数在计算机中的表示是Sign and Magnitude、1's Complement还是2's Complement，C标准也没有明确规定，也是Implementation Defined。大多数体系结构都采用2's Complement表示法，x86平台也是如此，从现在开始我们只讨论2's Complement表示法的情况。还有一点要注意，除了\BookCode{char}型以外的这些类型如果不明确写\BookCode{signed}或\BookCode{unsigned}关键字都表示\BookCode{signed}，这一点是C标准明确规定的，不是Implementation Defined。
+
+
+
+除了\BookCode{char}型在C标准中明确规定占一个字节之外，其它整型占几个字节都是Implementation Defined。通常的编译器实现遵守ILP32\BookAnchor{db.ch15s01.id2756951}或LP64\BookAnchor{db.ch15s01.id2756958}规范，如下表所示。
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.284707\linewidth-2\tabcolsep\relax}L{\dimexpr 0.369339\linewidth-2\tabcolsep\relax}L{\dimexpr 0.345954\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{ILP32和LP64}\BookTableLabel{\BookAnchor{db.ch15s01.id2756966}}
+\toprule
+{\bfseries 类型} & {\bfseries ILP32（位数）} & {\bfseries LP64（位数）} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 类型} & {\bfseries ILP32（位数）} & {\bfseries LP64（位数）} \\
+\midrule
+\endhead
+char & 8 & 8 \\
+\addlinespace[2pt]
+short & 16 & 16 \\
+\addlinespace[2pt]
+int & 32 & 32 \\
+\addlinespace[2pt]
+long & 32 & 64 \\
+\addlinespace[2pt]
+long long & 64 & 64 \\
+\addlinespace[2pt]
+指针 & 32 & 64 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+ILP32这个缩写的意思是\BookCode{int}（I）、\BookCode{long}（L）和指针（P）类型都占32位，通常32位计算机的C编译器采用这种规范，x86平台的\BookCode{gcc}也是如此。LP64是指\BookCode{long}（L）和指针占64位，通常64位计算机的C编译器采用这种规范。指针类型的长度总是和计算机的位数一致，至于什么是计算机的位数，指针又是一种什么样的类型，我们到\hyperlink{db.ch17.id2766056}{第 17 章 \emph{计算机体系结构基础}}和\hyperlink{db.ch23.id2810495}{第 23 章 \emph{指针}}再分别详细解释。从现在开始本书做以下约定：\emph{在以后的陈述中，缺省平台是x86/\BookSplit{}Linux/\BookSplit{}gcc，遵循ILP32，并且\BookCode{char}是有符号的，我不会每次都加以说明，但说到其它平台时我会明确指出是什么平台}。
+
+
+
+在\hyperlink{db.ch02s02.id2707837}{第 2 节 “常量”}讲过C语言的常量有整数常量、字符常量、枚举常量和浮点数常量四种，其实字符常量和枚举常量的类型都是\BookCode{int}型，因此前三种常量的类型都属于整型。整数常量有很多种，不全是\BookCode{int}型的，下面我们详细讨论整数常量。
+
+
+
+以前我们只用到十进制的整数常量，其实在C语言中也可以用八进制和十六进制的整数常量\BookAnchor{db.ch15s01.id2757137}\footnote[26]{\BookAnchor{db.ch15s01.ftn.id2757137}\BookFootnoteBack{db.ch15s01.id2757137}有些编译器（比如\BookCode{gcc}）也支持二进制的整数常量，以0b或0B开头，比如0b0001111，但二进制的整数常量从未进入C标准，只是某些编译器的扩展，所以不建议使用，由于二进制和八进制、十六进制的对应关系非常明显，用八进制或十六进制常量完全可以代替使用二进制常量。}。八进制整数常量以0开头，后面的数字只能是0\textasciitilde{}\BookSplit{}7，例如022，因此十进制的整数常量就不能以0开头了，否则无法和八进制区分。十六进制整数常量以0x或0X开头，后面的数字可以是0\textasciitilde{}\BookSplit{}9、a\textasciitilde{}\BookSplit{}f和A\textasciitilde{}\BookSplit{}F。在\hyperlink{db.ch02s06.id2709590}{第 6 节 “字符类型与字符编码”}讲过一种转义序列，以\textbackslash{}或\textbackslash{}x加八进制或十六进制数字表示，这种表示方式相当于把八进制和十六进制整数常量开头的0替换成\textbackslash{}了。
+
+
+
+整数常量还可以在末尾加u或U表示“unsigned”，加l或L表示“long”，加ll或LL表示“long long”，例如0x1234U，98765ULL等。但事实上u、l、ll这几种后缀和上面讲的\BookCode{unsigned}、\BookCode{long}、\BookCode{long long}关键字并不是一一对应的。这个对应关系比较复杂，准确的描述如下表所示（出自\hyperlink{db.bi01.bibli.c99}{[C99]}条款6.\BookSplit{}4.\BookSplit{}4.\BookSplit{}1）。
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.308932\linewidth-2\tabcolsep\relax}L{\dimexpr 0.345534\linewidth-2\tabcolsep\relax}L{\dimexpr 0.345534\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{整数常量的类型}\BookTableLabel{\BookAnchor{db.ch15s01.id2757215}}
+\toprule
+{\bfseries 后缀} & {\bfseries 十进制常量} & {\bfseries 八进制或十六进制常量} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 后缀} & {\bfseries 十进制常量} & {\bfseries 八进制或十六进制常量} \\
+\midrule
+\endhead
+无 & \begin{BookLiteral}
+\BookLiteralLine{int}
+\BookLiteralLine{long int}
+\BookLiteralLine{long long int}
+\end{BookLiteral} & \begin{BookLiteral}
+\BookLiteralLine{int}
+\BookLiteralLine{unsigned int}
+\BookLiteralLine{long int}
+\BookLiteralLine{unsigned long int}
+\BookLiteralLine{long long int}
+\BookLiteralLine{unsigned long long int}
+\end{BookLiteral} \\
+\addlinespace[2pt]
+u或U & \begin{BookLiteral}
+\BookLiteralLine{unsigned int}
+\BookLiteralLine{unsigned long int}
+\BookLiteralLine{unsigned long long int}
+\end{BookLiteral} & \begin{BookLiteral}
+\BookLiteralLine{unsigned int}
+\BookLiteralLine{unsigned long int}
+\BookLiteralLine{unsigned long long int}
+\end{BookLiteral} \\
+\addlinespace[2pt]
+l或L & \begin{BookLiteral}
+\BookLiteralLine{long int}
+\BookLiteralLine{long long int}
+\end{BookLiteral} & \begin{BookLiteral}
+\BookLiteralLine{long int}
+\BookLiteralLine{unsigned long int}
+\BookLiteralLine{long long int}
+\BookLiteralLine{unsigned long long int}
+\end{BookLiteral} \\
+\addlinespace[2pt]
+既有u或U，又有l或L & \begin{BookLiteral}
+\BookLiteralLine{unsigned long int}
+\BookLiteralLine{unsigned long long int}
+\end{BookLiteral} & \begin{BookLiteral}
+\BookLiteralLine{unsigned long int}
+\BookLiteralLine{unsigned long long int}
+\end{BookLiteral} \\
+\addlinespace[2pt]
+ll或LL & \begin{BookLiteral}
+\BookLiteralLine{long long int}
+\end{BookLiteral} & \begin{BookLiteral}
+\BookLiteralLine{long long int}
+\BookLiteralLine{unsigned long long int}
+\end{BookLiteral} \\
+\addlinespace[2pt]
+既有u或U，又有ll或LL & \begin{BookLiteral}
+\BookLiteralLine{unsigned long long int}
+\end{BookLiteral} & \begin{BookLiteral}
+\BookLiteralLine{unsigned long long int}
+\end{BookLiteral} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+给定一个整数常量，比如1234U，那么它应该属于“u或U”这一行的“十进制常量”这一列，这个表格单元中列了三种类型\BookCode{unsigned int}、\BookCode{unsigned long \BookSplit{}int}、\BookCode{unsigned long \BookSplit{}long int}，从上到下找出第一个足够长的类型可以表示1234这个数，那么它就是这个整数常量的类型，如果\BookCode{int}是32位的那么\BookCode{unsigned int}就可以表示。
+
+
+
+再比如0xffff0000，应该属于第一行“无”的第二列“八进制或十六进制常量”，这一列有六种类型\BookCode{int}、\BookCode{unsigned int}、\BookCode{long int}、\BookCode{unsigned long \BookSplit{}int}、\BookCode{long long int}、\BookCode{unsigned long \BookSplit{}long int}，第一个类型\BookCode{int}表示不了0xffff0000这么大的数，我们写这个十六进制常量是要表示一个正数，而它的MSB（第31位）是1，如果按有符号\BookCode{int}类型来解释就成了负数了，第二个类型\BookCode{unsigned int}可以表示这个数，所以这个十六进制常量的类型应该算\BookCode{unsigned int}。所以请注意，0x7fffffff和0xffff0000这两个常量虽然看起来差不多，但前者是\BookCode{int}型，而后者是\BookCode{unsigned int}型。
+
+
+
+讲一个有意思的问题。我们知道x86平台上\BookCode{int}的取值范围是-2147483648\textasciitilde{}\BookSplit{}2147483647，那么用\BookCode{printf(\BookSplit{}\BookQuoteChar{}\%d\textbackslash{}n\BookQuoteChar{},\BookSplit{} -\BookSplit{}2147483648)\BookSplit{};\BookSplit{}}打印\BookCode{int}类型的下界有没有问题呢？如果用\BookCode{gcc main.\BookSplit{}c -\BookSplit{}std=\BookSplit{}c99}编译会有警告信息：\BookCode{warning:\BookSplit{} format ‘\%d’ e\BookSplit{}xpects type ‘i\BookSplit{}nt’,\BookSplit{} but argument \BookSplit{}2 has type ‘lo\BookSplit{}ng long int’}。这是因为，虽然-2147483648这个数值能够用\BookCode{int}型表示，但在C语言中却没法写出对应这个数值的\BookCode{int}型常量，C编译器会把它当成一个整数常量2147483648和一个负号运算符组成的表达式，而整数常量2147483648已经超过了\BookCode{int}型的取值范围，在x86平台上\BookCode{int}和\BookCode{long}的取值范围相同，所以这个常量也超过了\BookCode{long}型的取值范围，根据上表第一行“无”的第一列\BookCode{十进制常量}，这个整数常量应该算\BookCode{long long}型的，前面再加个负号组成的表达式仍然是\BookCode{long long}型，而\BookCode{printf}的\BookCode{\%d}转换说明要求后面的参数是\BookCode{int}型，所以编译器报警告。之所以编译命令要加\BookCode{-\BookSplit{}std=\BookSplit{}c99}选项是因为C99以前对于整数常量的类型规定和上表有一些出入，即使不加这个选项也会报警告，但警告信息不准确，读者可以试试。如果改成\BookCode{printf(\BookSplit{}\BookQuoteChar{}\%d\textbackslash{}n\BookQuoteChar{},\BookSplit{} -\BookSplit{}2147483647-\BookSplit{}1)\BookSplit{};\BookSplit{}}编译器就不会报警告了，-号运算符的两个操作数-2147483647和1都是\BookCode{int}型，计算结果也应该是\BookCode{int}型，并且它的值也没有超出\BookCode{int}型的取值范围；或者改成\BookCode{printf(\BookSplit{}\BookQuoteChar{}\%lld\textbackslash{}n\BookQuoteChar{},\BookSplit{} -\BookSplit{}2147483648)\BookSplit{};\BookSplit{}}也可以，转换说明\BookCode{\%lld}告诉\BookCode{printf}后面的参数是\BookCode{long long}型，有些转换说明格式目前还没讲到，详见\hyperlink{db.ch25s02.id2832755}{第 2.\BookSplit{}9 节 “格式化I/\BookSplit{}O函数”}。
+
+
+
+怎么样，整数常量没有你原来想的那么简单吧。再看一个不简单的问题。\BookCode{long long i =\BookSplit{} 1234567890 * \BookSplit{}1234567890;\BookSplit{}}编译时会有警告信息：\BookCode{warning:\BookSplit{} integer overf\BookSplit{}low in express\BookSplit{}ion}。1234567890是\BookCode{int}型，两个\BookCode{int}型相乘的表达式仍然是\BookCode{int}型，而乘积已经超过\BookCode{int}型的取值范围了，因此提示计算结果溢出。如果改成\BookCode{long long i =\BookSplit{} 1234567890LL \BookSplit{}* 1234567890;\BookSplit{}}，其中一个常量是\BookCode{long long}型，另一个常量也会先转换成\BookCode{long long}型再做乘法运算，两数相乘的表达式也是\BookCode{long long}型，编译器就不会报警告了。有关类型转换的规则将在\hyperlink{db.ch15s03.id2757924}{第 3 节 “类型转换”}详细介绍。
+
+\BookNav{\hyperlink{db.ch15}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch15}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch15s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch15s02.html
+
+\section{浮点型}
+\BookAnchor{db.ch15s02}\BookAnchor{db.ch15s02.id2757747}%
+C标准规定的浮点型有\BookCode{float}、\BookCode{double}、\BookCode{long double}，和整型一样，既没有规定每种类型占多少字节，也没有规定采用哪种表示形式。浮点数的实现在各种平台上差异很大，有的处理器有浮点运算单元（FPU，Floating Point Unit）\BookAnchor{db.ch15s02.id2757776}，称为硬浮点（Hard-float）\BookAnchor{db.ch15s02.id2757784}实现；有的处理器没有浮点运算单元，只能做整数运算，需要用整数运算来模拟浮点运算，称为软浮点（Soft-float）\BookAnchor{db.ch15s02.id2757794}实现。大部分平台的浮点数实现遵循IEEE 754，\BookCode{float}型通常是32位，\BookCode{double}型通常是64位。
+
+
+
+\BookCode{long double}型通常是比\BookCode{double}型精度更高的类型，但各平台的实现有较大差异。在x86平台上，大多数编译器实现的\BookCode{long double}型是80位，因为x86的浮点运算单元具有80位精度，\BookCode{gcc}实现的\BookCode{long double}型是12字节（96位），这是为了对齐到4字节边界（在\hyperlink{db.ch19s04.id2779313}{第 4 节 “结构体和联合体”}详细讨论对齐的问题），也有些编译器实现的\BookCode{long double}型和\BookCode{double}型精度相同，没有充分利用x86浮点运算单元的精度。其它体系结构的浮点运算单元的精度不同，编译器实现也会不同，例如PowerPC上的\BookCode{long double}型通常是128位。
+
+
+
+以前我们只用到最简单的浮点数常量，例如3.\BookSplit{}14，现在看看浮点数常量还有哪些写法。由于浮点数在计算机中的表示是基于科学计数法的，所以浮点数常量也可以写成科学计数法的形式，尾数和指数之间用e或E隔开，例如314e-2表示314×\BookSplit{}10\textsuperscript{-2}，注意这种表示形式基数是10\BookAnchor{db.ch15s02.id2757890}\footnote[27]{\BookAnchor{db.ch15s02.ftn.id2757890}\BookFootnoteBack{db.ch15s02.id2757890}C99引入一种新的十六进制浮点数表示，基数是2，本书不做详细介绍。}，如果尾数的小数点左边或右边没有数字则表示这一部分为零，例如3.\BookSplit{}e-1，.987等等。浮点数也可以加一个后缀，例如3.\BookSplit{}14f、.01L，浮点数的后缀和类型之间的对应关系比较简单，没有后缀的浮点数常量是\BookCode{double}型的，有后缀f或F的浮点数常量是\BookCode{float}型的，有后缀l或L的浮点数常量是\BookCode{long double}型的。
+
+\BookNav{\hyperlink{db.ch15s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch15}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch15s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch15s03.html
+
+\section{类型转换}
+\BookAnchor{db.ch15s03}\BookAnchor{db.ch15s03.id2757924}%
+如果有人问C语法规则中最复杂的是哪一部分，我一定会说是类型转换。从上面两节可以看出，有符号、无符号整数和浮点数加起来有那么多种类型，每两种类型之间都要定义一个转换规则，转换规则的数量自然很庞大，更何况由于各种体系结构对于整数和浮点数的实现很不相同，很多类型转换的情况都是C标准未做明确规定的阴暗角落。虽然我们写代码时不会故意去触碰这些阴暗角落，但有时候会不小心犯错，所以了解一些未明确规定的情况还是有必要的，可以在出错时更容易分析错误原因。本节分成几小节，首先介绍哪些情况下会发生类型转换，会把什么类型转成什么类型，然后介绍编译器如何处理这样的类型转换。
+
+
+\subsection{Integer Promotion}
+\BookAnchor{db.ch15s03.id2757955}%
+
+
+在一个表达式中，凡是可以使用\BookCode{int}或\BookCode{unsigned int}类型做右值的地方也都可以使用有符号或无符号的\BookCode{char}型、\BookCode{short}型和Bit-field。如果原始类型的取值范围都能用\BookCode{int}型表示，则其类型被提升为\BookCode{int}，如果原始类型的取值范围用\BookCode{int}型表示不了，则提升为\BookCode{unsigned int}型，这称为Integer Promotion\BookAnchor{db.ch15s03.id2758017}。做Integer Promotion只影响上述几种类型的值，对其它类型无影响。C99规定Integer Promotion适用于以下几种情况：
+
+
+
+1、如果一个函数的形参类型未知，例如使用了Old Style C风格的函数声明（详见\hyperlink{db.ch03s02.id2712975}{第 2 节 “自定义函数”}），或者函数的参数列表中有...，那么调用函数时要对相应的实参做Integer Promotion，此外，相应的实参如果是\BookCode{float}型的也要被提升为\BookCode{double}型，这条规则称为Default Argument Promotion\BookAnchor{db.ch15s03.id2758055}。我们知道\BookCode{printf}的参数列表中有\BookCode{.\BookSplit{}.\BookSplit{}.\BookSplit{}}，除了第一个形参之外，其它形参的类型都是未知的，比如有这样的代码：
+
+
+\BookSource{numbers=none}{code/ch15s03/01.pv}{4}{2}
+
+
+\BookCode{ch}要被提升为\BookCode{int}型之后再传给\BookCode{printf}。
+
+
+
+2、算术运算中的类型转换。有符号或无符号的\BookCode{char}型、\BookCode{short}型和Bit-field在做算术运算之前首先要做Integer Promotion，然后才能参与计算。例如：
+
+
+\BookSource{numbers=none}{code/ch15s03/02.pv}{4}{2}
+
+
+计算表达式\BookCode{c1 +\BookSplit{} c2}的过程其实是先把\BookCode{c1}和\BookCode{c2}提升为\BookCode{int}型然后再相加（\BookCode{unsigned char}的取值范围是0\textasciitilde{}\BookSplit{}255，完全可以用\BookCode{int}表示，所以提升为\BookCode{int}就可以了，不需要提升为\BookCode{unsigned int}），整个表达式的值也是\BookCode{int}型，最后的结果是257。假如没有这个提升的过程，\BookCode{c1 +\BookSplit{} c2}就溢出了，溢出会得到什么结果是Undefined，在大多数平台上会把进位截掉，得到的结果应该是1。
+
+
+
+除了+号之外还有哪些运算符在计算之前需要做Integer Promotion呢？我们在下一小节先介绍Usual Arithmetic Conversion规则，然后再解答这个问题。
+
+
+\subsection{Usual Arithmetic Conversion}
+\BookAnchor{db.ch15s03.id2758200}%
+
+
+两个算术类型的操作数做算术运算，比如\BookCode{a +\BookSplit{} b}，如果两边操作数的类型不同，编译器会自动做类型转换，使两边类型相同之后才做运算，这称为Usual Arithmetic Conversion\BookAnchor{db.ch15s03.id2758216}。转换规则如下：
+
+
+\begin{enumerate}
+
+\item 如果有一边的类型是\BookCode{long double}，则把另一边也转成\BookCode{long double}。
+
+\item 否则，如果有一边的类型是\BookCode{double}，则把另一边也转成\BookCode{double}。
+
+\item 否则，如果有一边的类型是\BookCode{float}，则把另一边也转成\BookCode{float}。
+
+\item 否则，两边应该都是整型，首先按上一小节讲过的规则对\BookCode{a}和\BookCode{b}做Integer Promotion，然后如果类型仍不相同，则需要继续转换。首先我们规定\BookCode{char}、\BookCode{short}、\BookCode{int}、\BookCode{long}、\BookCode{long long}的转换级别（Integer Conversion Rank）\BookAnchor{db.ch15s03.id2758331}一个比一个高，同一类型的有符号和无符号数具有相同的Rank。转换规则如下：
+
+
+\begin{enumerate}[label=\alph*.]
+
+\item 如果两边都是有符号数，或者都是无符号数，那么较低Rank的类型转换成较高Rank的类型。例如\BookCode{unsigned int}和\BookCode{unsigned long}做算术运算时都转成\BookCode{unsigned long}。
+
+\item 否则，如果一边是无符号数另一边是有符号数，无符号数的Rank不低于有符号数的Rank，则把有符号数转成另一边的无符号类型。例如\BookCode{unsigned long}和\BookCode{int}做算术运算时都转成\BookCode{unsigned long}，\BookCode{unsigned long}和\BookCode{long}做算术运算时也都转成\BookCode{unsigned long}。
+
+\item 剩下的情况是：一边有符号另一边无符号，并且无符号数的Rank低于有符号数的Rank。这时又分为两种情况，如果这个有符号数类型能够覆盖这个无符号数类型的取值范围，则把无符号数转成另一边的有符号类型。例如遵循LP64的平台上\BookCode{unsigned int}和\BookCode{long}在做算术运算时都转成\BookCode{long}。
+
+\item 否则，也就是这个有符号数类型不足以覆盖这个无符号数类型的取值范围，则把两边都转成有符号数的Rank对应的无符号类型。例如在遵循ILP32的平台上\BookCode{unsigned int}和\BookCode{long}在做算术运算时都转成\BookCode{unsigned long}。
+\end{enumerate}
+\end{enumerate}
+
+
+可见有符号和无符号整数的转换规则是十分复杂的，虽然这是有明确规定的，不属于阴暗角落，但为了程序的可读性不应该依赖这些规则来写代码。我讲这些规则，不是为了让你用，而是为了让你了解有符号数和无符号数混用会非常麻烦，从而避免触及这些规则，并且在程序出错时记得往这上面找原因。所以这些规则不需要牢记，但要知道有这么回事，以便在用到的时候能找到我书上的这一段。
+
+
+
+到目前为止我们学过的+ - * / \% \textgreater{} \textless{} \textgreater{}= \textless{}= == !=运算符都需要做Usual Arithmetic Conversion，因为都要求两边操作数的类型一致，在下一章会介绍几种新的运算符也需要做Usual Arithmetic Conversion。单目运算符+ - \textasciitilde{}只有一个操作数，移位运算符\textless{}\textless{} \textgreater{}\textgreater{}两边的操作数类型不要求一致，这些运算不需要做Usual Arithmetic Conversion，但也需要做Integer Promotion，运算符\textasciitilde{} \textless{}\textless{} \textgreater{}\textgreater{}将在下一章介绍。
+
+
+\subsection{由赋值产生的类型转换}
+\BookAnchor{db.ch15s03.id2758516}%
+
+
+如果赋值或初始化时等号两边的类型不相同，则编译器会把等号右边的类型转换成等号左边的类型再做赋值。例如\BookCode{int c =\BookSplit{} 3.\BookSplit{}14;\BookSplit{}}，编译器会把右边的\BookCode{double}型转成\BookCode{int}型再赋给变量\BookCode{c}。
+
+
+
+我们知道，函数调用传参的过程相当于定义形参并且用实参对其做初始化，函数返回的过程相当于定义一个临时变量并且用\BookCode{return}的表达式对其做初始化，所以由赋值产生的类型转换也适用于这两种情况。例如一个函数的原型是\BookCode{int foo(\BookSplit{}int,\BookSplit{} int)\BookSplit{};\BookSplit{}}，则调用\BookCode{foo(\BookSplit{}3.\BookSplit{}1,\BookSplit{} 4.\BookSplit{}2)\BookSplit{}}时会自动把两个\BookCode{double}型的实参转成\BookCode{int}型赋给形参，如果这个函数定义中有返回语句\BookCode{return 1.\BookSplit{}2;\BookSplit{}}，则返回值\BookCode{1.\BookSplit{}2}会自动转成\BookCode{int}型再返回。
+
+
+
+在函数调用和返回过程中发生的类型转换往往容易被忽视，因为函数原型和函数调用并没有写在一起。例如\BookCode{char c =\BookSplit{} getchar(\BookSplit{})\BookSplit{};\BookSplit{}}，看到这一句往往会想当然地认为\BookCode{getchar}的返回值是\BookCode{char}型，而事实上\BookCode{getchar}的返回值是\BookCode{int}型，这样赋值会引起类型转换，可能产生Bug，我们在\hyperlink{db.ch25s02.id2831236}{第 2.\BookSplit{}5 节 “以字节为单位的I/\BookSplit{}O函数”}详细讨论这个问题。
+
+
+\subsection{强制类型转换}
+\BookAnchor{db.ch15s03.id2758655}%
+
+
+以上三种情况通称为隐式类型转换（Implicit Conversion，或者叫Coercion）\BookAnchor{db.ch15s03.id2758663}\BookAnchor{db.ch15s03.id2758671}，编译器根据它自己的一套规则将一种类型自动转换成另一种类型。除此之外，程序员也可以通过类型转换运算符（Cast Operator）\BookAnchor{db.ch15s03.id2758683}自己规定某个表达式要转换成何种类型，这称为显式类型转换（Explicit Conversion）\BookAnchor{db.ch15s03.id2758692}或强制类型转换（Type Cast）\BookAnchor{db.ch15s03.id2758700}。例如计算表达式\BookCode{(\BookSplit{}double)\BookSplit{}3 +\BookSplit{} i}，首先将整数3强制转换成\BookCode{double}型（值为3.\BookSplit{}0），然后和整型变量\BookCode{i}相加，这时适用Usual Arithmetic Conversion规则，首先把\BookCode{i}也转成\BookCode{double}型，然后两者相加，最后整个表达式也是\BookCode{double}型的。这里的\BookCode{(\BookSplit{}double)\BookSplit{}}就是一个类型转换运算符，这种运算符由一个类型名套()括号组成，属于单目运算符，后面的3是这个运算符的操作数。注意操作数的类型必须是标量类型，转换之后的类型必须是标量类型或者\BookCode{void}型。
+
+
+\subsection{编译器如何处理类型转换}
+\BookAnchor{db.ch15s03.id2758764}%
+
+
+以上几小节介绍了哪些情况下会发生类型转换，并且明确了每种情况下会把什么类型转成什么类型，本节介绍编译器如何处理任意两种类型之间的转换。现在要把一个M位的类型（值为X）转换成一个N位的类型，所有可能的情况如下表所示。
+
+
+\begingroup
+\setlength{\tabcolsep}{3pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{>{\RaggedRight\arraybackslash}p{\dimexpr 0.285000\linewidth-2\tabcolsep\relax}>{\RaggedRight\arraybackslash}p{\dimexpr 0.305000\linewidth-2\tabcolsep\relax}>{\RaggedRight\arraybackslash}p{\dimexpr 0.255000\linewidth-2\tabcolsep\relax}>{\RaggedRight\arraybackslash}p{\dimexpr 0.155000\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{如何做类型转换}\BookTableLabel{\BookAnchor{db.ch15s03.id2758783}}
+\toprule
+{\bfseries 待转换的类型} & {\bfseries M \textgreater{} N的情况} & {\bfseries M == N的情况} & {\bfseries M \textless{} N的情况} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 待转换的类型} & {\bfseries M \textgreater{} N的情况} & {\bfseries M == N的情况} & {\bfseries M \textless{} N的情况} \\
+\midrule
+\endhead
+signed integer to signed integer & 如果X在目标类型的取值范围内则值不变，否则Implementation-defined & 值不变 & 值不变 \\
+\addlinespace[2pt]
+unsigned integer to signed integer & 如果X在目标类型的取值范围内则值不变，否则Implementation-defined & 如果X在目标类型的取值范围内则值不变，否则Implementation-defined & 值不变 \\
+\addlinespace[2pt]
+signed integer to unsigned integer & X \% 2\textsuperscript{N} & X \% 2\textsuperscript{N} & X \% 2\textsuperscript{N} \\
+\addlinespace[2pt]
+unsigned integer to unsigned integer & X \% 2\textsuperscript{N} & 值不变 & 值不变 \\
+\addlinespace[2pt]
+floating-point to signed or unsigned integer & \multicolumn{3}{>{\RaggedRight\arraybackslash}p{\dimexpr 0.715000\linewidth-2\tabcolsep\relax}}{Truncate toward Zero，如果X的整数部分超出目标类型的取值范围则Undefined} \\
+\addlinespace[2pt]
+signed or unsigned integer to floating-point & \multicolumn{3}{>{\RaggedRight\arraybackslash}p{\dimexpr 0.715000\linewidth-2\tabcolsep\relax}}{如果X在目标类型的取值范围内则值不变，但有可能损失精度，如果X超出目标类型的取值范围则Undefined} \\
+\addlinespace[2pt]
+floating-point to floating-point & 如果X在目标类型的取值范围内则值不变，但有可能损失精度，如果X超出目标类型的取值范围则Undefined & 值不变 & 值不变 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+注意上表中的“X \% 2\textsuperscript{N}”，我想表达的意思是“把X加上或者减去2\textsuperscript{N}的整数倍，使结果落入[0, 2\textsuperscript{N}-1]的范围内”，当X是负数时运算结果也得是正数，即运算结果和除数同号而不是和被除数同号，这不同于C语言\%运算的定义。写程序时不要故意用上表中的规则，尤其不要触碰Implementation-defined和Undefined的情况，但程序出错时可以借助上表分析错误原因。
+
+
+
+下面举几个例子说明上表的用法。比如把\BookCode{double}型转换成\BookCode{short}型，对应表中的“floating-point to signed or unsigned integer”，如果原值在(-32769.\BookSplit{}0, 32768.\BookSplit{}0)之间则截掉小数部分得到转换结果，否则产生溢出，结果是Undefined，例如对于\BookCode{short s =\BookSplit{} 32768.\BookSplit{}4;\BookSplit{}}这个语句\BookCode{gcc}会报警告。
+
+
+
+比如把\BookCode{int}型转换成\BookCode{unsigned short}型，对应表中的“signed integer to unsigned integer”，如果原值是正的，则把它除以2\textsuperscript{16}取模，其实就是取它的低16位，如果原值是负的，则加上2\textsuperscript{16}的整数倍，使结果落在[0, 65535]之间。
+
+
+
+比如把\BookCode{int}类型转换成\BookCode{short}类型，对应表中的“signed integer to signed integer”，如果原值在[-32768, 32767]之间则值不变，否则产生溢出，结果是Implementation-defined，例如对于\BookCode{short s =\BookSplit{} -\BookSplit{}32769;\BookSplit{}}这个语句\BookCode{gcc}会报警告。
+
+
+
+最后一个例子，把\BookCode{short}型转换成\BookCode{int}型，对应表中的“signed integer to signed integer”，转换之后应该值不变。那怎么维持值不变呢？是不是在高位补16个0就行了呢？如果原值是-1，十六进制表示就是ffff，要转成\BookCode{int}型的-1需要变成ffffffff，因此需要在高位补16个1而不是16个0。换句话说，要维持值不变，在高位补1还是补0取决于原来的符号位，这称为符号扩展（Sign Extension）\BookAnchor{db.ch15s03.id2759092}。
+
+\BookNav{\hyperlink{db.ch15s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch15}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch16}{下一页}}

@@ -1,0 +1,454 @@
+
+% https://akaedu.github.io/book/ch04.html
+
+\chapter{分支语句}
+\BookAnchor{db.ch04}\BookAnchor{db.ch04.id2718039}%
+
+
+\BookNav{\hyperlink{db.ch03s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt01}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch04s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch04s01.html
+
+\section{if语句}
+\BookAnchor{db.ch04s01}\BookAnchor{db.ch04s01.id2718043}%
+目前我们写的简单函数中可以有多条语句，但这些语句总是从前到后顺序执行的。除了顺序执行之外，有时候我们需要检查一个条件，然后根据检查的结果执行不同的后续代码，在C语言中可以用分支语句（Selection Statement）\BookAnchor{db.ch04s01.id2717425}实现，比如：
+
+
+\BookSource{numbers=none}{code/ch04s01/01.pv}{5}{3}
+
+
+其中\BookCode{x !=\BookSplit{} 0}表示“x不等于0”的条件，这个表达式称为控制表达式（Controlling Expression）\BookAnchor{db.ch04s01.id2718058}如果条件成立，则\{\}中的语句被执行，否则\{\}中的语句不执行，直接跳到\}后面。\BookCode{if}和控制表达式改变了程序的控制流程（Control Flow）\BookAnchor{db.ch04s01.id2718073}，不再是从前到后顺序执行，而是根据不同的条件执行不同的语句，这种控制流程称为分支（Branch）\BookAnchor{db.ch04s01.id2718082}。上例中的!=号表示“不等于”，像这样的运算符有：
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.411765\linewidth-2\tabcolsep\relax}L{\dimexpr 0.588235\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{关系运算符和相等性运算符}\BookTableLabel{\BookAnchor{db.ch04s01.id2718094}}
+\toprule
+{\bfseries 运算符} & {\bfseries 含义} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 运算符} & {\bfseries 含义} \\
+\midrule
+\endhead
+== & 等于 \\
+\addlinespace[2pt]
+!= & 不等于 \\
+\addlinespace[2pt]
+\textgreater{} & 大于 \\
+\addlinespace[2pt]
+\textless{} & 小于 \\
+\addlinespace[2pt]
+\textgreater{}= & 大于或等于 \\
+\addlinespace[2pt]
+\textless{}= & 小于或等于 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+注意以下几点：
+
+
+\begin{enumerate}
+
+\item 这里的==表示数学中的相等关系，相当于数学中的=号，初学者常犯的错误是在控制表达式中把==写成=，在C语言中=号是赋值运算符，两者的含义完全不同。
+
+\item 如果表达式所表示的比较关系成立则值为真（True）\BookAnchor{db.ch04s01.id2718182}，否则为假（False）\BookAnchor{db.ch04s01.id2718189}，在C语言中分别用\BookCode{int}型的1和0表示。如果变量\BookCode{x}的值是-1，那么\BookCode{x\textgreater{}0}这个表达式的值为0，\BookCode{x\textgreater{}-\BookSplit{}2}这个表达式的值为1。
+
+\item 在数学中\BookCode{a\textless{}b\textless{}c}表示\BookCode{b}既大于\BookCode{a}又小于\BookCode{c}，但作为C语言表达式却不是这样。以上几种运算符都是左结合的，请读者想一下这个表达式应如何求值。
+
+\item 这些运算符的两个操作数应该是相同类型的，两边都是整型或者都是浮点型可以做比较，但两个字符串不能做比较，在\hyperlink{db.ch25s01.id2828656}{第 1.\BookSplit{}5 节 “比较字符串”}我们会介绍比较字符串的方法。
+
+\item ==和!=称为相等性运算符（Equality Operator）\BookAnchor{db.ch04s01.id2718276}，其余四个称为关系运算符（Relational Operator）\BookAnchor{db.ch04s01.id2718284}，相等性运算符的优先级低于关系运算符。
+\end{enumerate}
+
+
+总结一下，\BookCode{if (\BookSplit{}x !=\BookSplit{} 0)\BookSplit{} \{ .\BookSplit{}.\BookSplit{}.\BookSplit{} \}}这个语句的计算顺序是：首先求\BookCode{x !=\BookSplit{} 0}这个表达式的值，如果值为0，就跳过\{\}中的语句直接执行后面的语句，如果值为1，就先执行\{\}中的语句，然后再执行后面的语句。事实上控制表达式取任何非0值都表示真值，例如\BookCode{if (\BookSplit{}x)\BookSplit{} \{ .\BookSplit{}.\BookSplit{}.\BookSplit{} \}}和\BookCode{if (\BookSplit{}x !=\BookSplit{} 0)\BookSplit{} \{ .\BookSplit{}.\BookSplit{}.\BookSplit{} \}}是等价的，如果\BookCode{x}的值是2，则\BookCode{x !=\BookSplit{} 0}的值是1，但对于\BookCode{if}来说不管是2还是1都表示真值。
+
+
+
+和\BookCode{if}语句相关的语法规则如下：
+
+
+\begin{BookLiteral}
+\BookLiteralLine{语句 \BookSymbol{→} if (控制表达式) 语句}
+\BookLiteralLine{语句 \BookSymbol{→} \{ 语句列表 \}}
+\BookLiteralLine{语句 \BookSymbol{→} ;}
+\end{BookLiteral}
+
+
+在C语言中，任何允许出现语句的地方既可以是由;号结尾的一条语句，也可以是由\{\}括起来的若干条语句或声明组成的语句块（Statement Block）\BookAnchor{db.ch04s01.id2718370}，语句块和上一章介绍的函数体的语法相同。注意语句块的\}后面不需要加;号。如果\}后面加了;号，则这个;号本身又是一条新的语句了，在C语言中一个单独的;号表示一条空语句（Null Statement）\BookAnchor{db.ch04s01.id2718364}。上例的语句块中只有一条语句，其实没必要写成语句块，可以简单地写成：
+
+
+\BookSource{numbers=none}{code/ch04s01/02.pv}{4}{2}
+
+
+语句块中也可以定义局部变量，例如：
+
+
+\BookSource{numbers=none}{code/ch04s01/03.pv}{9}{10}
+
+
+和函数的局部变量同样道理，每次进入语句块时为变量\BookCode{j}分配存储空间，每次退出语句块时释放变量\BookCode{j}的存储空间。语句块也构成一个作用域，和\hyperlink{db.ch03s04.id2714690}{例 3.\BookSplit{}6 “作用域”}的分析类似，如果整个源文件是一张大纸，\BookCode{foo}函数是盖在上面的一张小纸，则函数中的语句块是盖在小纸上面的一张更小的纸。语句块中的变量\BookCode{i}和函数的局部变量\BookCode{i}是两个不同的变量，因此两次打印的\BookCode{i}值是不同的；语句块中的变量\BookCode{j}在退出语句块之后就没有了，因此最后一行的\BookCode{printf}不能打印变量\BookCode{j}，否则编译器会报错。语句块可以用在任何允许出现语句的地方，不一定非得用在\BookCode{if}语句中，单独使用语句块通常是为了定义一些比函数的局部变量更“局部”的变量。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch04s01.id2718484}%
+
+
+1、以下程序段编译能通过，执行也不出错，但是执行结果不正确（根据\hyperlink{db.ch01s03.id2704937}{第 3 节 “程序的调试”}的定义，这是一个语义错误），请分析一下哪里错了。还有，既然错了为什么编译能通过呢？
+
+
+\BookSource{numbers=none}{code/ch04s01/04.pv}{5}{3}
+
+\BookNav{\hyperlink{db.ch04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch04}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch04s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch04s02.html
+
+\section{if/else语句}
+\BookAnchor{db.ch04s02}\BookAnchor{db.ch04s02.id2718511}%
+\BookCode{if}语句还可以带一个\BookCode{else}子句（Clause）\BookAnchor{db.ch04s02.id2718531}，例如：
+
+
+\BookSource{numbers=none}{code/ch04s02/01.pv}{6}{4}
+
+
+这里的\%是取模（Modulo）\BookAnchor{db.ch04s02.id2718547}运算符，\BookCode{x\%2}表示\BookCode{x}除以2所得的余数（Remainder）\BookAnchor{db.ch04s02.id2718567}，C语言规定\%运算符的两个操作数必须是整型的。两个正数相除取余数很好理解，如果操作数中有负数，结果应该是正是负呢？C99规定，如果\BookCode{a}和\BookCode{b}是整型，\BookCode{b}不等于0，则表达式\BookCode{(\BookSplit{}a/\BookSplit{}b)\BookSplit{}*b+\BookSplit{}a\%b}的值总是等于\BookCode{a}，再结合\hyperlink{db.expr.expression}{第 5 节 “表达式”}讲过的整数除法运算要Truncate Toward Zero，可以得到一个结论：\emph{\%运算符的结果总是与被除数同号}（想一想为什么）。其它编程语言对取模运算的规定各不相同，也有规定结果和除数同号的，也有不做明确规定的。
+
+
+
+取模运算在程序中是非常有用的，例如上面的例子判断\BookCode{x}的奇偶性（Parity）\BookAnchor{db.ch04s02.id2718632}，看\BookCode{x}除以2的余数是不是0，如果是0则打印\BookCode{x is even.\BookSplit{}}，如果不是0则打印\BookCode{x is odd.\BookSplit{}}，读者应该能看出\BookCode{else}在这里的作用了，如果在上面的例子中去掉\BookCode{else}，则不管\BookCode{x}是奇是偶，\BookCode{printf(\BookSplit{}\BookQuoteChar{}x is odd.\BookSplit{}\textbackslash{}n\BookQuoteChar{})\BookSplit{};\BookSplit{}}总是执行。为了让这条语句更有用，可以把它封装（Encapsulate）\BookAnchor{db.ch04s02.id2718684}成一个函数：
+
+
+\BookSource{numbers=none}{code/ch04s02/02.pv}{9}{7}
+
+
+把语句封装成函数的基本步骤是：\emph{把语句放到函数体中，把变量改成函数的参数}。这样，以后要检查一个数的奇偶性只需调用这个函数而不必重复写这条语句了，例如：
+
+
+\BookPlain{code/ch04s02/03.txt}{4}{2}
+
+
+\BookCode{if/\BookSplit{}else}语句的语法规则如下：
+
+
+\begin{BookLiteral}
+\BookLiteralLine{语句 \BookSymbol{→} if (控制表达式) 语句 else 语句}
+\end{BookLiteral}
+
+
+右边的“语句”既可以是一条语句，也可以是由\{\}括起来的语句块。一条\BookCode{if}语句中包含一条子语句，一条\BookCode{if/\BookSplit{}else}语句中包含两条子语句，子语句可以是任何语句或语句块，当然也可以是另外一条\BookCode{if}或\BookCode{if/\BookSplit{}else}语句。根据组合规则，\BookCode{if}或\BookCode{if/\BookSplit{}else}可以嵌套使用。例如可以这样：
+
+
+\BookSource{numbers=none}{code/ch04s02/04.pv}{8}{6}
+
+
+也可以这样：
+
+
+\BookSource{numbers=none}{code/ch04s02/05.pv}{9}{8}
+
+
+现在有一个问题，类似\BookCode{if (\BookSplit{}A)\BookSplit{} if (\BookSplit{}B)\BookSplit{} C;\BookSplit{} else D;\BookSplit{}}形式的语句怎么理解呢？可以理解成
+
+
+\BookPlain{code/ch04s02/06.txt}{7}{5}
+
+
+也可以理解成
+
+
+\BookPlain{code/ch04s02/07.txt}{7}{5}
+
+
+在\hyperlink{db.ch02s01.id2707148}{第 1 节 “继续Hello World”}讲过，C代码的缩进只是为了程序员看起来方便，实际上对编译器不起任何作用，你的代码不管写成上面哪一种缩进格式，在编译器看起来都是一样的。那么编译器到底按哪种方式理解呢？也就是说，\BookCode{else}到底是和\BookCode{if (\BookSplit{}A)\BookSplit{}}配对还是和\BookCode{if (\BookSplit{}B)\BookSplit{}}配对？很多编程语言的语法都有这个问题，称为Dangling-else\BookAnchor{db.ch04s02.id2718844}问题。C语言规定，\emph{\BookCode{else}总是和它上面最近的一个\BookCode{if}配对}，因此应该理解成\BookCode{else}和\BookCode{if (\BookSplit{}B)\BookSplit{}}配对，也就是按第二种方式理解。如果你写成上面第一种缩进的格式就很危险了：你看到的是这样，而编译器理解的却是那样。如果你希望编译器按第一种方式理解，应该明确加上\{\}：
+
+
+\BookPlain{code/ch04s02/08.txt}{7}{5}
+
+
+顺便提一下，浮点型的精度有限，不适合用==运算符做精确比较。以下代码可以说明问题：
+
+
+\BookSource{numbers=none}{code/ch04s02/09.pv}{8}{6}
+
+
+不同平台的浮点数实现有很多不同之处，在我的平台上运行这段程序结果为\BookCode{Unequal}，即使在你的平台上运行结果为\BookCode{Equal}，你再把\BookCode{i}改成其它值试试，总有些值会使得结果为\BookCode{Unequal}。等学习了\hyperlink{db.ch14s04.id2754181}{第 4 节 “浮点数”}你就知道为什么浮点型不能做精确比较了。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch04s02.id2718936}%
+
+
+1、写两个表达式，分别取整型变量\BookCode{x}的个位和十位。
+
+
+
+2、写一个函数，参数是整型变量\BookCode{x}，功能是打印\BookCode{x}的个位和十位。
+
+\BookNav{\hyperlink{db.ch04s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch04}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch04s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch04s03.html
+
+\section{布尔代数}
+\BookAnchor{db.ch04s03}\BookAnchor{db.ch04s03.id2718970}%
+在\hyperlink{db.ch04s01.id2718043}{第 1 节 “if语句”}讲过，\BookCode{a\textless{}b\textless{}c}不表示\BookCode{b}既大于\BookCode{a}又小于\BookCode{c}，那么如果想表示这个含义该怎么写呢？可以这样：
+
+
+\BookSource{numbers=none}{code/ch04s03/01.pv}{7}{5}
+
+
+我们也可以用逻辑与（Logical AND）\BookAnchor{db.ch04s03.id2719020}运算符表示这两个条件同时成立。逻辑与运算符在C语言中写成两个\&号（Ampersand）\BookAnchor{db.ch04s03.id2719029}，上面的语句可以改写为：
+
+
+\BookSource{numbers=none}{code/ch04s03/02.pv}{5}{3}
+
+
+对于\BookCode{a \textless{} b \&\& b \textless{} c}这个控制表达式，要求“\BookCode{a \textless{} b}的值非0”和“\BookCode{b \textless{} c}的值非0”这两个条件同时成立整个表达式的值才为1，否则整个表达式的值为0。也就是只有两个条件都为真，它们做逻辑与运算的结果才为真，有一个条件为假，则逻辑与运算的结果为假，如下表所示：
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.270507\linewidth-2\tabcolsep\relax}L{\dimexpr 0.270507\linewidth-2\tabcolsep\relax}L{\dimexpr 0.458986\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{AND的真值表}\BookTableLabel{\BookAnchor{db.ch04s03.id2719074}}
+\toprule
+{\bfseries A} & {\bfseries B} & {\bfseries A AND B} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries A} & {\bfseries B} & {\bfseries A AND B} \\
+\midrule
+\endhead
+0 & 0 & 0 \\
+\addlinespace[2pt]
+0 & 1 & 0 \\
+\addlinespace[2pt]
+1 & 0 & 0 \\
+\addlinespace[2pt]
+1 & 1 & 1 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+这种表称为真值表（Truth Table）\BookAnchor{db.ch04s03.id2719136}。注意逻辑与运算的操作数以非0表示真以0表示假，而运算结果以1表示真以0表示假（类型是\BookCode{int}），我们忽略这些细微的差别，在表中全部以1表示真以0表示假。C语言还提供了逻辑或（Logical OR）\BookAnchor{db.ch04s03.id2719154}运算符，写成两个|线（Pipe Sign）\BookAnchor{db.ch04s03.id2719161}，逻辑非（Logical NOT）\BookAnchor{db.ch04s03.id2719169}运算符，写成一个!号（Exclamation Mark）\BookAnchor{db.ch04s03.id2719177}，它们的真值表如下：
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.283286\linewidth-2\tabcolsep\relax}L{\dimexpr 0.283286\linewidth-2\tabcolsep\relax}L{\dimexpr 0.433428\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{OR的真值表}\BookTableLabel{\BookAnchor{db.ch04s03.id2719186}}
+\toprule
+{\bfseries A} & {\bfseries B} & {\bfseries A OR B} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries A} & {\bfseries B} & {\bfseries A OR B} \\
+\midrule
+\endhead
+0 & 0 & 0 \\
+\addlinespace[2pt]
+0 & 1 & 1 \\
+\addlinespace[2pt]
+1 & 0 & 1 \\
+\addlinespace[2pt]
+1 & 1 & 1 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.423149\linewidth-2\tabcolsep\relax}L{\dimexpr 0.576851\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{NOT的真值表}\BookTableLabel{\BookAnchor{db.ch04s03.id2719245}}
+\toprule
+{\bfseries A} & {\bfseries NOT A} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries A} & {\bfseries NOT A} \\
+\midrule
+\endhead
+0 & 1 \\
+\addlinespace[2pt]
+1 & 0 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+逻辑或表示两个条件只要有一个为真，它们做逻辑或运算的结果就为真，只有两个条件都为假，逻辑或运算的结果才为假。逻辑非的作用是对原来的逻辑值取反，原来是真的就是假，原来是假的就是真。逻辑非运算符只有一个操作数，称为单目运算符（Unary Operator）\BookAnchor{db.ch04s03.id2719295}，以前讲过的加减乘除、赋值、相等性、关系、逻辑与、逻辑或运算符都有两个操作数，称为双目运算符（Binary Operator）\BookAnchor{db.ch04s03.id2719306}。
+
+
+
+关于逻辑运算的数学体系称为布尔代数（Boolean Algebra）\BookAnchor{db.ch04s03.id2719318}，以它的创始人布尔命名。在编程语言中表示真和假的数据类型叫做布尔类型，在C语言中通常用\BookCode{int}型来表示，非0表示真，0表示假\BookAnchor{db.ch04s03.id2719335}\footnote[6]{\BookAnchor{db.ch04s03.ftn.id2719335}\BookFootnoteBack{db.ch04s03.id2719335}C99也定义了专门的布尔类型\BookCode{\_\BookSplit{}Bool}，但目前没有被广泛使用。}。布尔逻辑是写程序的基本功之一，程序中的很多错误都可以归因于逻辑错误。以下是一些布尔代数的基本定理，为了简洁易读，真和假用1和0表示，AND用*号表示，OR用+号表示（从真值表可以看出AND和OR运算确实有点像乘法和加法运算），NOT用¬表示，变量\BookCode{x}、\BookCode{y}、\BookCode{z}的值可能是0也可能是1。
+
+\BookMathLine{\lnot \lnot x=x}
+\smallskip
+\BookMathLine{x*0=0}
+\BookMathLine{x+1=1}
+\smallskip
+\BookMathLine{x*1=x}
+\BookMathLine{x+0=x}
+\smallskip
+\BookMathLine{x*x=x}
+\BookMathLine{x+x=x}
+\smallskip
+\BookMathLine{x*\lnot x=0}
+\BookMathLine{x+\lnot x=1}
+\smallskip
+\BookMathLine{x*y=y*x}
+\BookMathLine{x+y=y+x}
+\smallskip
+\BookMathLine{x*(y*z)=(x*y)*z}
+\BookMathLine{x+(y+z)=(x+y)+z}
+\smallskip
+\BookMathLine{x*(y+z)=x*y+x*z}
+\BookMathLine{x+y*z=(x+y)*(x+z)}
+\smallskip
+\BookMathLine{x+x*y=x}
+\BookMathLine{x*(x+y)=x}
+\smallskip
+\BookMathLine{x*y+x*\lnot y=x}
+\BookMathLine{(x+y)*(x+\lnot y)=x}
+\smallskip
+\BookMathLine{\lnot (x*y)=\lnot x+\lnot y}
+\BookMathLine{\lnot (x+y)=\lnot x*\lnot y}
+\smallskip
+\BookMathLine{x+\lnot x*y=x+y}
+\BookMathLine{x*(\lnot x+y)=x*y}
+\smallskip
+\BookMathLine{x*y+\lnot x*z+y*z=x*y+\lnot x*z}
+\BookMathLine{(x+y)*(\lnot x+z)*(y+z)=(x+y)*(\lnot x+z)}
+
+
+除了第1行之外，这些公式都是每两行一组的，每组的两个公式就像对联一样：把其中一个公式中的*换成+、+换成*、0换成1、1换成0，就变成了与它对称的另一个公式。这些定理都可以通过真值表证明，更多细节可参考有关数字逻辑的教材，例如\hyperlink{db.bi01.bibli.vhdl}{[数字逻辑基础]}。我们将在本节的练习题中强化训练对这些定理的理解。
+
+
+
+目前为止介绍的这些运算符的优先级顺序是：!高于* / \%，高于+ -，高于\textgreater{} \textless{} \textgreater{}= \textless{}=，高于== !=，高于\&\&，高于||，高于=。写一个控制表达式很可能同时用到这些运算符中的多个，如果记不清楚运算符的优先级一定要多套括号。我们将在\hyperlink{db.ch16s04.id2763540}{第 4 节 “运算符总结”}总结C语言所有运算符的优先级和结合性。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch04s03.id2719432}%
+
+
+1、把代码段
+
+
+\BookSource{numbers=none}{code/ch04s03/03.pv}{5}{3}
+
+
+改写成下面这种形式：
+
+
+\BookSource{numbers=none}{code/ch04s03/04.pv}{4}{2}
+
+
+\_\_\_\_应该怎么填？
+
+
+
+2、把代码段：
+
+
+\BookSource{numbers=none}{code/ch04s03/05.pv}{8}{6}
+
+
+改写成下面这种形式：
+
+
+\BookSource{numbers=none}{code/ch04s03/06.pv}{6}{4}
+
+
+\_\_\_\_应该怎么填？
+
+
+
+3、有这样一段代码：
+
+
+\BookPlain{code/ch04s03/07.txt}{9}{7}
+
+
+要进入最后一个\BookCode{else}，x和y需要满足条件\_\_\_\_ || \_\_\_\_。这里应该怎么填？
+
+
+
+4、以下哪一个if判断条件是多余的可以去掉？这里所谓的“多余”是指，某种情况下如果本来应该打印\BookCode{Test OK!}，去掉这个多余条件后仍然打印\BookCode{Test OK!}，如果本来应该打印\BookCode{Test failed!}，去掉这个多余条件后仍然打印\BookCode{Test failed!}。
+
+
+\BookSource{numbers=none}{code/ch04s03/08.pv}{9}{10}
+
+\BookNav{\hyperlink{db.ch04s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch04}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch04s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch04s04.html
+
+\section{switch语句}
+\BookAnchor{db.ch04s04}\BookAnchor{db.ch04s04.id2719538}%
+\BookCode{switch}语句可以产生具有多个分支的控制流程。它的格式是：
+
+
+\begin{BookLiteral}
+\BookLiteralLine{switch (控制表达式) \{}
+\BookLiteralLine{case 常量表达式： 语句列表}
+\BookLiteralLine{case 常量表达式： 语句列表}
+\BookLiteralLine{...}
+\BookLiteralLine{default： 语句列表}
+\BookLiteralLine{\}}
+\end{BookLiteral}
+
+
+例如以下程序根据传入的参数1\textasciitilde{}\BookSplit{}7分别打印Monday\textasciitilde{}\BookSplit{}Sunday：
+
+
+\begin{BookExampleGraphic}
+\BookExampleTitle{switch语句}\BookAnchor{db.ch04s04.id2719574}
+\BookImage{images/cond.switch1.png}{0.376}
+\end{BookExampleGraphic}
+
+
+如果传入的参数是2，则从\BookCode{case 2}分支开始执行，先是打印相应的信息，然后遇到\BookCode{break}语句，它的作用是跳出整个\BookCode{switch}语句块。C语言规定各\BookCode{case}分支的常量表达式必须互不相同，如果控制表达式不等于任何一个常量表达式，则从\BookCode{default}分支开始执行，通常把\BookCode{default}分支写在最后，但不是必须的。使用\BookCode{switch}语句要注意几点：
+
+
+\begin{enumerate}
+
+\item \BookCode{case}后面跟表达式的必须是常量表达式，这个值和全局变量的初始值一样必须在编译时计算出来。
+
+\item \hyperlink{db.ch04s02.id2718511}{第 2 节 “if/\BookSplit{}else语句”}讲过浮点型不适合做精确比较，所以C语言规定\BookCode{case}后面跟的必须是整型常量表达式。
+
+\item 进入\BookCode{case}后如果没有遇到\BookCode{break}语句就会一直往下执行，后面其它\BookCode{case}或\BookCode{default}分支的语句也会被执行到，直到遇到\BookCode{break}，或者执行到整个\BookCode{switch}语句块的末尾。通常每个\BookCode{case}后面都要加上\BookCode{break}语句，但有时会故意不加\BookCode{break}来利用这个特性，例如：
+
+
+\begin{BookExampleGraphic}
+\BookExampleTitle{缺break的switch语句}\BookAnchor{db.ch04s04.id2719735}
+\BookImage{images/cond.switch2.png}{0.377}
+\end{BookExampleGraphic}
+\end{enumerate}
+
+
+\BookCode{switch}语句不是必不可缺的，显然可以用一组\BookCode{if .\BookSplit{}.\BookSplit{}.\BookSplit{} else if .\BookSplit{}.\BookSplit{}.\BookSplit{} else if .\BookSplit{}.\BookSplit{}.\BookSplit{} else .\BookSplit{}.\BookSplit{}.\BookSplit{}}代替，但是一方面用\BookCode{switch}语句会使代码更清晰，另一方面，有时候编译器会对\BookCode{switch}语句进行整体优化，使它比等价的\BookCode{if/\BookSplit{}else}语句所生成的指令效率更高。
+
+\BookNav{\hyperlink{db.ch04s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch04}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch05}{下一页}}

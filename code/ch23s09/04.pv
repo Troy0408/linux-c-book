@@ -1,0 +1,7 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{s}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{t}\BK{+w}{ }\BK{n}{ot}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{t}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{s}\BK{+w}{ }\BK{n}{os}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{p}{;}

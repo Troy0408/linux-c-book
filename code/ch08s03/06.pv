@@ -1,0 +1,2 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define N 3}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{a}\BK{p}{[}\BK{n}{N}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{3}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}

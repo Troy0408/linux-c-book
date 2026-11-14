@@ -1,0 +1,8 @@
+\BK{err}{f}\BK{err}{o}\BK{err}{r}\BK{+w}{ }\BK{err}{(}\BK{err}{.}\BK{err}{.}\BK{err}{.}\BK{err}{)}
+\BK{+w}{	}\BK{err}{f}\BK{err}{o}\BK{err}{r}\BK{+w}{ }\BK{err}{(}\BK{err}{.}\BK{err}{.}\BK{err}{.}\BK{err}{)}\BK{+w}{ }\BK{err}{\BKZob{}}
+\BK{+w}{		}\BK{err}{.}\BK{err}{.}\BK{err}{.}
+\BK{c+cp}{		if (出现错误条件)}
+\BK{+w}{			}\BK{err}{g}\BK{err}{o}\BK{err}{t}\BK{err}{o}\BK{+w}{ }\BK{err}{e}\BK{err}{r}\BK{err}{r}\BK{err}{o}\BK{err}{r}\BK{err}{;}
+\BK{+w}{	}\BK{err}{\BKZcb{}}
+\BK{n+nf}{error}\BK{o}{:}
+\BK{+w}{	}\BK{err}{出}\BK{err}{错}\BK{err}{处}\BK{err}{理}\BK{err}{;}

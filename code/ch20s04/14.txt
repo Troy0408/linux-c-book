@@ -1,0 +1,27 @@
+$ sudo ldconfig -v
+...
+/home/akaedu/somedir:
+        libstack.so -> libstack.so
+/lib:
+        libe2p.so.2 -> libe2p.so.2.3
+        libncursesw.so.5 -> libncursesw.so.5.6
+...
+/usr/lib:
+        libkdeinit_klauncher.so -> libkdeinit_klauncher.so
+        libv4l2.so.0 -> libv4l2.so.0
+...
+/usr/lib64:
+/lib/tls: (hwcap: 0x8000000000000000)
+/usr/lib/sse2: (hwcap: 0x0000000004000000)
+...
+/usr/lib/tls: (hwcap: 0x8000000000000000)
+...
+/usr/lib/i686: (hwcap: 0x0008000000000000)
+/usr/lib/i586: (hwcap: 0x0004000000000000)
+...
+/usr/lib/i486: (hwcap: 0x0002000000000000)
+...
+/lib/tls/i686: (hwcap: 0x8008000000000000)
+/usr/lib/i686/cmov: (hwcap: 0x0008000000008000)
+...
+/lib/tls/i686/cmov: (hwcap: 0x8008000000008000)

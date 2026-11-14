@@ -1,0 +1,16 @@
+(gdb) break 9 if sum != 0
+Breakpoint 5 at 0x80483c3: file main.c, line 9.
+(gdb) i breakpoints 
+Num     Type           Disp Enb Address    What
+5       breakpoint     keep y   0x080483c3 in main at main.c:9
+	stop only if sum != 0
+(gdb) r
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/akaedu/main 
+123
+input=123
+
+Breakpoint 5, main () at main.c:9
+9			scanf("%s", input);
+1: sum = 123

@@ -1,0 +1,1 @@
+if [ -n "$ENV" ]; then . "$ENV"; fi

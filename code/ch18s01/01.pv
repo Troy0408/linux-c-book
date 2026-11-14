@@ -1,0 +1,33 @@
+\BK{c+c1}{\BKZsh{}PURPOSE: Simple program that exits and returns a}
+\BK{c+c1}{\BKZsh{}	  status code back to the Linux kernel}
+\BK{c+c1}{\BKZsh{}}
+\BK{c+c1}{\BKZsh{}INPUT:   none}
+\BK{c+c1}{\BKZsh{}}
+\BK{c+c1}{\BKZsh{}OUTPUT:  returns a status code. This can be viewed}
+\BK{c+c1}{\BKZsh{}	  by typing}
+\BK{c+c1}{\BKZsh{}}
+\BK{c+c1}{\BKZsh{}	  echo \BKZdl{}?}
+\BK{c+c1}{\BKZsh{}}
+\BK{c+c1}{\BKZsh{}	  after running the program}
+\BK{c+c1}{\BKZsh{}}
+\BK{c+c1}{\BKZsh{}VARIABLES:}
+\BK{c+c1}{\BKZsh{}	  \BKZpc{}eax holds the system call number}
+\BK{c+c1}{\BKZsh{}	  \BKZpc{}ebx holds the return status}
+\BK{c+c1}{\BKZsh{}}
+\BK{+w}{ }\BK{n+na}{.section}\BK{+w}{ }\BK{n+no}{.data}
+
+\BK{+w}{ }\BK{n+na}{.section}\BK{+w}{ }\BK{n+no}{.text}
+\BK{+w}{ }\BK{n+na}{.globl}\BK{+w}{ }\BK{n+no}{\BKZus{}start}
+\BK{n+nl}{\BKZus{}start:}
+\BK{+w}{ }\BK{n+nf}{movl}\BK{+w}{ }\BK{n+no}{\BKZdl{}1}\BK{p}{,}\BK{+w}{ }\BK{n+nv}{\BKZpc{}eax}\BK{+w}{	}\BK{c+c1}{\BKZsh{} this is the linux kernel command}
+\BK{+w}{		}\BK{c+c1}{\BKZsh{} number (system call) for exiting}
+\BK{+w}{		}\BK{c+c1}{\BKZsh{} a program}
+
+\BK{+w}{ }\BK{n+nf}{movl}\BK{+w}{ }\BK{n+no}{\BKZdl{}4}\BK{p}{,}\BK{+w}{ }\BK{n+nv}{\BKZpc{}ebx}\BK{+w}{	}\BK{c+c1}{\BKZsh{} this is the status number we will}
+\BK{+w}{		}\BK{c+c1}{\BKZsh{} return to the operating system.}
+\BK{+w}{		}\BK{c+c1}{\BKZsh{} Change this around and it will}
+\BK{+w}{		}\BK{c+c1}{\BKZsh{} return different things to}
+\BK{+w}{		}\BK{c+c1}{\BKZsh{} echo \BKZdl{}?}
+
+\BK{+w}{ }\BK{n+nf}{int}\BK{+w}{ }\BK{n+no}{\BKZdl{}0x80}\BK{+w}{	}\BK{c+c1}{\BKZsh{} this wakes up the kernel to run}
+\BK{+w}{		}\BK{err}{\BKZsh{}}\BK{+w}{ }\BK{n+nf}{the}\BK{+w}{ }\BK{n+no}{exit}\BK{+w}{ }\BK{n+no}{command}

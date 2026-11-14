@@ -1,0 +1,4 @@
+\BK{k+kt}{double}\BK{+w}{ }\BK{n+nf}{distance}\BK{p}{(}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x1}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{y1}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x2}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{y2}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mf}{0.0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,4 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}alloca.h\BKZgt{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{alloca}\BK{p}{(}\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{size}\BK{p}{)}\BK{p}{;}
+\BK{n}{返回值}\BK{err}{：}\BK{n}{返回所分配内存空间的首地址}\BK{err}{，}\BK{n}{如果size太大导致栈空间耗尽}\BK{err}{，}\BK{n}{结果是未定义的}

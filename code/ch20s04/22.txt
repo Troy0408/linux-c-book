@@ -1,0 +1,5 @@
+(gdb) finish
+Run till exit from #0  0xb806a080 in ?? () from /lib/ld-linux.so.2
+main () at main.c:8
+8		return 0;
+Current language:  auto; currently c

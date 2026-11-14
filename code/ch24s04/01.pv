@@ -1,0 +1,7 @@
+\BK{c+cm}{/* ret\BKZus{}ptr.h */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifndef RET\BKZus{}PTR\BKZus{}H}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define RET\BKZus{}PTR\BKZus{}H}
+
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{get\BKZus{}a\BKZus{}day}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{idx}\BK{p}{)}\BK{p}{;}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

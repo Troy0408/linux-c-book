@@ -1,0 +1,40 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}fcntl.h\BKZgt{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{daemonize}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{pid\BKZus{}t}\BK{+w}{  }\BK{n}{pid}\BK{p}{;}
+
+\BK{+w}{	}\BK{c+cm}{/*}
+\BK{c+cm}{	 * Become a session leader to lose controlling TTY.}
+\BK{c+cm}{	 */}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{p}{(}\BK{n}{pid}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{fork}\BK{p}{(}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{fork}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}\BK{+w}{ }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{pid}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{c+cm}{/* parent */}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{setsid}\BK{p}{(}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{c+cm}{/*}
+\BK{c+cm}{	 * Change the current working directory to the root.}
+\BK{c+cm}{	 */}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{chdir}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{/}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{perror}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{chdir}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}\BK{+w}{ }
+
+\BK{+w}{	}\BK{c+cm}{/*}
+\BK{c+cm}{	 * Attach file descriptors 0, 1, and 2 to /dev/null.}
+\BK{c+cm}{	 */}
+\BK{+w}{	}\BK{n}{close}\BK{p}{(}\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{open}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{/dev/null}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{O\BKZus{}RDWR}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{dup2}\BK{p}{(}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{dup2}\BK{p}{(}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{daemonize}\BK{p}{(}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{while}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

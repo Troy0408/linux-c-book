@@ -1,0 +1,1 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{accept}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{sockfd}\BK{p}{,}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{n}{cliaddr}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{socklen\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{addrlen}\BK{p}{)}\BK{p}{;}

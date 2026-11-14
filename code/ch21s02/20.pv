@@ -1,0 +1,2 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define FOO() foo}
+\BK{n}{FOO}\BK{p}{(}\BK{p}{)}

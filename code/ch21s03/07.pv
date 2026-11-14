@@ -1,0 +1,2 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define VERSION  2}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{if defined x || y || VERSION \BKZlt{} 3}

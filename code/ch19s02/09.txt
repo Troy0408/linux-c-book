@@ -1,0 +1,6 @@
+Disassembly of section .plt:
+...
+080482c4 <__libc_start_main@plt>:
+ 80482c4:       ff 25 04 a0 04 08       jmp    *0x804a004
+ 80482ca:       68 08 00 00 00          push   $0x8
+ 80482cf:       e9 d0 ff ff ff          jmp    80482a4 <_init+0x30>

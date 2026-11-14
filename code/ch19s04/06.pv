@@ -1,0 +1,28 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k}{typedef}\BK{+w}{ }\BK{k}{union}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{one}\BK{o}{:}\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{		}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{two}\BK{o}{:}\BK{l+m+mi}{3}\BK{p}{;}
+\BK{+w}{		}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{three}\BK{o}{:}\BK{l+m+mi}{10}\BK{p}{;}
+\BK{+w}{		}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{four}\BK{o}{:}\BK{l+m+mi}{5}\BK{p}{;}
+\BK{+w}{		}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{o}{:}\BK{l+m+mi}{2}\BK{p}{;}
+\BK{+w}{		}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{five}\BK{o}{:}\BK{l+m+mi}{8}\BK{p}{;}
+\BK{+w}{		}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{six}\BK{o}{:}\BK{l+m+mi}{8}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{n}{bitfield}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{byte}\BK{p}{[}\BK{l+m+mi}{8}\BK{p}{]}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{n}{demo\BKZus{}type}\BK{p}{;}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{demo\BKZus{}type}\BK{+w}{ }\BK{n}{u}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{p}{\BKZob{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{5}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{513}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{17}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{129}\BK{p}{,}\BK{+w}{ }\BK{l+m+mh}{0x81}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{\BKZcb{}}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{sizeof demo\BKZus{}type = \BKZpc{}u}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{demo\BKZus{}type}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{values: u=\BKZpc{}u,\BKZpc{}u,\BKZpc{}u,\BKZpc{}u,\BKZpc{}u,\BKZpc{}u}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}
+\BK{+w}{	       }\BK{n}{u}\BK{p}{.}\BK{n}{bitfield}\BK{p}{.}\BK{n}{one}\BK{p}{,}\BK{+w}{ }\BK{n}{u}\BK{p}{.}\BK{n}{bitfield}\BK{p}{.}\BK{n}{two}\BK{p}{,}\BK{+w}{ }\BK{n}{u}\BK{p}{.}\BK{n}{bitfield}\BK{p}{.}\BK{n}{three}\BK{p}{,}
+\BK{+w}{	       }\BK{n}{u}\BK{p}{.}\BK{n}{bitfield}\BK{p}{.}\BK{n}{four}\BK{p}{,}\BK{+w}{ }\BK{n}{u}\BK{p}{.}\BK{n}{bitfield}\BK{p}{.}\BK{n}{five}\BK{p}{,}\BK{+w}{ }\BK{n}{u}\BK{p}{.}\BK{n}{bitfield}\BK{p}{.}\BK{n}{six}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{hex dump of u: \BKZpc{}x \BKZpc{}x \BKZpc{}x \BKZpc{}x \BKZpc{}x \BKZpc{}x \BKZpc{}x \BKZpc{}x }\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}
+\BK{+w}{	       }\BK{n}{u}\BK{p}{.}\BK{n}{byte}\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{n}{u}\BK{p}{.}\BK{n}{byte}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{n}{u}\BK{p}{.}\BK{n}{byte}\BK{p}{[}\BK{l+m+mi}{2}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{n}{u}\BK{p}{.}\BK{n}{byte}\BK{p}{[}\BK{l+m+mi}{3}\BK{p}{]}\BK{p}{,}
+\BK{+w}{	       }\BK{n}{u}\BK{p}{.}\BK{n}{byte}\BK{p}{[}\BK{l+m+mi}{4}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{n}{u}\BK{p}{.}\BK{n}{byte}\BK{p}{[}\BK{l+m+mi}{5}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{n}{u}\BK{p}{.}\BK{n}{byte}\BK{p}{[}\BK{l+m+mi}{6}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{n}{u}\BK{p}{.}\BK{n}{byte}\BK{p}{[}\BK{l+m+mi}{7}\BK{p}{]}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

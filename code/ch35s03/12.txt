@@ -1,0 +1,11 @@
+$ ./a.out 
+Produce 744
+Consume 744
+Produce 567
+Produce 881
+Consume 881
+Produce 911
+Consume 911
+Consume 567
+Produce 698
+Consume 698

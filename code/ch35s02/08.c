@@ -1,0 +1,1 @@
+#define PTHREAD_CANCELED ((void *) -1)

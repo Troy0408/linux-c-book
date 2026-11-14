@@ -1,0 +1,9 @@
+$ ./a.out
+UNIX domain socket bound
+$ ls -l foo.socket
+srwxrwxr-x 1 user        0 Aug 22 12:43 foo.socket
+$ ./a.out
+bind error: Address already in use
+$ rm foo.socket
+$ ./a.out
+UNIX domain socket bound

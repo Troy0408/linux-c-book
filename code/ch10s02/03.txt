@@ -1,0 +1,7 @@
+$ gdb main
+...
+(gdb) start
+Breakpoint 1 at 0x80483b5: file main.c, line 5.
+Starting program: /home/akaedu/main 
+main () at main.c:5
+5		int sum = 0, i = 0;

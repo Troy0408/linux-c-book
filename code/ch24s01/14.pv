@@ -1,0 +1,5 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{foo}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{malloc}\BK{p}{(}\BK{l+m+mi}{10}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{p}{\BKZcb{}}

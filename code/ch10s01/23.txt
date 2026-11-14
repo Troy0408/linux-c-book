@@ -1,0 +1,5 @@
+(gdb) p result[2]=33
+$5 = 33
+(gdb) p printf("result[2]=%d\n", result[2])
+result[2]=33
+$6 = 13

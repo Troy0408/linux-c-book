@@ -1,0 +1,5 @@
+fp = fopen("/home/akaedu/", "r+");
+if (fp == NULL) {
+	perror("Open /home/akaedu");
+	exit(1);
+}

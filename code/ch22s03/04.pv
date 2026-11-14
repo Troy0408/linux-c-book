@@ -1,0 +1,5 @@
+\BK{n+nv}{x}\BK{+w}{ }\BK{o}{:=}\BK{+w}{ }foo
+\BK{n+nv}{y}\BK{+w}{ }\BK{o}{:=}\BK{+w}{ }\BK{k}{\BKZdl{}(}x\BK{k}{)}\BK{+w}{ }bar
+
+\BK{n+nf}{all}\BK{o}{:}\BK{+w}{ }
+\BK{+w}{	}\BK{err}{@}\BK{err}{e}\BK{err}{c}\BK{err}{h}\BK{err}{o}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}\BKZhy{}\BKZdl{}(y)\BKZhy{}\BKZdq{}}

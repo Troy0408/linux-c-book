@@ -1,0 +1,6 @@
+\BK{n+nf}{main.d}\BK{o}{:}\BK{+w}{ }\BK{n}{main}.\BK{n}{c} \BK{n}{main}.\BK{n}{h} \BK{n}{stack}.\BK{n}{h} \BK{n}{maze}.\BK{n}{h}
+\BK{n+nf}{\BKZpc{}.d}\BK{o}{:}\BK{+w}{ }\BKZpc{}.\BK{n}{c}
+\BK{+w}{	}\BK{n+nb}{set}\BK{+w}{ }\BKZhy{}e\BK{p}{;}\BK{+w}{ }rm\BK{+w}{ }\BKZhy{}f\BK{+w}{ }\BK{n+nv}{\BKZdl{}@}\BK{p}{;}\BK{+w}{ }\BK{l+s+se}{\BKZbs{}}
+\BK{+w}{	}\BK{k}{\BKZdl{}(}CC\BK{k}{)}\BK{+w}{ }\BKZhy{}MM\BK{+w}{ }\BK{k}{\BKZdl{}(}CPPFLAGS\BK{k}{)}\BK{+w}{ }\BKZdl{}\BKZlt{}\BK{+w}{ }\BKZgt{}\BK{+w}{ }\BK{n+nv}{\BKZdl{}@}.\BK{n+nv}{\BKZdl{}\BKZdl{}}\BK{n+nv}{\BKZdl{}\BKZdl{}}\BK{p}{;}\BK{+w}{ }\BK{l+s+se}{\BKZbs{}}
+\BK{+w}{	}sed\BK{+w}{ }\BK{l+s+s1}{\BKZsq{}s,\BKZbs{}(\BKZdl{}*\BKZbs{})\BKZbs{}.o[ :]*,\BKZbs{}1.o \BKZdl{}@ : ,g\BKZsq{}}\BK{+w}{ }\BKZlt{}\BK{+w}{ }\BK{n+nv}{\BKZdl{}@}.\BK{n+nv}{\BKZdl{}\BKZdl{}}\BK{n+nv}{\BKZdl{}\BKZdl{}}\BK{+w}{ }\BKZgt{}\BK{+w}{ }\BK{n+nv}{\BKZdl{}@}\BK{p}{;}\BK{+w}{ }\BK{l+s+se}{\BKZbs{}}
+\BK{+w}{	}\BK{err}{r}\BK{err}{m}\BK{+w}{ }\BK{err}{\BKZhy{}}\BK{err}{f}\BK{+w}{ }\BK{k}{\BKZdl{}@}\BK{err}{.}\BK{k}{\BKZdl{}\BKZdl{}}\BK{k}{\BKZdl{}\BKZdl{}}

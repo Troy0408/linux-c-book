@@ -1,0 +1,9 @@
+$ ./server &
+[1] 8343
+$ Accepting connections ...
+./client abcd &
+[2] 8344
+$ netstat -apn|grep 8000
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN     8343/server         
+tcp        0      0 127.0.0.1:44406         127.0.0.1:8000          ESTABLISHED8344/client         
+tcp        0      0 127.0.0.1:8000          127.0.0.1:44406         ESTABLISHED8343/server

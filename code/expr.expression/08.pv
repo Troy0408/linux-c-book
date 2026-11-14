@@ -1,0 +1,2 @@
+\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d hours and \BKZpc{}d percent of an hour}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{hour}\BK{p}{,}\BK{+w}{ }\BK{n}{minute}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{l+m+mi}{100}\BK{+w}{ }\BK{o}{/}\BK{+w}{ }\BK{l+m+mi}{60}\BK{p}{)}\BK{p}{;}
+\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d and \BKZpc{}f hours}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{hour}\BK{p}{,}\BK{+w}{ }\BK{n}{minute}\BK{+w}{ }\BK{o}{/}\BK{+w}{ }\BK{l+m+mf}{60.0}\BK{p}{)}\BK{p}{;}

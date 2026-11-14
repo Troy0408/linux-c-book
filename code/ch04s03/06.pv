@@ -1,0 +1,4 @@
+\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{\BKZus{}\BKZus{}\BKZus{}\BKZus{}}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{\BKZus{}\BKZus{}\BKZus{}\BKZus{}}\BK{p}{)}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Test failed!}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{k}{else}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Test OK!}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}

@@ -1,0 +1,6 @@
+$ echo $SHELL
+/bin/bash
+$ echo \$SHELL
+$SHELL
+$ echo \\
+\

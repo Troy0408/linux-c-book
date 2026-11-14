@@ -1,0 +1,1 @@
+struct complex_struct z1 = { .y = 4.0 }; /* z1.x=0.0, z1.y=4.0 */

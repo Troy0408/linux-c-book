@@ -1,0 +1,5 @@
+$ sed '/abc/p' testfile
+123
+abc
+abc
+456

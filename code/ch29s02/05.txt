@@ -1,0 +1,13 @@
+$ mkdir a
+$ mkdir a/b
+$ ls -ld a
+drwxr-xr-x 3 akaedu akaedu 4096 2008-10-25 16:15 a
+$ ls -la a
+total 20
+drwxr-xr-x   3 akaedu akaedu  4096 2008-10-25 16:15 .
+drwxr-xr-x 115 akaedu akaedu 12288 2008-10-25 16:14 ..
+drwxr-xr-x   2 akaedu akaedu  4096 2008-10-25 16:15 b
+$ ls -la a/b
+total 8
+drwxr-xr-x 2 akaedu akaedu 4096 2008-10-25 16:15 .
+drwxr-xr-x 3 akaedu akaedu 4096 2008-10-25 16:15 ..

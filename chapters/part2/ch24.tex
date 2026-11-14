@@ -1,0 +1,740 @@
+
+% https://akaedu.github.io/book/ch24.html
+
+\chapter{函数接口}
+\BookAnchor{db.ch24}\BookAnchor{db.ch24.id2819019}%
+我们在\hyperlink{db.ch11s06.id2746698}{第 6 节 “折半查找”}讲过，函数的调用者和函数的实现者之间订立了一个契约，在调用函数之前，调用者要为实现者提供某些条件，在函数返回时，实现者要对调用者尽到某些义务。如何描述这个契约呢？首先靠函数接口来描述，即函数名，参数，返回值，只要函数和参数的名字起得合理，参数和返回值的类型定得准确，至于这个函数怎么用，调用者单看函数接口就能猜出八九分了。函数接口并不能表达函数的全部语义，这时文档就起了重要的补充作用，函数的文档该写什么，怎么写，Man Page为我们做了很好的榜样。
+
+
+
+函数接口一旦和指针结合起来就变得异常灵活，有五花八门的用法，但是万变不离其宗，只要像\hyperlink{db.ch23s01.id2810538}{图 23.\BookSplit{}1 “指针的基本概念”}那样画图分析，指针的任何用法都能分析清楚，所以，如果上一章你真正学明白了，本章不用学也能自己领悟出来，之所以写这一章是为了照顾悟性不高的读者。本章把函数接口总结成几类常见的模式，对于每种模式，一方面讲函数接口怎么写，另一方面讲函数的文档怎么写。
+
+\BookNav{\hyperlink{db.ch23s09}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt02}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch24s01.html
+
+\section{本章的预备知识}
+\BookAnchor{db.ch24s01}\BookAnchor{db.ch24s01.id2818430}%
+这一节介绍本章的范例代码要用的几个C标准库函数。我们先体会一下这几个函数的接口是怎么设计的，Man Page是怎么写的。其它常用的C标准库函数将在下一章介绍。
+
+
+\subsection{\BookCode{strcpy}与\BookCode{strncpy}}
+\BookAnchor{db.ch24s01.id2819066}%
+
+
+从现在开始我们要用到很多库函数，在学习每个库函数时一定要看Man Page。Man Page随时都在我们手边，想查什么只要敲一个命令就行，然而很多初学者就是不喜欢看Man Page，宁可满世界去查书、查资料，也不愿意看Man Page。据我分析原因有三：
+
+
+\begin{enumerate}
+
+\item 英文不好。那还是先学好了英文再学编程吧，否则即使你把这本书都学透了也一样无法胜任开发工作，因为你没有进一步学习的能力。
+
+\item Man Page的语言不够友好。Man Page不像本书这样由浅入深地讲解，而是平铺直叙，不过看习惯了就好了，每个Man Page都不长，多看几遍自然可以抓住重点，理清头绪。本节分析一个例子，帮助读者把握Man Page的语言特点。
+
+\item Man Page通常没有例子。描述一个函数怎么用，一靠接口，二靠文档，而不是靠例子。函数的用法无非是本章所总结的几种模式，只要把本章学透了，你就不需要每个函数都得有个例子教你怎么用了。
+\end{enumerate}
+
+
+总之，Man Page是一定要看的，一开始看不懂硬着头皮也要看，为了鼓励读者看Man Page，本书不会像\hyperlink{db.bi01.bibli.kr}{[K\&R]}那样把库函数总结成一个附录附在书后面。现在我们来分析\BookCode{strcpy(\BookSplit{}3)\BookSplit{}}。
+
+
+\BookFigure{\BookCode{strcpy(\BookSplit{}3)\BookSplit{}}}{\BookImage{images/interface.synopsis.png}{0.906}}{\BookAnchor{db.ch24s01.id2819154}}
+
+
+这个Man Page描述了两个函数，\BookCode{strcpy}和\BookCode{strncpy}，敲命令\BookCode{man strcpy}或者\BookCode{man strncpy}都可以看到这个Man Page。这两个函数的作用是把一个字符串拷贝给另一个字符串。\emph{SYNOPSIS}部分给出了这两个函数的原型，以及要用这些函数需要包含哪些头文件。参数\BookCode{dest}、\BookCode{src}和\BookCode{n}都加了下划线，有时候并不想从头到尾阅读整个Man Page，而是想查一下某个参数的含义，通过下划线和参数名就能很快找到你关心的部分。
+
+
+
+\BookCode{dest}表示Destination，\BookCode{src}表示Source，看名字就能猜到是把\BookCode{src}所指向的字符串拷贝到\BookCode{dest}所指向的内存空间。这一点从两个参数的类型也能看出来，\BookCode{dest}是\BookCode{char *}型的，而\BookCode{src}是\BookCode{const char *}型的，说明\BookCode{src}所指向的内存空间在函数中只能读不能改写，而\BookCode{dest}所指向的内存空间在函数中是要改写的，显然改写的目的是当函数返回后调用者可以读取改写的结果。因此可以猜到\BookCode{strcpy}函数是这样用的：
+
+
+\BookSource{numbers=none}{code/ch24s01/01.pv}{5}{3}
+
+
+至于\BookCode{strncpy}的参数\BookCode{n}是干什么用的，单从函数接口猜不出来，就需要看下面的文档。
+
+
+\BookFigure{\BookCode{strcpy(\BookSplit{}3)\BookSplit{}}}{\BookImage{images/interface.description.png}{0.909}}{\BookAnchor{db.ch24s01.id2819320}}
+
+
+在文档中强调了\BookCode{strcpy}在拷贝字符串时会把结尾的\BookCode{'\textbackslash{}0'}也拷到\BookCode{dest}中，因此保证了\BookCode{dest}中是以\BookCode{'\textbackslash{}0'}结尾的字符串。但另外一个要注意的问题是，\BookCode{strcpy}只知道\BookCode{src}字符串的首地址，不知道长度，它会一直拷贝到\BookCode{'\textbackslash{}0'}为止，所以\BookCode{dest}所指向的内存空间要足够大，否则有可能写越界，例如：
+
+
+\BookSource{numbers=none}{code/ch24s01/02.pv}{4}{2}
+
+
+如果没有保证\BookCode{src}所指向的内存空间以\BookCode{'\textbackslash{}0'}结尾，也有可能读越界，例如：
+
+
+\BookSource{numbers=none}{code/ch24s01/03.pv}{4}{2}
+
+
+因为\BookCode{strcpy}函数的实现者通过函数接口无法得知\BookCode{src}字符串的长度和\BookCode{dest}内存空间的大小，所以“确保不会写越界”应该是调用者的责任，调用者提供的\BookCode{dest}参数应该指向足够大的内存空间，“确保不会读越界”也是调用者的责任，调用者提供的\BookCode{src}参数指向的内存应该确保以\BookCode{'\textbackslash{}0'}结尾。
+
+
+
+此外，文档中还强调了\BookCode{src}和\BookCode{dest}所指向的内存空间不能有重叠。凡是有指针参数的C标准库函数基本上都有这条要求，每个指针参数所指向的内存空间互不重叠，例如这样调用是不允许的：
+
+
+\BookSource{numbers=none}{code/ch24s01/04.pv}{4}{2}
+
+
+\BookCode{strncpy}的参数\BookCode{n}指定最多从\BookCode{src}中拷贝\BookCode{n}个字节到\BookCode{dest}中，换句话说，如果拷贝到\BookCode{'\textbackslash{}0'}就结束，如果拷贝到\BookCode{n}个字节还没有碰到\BookCode{'\textbackslash{}0'}，那么也结束，调用者负责提供适当的\BookCode{n}值，以确保读写不会越界，比如让\BookCode{n}的值等于\BookCode{dest}所指向的内存空间的大小：
+
+
+\BookSource{numbers=none}{code/ch24s01/05.pv}{4}{2}
+
+
+然而这意味着什么呢？文档中特别用了\emph{Warning}指出，这意味着\BookCode{dest}有可能不是以\BookCode{'\textbackslash{}0'}结尾的。例如上面的调用，虽然把\BookCode{\BookQuoteChar{}hello world\BookQuoteChar{}}截断到10个字符拷贝至\BookCode{buf}中，但\BookCode{buf}不是以\BookCode{'\textbackslash{}0'}结尾的，如果再\BookCode{printf(\BookSplit{}buf)\BookSplit{}}就会读越界。如果你需要确保\BookCode{dest}以\BookCode{'\textbackslash{}0'}结束，可以这么调用：
+
+
+\BookSource{numbers=none}{code/ch24s01/06.pv}{5}{3}
+
+
+\BookCode{strncpy}还有一个特性，如果\BookCode{src}字符串全部拷完了不足\BookCode{n}个字节，那么还差多少个字节就补多少个\BookCode{'\textbackslash{}0'}，但是正如上面所述，这并不保证\BookCode{dest}一定以\BookCode{'\textbackslash{}0'}结束，当\BookCode{src}字符串的长度大于\BookCode{n}时，不但不补多余的\BookCode{'\textbackslash{}0'}，连字符串的结尾\BookCode{'\textbackslash{}0'}也不拷贝。\BookCode{strcpy(\BookSplit{}3)\BookSplit{}}的文档已经相当友好了，为了帮助理解，还给出一个\BookCode{strncpy}的简单实现。
+
+
+\BookFigure{\BookCode{strcpy(\BookSplit{}3)\BookSplit{}}}{\BookImage{images/interface.return.png}{0.909}}{\BookAnchor{db.ch24s01.id2819716}}
+
+
+函数的Man Page都有一部分专门讲返回值的。这两个函数的返回值都是\BookCode{dest}指针。可是为什么要返回\BookCode{dest}指针呢？\BookCode{dest}指针本来就是调用者传过去的，再返回一遍\BookCode{dest}指针并没有提供任何有用的信息。之所以这么规定是为了把函数调用当作一个指针类型的表达式使用，比如\BookCode{printf(\BookSplit{}\BookQuoteChar{}\%s\textbackslash{}n\BookQuoteChar{},\BookSplit{} strcpy(\BookSplit{}buf,\BookSplit{} \BookQuoteChar{}hello\BookQuoteChar{})\BookSplit{})\BookSplit{}}，一举两得，如果\BookCode{strcpy}的返回值是\BookCode{void}就没有这么方便了。
+
+
+
+\emph{CONFORMING TO}部分描述了这个函数是遵照哪些标准实现的。\BookCode{strcpy}和\BookCode{strncpy}是C标准库函数，当然遵照C99标准。以后我们还会看到\BookCode{libc}中有些函数属于POSIX标准但并不属于C标准，例如\BookCode{write(\BookSplit{}2)\BookSplit{}}。
+
+
+
+\emph{NOTES}部分给出一些提示信息。这里指出如何确保\BookCode{strncpy}的\BookCode{dest}以\BookCode{'\textbackslash{}0'}结尾，和我们上面给出的代码类似，但由于\BookCode{n}是个变量，在执行\BookCode{buf[\BookSplit{}n -\BookSplit{} 1]\BookSplit{}=\BookSplit{} '\textbackslash{}0';\BookSplit{}}之前先检查一下\BookCode{n}是否大于0，如果\BookCode{n}不大于0，\BookCode{buf[\BookSplit{}n -\BookSplit{} 1]\BookSplit{}}就访问越界了，所以要避免。
+
+
+\BookFigure{\BookCode{strcpy(\BookSplit{}3)\BookSplit{}}}{\BookImage{images/interface.bugs.png}{0.909}}{\BookAnchor{db.ch24s01.id2819873}}
+
+
+\emph{BUGS}部分说明了使用这些函数可能引起的Bug，这部分一定要仔细看。用\BookCode{strcpy}比用\BookCode{strncpy}更加不安全，如果在调用\BookCode{strcpy}之前不仔细检查\BookCode{src}字符串的长度就有可能写越界，这是一个很常见的错误，例如：
+
+
+\BookSource{numbers=none}{code/ch24s01/07.pv}{8}{6}
+
+
+\BookCode{str}所指向的字符串有可能超过10个字符而导致写越界，在\hyperlink{db.ch10s04.id2742403}{第 4 节 “段错误”}我们看到过，这种写越界可能当时不出错，而在函数返回时出现段错误，原因是写越界覆盖了保存在栈帧上的返回地址，函数返回时跳转到非法地址，因而出错。像\BookCode{buf}这种由调用者分配并传给函数读或写的一段内存通常称为缓冲区（Buffer）\BookAnchor{db.ch24s01.id2819951}，缓冲区写越界的错误称为缓冲区溢出（Buffer Overflow）\BookAnchor{db.ch24s01.id2819959}。如果只是出现段错误那还不算严重，更严重的是缓冲区溢出Bug经常被恶意用户利用，使函数返回时跳转到一个事先设好的地址，执行事先设好的指令，如果设计得巧妙甚至可以启动一个Shell，然后随心所欲执行任何命令，可想而知，如果一个用\BookCode{root}权限执行的程序存在这样的Bug，被攻陷了，后果将很严重。至于怎样巧妙设计和攻陷一个有缓冲区溢出Bug的程序，有兴趣的读者可以参考\hyperlink{db.bi01.bibli.smashstack}{[SmashStack]}。
+
+
+\subsubsection*{习题}
+\BookAnchor{db.ch24s01.id2819997}%
+
+
+1、自己实现一个\BookCode{strcpy}函数，尽可能简洁，按照本书的编码风格你能用三行代码写出函数体吗？
+
+
+
+2、编一个函数，输入一个字符串，要求做一个新字符串，把其中所有的一个或多个连续的空白字符都压缩为一个空格。这里所说的空白包括空格、'\textbackslash{}t'、'\textbackslash{}n'、'\textbackslash{}r'。例如原来的字符串是：
+
+
+\BookPlain{code/ch24s01/08.txt}{8}{6}
+
+
+压缩了空白之后就是：
+
+
+\BookPlain{code/ch24s01/09.txt}{3}{1}
+
+
+实现该功能的函数接口要求符合下述规范：
+
+
+\BookSource{numbers=none}{code/ch24s01/10.pv}{3}{1}
+
+
+各项参数和返回值的含义和\BookCode{strncpy}类似。完成之后，为自己实现的函数写一个Man Page。
+
+
+\subsection{\BookCode{malloc}与\BookCode{free}}
+\BookAnchor{db.ch24s01.id2820062}%
+
+
+程序中需要动态分配一块内存时怎么办呢？可以像上一节那样定义一个缓冲区数组。这种方法不够灵活，C89要求定义的数组是固定长度的，而程序往往在运行时才知道要动态分配多大的内存，例如：
+
+
+\BookSource{numbers=none}{code/ch24s01/11.pv}{8}{6}
+
+
+\BookCode{n}是由参数传进来的，事先不知道是多少，那么\BookCode{buf}该定义多大呢？在\hyperlink{db.ch08s01.id2733213}{第 1 节 “数组的基本概念”}讲过C99引入VLA特性，可以定义\BookCode{char buf[\BookSplit{}n+\BookSplit{}1]\BookSplit{} =\BookSplit{} \{\};\BookSplit{}}，这样可确保\BookCode{buf}是以\BookCode{'\textbackslash{}0'}结尾的。但即使用VLA仍然不够灵活，VLA是在栈上动态分配的，函数返回时就要释放，如果我们希望动态分配一块全局的内存空间，在各函数中都可以访问呢？由于全局数组无法定义成VLA，所以仍然不能满足要求。
+
+
+
+其实在\hyperlink{db.ch20s05.id2791323}{第 5 节 “虚拟内存管理”}提过，进程有一个堆空间，C标准库函数\BookCode{malloc}可以在堆空间动态分配内存，它的底层通过\BookCode{brk}系统调用向操作系统申请内存。动态分配的内存用完之后可以用\BookCode{free}释放，更准确地说是归还给\BookCode{malloc}，这样下次调用\BookCode{malloc}时这块内存可以再次被分配。本节学习这两个函数的用法和工作原理。
+
+
+\BookSource{numbers=none}{code/ch24s01/12.pv}{8}{6}
+
+
+\BookCode{malloc}的参数\BookCode{size}表示要分配的字节数，如果分配失败（可能是由于系统内存耗尽）则返回\BookCode{NULL}。由于\BookCode{malloc}函数不知道用户拿到这块内存要存放什么类型的数据，所以返回通用指针\BookCode{void *}，用户程序可以转换成其它类型的指针再访问这块内存。\BookCode{malloc}函数保证它返回的指针所指向的地址满足系统的对齐要求，例如在32位平台上返回的指针一定对齐到4字节边界，以保证用户程序把它转换成任何类型的指针都能用。
+
+
+
+动态分配的内存用完之后可以用\BookCode{free}释放掉，传给\BookCode{free}的参数正是先前\BookCode{malloc}返回的内存块首地址。举例如下：
+
+
+\BookExampleTitle{malloc和free}\BookAnchor{db.ch24s01.id2820249}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s01/13.pv}{9}{27}
+
+
+关于这个程序要注意以下几点：
+
+
+\begin{itemize}
+
+\item \BookCode{unit\_\BookSplit{}t *p =\BookSplit{} malloc(\BookSplit{}sizeof(\BookSplit{}unit\_\BookSplit{}t)\BookSplit{})\BookSplit{};\BookSplit{}}这一句，等号右边是\BookCode{void *}类型，等号左边是\BookCode{unit\_\BookSplit{}t *}类型，编译器会做隐式类型转换，我们讲过\BookCode{void *}类型和任何指针类型之间可以相互隐式转换。
+
+\item 虽然内存耗尽是很不常见的错误，但写程序要规范，\BookCode{malloc}之后应该判断是否成功。以后要学习的大部分系统函数都有成功的返回值和失败的返回值，每次调用系统函数都应该判断是否成功。
+
+\item \BookCode{free(\BookSplit{}p)\BookSplit{};\BookSplit{}}之后，\BookCode{p}所指的内存空间是归还了，但是\BookCode{p}的值并没有变，因为从\BookCode{free}的函数接口来看根本就没法改变\BookCode{p}的值，\BookCode{p}现在指向的内存空间已经不属于用户，换句话说，\BookCode{p}成了野指针，为避免出现野指针，我们应该在\BookCode{free(\BookSplit{}p)\BookSplit{};\BookSplit{}}之后手动置\BookCode{p =\BookSplit{} NULL;\BookSplit{}}。
+
+\item 应该先\BookCode{free(\BookSplit{}p-\BookSplit{}\textgreater{}msg)\BookSplit{}}，再\BookCode{free(\BookSplit{}p)\BookSplit{}}。如果先\BookCode{free(\BookSplit{}p)\BookSplit{}}，\BookCode{p}成了野指针，就不能再通过\BookCode{p-\BookSplit{}\textgreater{}msg}访问内存了。
+\end{itemize}
+
+
+上面的例子只有一个简单的顺序控制流程，分配内存，赋值，打印，释放内存，退出程序。这种情况下即使不用\BookCode{free}释放内存也可以，因为程序退出时整个进程地址空间都会释放，包括堆空间，该进程占用的所有内存都会归还给操作系统。但如果一个程序长年累月运行（例如网络服务器程序），并且在循环或递归中调用\BookCode{malloc}分配内存，则必须有\BookCode{free}与之配对，分配一次就要释放一次，否则每次循环都分配内存，分配完了又不释放，就会慢慢耗尽系统内存，这种错误称为内存泄漏（Memory Leak）\BookAnchor{db.ch24s01.id2820441}。另外，\BookCode{malloc}返回的指针一定要保存好，只有把它传给\BookCode{free}才能释放这块内存，如果这个指针丢失了，就没有办法\BookCode{free}这块内存了，也会造成内存泄漏。例如：
+
+
+\BookSource{numbers=none}{code/ch24s01/14.pv}{7}{5}
+
+
+\BookCode{foo}函数返回时要释放局部变量\BookCode{p}的内存空间，它所指向的内存地址就丢失了，这10个字节也就没法释放了。内存泄漏的Bug很难找到，因为它不会像访问越界一样导致程序运行错误，少量内存泄漏并不影响程序的正确运行，大量的内存泄漏会使系统内存紧缺，导致频繁换页，不仅影响当前进程，而且把整个系统都拖得很慢。
+
+
+
+关于\BookCode{malloc}和\BookCode{free}还有一些特殊情况。\BookCode{malloc(\BookSplit{}0)\BookSplit{}}这种调用也是合法的，也会返回一个非\BookCode{NULL}的指针，这个指针也可以传给\BookCode{free}释放，但是不能通过这个指针访问内存。\BookCode{free(\BookSplit{}NULL)\BookSplit{}}也是合法的，不做任何事情，但是\BookCode{free}一个野指针是不合法的，例如先调用\BookCode{malloc}返回一个指针\BookCode{p}，然后连着调用两次\BookCode{free(\BookSplit{}p)\BookSplit{};\BookSplit{}}，则后一次调用会产生运行时错误。
+
+
+
+\hyperlink{db.bi01.bibli.kr}{[K\&R]}的8.\BookSplit{}7节给出了\BookCode{malloc}和\BookCode{free}的简单实现，基于环形链表。目前读者还没有学习链表，看那段代码会有点困难，我再做一些简化，图示如下，目的是让读者理解\BookCode{malloc}和\BookCode{free}的工作原理。\BookCode{libc}的实现比这要复杂得多，但基本工作原理也是如此。读者只要理解了基本工作原理，就很容易分析在使用\BookCode{malloc}和\BookCode{free}时遇到的各种Bug了。
+
+
+\BookFigure{简单的\BookCode{malloc}和\BookCode{free}实现}{\BookImage{images/interface.malloc.png}{0.900}}{\BookAnchor{db.ch24s01.id2820626}}
+
+
+图中白色背景的框表示\BookCode{malloc}管理的空闲内存块，深色背景的框不归\BookCode{malloc}管，可能是已经分配给用户的内存块，也可能不属于当前进程，Break之上的地址不属于当前进程，需要通过\BookCode{brk}系统调用向内核申请。每个内存块开头都有一个头节点，里面有一个指针字段和一个长度字段，指针字段把所有空闲块的头节点串在一起，组成一个环形链表，长度字段记录着头节点和后面的内存块加起来一共有多长，以8字节为单位（也就是以头节点的长度为单位）。
+
+
+\begin{enumerate}
+
+\item 一开始堆空间由一个空闲块组成，长度为7×\BookSplit{}8=\BookSplit{}56字节，除头节点之外的长度为48字节。
+
+\item 调用\BookCode{malloc}分配8个字节，要在这个空闲块的末尾截出16个字节，其中新的头节点占了8个字节，另外8个字节返回给用户使用，注意返回的指针\BookCode{p1}指向头节点后面的内存块。
+
+\item 又调用\BookCode{malloc}分配16个字节，又在空闲块的末尾截出24个字节，步骤和上一步类似。
+
+\item 调用\BookCode{free}释放\BookCode{p1}所指向的内存块，内存块（包括头节点在内）归还给了\BookCode{malloc}，现在\BookCode{malloc}管理着两块不连续的内存，用环形链表串起来。注意这时\BookCode{p1}成了野指针，指向不属于用户的内存，\BookCode{p1}所指向的内存地址在Break之下，是属于当前进程的，所以访问\BookCode{p1}时不会出现段错误，但在访问\BookCode{p1}时这段内存可能已经被\BookCode{malloc}再次分配出去了，可能会读到意外改写数据。另外注意，此时如果通过\BookCode{p2}向右写越界，有可能覆盖右边的头节点，从而破坏\BookCode{malloc}管理的环形链表，\BookCode{malloc}就无法从一个空闲块的指针字段找到下一个空闲块了，找到哪去都不一定，全乱套了。
+
+\item 调用\BookCode{malloc}分配16个字节，现在虽然有两个空闲块，各有8个字节可分配，但是这两块不连续，\BookCode{malloc}只好通过\BookCode{brk}系统调用抬高Break，获得新的内存空间。在\hyperlink{db.bi01.bibli.kr}{[K\&R]}的实现中，每次调用\BookCode{sbrk}函数时申请1024×\BookSplit{}8=\BookSplit{}8192个字节，在Linux系统上\BookCode{sbrk}函数也是通过\BookCode{brk}实现的，这里为了画图方便，我们假设每次调用\BookCode{sbrk}申请32个字节，建立一个新的空闲块。
+
+\item 新申请的空闲块和前一个空闲块连续，因此可以合并成一个。在能合并时要尽量合并，以免空闲块越割越小，无法满足大的分配请求。
+
+\item 在合并后的这个空闲块末尾截出24个字节，新的头节点占8个字节，另外16个字节返回给用户。
+
+\item 调用\BookCode{free(\BookSplit{}p3)\BookSplit{}}释放这个内存块，由于它和前一个空闲块连续，又重新合并成一个空闲块。注意，Break只能抬高而不能降低，从内核申请到的内存以后都归\BookCode{malloc}管了，即使调用\BookCode{free}也不会还给内核。
+\end{enumerate}
+
+\subsubsection*{习题}
+\BookAnchor{db.ch24s01.id2820918}%
+
+
+1、小练习：编写一个小程序让它耗尽系统内存。观察一下，分配了多少内存后才会出现分配失败？内存耗尽之后会怎么样？会不会死机？
+
+\BookNav{\hyperlink{db.ch24}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch24s02.html
+
+\section{传入参数与传出参数}
+\BookAnchor{db.ch24s02}\BookAnchor{db.ch24s02.id2820935}%
+如果函数接口有指针参数，既可以把指针所指向的数据传给函数使用（称为传入参数），也可以由函数填充指针所指的内存空间，传回给调用者使用（称为传出参数），例如\BookCode{strcpy}的\BookCode{src}参数是传入参数，\BookCode{dest}参数是传出参数。有些函数的指针参数同时担当了这两种角色，如\BookCode{select(\BookSplit{}2)\BookSplit{}}的\BookCode{fd\_\BookSplit{}set *}参数，既是传入参数又是传出参数，这称为Value-result\BookAnchor{db.ch24s02.id2820978}参数。
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.650900\linewidth-2\tabcolsep\relax}L{\dimexpr 0.349100\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{传入参数示例：\BookCode{void func(\BookSplit{}const unit\_\BookSplit{}t *p)\BookSplit{};\BookSplit{}}}\BookTableLabel{\BookAnchor{db.ch24s02.id2820986}}
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endhead
+\begin{enumerate}
+
+\item 分配\BookCode{p}所指的内存空间
+
+\item 在\BookCode{p}所指的内存空间中保存数据
+
+\item 调用函数
+
+\item 由于有\BookCode{const}限定符，调用者可以确信\BookCode{p}所指的内存空间不会被改变
+\end{enumerate} & \begin{enumerate}
+
+\item 规定指针参数的类型\BookCode{unit\_\BookSplit{}t *}
+
+\item 读取\BookCode{p}所指的内存空间
+\end{enumerate} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+想一想，如果有函数接口\BookCode{void func(\BookSplit{}const int p)\BookSplit{};\BookSplit{}}这里的\BookCode{const}有意义吗？
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.424080\linewidth-2\tabcolsep\relax}L{\dimexpr 0.575920\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{传出参数示例：\BookCode{void func(\BookSplit{}unit\_\BookSplit{}t *p)\BookSplit{};\BookSplit{}}}\BookTableLabel{\BookAnchor{db.ch24s02.id2821114}}
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endhead
+\begin{enumerate}
+
+\item 分配\BookCode{p}所指的内存空间
+
+\item 调用函数
+
+\item 读取\BookCode{p}所指的内存空间
+\end{enumerate} & \begin{enumerate}
+
+\item 规定指针参数的类型\BookCode{unit\_\BookSplit{}t *}
+
+\item 在\BookCode{p}所指的内存空间中保存数据
+\end{enumerate} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.482632\linewidth-2\tabcolsep\relax}L{\dimexpr 0.517368\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{Value-result参数示例：\BookCode{void func(\BookSplit{}unit\_\BookSplit{}t *p)\BookSplit{};\BookSplit{}}}\BookTableLabel{\BookAnchor{db.ch24s02.id2821208}}
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endhead
+\begin{enumerate}
+
+\item 分配p所指的内存空间
+
+\item 在\BookCode{p}所指的内存空间保存数据
+
+\item 调用函数
+
+\item 读取\BookCode{p}所指的内存空间
+\end{enumerate} & \begin{enumerate}
+
+\item 规定指针参数的类型\BookCode{unit\_\BookSplit{}t *}
+
+\item 读取\BookCode{p}所指的内存空间
+
+\item 改写\BookCode{p}所指的内存空间
+\end{enumerate} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+由于传出参数和Value-result参数的函数接口完全相同，应该在文档中说明是哪种参数。
+
+
+
+以下是一个传出参数的完整例子：
+
+
+\BookExampleTitle{传出参数}\BookAnchor{db.ch24s02.id2821327}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s02/01.pv}{9}{12}
+
+\BookSource{numbers=none}{code/ch24s02/02.pv}{9}{11}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s02/03.pv}{9}{12}
+
+
+很多系统函数对于指针参数是\BookCode{NULL}的情况有特殊规定：如果传入参数是\BookCode{NULL}表示取缺省值，例如\BookCode{pthread\_\BookSplit{}create(\BookSplit{}3)\BookSplit{}}的\BookCode{pthread\_\BookSplit{}attr\_\BookSplit{}t *}参数，也可能表示不做特别处理，例如\BookCode{free}的参数；如果传出参数是\BookCode{NULL}表示调用者不需要传出值，例如\BookCode{time(\BookSplit{}2)\BookSplit{}}的参数。这些特殊规定应该在文档中写清楚。
+
+\BookNav{\hyperlink{db.ch24s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch24s03.html
+
+\section{两层指针的参数}
+\BookAnchor{db.ch24s03}\BookAnchor{db.ch24s03.id2821402}%
+两层指针也是指针，同样可以表示传入参数、传出参数或者Value-result参数，只不过该参数所指的内存空间应该解释成一个指针变量。用两层指针做传出参数的系统函数也很常见，比如\BookCode{pthread\_\BookSplit{}join(\BookSplit{}3)\BookSplit{}}的\BookCode{void **}参数。下面看一个简单的例子。
+
+
+\BookExampleTitle{两层指针做传出参数}\BookAnchor{db.ch24s03.id2821427}
+
+\BookSource{numbers=none}{code/ch24s03/01.pv}{9}{7}
+
+
+想一想，这里的参数指针是\BookCode{const char **}，有\BookCode{const}限定符，却不是传入参数而是传出参数，为什么？如果是传入参数应该怎么表示？
+
+
+\BookSource{numbers=none}{code/ch24s03/02.pv}{9}{11}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s03/03.pv}{9}{13}
+
+
+两层指针作为传出参数还有一种特别的用法，可以在函数中分配内存，调用者通过传出参数取得指向该内存的指针，比如\BookCode{getaddrinfo(\BookSplit{}3)\BookSplit{}}的\BookCode{struct addrinf\BookSplit{}o **}参数。一般来说，实现一个分配内存的函数就要实现一个释放内存的函数，所以\BookCode{getaddrinfo(\BookSplit{}3)\BookSplit{}}有一个对应的\BookCode{freeaddrinfo(\BookSplit{}3)\BookSplit{}}函数。
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.501972\linewidth-2\tabcolsep\relax}L{\dimexpr 0.498028\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{通过参数分配内存示例：\BookCode{void alloc\_\BookSplit{}unit(\BookSplit{}unit\_\BookSplit{}t **pp)\BookSplit{};\BookSplit{}} \BookCode{void free\_\BookSplit{}unit(\BookSplit{}unit\_\BookSplit{}t *p)\BookSplit{};\BookSplit{}}}\BookTableLabel{\BookAnchor{db.ch24s03.id2821505}}
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endhead
+\begin{enumerate}
+
+\item 分配\BookCode{pp}所指的指针变量的空间
+
+\item 调用\BookCode{alloc\_\BookSplit{}unit}分配内存
+
+\item 读取\BookCode{pp}所指的指针变量，通过后者使用\BookCode{alloc\_\BookSplit{}unit}分配的内存
+
+\item 调用\BookCode{free\_\BookSplit{}unit}释放内存
+\end{enumerate} & \begin{enumerate}
+
+\item 规定指针参数的类型\BookCode{unit\_\BookSplit{}t **}
+
+\item \BookCode{alloc\_\BookSplit{}unit}分配\BookCode{unit\_\BookSplit{}t}的内存并初始化，为\BookCode{pp}所指的指针变量赋值
+
+\item \BookCode{free\_\BookSplit{}unit}释放在\BookCode{alloc\_\BookSplit{}unit}中分配的内存
+\end{enumerate} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\BookExampleTitle{通过两层指针参数分配内存}\BookAnchor{db.ch24s03.id2821655}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s03/04.pv}{9}{13}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s03/05.pv}{9}{24}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s03/06.pv}{9}{14}
+
+
+思考一下，为什么在\BookCode{main}函数中不能直接调用\BookCode{free(\BookSplit{}p)\BookSplit{}}释放内存，而要调用\BookCode{free\_\BookSplit{}unit(\BookSplit{}p)\BookSplit{}}？为什么一层指针的函数接口\BookCode{void alloc\_\BookSplit{}unit(\BookSplit{}unit\_\BookSplit{}t *p)\BookSplit{};\BookSplit{}}不能分配内存，而一定要用两层指针的函数接口？
+
+
+
+总结一下，两层指针参数如果是传出的，可以有两种情况：第一种情况，传出的指针指向静态内存（比如上面的例子），或者指向已分配的动态内存（比如指向某个链表的节点）；第二种情况是在函数中动态分配内存，然后传出的指针指向这块内存空间，这种情况下调用者应该在使用内存之后调用释放内存的函数，调用者的责任是请求分配和请求释放内存，实现者的责任是完成分配内存和释放内存的操作。由于这两种情况的函数接口相同，应该在文档中说明是哪一种情况。
+
+\BookNav{\hyperlink{db.ch24s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch24s04.html
+
+\section{返回值是指针的情况}
+\BookAnchor{db.ch24s04}\BookAnchor{db.ch24s04.id2821740}%
+返回值显然是传出的而不是传入的，如果返回值传出的是指针，和上一节通过参数传出指针类似，也分为两种情况：第一种是传出指向静态内存或已分配的动态内存的指针，例如\BookCode{localtime(\BookSplit{}3)\BookSplit{}}和\BookCode{inet\_\BookSplit{}ntoa(\BookSplit{}3)\BookSplit{}}，第二种是在函数中动态分配内存并传出指向这块内存的指针，例如\BookCode{malloc(\BookSplit{}3)\BookSplit{}}，这种情况通常还要实现一个释放内存的函数，所以有和\BookCode{malloc(\BookSplit{}3)\BookSplit{}}对应的\BookCode{free(\BookSplit{}3)\BookSplit{}}。由于这两种情况的函数接口相同，应该在文档中说明是哪一种情况。
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.456570\linewidth-2\tabcolsep\relax}L{\dimexpr 0.543430\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{返回指向已分配内存的指针示例\BookCode{：unit\_\BookSplit{}t *func(\BookSplit{}void)\BookSplit{};\BookSplit{}}}\BookTableLabel{\BookAnchor{db.ch24s04.id2821786}}
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endhead
+\begin{enumerate}
+
+\item 调用函数
+
+\item 将返回值保存下来以备后用
+\end{enumerate} & \begin{enumerate}
+
+\item 规定返回值指针的类型\BookCode{unit\_\BookSplit{}t *}
+
+\item 返回一个指针
+\end{enumerate} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+以下是一个完整的例子。
+
+
+\BookExampleTitle{返回指向已分配内存的指针}\BookAnchor{db.ch24s04.id2821862}
+
+\BookSource{numbers=none}{code/ch24s04/01.pv}{9}{7}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s04/02.pv}{9}{13}
+
+\BookSource{numbers=none}{code/ch24s04/03.pv}{9}{9}
+
+
+这个程序的运行结果是\BookCode{Sunday Monday}吗？请读者自己分析一下。
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.378753\linewidth-2\tabcolsep\relax}L{\dimexpr 0.621247\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{动态分配内存并返回指针示例：\BookCode{unit\_\BookSplit{}t *alloc\_\BookSplit{}unit(\BookSplit{}void)\BookSplit{};\BookSplit{}} \BookCode{void free\_\BookSplit{}unit(\BookSplit{}unit\_\BookSplit{}t *p)\BookSplit{}};}\BookTableLabel{\BookAnchor{db.ch24s04.id2821898}}
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endhead
+\begin{enumerate}
+
+\item 调用\BookCode{alloc\_\BookSplit{}unit}分配内存
+
+\item 将返回值保存下来以备后用
+
+\item 调用\BookCode{free\_\BookSplit{}unit}释放内存
+\end{enumerate} & \begin{enumerate}
+
+\item 规定返回值指针的类型\BookCode{unit\_\BookSplit{}t *}
+
+\item \BookCode{alloc\_\BookSplit{}unit}分配内存并返回指向该内存的指针
+
+\item \BookCode{free\_\BookSplit{}unit}释放由\BookCode{alloc\_\BookSplit{}unit}分配的内存
+\end{enumerate} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+以下是一个完整的例子。
+
+
+\BookExampleTitle{动态分配内存并返回指针}\BookAnchor{db.ch24s04.id2822019}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s04/04.pv}{9}{13}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s04/05.pv}{9}{24}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s04/06.pv}{9}{13}
+
+
+思考一下，通过参数分配内存需要两层的指针，而通过返回值分配内存就只需要返回一层的指针，为什么？
+
+\BookNav{\hyperlink{db.ch24s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24s05}{下一页}}
+
+
+% https://akaedu.github.io/book/ch24s05.html
+
+\section{回调函数}
+\BookAnchor{db.ch24s05}\BookAnchor{db.ch24s05.id2822058}%
+如果参数是一个函数指针，调用者可以传递一个函数的地址给实现者，让实现者去调用它，这称为回调函数（Callback Function）\BookAnchor{db.ch24s05.id2822067}。例如\BookCode{qsort(\BookSplit{}3)\BookSplit{}}和\BookCode{bsearch(\BookSplit{}3)\BookSplit{}}。
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt}
+\small
+\sloppy
+\renewcommand{\arraystretch}{1.16}
+\setlength{\parskip}{0pt}
+\begin{longtable}{L{\dimexpr 0.526875\linewidth-2\tabcolsep\relax}L{\dimexpr 0.473125\linewidth-2\tabcolsep\relax}}
+\BookTableTitle{回调函数示例：\BookCode{void func(\BookSplit{}void (\BookSplit{}*f)\BookSplit{}(\BookSplit{}void *)\BookSplit{},\BookSplit{} void *p)\BookSplit{};\BookSplit{}}}\BookTableLabel{\BookAnchor{db.ch24s05.id2822087}}
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endfirsthead
+\toprule
+{\bfseries 调用者} & {\bfseries 实现者} \\
+\midrule
+\endhead
+\begin{enumerate}
+
+\item 提供一个回调函数，再提供一个准备传给回调函数的参数。
+
+\item 把回调函数传给参数\BookCode{f}，把准备传给回调函数的参数按\BookCode{void *}类型传给参数\BookCode{p}
+\end{enumerate} & \begin{enumerate}
+
+\item 在适当的时候根据调用者传来的函数指针\BookCode{f}调用回调函数，将调用者传来的参数\BookCode{p}转交给回调函数，即调用\BookCode{f(\BookSplit{}p)\BookSplit{};\BookSplit{}}
+\end{enumerate} \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+
+以下是一个简单的例子。实现了一个\BookCode{repeat\_\BookSplit{}three\_\BookSplit{}times}函数，可以把调用者传来的任何回调函数连续执行三次。
+
+
+\BookExampleTitle{回调函数}\BookAnchor{db.ch24s05.id2822196}
+
+\BookSource{numbers=none}{code/ch24s05/01.pv}{9}{8}
+
+\BookSource{numbers=none}{code/ch24s05/02.pv}{9}{9}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s05/03.pv}{9}{23}
+
+
+回顾一下前面几节的例子，参数类型都是由实现者规定的。而本例中回调函数的参数按什么类型解释由调用者规定，对于实现者来说就是一个\BookCode{void *}指针，实现者只负责将这个指针转交给回调函数，而不关心它到底指向什么数据类型。调用者知道自己传的参数是\BookCode{char *}型的，那么在自己提供的回调函数中就应该知道参数要转换成\BookCode{char *}型来解释。
+
+
+
+回调函数的一个典型应用就是实现类似C+\BookSplit{}+\BookSplit{}的泛型算法（Generics Algorithm）\BookAnchor{db.ch24s05.id2822255}。下面实现的\BookCode{max}函数可以在任意一组对象中找出最大值，可以是一组\BookCode{int}、一组\BookCode{char}或者一组结构体，但是实现者并不知道怎样去比较两个对象的大小，调用者需要提供一个做比较操作的回调函数。
+
+
+\BookExampleTitle{泛型算法}\BookAnchor{db.ch24s05.id2822285}
+
+\BookSource{numbers=none}{code/ch24s05/04.pv}{9}{8}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s05/05.pv}{9}{13}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s05/06.pv}{9}{29}
+
+
+\BookCode{max}函数之所以能对一组任意类型的对象进行操作，关键在于传给\BookCode{max}的是指向对象的指针所构成的数组，而不是对象本身所构成的数组，这样\BookCode{max}不必关心对象到底是什么类型，只需转给比较函数\BookCode{cmp}，然后根据比较结果做相应操作即可，\BookCode{cmp}是调用者提供的回调函数，调用者当然知道对象是什么类型以及如何比较。
+
+
+
+以上举例的回调函数是被同步调用的，调用者调用\BookCode{max}函数，\BookCode{max}函数则调用\BookCode{cmp}函数，相当于调用者间接调了自己提供的回调函数。在实际系统中，异步调用也是回调函数的一种典型用法，调用者首先将回调函数传给实现者，实现者记住这个函数，这称为\emph{注册}一个回调函数，然后当某个事件发生时实现者再调用先前注册的函数，比如\BookCode{sigaction(\BookSplit{}2)\BookSplit{}}注册一个信号处理函数，当信号产生时由系统调用该函数进行处理，再比如\BookCode{pthread\_\BookSplit{}create(\BookSplit{}3)\BookSplit{}}注册一个线程函数，当发生调度时系统切换到新注册的线程函数中运行，在GUI编程中异步回调函数更是有普遍的应用，例如为某个按钮注册一个回调函数，当用户点击按钮时调用它。
+
+
+
+以下是一个代码框架。
+
+
+\BookSource{numbers=none}{code/ch24s05/07.pv}{9}{8}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s05/08.pv}{9}{17}
+
+
+既然参数可以是函数指针，返回值同样也可以是函数指针，因此可以有\BookCode{func(\BookSplit{})\BookSplit{}(\BookSplit{})\BookSplit{};\BookSplit{}}这样的调用。返回函数的函数在C语言中很少见，在一些函数式编程语言（例如LISP）中则很常见，基本思想是把函数也当作一种数据来操作，输入、输出和参与运算，操作函数的函数称为高阶函数（High-order Function）\BookAnchor{db.ch24s05.id2822434}。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch24s05.id2822441}%
+
+
+1、\hyperlink{db.bi01.bibli.kr}{[K\&R]}的5.\BookSplit{}6节有一个\BookCode{qsort}函数的实现，可以对一组任意类型的对象做快速排序。请读者仿照那个例子，写一个插入排序的函数和一个折半查找的函数。
+
+\BookNav{\hyperlink{db.ch24s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24s06}{下一页}}
+
+
+% https://akaedu.github.io/book/ch24s06.html
+
+\section{可变参数}
+\BookAnchor{db.ch24s06}\BookAnchor{db.ch24s06.id2822466}%
+到目前为止我们只见过一个带有可变参数的函数\BookCode{printf}：
+
+
+\BookSource{numbers=none}{code/ch24s06/01.pv}{3}{1}
+
+
+以后还会见到更多这样的函数。现在我们实现一个简单的\BookCode{myprintf}函数：
+
+
+\BookExampleTitle{用可变参数实现简单的printf函数}\BookAnchor{db.ch24s06.id2822499}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s06/02.pv}{9}{34}
+
+
+要处理可变参数，需要用C到标准库的\BookCode{va\_\BookSplit{}list}类型和\BookCode{va\_\BookSplit{}start}、\BookCode{va\_\BookSplit{}arg}、\BookCode{va\_\BookSplit{}end}宏，这些定义在\BookCode{stdarg.\BookSplit{}h}头文件中。这些宏是如何取出可变参数的呢？我们首先对照反汇编分析在调用\BookCode{myprintf}函数时这些参数的内存布局。
+
+
+\BookTerminal{code/ch24s06/03.txt}{9}{7}
+
+\BookFigure{\BookCode{myprintf}函数的参数布局}{\BookImage{images/interface.vaarg.png}{0.365}}{\BookAnchor{db.ch24s06.id2822565}}
+
+
+这些参数是从右向左依次压栈的，所以第一个参数靠近栈顶，第三个参数靠近栈底。这些参数在内存中是连续存放的，每个参数都对齐到4字节边界。第一个和第三个参数都是指针类型，各占4个字节，虽然第二个参数只占一个字节，但为了使第三个参数对齐到4字节边界，所以第二个参数也占4个字节。现在给出一个\BookCode{stdarg.\BookSplit{}h}的简单实现，这个实现出自\hyperlink{db.bi01.bibli.standardclib}{[Standard C Library]}：
+
+
+\BookExampleTitle{stdarg.h的一种实现}\BookAnchor{db.ch24s06.id2822618}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s06/04.pv}{9}{14}
+
+
+这个头文件中的内部宏定义\BookCode{\_\BookSplit{}Bnd(\BookSplit{}X,\BookSplit{} bnd)\BookSplit{}}将类型或变量\BookCode{X}的长度对齐到\BookCode{bnd+\BookSplit{}1}字节的整数倍，例如\BookCode{\_\BookSplit{}Bnd(\BookSplit{}char,\BookSplit{} 3U)\BookSplit{}}的值是4，\BookCode{\_\BookSplit{}Bnd(\BookSplit{}int,\BookSplit{} 3U)\BookSplit{}}也是4。
+
+
+
+在\BookCode{myprintf}中定义的\BookCode{va\_\BookSplit{}list ap;\BookSplit{}}其实是一个指针，\BookCode{va\_\BookSplit{}start(\BookSplit{}ap,\BookSplit{} format)\BookSplit{}}使\BookCode{ap}指向\BookCode{format}参数的下一个参数，也就是指向上图中\BookCode{esp+\BookSplit{}4}的位置。然后\BookCode{va\_\BookSplit{}arg(\BookSplit{}ap,\BookSplit{} int)\BookSplit{}}把第二个参数的值按\BookCode{int}型取出来，同时使\BookCode{ap}指向第三个参数，也就是指向上图中\BookCode{esp+\BookSplit{}8}的位置。然后\BookCode{va\_\BookSplit{}arg(\BookSplit{}ap,\BookSplit{} char *)\BookSplit{}}把第三个参数的值按\BookCode{char *}型取出来，同时使\BookCode{ap}指向更高的地址。\BookCode{va\_\BookSplit{}end(\BookSplit{}ap)\BookSplit{}}在我们的简单实现中不起任何作用，在有些实现中可能会把\BookCode{ap}改写成无效值，C标准要求在函数返回前调用\BookCode{va\_\BookSplit{}end}。
+
+
+
+如果把\BookCode{myprintf}中的\BookCode{char ch =\BookSplit{} va\_\BookSplit{}arg(\BookSplit{}ap,\BookSplit{} int)\BookSplit{};\BookSplit{}}改成\BookCode{char ch =\BookSplit{} va\_\BookSplit{}arg(\BookSplit{}ap,\BookSplit{} char)\BookSplit{};\BookSplit{}}，用我们这个\BookCode{stdarg.\BookSplit{}h}的简单实现是没有问题的。但如果改用\BookCode{libc}提供的\BookCode{stdarg.\BookSplit{}h}，在编译时会报错：
+
+
+\BookTerminal{code/ch24s06/05.txt}{9}{7}
+
+
+因此要求\BookCode{char}型的可变参数必须按\BookCode{int}型来取，这是为了与C标准一致，我们在\hyperlink{db.ch15s03.id2757955}{第 3.\BookSplit{}1 节 “Integer Promotion”}讲过Default Argument Promotion规则，传递\BookCode{char}型的可变参数时要提升为\BookCode{int}型。
+
+
+
+从\BookCode{myprintf}的例子可以理解\BookCode{printf}的实现原理，\BookCode{printf}函数根据第一个参数（格式化字符串）来确定后面有几个参数，分别是什么类型。保证参数的类型、个数与格式化字符串的描述相匹配是调用者的责任，实现者只管按格式化字符串的描述从栈上取数据，如果调用者传递的参数类型或个数不正确，实现者是没有办法避免错误的。
+
+
+
+还有一种方法可以确定可变参数的个数，就是在参数列表的末尾传一个Sentinel，例如\BookCode{NULL}。\BookCode{execl(\BookSplit{}3)\BookSplit{}}就采用这种方法确定参数的个数。下面实现一个\BookCode{printlist}函数，可以打印若干个传入的字符串。
+
+
+\BookExampleTitle{根据Sentinel判断可变参数的个数}\BookAnchor{db.ch24s06.id2818908}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch24s06/06.pv}{9}{24}
+
+
+\BookCode{printlist}的第一个参数\BookCode{begin}的值并没有用到，但是C语言规定至少要定义一个有名字的参数，因为\BookCode{va\_\BookSplit{}start}宏要用到参数列表中最后一个有名字的参数，从它的地址开始找可变参数的位置。实现者应该在文档中说明参数列表必须以\BookCode{NULL}结尾，如果调用者不遵守这个约定，实现者是没有办法避免错误的。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch24s06.id2818955}%
+
+
+1、实现一个功能更完整的\BookCode{printf}，能够识别\BookCode{\%}，能够处理\BookCode{\%d}、\BookCode{\%f}对应的整数参数。在实现中不许调用\BookCode{printf(\BookSplit{}3)\BookSplit{}}这个Man Page中描述的任何函数。
+
+\BookNav{\hyperlink{db.ch24s05}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch24}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch25}{下一页}}

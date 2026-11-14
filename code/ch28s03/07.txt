@@ -1,0 +1,4 @@
+$ umask 022
+$ ./a.out
+$ ls -l somefile
+-rw-r--r-- 1 akaedu akaedu 6483 2009-03-08 15:11 somefile

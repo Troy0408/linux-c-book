@@ -1,0 +1,3 @@
+\BK{n}{count}\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{7}\BK{p}{;}
+\BK{n}{count}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{count}\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{;}
+\BK{o}{+}\BK{o}{+}\BK{n}{count}\BK{p}{[}\BK{l+m+mi}{2}\BK{p}{]}\BK{p}{;}

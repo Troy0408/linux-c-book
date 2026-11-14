@@ -1,0 +1,13 @@
+\BK{n+nf}{all}\BK{o}{:}\BK{+w}{ }\BK{n}{main}
+
+\BK{n+nf}{main}\BK{o}{:}\BK{+w}{ }\BK{n}{main}.\BK{n}{o} \BK{n}{stack}.\BK{n}{o} \BK{n}{maze}.\BK{n}{o}
+\BK{+w}{	}gcc\BK{+w}{ }\BKZdl{}\BKZca{}\BK{+w}{ }\BKZhy{}o\BK{+w}{ }\BK{n+nv}{\BKZdl{}@}
+
+\BK{n+nf}{main.o}\BK{o}{:}\BK{+w}{ }\BK{n}{main}.\BK{n}{h} \BK{n}{stack}.\BK{n}{h} \BK{n}{maze}.\BK{n}{h}
+\BK{n+nf}{stack.o}\BK{o}{:}\BK{+w}{ }\BK{n}{stack}.\BK{n}{h} \BK{n}{main}.\BK{n}{h}
+\BK{n+nf}{maze.o}\BK{o}{:}\BK{+w}{ }\BK{n}{maze}.\BK{n}{h} \BK{n}{main}.\BK{n}{h}
+
+\BK{n+nf}{clean}\BK{o}{:}
+\BK{+w}{	}\BKZhy{}rm\BK{+w}{ }main\BK{+w}{ }*.o
+
+\BK{n+nf}{.PHONY}\BK{o}{:}\BK{+w}{ }\BK{n}{clean}

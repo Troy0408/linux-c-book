@@ -1,0 +1,6 @@
+$ ./a.out 
+SSH_AGENT_PID=5717
+SHELL=/bin/bash
+DESKTOP_STARTUP_ID=
+TERM=xterm
+...

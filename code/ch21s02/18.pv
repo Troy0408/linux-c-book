@@ -1,0 +1,5 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define showlist(...) printf(\BKZsh{}\BKZus{}\BKZus{}VA\BKZus{}ARGS\BKZus{}\BKZus{})}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define report(test, ...) ((test)?printf(\BKZsh{}test):\BKZbs{}}
+\BK{c+cp}{	printf(\BKZus{}\BKZus{}VA\BKZus{}ARGS\BKZus{}\BKZus{}))}
+\BK{n}{showlist}\BK{p}{(}\BK{n}{The}\BK{+w}{ }\BK{n}{first}\BK{p}{,}\BK{+w}{ }\BK{n}{second}\BK{p}{,}\BK{+w}{ }\BK{n}{and}\BK{+w}{ }\BK{n}{third}\BK{+w}{ }\BK{n}{items}\BK{p}{.}\BK{p}{)}\BK{p}{;}
+\BK{n}{report}\BK{p}{(}\BK{n}{x}\BK{o}{\BKZgt{}}\BK{n}{y}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{x is \BKZpc{}d but y is \BKZpc{}d}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{x}\BK{p}{,}\BK{+w}{ }\BK{n}{y}\BK{p}{)}\BK{p}{;}

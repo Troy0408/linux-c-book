@@ -1,0 +1,5 @@
+\BK{c+ch}{\BKZsh{}! /bin/sh}
+
+\BK{k}{for}\BK{+w}{ }FRUIT\BK{+w}{ }\BK{k}{in}\BK{+w}{ }apple\BK{+w}{ }banana\BK{+w}{ }pear\BK{p}{;}\BK{+w}{ }\BK{k}{do}
+\BK{+w}{  }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{l+s+s2}{I like }\BK{n+nv}{\BKZdl{}FRUIT}\BK{l+s+s2}{\BKZdq{}}
+\BK{k}{done}

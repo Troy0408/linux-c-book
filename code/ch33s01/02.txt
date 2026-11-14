@@ -1,0 +1,8 @@
+Signal     Value     Action   Comment
+-------------------------------------------------------------------------
+SIGHUP        1       Term    Hangup detected on controlling terminal
+                              or death of controlling process
+SIGINT        2       Term    Interrupt from keyboard
+SIGQUIT       3       Core    Quit from keyboard
+SIGILL        4       Core    Illegal Instruction
+...

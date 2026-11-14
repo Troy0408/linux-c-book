@@ -1,0 +1,17 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{memcpy}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{dest}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{src}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{n}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{d}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{dest}\BK{p}{;}
+\BK{+w}{	}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{s}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{src}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{o}{*}\BK{n}{di}\BK{p}{;}
+\BK{+w}{	}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{o}{*}\BK{n}{si}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{r}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{n}\BK{+w}{ }\BK{o}{\BKZpc{}}\BK{+w}{ }\BK{l+m+mi}{4}\BK{p}{;}
+\BK{+w}{	}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{r}\BK{o}{\BKZhy{}}\BK{o}{\BKZhy{}}\BK{p}{)}
+\BK{+w}{		}\BK{o}{*}\BK{n}{d}\BK{o}{+}\BK{o}{+}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{o}{*}\BK{n}{s}\BK{o}{+}\BK{o}{+}\BK{p}{;}
+\BK{+w}{	}\BK{n}{di}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{n}{d}\BK{p}{;}
+\BK{+w}{	}\BK{n}{si}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{n}{s}\BK{p}{;}
+\BK{+w}{	}\BK{n}{n}\BK{+w}{ }\BK{o}{/}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{4}\BK{p}{;}
+\BK{+w}{	}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{n}\BK{o}{\BKZhy{}}\BK{o}{\BKZhy{}}\BK{p}{)}
+\BK{+w}{		}\BK{o}{*}\BK{n}{di}\BK{o}{+}\BK{o}{+}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{o}{*}\BK{n}{si}\BK{o}{+}\BK{o}{+}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{dest}\BK{p}{;}
+\BK{p}{\BKZcb{}}

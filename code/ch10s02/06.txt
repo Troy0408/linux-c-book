@@ -1,0 +1,7 @@
+(gdb) c
+Continuing.
+input=123
+
+Breakpoint 2, main () at main.c:9
+9			scanf("%s", input);
+1: sum = 123

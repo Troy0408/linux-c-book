@@ -1,0 +1,1 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{segment}\BK{+w}{ }\BK{n}{s}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{p}{.}\BK{n}{start}\BK{p}{.}\BK{n}{x}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mf}{1.0}\BK{p}{,}\BK{+w}{ }\BK{p}{.}\BK{n}{end}\BK{p}{.}\BK{n}{x}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mf}{2.0}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}

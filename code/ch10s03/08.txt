@@ -1,0 +1,43 @@
+(gdb) delete breakpoints 
+Delete all breakpoints? (y or n) y
+(gdb) start
+Breakpoint 1 at 0x80483b5: file main.c, line 5.
+Starting program: /home/akaedu/main 
+main () at main.c:5
+5		int sum = 0, i = 0;
+(gdb) n
+9			sum = 0;
+(gdb) （直接回车）
+10			scanf("%s", input);
+(gdb) （直接回车）
+12345
+11			for (i = 0; input[i] != '\0'; i++)
+(gdb) watch input[5]
+Hardware watchpoint 2: input[5]
+(gdb) i watchpoints 
+Num     Type           Disp Enb Address    What
+2       hw watchpoint  keep y              input[5]
+(gdb) c
+Continuing.
+Hardware watchpoint 2: input[5]
+
+Old value = 0 '\0'
+New value = 1 '\001'
+0x0804840c in main () at main.c:11
+11			for (i = 0; input[i] != '\0'; i++)
+(gdb) c
+Continuing.
+Hardware watchpoint 2: input[5]
+
+Old value = 1 '\001'
+New value = 2 '\002'
+0x0804840c in main () at main.c:11
+11			for (i = 0; input[i] != '\0'; i++)
+(gdb) c
+Continuing.
+Hardware watchpoint 2: input[5]
+
+Old value = 2 '\002'
+New value = 3 '\003'
+0x0804840c in main () at main.c:11
+11			for (i = 0; input[i] != '\0'; i++)

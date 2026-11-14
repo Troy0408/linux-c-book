@@ -1,0 +1,6 @@
+\BK{n+nf}{main.o}\BK{o}{:}\BK{+w}{ }\BK{n}{main}.\BK{n}{c}
+\BK{+w}{	}\BK{k}{\BKZdl{}(}CC\BK{k}{)}\BK{+w}{ }\BK{k}{\BKZdl{}(}CFLAGS\BK{k}{)}\BK{+w}{ }\BK{k}{\BKZdl{}(}CPPFLAGS\BK{k}{)}\BK{+w}{ }\BKZhy{}c\BK{+w}{ }\BKZdl{}\BKZlt{}
+
+\BK{n+nv}{CC}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }gcc
+\BK{n+nv}{CFLAGS}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BKZhy{}O\BK{+w}{ }\BKZhy{}g
+\BK{err}{C}\BK{err}{P}\BK{err}{P}\BK{err}{F}\BK{err}{L}\BK{err}{A}\BK{err}{G}\BK{err}{S}\BK{+w}{ }\BK{err}{=}\BK{+w}{ }\BK{err}{\BKZhy{}}\BK{err}{I}\BK{err}{i}\BK{err}{n}\BK{err}{c}\BK{err}{l}\BK{err}{u}\BK{err}{d}\BK{err}{e}

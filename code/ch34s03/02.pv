@@ -1,0 +1,3 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+
+\BK{k+kt}{pid\BKZus{}t}\BK{+w}{ }\BK{n+nf}{setsid}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{;}

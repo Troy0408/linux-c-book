@@ -1,0 +1,3 @@
+$ ./a.out 1 > temp.foo
+$ cat temp.foo
+write only

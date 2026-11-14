@@ -1,0 +1,8 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{factorial}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{n}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{result}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{o}{=}\BK{+w}{ }\BK{n}{n}\BK{p}{;}\BK{+w}{ }\BK{o}{+}\BK{o}{+}\BK{n}{i}\BK{p}{)}
+\BK{+w}{		}\BK{n}{result}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{result}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{i}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{result}\BK{p}{;}
+\BK{p}{\BKZcb{}}

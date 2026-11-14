@@ -1,0 +1,5 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{fgetc}\BK{p}{(}\BK{k+kt}{FILE}\BK{+w}{ }\BK{o}{*}\BK{n}{stream}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{getchar}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{;}
+\BK{n}{返回值}\BK{err}{：}\BK{n}{成功返回读到的字节}\BK{err}{，}\BK{n}{出错或者读到文件末尾时返回EOF}

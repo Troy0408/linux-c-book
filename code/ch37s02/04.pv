@@ -1,0 +1,4 @@
+\BK{n}{bzero}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{servaddr}\BK{p}{,}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{servaddr}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{n}{servaddr}\BK{p}{.}\BK{n}{sin\BKZus{}family}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{AF\BKZus{}INET}\BK{p}{;}
+\BK{n}{servaddr}\BK{p}{.}\BK{n}{sin\BKZus{}addr}\BK{p}{.}\BK{n}{s\BKZus{}addr}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{htonl}\BK{p}{(}\BK{n}{INADDR\BKZus{}ANY}\BK{p}{)}\BK{p}{;}
+\BK{n}{servaddr}\BK{p}{.}\BK{n}{sin\BKZus{}port}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{htons}\BK{p}{(}\BK{n}{SERV\BKZus{}PORT}\BK{p}{)}\BK{p}{;}

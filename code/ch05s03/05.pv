@@ -1,0 +1,6 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{factorial}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{n}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{recurse}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{factorial}\BK{p}{(}\BK{n}{n}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{result}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{n}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{recurse}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{result}\BK{p}{;}
+\BK{p}{\BKZcb{}}

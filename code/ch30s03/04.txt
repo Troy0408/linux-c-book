@@ -1,0 +1,43 @@
+$ gcc main.c -g
+$ gdb a.out
+GNU gdb 6.8-debian
+Copyright (C) 2008 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i486-linux-gnu"...
+(gdb) l
+2	#include <unistd.h>
+3	#include <stdio.h>
+4	#include <stdlib.h>
+5	
+6	int main(void)
+7	{
+8		pid_t pid;
+9		char *message;
+10		int n;
+11		pid = fork();
+(gdb) 
+12		if(pid<0) {
+13			perror("fork failed");
+14			exit(1);
+15		}
+16		if(pid==0) {
+17			message = "This is the child\n";
+18			n = 6;
+19		} else {
+20			message = "This is the parent\n";
+21			n = 3;
+(gdb) b 17
+Breakpoint 1 at 0x8048481: file main.c, line 17.
+(gdb) set follow-fork-mode child
+(gdb) r
+Starting program: /home/akaedu/a.out 
+This is the parent
+[Switching to process 30725]
+
+Breakpoint 1, main () at main.c:17
+17			message = "This is the child\n";
+(gdb) This is the parent
+This is the parent

@@ -1,0 +1,12 @@
+$ gdb main
+...
+(gdb) r
+Starting program: /home/akaedu/main 
+123
+
+Program received signal SIGSEGV, Segmentation fault.
+0xb7e1404b in _IO_vfscanf () from /lib/tls/i686/cmov/libc.so.6
+(gdb) bt
+#0  0xb7e1404b in _IO_vfscanf () from /lib/tls/i686/cmov/libc.so.6
+#1  0xb7e1dd2b in scanf () from /lib/tls/i686/cmov/libc.so.6
+#2  0x0804839f in main () at main.c:6

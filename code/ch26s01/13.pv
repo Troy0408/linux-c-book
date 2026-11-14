@@ -1,0 +1,6 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{node}\BK{+w}{ }\BK{n}{tailsentinel}\BK{p}{;}
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{node}\BK{+w}{ }\BK{n}{headsentinel}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{tailsentinel}\BK{p}{\BKZcb{}}\BK{p}{;}
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{node}\BK{+w}{ }\BK{n}{tailsentinel}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{headsentinel}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{k}{static}\BK{+w}{ }\BK{n}{link}\BK{+w}{ }\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{headsentinel}\BK{p}{;}
+\BK{k}{static}\BK{+w}{ }\BK{n}{link}\BK{+w}{ }\BK{n}{tail}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{tailsentinel}\BK{p}{;}

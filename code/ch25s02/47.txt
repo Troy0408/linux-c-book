@@ -1,0 +1,5 @@
+$ cat /var/log/acpid
+[Sun Oct 26 08:44:46 2008] logfile reopened
+[Sun Oct 26 10:11:53 2008] exiting
+[Sun Oct 26 18:54:39 2008] starting up
+...

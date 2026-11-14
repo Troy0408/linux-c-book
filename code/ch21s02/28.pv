@@ -1,0 +1,3 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define sh(x) printf(\BKZdq{}n\BKZdq{} \BKZsh{}x \BKZdq{}=\BKZpc{}d, or \BKZpc{}d\BKZbs{}n\BKZdq{},n\BKZsh{}\BKZsh{}x,alt[x])}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define sub\BKZus{}z  26}
+\BK{n}{sh}\BK{p}{(}\BK{n}{sub\BKZus{}z}\BK{p}{)}

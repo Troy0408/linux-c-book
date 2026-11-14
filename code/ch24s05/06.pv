@@ -1,0 +1,29 @@
+\BK{c+cm}{/* main.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}generics.h\BKZdq{}}
+
+\BK{k}{typedef}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{name}\BK{p}{;}
+\BK{+w}{     }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{score}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{n}{student\BKZus{}t}\BK{p}{;}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{cmp\BKZus{}student}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{b}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{k}{if}\BK{p}{(}\BK{p}{(}\BK{p}{(}\BK{n}{student\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{n}{a}\BK{p}{)}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{score}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{p}{(}\BK{p}{(}\BK{n}{student\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{n}{b}\BK{p}{)}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{score}\BK{p}{)}
+\BK{+w}{	  }\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{     }\BK{k}{else}\BK{+w}{ }\BK{k}{if}\BK{p}{(}\BK{p}{(}\BK{p}{(}\BK{n}{student\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{n}{a}\BK{p}{)}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{score}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{p}{(}\BK{p}{(}\BK{n}{student\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{n}{b}\BK{p}{)}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{score}\BK{p}{)}
+\BK{+w}{	  }\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{+w}{     }\BK{k}{else}
+\BK{+w}{	  }\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}1}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{n}{student\BKZus{}t}\BK{+w}{ }\BK{n}{list}\BK{p}{[}\BK{l+m+mi}{4}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{p}{\BKZob{}}\BK{l+s}{\BKZdq{}}\BK{l+s}{Tom}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{68}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+s}{\BKZdq{}}\BK{l+s}{Jerry}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{72}\BK{p}{\BKZcb{}}\BK{p}{,}
+\BK{+w}{		       }\BK{p}{\BKZob{}}\BK{l+s}{\BKZdq{}}\BK{l+s}{Moby}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{60}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+s}{\BKZdq{}}\BK{l+s}{Kirby}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{89}\BK{p}{\BKZcb{}}\BK{p}{\BKZcb{}}\BK{p}{;}
+\BK{+w}{     }\BK{n}{student\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{plist}\BK{p}{[}\BK{l+m+mi}{4}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{o}{\BKZam{}}\BK{n}{list}\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{list}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{list}\BK{p}{[}\BK{l+m+mi}{2}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{list}\BK{p}{[}\BK{l+m+mi}{3}\BK{p}{]}\BK{p}{\BKZcb{}}\BK{p}{;}
+\BK{+w}{     }\BK{n}{student\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{pmax}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{max}\BK{p}{(}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{o}{*}\BK{p}{)}\BK{n}{plist}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{4}\BK{p}{,}\BK{+w}{ }\BK{n}{cmp\BKZus{}student}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}s gets the highest score \BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{pmax}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{name}\BK{p}{,}\BK{+w}{ }\BK{n}{pmax}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{score}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{     }\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

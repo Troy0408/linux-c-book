@@ -1,0 +1,5 @@
+(gdb) finish
+Run till exit from #0  add_range (low=1, high=10) at main.c:6
+0x080483c1 in main () at main.c:14
+14		result[0] = add_range(1, 10);
+Value returned is $2 = 55

@@ -1,0 +1,3 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{s}\BK{p}{;}
+\BK{k}{union}\BK{+w}{ }\BK{n+nc}{u}\BK{p}{;}
+\BK{k+kt}{char}\BK{+w}{ }\BK{n}{str}\BK{p}{[}\BK{p}{]}\BK{p}{;}

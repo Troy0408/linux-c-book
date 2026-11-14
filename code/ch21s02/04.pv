@@ -1,0 +1,5 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define device\BKZus{}init\BKZus{}wakeup(dev,val) \BKZbs{}}
+\BK{c+cp}{        do \BKZob{} \BKZbs{}}
+\BK{c+cp}{                device\BKZus{}can\BKZus{}wakeup(dev) = !!(val); \BKZbs{}}
+\BK{c+cp}{                device\BKZus{}set\BKZus{}wakeup\BKZus{}enable(dev,val); \BKZbs{}}
+\BK{c+cp}{        \BKZcb{} while(0)}

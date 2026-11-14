@@ -1,0 +1,7 @@
+	foo(2, 3);
+ 80483d5:	c7 44 24 04 03 00 00 	movl   $0x3,0x4(%esp)
+ 80483dc:	00 
+ 80483dd:	c7 04 24 02 00 00 00 	movl   $0x2,(%esp)
+ 80483e4:	e8 c1 ff ff ff       	call   80483aa <foo>
+	return 0;
+ 80483e9:	b8 00 00 00 00       	mov    $0x0,%eax

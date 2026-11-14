@@ -1,0 +1,1 @@
+$ gcc stack.o main.o -o main

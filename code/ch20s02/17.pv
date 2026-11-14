@@ -1,0 +1,2 @@
+\BK{k}{static}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{f}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* internal linkage */}
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{f}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* previous linkage */}

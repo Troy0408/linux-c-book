@@ -1,0 +1,16 @@
+$ gdb main
+...
+(gdb) start
+Breakpoint 1 at 0x80483b5: file main.c, line 5.
+Starting program: /home/akaedu/main 
+main () at main.c:5
+5		int sum = 0, i = 0;
+(gdb) n
+9			sum = 0;
+(gdb) （直接回车）
+10			scanf("%s", input);
+(gdb) （直接回车）
+12345
+11			for (i = 0; input[i] != '\0'; i++)
+(gdb) p input
+$1 = "12345"

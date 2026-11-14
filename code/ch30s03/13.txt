@@ -1,0 +1,2 @@
+$ ./wrapper file.txt
+THIS IS THE FILE, FILE.TXT, IT IS ALL LOWER CASE.

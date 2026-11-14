@@ -1,0 +1,6 @@
+\BK{k}{struct}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{a}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{short}\BK{+w}{ }\BK{n}{b}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{c}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{d}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{n}{\BKZus{}\BKZus{}attribute\BKZus{}\BKZus{}}\BK{p}{(}\BK{p}{(}\BK{n}{packed}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{n}{s}\BK{p}{;}

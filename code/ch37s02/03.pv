@@ -1,0 +1,1 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{bind}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{sockfd}\BK{p}{,}\BK{+w}{ }\BK{k}{const}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{n}{myaddr}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{socklen\BKZus{}t}\BK{+w}{ }\BK{n}{addrlen}\BK{p}{)}\BK{p}{;}

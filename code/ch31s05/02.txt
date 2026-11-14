@@ -1,0 +1,4 @@
+$ VAR=abc
+$ [ -d Desktop -a $VAR = 'abc' ]
+$ echo $?
+0

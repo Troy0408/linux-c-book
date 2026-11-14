@@ -1,0 +1,1 @@
+#define DEBUGP(format, ...) printk(format, ## __VA_ARGS__)

@@ -1,0 +1,3 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}pthread.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pthread\BKZus{}detach}\BK{p}{(}\BK{n}{pthread\BKZus{}t}\BK{+w}{ }\BK{n}{tid}\BK{p}{)}\BK{p}{;}

@@ -1,0 +1,3 @@
+s.start.t = RECTANGULAR;
+s.start.a = 1.0;
+s.start.b = 2.0;

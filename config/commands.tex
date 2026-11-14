@@ -1,0 +1,212 @@
+% HTML anchors name independent PDF destinations and carry printable page numbers.
+\makeatletter
+\newcommand{\BookAnchor}[1]{%
+  \@bsphack\begingroup
+  \def\@currentHref{#1}%
+  \Hy@raisedlink{\hyper@anchorstart{#1}\hyper@anchorend}%
+  \label{#1}\endgroup\@esphack}
+\makeatother
+
+\DeclareRobustCommand{\BookCode}[1]{{\ttfamily #1}}
+\DeclareRobustCommand{\BookSplit}{\allowbreak}
+\DeclareRobustCommand{\BookAddress}[1]{\nolinkurl{#1}}
+\DeclareRobustCommand{\BookQuoteChar}{\char34\relax}
+\DeclareRobustCommand{\BookSymbol}[1]{{\BookSymbolFont #1}}
+\pdfstringdefDisableCommands{%
+  \def\BookCode#1{#1}\def\BookSplit{}\def\BookSymbol#1{#1}\def\BookQuoteChar{"}}
+\newcommand{\BookFrontHeading}[1]{%
+  \chapter*{#1}\markboth{#1}{}\addcontentsline{toc}{chapter}{#1}}
+
+% Web-navigation links are suppressed in the ebook edition.
+\newcommand{\BookNav}[1]{}
+
+\newcommand{\BookImage}[2]{%
+  \includegraphics[width=#2\linewidth,height=.52\textheight,keepaspectratio]{#1}}
+\newcommand{\BookInlineImage}[1]{\includegraphics[height=1.25em,keepaspectratio]{#1}}
+\newcommand{\BookDisplayImage}[1]{%
+  \par\addvspace{6pt}%
+  \noindent\begin{minipage}{\linewidth}\centering
+  #1%
+  \end{minipage}\par\addvspace{6pt}}
+\newcommand{\BookFigure}[3]{%
+  \par\addvspace{9pt}%
+  \noindent\begin{minipage}{\linewidth}\centering
+  #3#2\par\captionof{figure}{#1}%
+  \end{minipage}\par\addvspace{9pt}}
+\newcommand{\BookTableTitle}[1]{\caption{#1}\\}
+\newcommand{\BookTableLabel}[1]{\noalign{\hbox{#1}}}
+\DeclareCaptionType{bookexample}[例][例目录]
+\counterwithin{bookexample}{chapter}
+\makeatletter
+\newif\ifBookAfterExample
+\newcommand{\BookHeadingBreak}[1]{%
+  \if@nobreak\else\Needspace{#1\baselineskip}\fi
+  \addpenalty\@secpenalty}
+\newif\ifBookDescFirst
+\newcommand{\BookDescItem}[1][]{%
+  \par
+  \ifBookDescFirst
+    \BookDescFirstfalse
+  \else
+    \addvspace{.45\baselineskip}%
+  \fi
+  \Needspace{4\baselineskip}%
+  {\parindent=0pt\parskip=0pt\raggedright\normalfont\sffamily\bfseries\color{BookInk}#1\par}%
+  \nopagebreak\vspace{3pt}\@nobreaktrue\@afterindenttrue\ignorespaces}
+\renewenvironment{description}{%
+  \par\addvspace{.4\baselineskip}%
+  \BookDescFirsttrue
+  \let\BookOrigItem\item
+  \let\item\BookDescItem
+}{%
+  \par\addvspace{.4\baselineskip}%
+}
+\AtBeginEnvironment{itemize}{\ifdefined\BookOrigItem\let\item\BookOrigItem\fi}
+\AtBeginEnvironment{enumerate}{\ifdefined\BookOrigItem\let\item\BookOrigItem\fi}
+\newcommand{\BookExampleTitle}[1]{%
+  \par\addvspace{6pt}%
+  \if@minipage\else\Needspace{9\baselineskip}\fi
+  \noindent\begin{minipage}{\linewidth}%
+  \captionsetup{justification=raggedright,singlelinecheck=false,skip=2pt}%
+  \captionof{bookexample}{#1}%
+  \end{minipage}\par\nopagebreak\vspace{2pt}\@nobreaktrue\BookAfterExampletrue}
+\newenvironment{BookExampleGraphic}{%
+  \par\addvspace{6pt}\noindent\begin{minipage}{\linewidth}\centering
+}{%
+  \end{minipage}\par\addvspace{6pt}%
+}
+\makeatother
+
+% Classic book sidebar / note box (subtle warm paper with top & bottom hairline rules)
+\newtcolorbox{BookNote}{%
+  breakable,
+  enhanced,
+  colback=BookNotePaper,
+  colframe=BookNotePaper,
+  boxrule=0pt,
+  arc=0pt,
+  borderline north={0.6pt}{0pt}{BookRuleDark},
+  borderline south={0.6pt}{0pt}{BookRuleDark},
+  left=10pt,
+  right=10pt,
+  top=8pt,
+  bottom=8pt,
+  before skip=9pt,
+  after skip=9pt,
+  fontupper=\small
+}
+\makeatletter
+\newcommand{\BookNoteTitle}[1]{%
+  \Needspace{4\baselineskip}%
+  \noindent{\sffamily\bfseries\color{BookAccent}#1}\par\nopagebreak\vspace{3pt}\@nobreaktrue}
+\makeatother
+
+\newif\ifBookInTable
+\makeatletter
+\newcolumntype{L}[1]{>{\begin{varwidth}[t]{#1}\RaggedRight\arraybackslash\let\\\tabularnewline}l<{\@finalstrut\@arstrutbox\end{varwidth}}}
+\newcolumntype{C}[1]{>{\begin{varwidth}[t]{#1}\Centering\arraybackslash\let\\\tabularnewline}c<{\@finalstrut\@arstrutbox\end{varwidth}}}
+\newcolumntype{R}[1]{>{\begin{varwidth}[t]{#1}\RaggedLeft\arraybackslash\let\\\tabularnewline}r<{\@finalstrut\@arstrutbox\end{varwidth}}}
+\makeatother
+\AtBeginEnvironment{longtable}{%
+  \BookInTabletrue
+  \hyphenpenalty=10000
+  \setlist{nosep,topsep=0pt,partopsep=0pt,itemsep=3pt,parsep=0pt,leftmargin=1.4em}%
+}
+\AtEndEnvironment{longtable}{\BookInTablefalse}
+
+\newenvironment{BookLiteral}{%
+  \ifBookInTable
+    \begingroup\setlength{\parskip}{0pt}\setlength{\parindent}{0pt}\raggedright
+  \else
+    \par\medskip\begingroup\small\setlength{\parskip}{0pt}%
+    \setlength{\parindent}{0pt}\raggedright
+  \fi
+}{%
+  \ifBookInTable
+    \endgroup
+  \else
+    \par\endgroup\medskip
+  \fi
+}
+\newcommand{\BookLiteralLine}[1]{\noindent\hangindent=1em\hangafter=1 #1\strut\par}
+\newcommand{\BookLicenseHeading}[1]{%
+  \par\Needspace{3\baselineskip}\medskip\noindent\textbf{\color{BookInk}#1}\par\nopagebreak}
+\newenvironment{BookLicense}{\par\setlength{\parindent}{0pt}\raggedright}{\par}
+
+% Code & terminal listing styling (clean editorial cards without thick colored stripes)
+\fvset{breaklines,breakanywhere,breaknonspaceingroup,breakautoindent,
+  breaksymbolleft={\tiny\ensuremath{\hookrightarrow}},fontsize=\small,
+  tabsize=8,obeytabs,frame=none,framesep=0pt,
+  xleftmargin=0pt,xrightmargin=0pt,
+  listparameters={\setlength{\topsep}{0pt}\setlength{\partopsep}{0pt}}}
+\renewcommand{\theFancyVerbLine}{\sffamily\color{BookMuted}\scriptsize\arabic{FancyVerbLine}}
+
+\newtcolorbox{BookCodeBox}{%
+  breakable,
+  enhanced,
+  colback=BookCodePaper,
+  colframe=BookLine,
+  boxrule=0.4pt,
+  arc=2pt,
+  left=9pt,
+  right=8pt,
+  top=6pt,
+  bottom=6pt,
+  before skip=5pt,
+  after skip=7pt
+}
+\newtcolorbox{BookTerminalBox}{%
+  breakable,
+  enhanced,
+  colback=BookTerminalPaper,
+  colframe=BookTerminalLine,
+  boxrule=0.4pt,
+  arc=2pt,
+  left=9pt,
+  right=8pt,
+  top=6pt,
+  bottom=6pt,
+  before skip=5pt,
+  after skip=7pt
+}
+
+\makeatletter
+\newcommand{\BookSource}[4]{%
+  \if@nobreak\else\ifBookAfterExample\else\Needspace{#3\baselineskip}\fi\fi
+  \BookAfterExamplefalse
+  \begin{BookCodeBox}%
+  \VerbatimInput[commandchars=\\\{\},#1]{#2}%
+  \end{BookCodeBox}}
+\newcommand{\BookTerminal}[3]{%
+  \if@nobreak\else\ifBookAfterExample\else\Needspace{#2\baselineskip}\fi\fi
+  \BookAfterExamplefalse
+  \begin{BookTerminalBox}%
+  \VerbatimInput{#1}%
+  \end{BookTerminalBox}}
+\input{config/syntax.generated}
+\VerbatimPygments{\BK}{\BK}
+\newcommand{\BookPlain}[3]{%
+  \if@nobreak\else\ifBookAfterExample\else\Needspace{#2\baselineskip}\fi\fi
+  \BookAfterExamplefalse
+  \begin{BookTerminalBox}%
+  \VerbatimInput{#1}%
+  \end{BookTerminalBox}}
+\makeatother
+\newcommand{\BookMathLine}[1]{\par\noindent\hfill\ensuremath{\displaystyle #1}\hfill\null\par}
+\newenvironment{BookBibliographyEntry}{%
+  \par\begingroup\setlength{\parindent}{0pt}\hangindent=1.2em
+}{\par\endgroup}
+
+\makeatletter
+\newcommand{\BookPart}[3]{%
+  \def\BookPartPageContents{\par#2}%
+  \part{#1}%
+  \let\BookPartPageContents\@empty}
+\let\BookPartPageContents\@empty
+\pretocmd{\@endpart}{\BookPartPageContents}{}{\PackageError{book}{Cannot place part navigation}{}}
+% Current longtable repackages the output box while closing a table.
+% Its terminal fill needs to stretch only, so it also survives a split.
+\patchcmd{\LT@output}{\copy\LT@foot\vss}{\copy\LT@foot\vfil}{}{}
+\patchcmd{\LT@output}{\copy\LT@foot\vss}{\copy\LT@foot\vfil}{}{}
+\makeatother
+\newcommand{\BookFootnoteBack}[1]{\hyperlink{#1}{\ensuremath{\hookleftarrow}}\enspace}

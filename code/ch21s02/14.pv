@@ -1,0 +1,2 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define STR(s) \BKZsh{} s}
+\BK{n}{STR}\BK{p}{(}\BK{n}{hello}\BK{+w}{ 	}\BK{n}{world}\BK{p}{)}

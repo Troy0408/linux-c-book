@@ -1,0 +1,3 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{push}\BK{p}{(}\BK{k+kt}{char}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{pop}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{is\BKZus{}empty}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{;}

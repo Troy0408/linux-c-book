@@ -1,0 +1,7 @@
+\BK{c+ch}{\BKZsh{}! /bin/sh}
+
+\BK{n+nv}{COUNTER}\BK{o}{=}\BK{l+m}{1}
+\BK{k}{while}\BK{+w}{ }\BK{o}{[}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}}\BK{n+nv}{\BKZdl{}COUNTER}\BK{l+s+s2}{\BKZdq{}}\BK{+w}{ }\BKZhy{}lt\BK{+w}{ }\BK{l+m}{10}\BK{+w}{ }\BK{o}{]}\BK{p}{;}\BK{+w}{ }\BK{k}{do}
+\BK{+w}{  }\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}Here we go again\BKZdq{}}
+\BK{+w}{  }\BK{n+nv}{COUNTER}\BK{o}{=}\BK{k}{\BKZdl{}((}\BK{n+nv}{\BKZdl{}COUNTER}\BK{o}{+}\BK{l+m}{1}\BK{k}{))}
+\BK{k}{done}

@@ -1,0 +1,2 @@
+$ gcc hihao.c
+$ od -tx1 a.out

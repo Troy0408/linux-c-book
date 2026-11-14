@@ -1,0 +1,6 @@
+$ ./a.out <<END
+> hello
+> hey
+> END
+hello
+hey

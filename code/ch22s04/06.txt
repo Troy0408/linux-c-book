@@ -1,0 +1,20 @@
+$ make
+Makefile:13: main.d: No such file or directory
+Makefile:13: stack.d: No such file or directory
+Makefile:13: maze.d: No such file or directory
+set -e; rm -f maze.d; \
+	cc -MM  maze.c > maze.d.$$; \
+	sed 's,\(maze\)\.o[ :]*,\1.o maze.d : ,g' < maze.d.$$ > maze.d; \
+	rm -f maze.d.$$
+set -e; rm -f stack.d; \
+	cc -MM  stack.c > stack.d.$$; \
+	sed 's,\(stack\)\.o[ :]*,\1.o stack.d : ,g' < stack.d.$$ > stack.d; \
+	rm -f stack.d.$$
+set -e; rm -f main.d; \
+	cc -MM  main.c > main.d.$$; \
+	sed 's,\(main\)\.o[ :]*,\1.o main.d : ,g' < main.d.$$ > main.d; \
+	rm -f main.d.$$
+cc    -c -o main.o main.c
+cc    -c -o stack.o stack.c
+cc    -c -o maze.o maze.c
+gcc main.o stack.o maze.o -o main

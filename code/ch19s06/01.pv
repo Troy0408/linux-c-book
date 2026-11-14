@@ -1,0 +1,18 @@
+\BK{c+cm}{/* artificial device registers */}
+\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{recv}\BK{p}{;}
+\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{send}\BK{p}{;}
+
+\BK{c+cm}{/* memory buffer */}
+\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{buf}\BK{p}{[}\BK{l+m+mi}{3}\BK{p}{]}\BK{p}{;}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{buf}\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{recv}\BK{p}{;}
+\BK{+w}{	}\BK{n}{buf}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{recv}\BK{p}{;}
+\BK{+w}{	}\BK{n}{buf}\BK{p}{[}\BK{l+m+mi}{2}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{recv}\BK{p}{;}
+\BK{+w}{	}\BK{n}{send}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{o}{\BKZti{}}\BK{n}{buf}\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{p}{;}
+\BK{+w}{	}\BK{n}{send}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{o}{\BKZti{}}\BK{n}{buf}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{;}
+\BK{+w}{	}\BK{n}{send}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{o}{\BKZti{}}\BK{n}{buf}\BK{p}{[}\BK{l+m+mi}{2}\BK{p}{]}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,3 @@
+\BK{k}{if}\BK{+w}{ }\BK{o}{[}\BK{+w}{ }\BKZhy{}f\BK{+w}{ }\BKZti{}/.bashrc\BK{+w}{ }\BK{o}{]}\BK{p}{;}\BK{+w}{ }\BK{k}{then}
+\BK{+w}{    }.\BK{+w}{ }\BKZti{}/.bashrc
+\BK{k}{fi}

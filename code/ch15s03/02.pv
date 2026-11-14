@@ -1,0 +1,2 @@
+\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{c1}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{255}\BK{p}{,}\BK{+w}{ }\BK{n}{c2}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{c1}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{c2}\BK{p}{;}

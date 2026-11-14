@@ -1,0 +1,37 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}sys/types.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}fcntl.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{argc}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{argv}\BK{p}{[}\BK{p}{]}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{val}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{argc}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{fputs}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{usage: a.out \BKZlt{}descriptor\BKZsh{}\BKZgt{}}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{stderr}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{p}{(}\BK{n}{val}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{fcntl}\BK{p}{(}\BK{n}{atoi}\BK{p}{(}\BK{n}{argv}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{)}\BK{p}{,}\BK{+w}{ }\BK{n}{F\BKZus{}GETFL}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{fcntl error for fd \BKZpc{}d}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{atoi}\BK{p}{(}\BK{n}{argv}\BK{p}{[}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{switch}\BK{p}{(}\BK{n}{val}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{O\BKZus{}ACCMODE}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{case}\BK{+w}{ }\BK{n+no}{O\BKZus{}RDONLY}\BK{p}{:}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{read only}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{break}\BK{p}{;}
+\BK{+w}{	}\BK{k}{case}\BK{+w}{ }\BK{n+no}{O\BKZus{}WRONLY}\BK{p}{:}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{write only}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{break}\BK{p}{;}
+\BK{+w}{	}\BK{k}{case}\BK{+w}{ }\BK{n+no}{O\BKZus{}RDWR}\BK{p}{:}\BK{+w}{            }
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{read write}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{break}\BK{p}{;}
+\BK{+w}{	}\BK{k}{default}\BK{o}{:}
+\BK{+w}{		}\BK{n}{fputs}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{invalid access mode}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{stderr}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{exit}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{val}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{O\BKZus{}APPEND}\BK{p}{)}\BK{+w}{  }
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{, append}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{val}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{O\BKZus{}NONBLOCK}\BK{p}{)}\BK{+w}{           }
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{, nonblocking}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{putchar}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{\BKZbs{}n}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

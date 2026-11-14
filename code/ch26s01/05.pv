@@ -1,0 +1,8 @@
+\BK{n}{link}\BK{+w}{ }\BK{n+nf}{search}\BK{p}{(}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{key}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{;}\BK{+w}{ }\BK{n}{p}\BK{p}{;}\BK{+w}{ }\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{)}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{item}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{key}\BK{p}{)}
+\BK{+w}{			}\BK{k}{return}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,4 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifndef HEADER\BKZus{}FILENAME}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define HEADER\BKZus{}FILENAME}
+\BK{c+cm}{/* body of header */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

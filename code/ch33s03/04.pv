@@ -1,0 +1,28 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}signal.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{printsigset}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{sigset\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{set}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{l+m+mi}{32}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{sigismember}\BK{p}{(}\BK{n}{set}\BK{p}{,}\BK{+w}{ }\BK{n}{i}\BK{p}{)}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{)}
+\BK{+w}{			}\BK{n}{putchar}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{1}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{else}
+\BK{+w}{			}\BK{n}{putchar}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{0}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{puts}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{sigset\BKZus{}t}\BK{+w}{ }\BK{n}{s}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{+w}{	}\BK{n}{sigemptyset}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{s}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{sigaddset}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{s}\BK{p}{,}\BK{+w}{ }\BK{n}{SIGINT}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{sigprocmask}\BK{p}{(}\BK{n}{SIG\BKZus{}BLOCK}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{s}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{sigpending}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{p}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{printsigset}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{p}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{sleep}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

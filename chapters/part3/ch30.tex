@@ -1,0 +1,599 @@
+
+% https://akaedu.github.io/book/ch30.html
+
+\chapter{进程}
+\BookAnchor{db.ch30}\BookAnchor{db.ch30.id2865378}%
+
+
+\BookNav{\hyperlink{db.ch29s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt03}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch30s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch30s01.html
+
+\section{引言}
+\BookAnchor{db.ch30s01}\BookAnchor{db.ch30s01.id2865382}%
+我们知道，每个进程在内核中都有一个进程控制块（PCB）来维护进程相关的信息，Linux内核的进程控制块是\BookCode{task\_\BookSplit{}struct}结构体。现在我们全面了解一下其中都有哪些信息。
+
+
+\begin{itemize}
+
+\item 进程id。系统中每个进程有唯一的id，在C语言中用\BookCode{pid\_\BookSplit{}t}类型表示，其实就是一个非负整数。
+
+\item 进程的状态，有运行、挂起、停止、僵尸等状态。
+
+\item 进程切换时需要保存和恢复的一些CPU寄存器。
+
+\item 描述虚拟地址空间的信息。
+
+\item 描述控制终端的信息。
+
+\item 当前工作目录（Current Working Directory）\BookAnchor{db.ch30s01.id2865421}。
+
+\item \BookCode{umask}掩码。
+
+\item 文件描述符表，包含很多指向\BookCode{file}结构体的指针。
+
+\item 和信号相关的信息。
+
+\item 用户id和组id。
+
+\item 控制终端、Session和进程组。
+
+\item 进程可以使用的资源上限（Resource Limit）\BookAnchor{db.ch30s01.id2865469}。
+\end{itemize}
+
+
+目前读者并不需要理解这些信息的细节，在随后几章中讲到某一项时会再次提醒读者它是保存在PCB中的。
+
+
+
+\BookCode{fork}和\BookCode{exec}是本章要介绍的两个重要的系统调用。\BookCode{fork}的作用是根据一个现有的进程复制出一个新进程，原来的进程称为父进程（Parent Process）\BookAnchor{db.ch30s01.id2865505}，新进程称为子进程（Child Process）\BookAnchor{db.ch30s01.id2865513}。系统中同时运行着很多进程，这些进程都是从最初只有一个进程开始一个一个复制出来的。在Shell下输入命令可以运行一个程序，是因为Shell进程在读取用户输入的命令之后会调用\BookCode{fork}复制出一个新的Shell进程，然后新的Shell进程调用\BookCode{exec}执行新的程序。
+
+
+
+我们知道一个程序可以多次加载到内存，成为同时运行的多个进程，例如可以同时开多个终端窗口运行\BookCode{/\BookSplit{}bin/\BookSplit{}bash}，另一方面，一个进程在调用\BookCode{exec}前后也可以分别执行两个不同的程序，例如在Shell提示符下输入命令\BookCode{ls}，首先\BookCode{fork}创建子进程，这时子进程仍在执行\BookCode{/\BookSplit{}bin/\BookSplit{}bash}程序，然后子进程调用\BookCode{exec}执行新的程序\BookCode{/\BookSplit{}bin/\BookSplit{}ls}，如下图所示。
+
+
+\BookFigure{fork/exec}{\BookImage{images/process.forkexec.png}{0.374}}{\BookAnchor{db.ch30s01.id2865589}}
+
+
+在\hyperlink{db.ch28s03.id2851400}{第 3 节 “open/\BookSplit{}close”}中我们做过一个实验：用\BookCode{umask}命令设置Shell进程的\BookCode{umask}掩码，然后运行程序\BookCode{a.\BookSplit{}out}，结果\BookCode{a.\BookSplit{}out}进程的\BookCode{umask}掩码也和Shell进程一样。现在可以解释了，因为\BookCode{a.\BookSplit{}out}进程是Shell进程的子进程，子进程的PCB是根据父进程复制而来的，所以其中的\BookCode{umask}掩码也和父进程一样。同样道理，子进程的当前工作目录也和父进程一样，所以我们可以用\BookCode{cd}命令改变Shell进程的当前目录，然后用\BookCode{ls}命令列出那个目录下的文件，\BookCode{ls}进程其实是在列自己的当前目录，而不是Shell进程的当前目录，只不过\BookCode{ls}进程的当前目录正好和Shell进程相同。有一个例外，子进程PCB中的进程id和父进程是不同的。
+
+\BookNav{\hyperlink{db.ch30}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch30}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch30s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch30s02.html
+
+\section{环境变量}
+\BookAnchor{db.ch30s02}\BookAnchor{db.ch30s02.id2865687}%
+先前讲过，\BookCode{exec}系统调用执行新程序时会把命令行参数和环境变量表传递给\BookCode{main}函数，它们在整个进程地址空间中的位置如下图所示。
+
+
+\BookFigure{进程地址空间}{\BookImage{images/process.addressspace.png}{0.583}}{\BookAnchor{db.ch30s02.id2865714}}
+
+
+和命令行参数\BookCode{argv}类似，环境变量表也是一组字符串，如下图所示。
+
+
+\BookFigure{环境变量}{\BookImage{images/process.environ.png}{0.609}}{\BookAnchor{db.ch30s02.id2865738}}
+
+
+\BookCode{libc}中定义的全局变量\BookCode{environ}指向环境变量表，\BookCode{environ}没有包含在任何头文件中，所以在使用时要用\BookCode{extern}声明。例如：
+
+
+\BookExampleTitle{打印环境变量}\BookAnchor{db.ch30s02.id2865781}
+
+\BookSource{numbers=none}{code/ch30s02/01.pv}{9}{10}
+
+
+执行结果为
+
+
+\BookTerminal{code/ch30s02/02.txt}{8}{6}
+
+
+由于父进程在调用\BookCode{fork}创建子进程时会把自己的环境变量表也复制给子进程，所以\BookCode{a.\BookSplit{}out}打印的环境变量和Shell进程的环境变量是相同的。
+
+
+
+按照惯例，环境变量字符串都是\BookCode{name=\BookSplit{}value}这样的形式，大多数\BookCode{name}由大写字母加下划线组成，一般把\BookCode{name}的部分叫做环境变量，\BookCode{value}的部分则是环境变量的值。环境变量定义了进程的运行环境，一些比较重要的环境变量的含义如下：
+
+
+\begin{description}
+\item[{PATH}]
+
+
+可执行文件的搜索路径。\BookCode{ls}命令也是一个程序，执行它不需要提供完整的路径名\BookCode{/\BookSplit{}bin/\BookSplit{}ls}，然而通常我们执行当前目录下的程序\BookCode{a.\BookSplit{}out}却需要提供完整的路径名\BookCode{.\BookSplit{}/\BookSplit{}a.\BookSplit{}out}，这是因为\BookCode{PATH}环境变量的值里面包含了\BookCode{ls}命令所在的目录\BookCode{/\BookSplit{}bin}，却不包含\BookCode{a.\BookSplit{}out}所在的目录。\BookCode{PATH}环境变量的值可以包含多个目录，用\BookCode{:\BookSplit{}}号隔开。在Shell中用\BookCode{echo}命令可以查看这个环境变量的值：
+
+
+\BookTerminal{code/ch30s02/03.txt}{4}{2}
+\item[{SHELL}]
+
+
+当前Shell，它的值通常是\BookCode{/\BookSplit{}bin/\BookSplit{}bash}。
+
+\item[{TERM}]
+
+
+当前终端类型，在图形界面终端下它的值通常是\BookCode{xterm}，终端类型决定了一些程序的输出显示方式，比如图形界面终端可以显示汉字，而字符终端一般不行。
+
+\item[{LANG}]
+
+
+语言和locale，决定了字符编码以及时间、货币等信息的显示格式。
+
+\item[{HOME}]
+
+
+当前用户主目录的路径，很多程序需要在主目录下保存配置文件，使得每个用户在运行该程序时都有自己的一套配置。
+
+
+\end{description}
+
+
+用\BookCode{environ}指针可以查看所有环境变量字符串，但是不够方便，如果给出\BookCode{name}要在环境变量表中查找它对应的\BookCode{value}，可以用\BookCode{getenv}函数。
+
+
+\BookSource{numbers=none}{code/ch30s02/04.pv}{4}{2}
+
+
+\BookCode{getenv}的返回值是指向\BookCode{value}的指针，若未找到则为\BookCode{NULL}。
+
+
+
+修改环境变量可以用以下函数
+
+
+\BookSource{numbers=none}{code/ch30s02/05.pv}{6}{4}
+
+
+\BookCode{putenv}和\BookCode{setenv}函数若成功则返回为0，若出错则返回非0。
+
+
+
+\BookCode{setenv}将环境变量\BookCode{name}的值设置为\BookCode{value}。如果已存在环境变量\BookCode{name}，那么
+
+
+\begin{itemize}
+
+\item 若rewrite非0，则覆盖原来的定义；
+
+\item 若rewrite为0，则不覆盖原来的定义，也不返回错误。
+\end{itemize}
+
+
+\BookCode{unsetenv}删除\BookCode{name}的定义。即使\BookCode{name}没有定义也不返回错误。
+
+
+\BookExampleTitle{修改环境变量}\BookAnchor{db.ch30s02.id2866145}
+
+\BookSource{numbers=none}{code/ch30s02/06.pv}{9}{10}
+
+\BookTerminal{code/ch30s02/07.txt}{7}{5}
+
+
+可以看出，Shell进程的环境变量\BookCode{PATH}传给了\BookCode{a.\BookSplit{}out}，然后\BookCode{a.\BookSplit{}out}修改了\BookCode{PATH}的值，在\BookCode{a.\BookSplit{}out}中能打印出修改后的值，但在Shell进程中\BookCode{PATH}的值没变。父进程在创建子进程时会复制一份环境变量给子进程，但此后二者的环境变量互不影响。
+
+\BookNav{\hyperlink{db.ch30s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch30}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch30s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch30s03.html
+
+\section{进程控制}
+\BookAnchor{db.ch30s03}\BookAnchor{db.ch30s03.id2866208}%
+\subsection{fork函数}
+\BookAnchor{db.ch30s03.id2866212}%
+
+\BookSource{numbers=none}{code/ch30s03/01.pv}{6}{4}
+
+
+\BookCode{fork}调用失败则返回-1，调用成功的返回值见下面的解释。我们通过一个例子来理解\BookCode{fork}是怎样创建新进程的。
+
+
+\BookExampleTitle{fork}\BookAnchor{db.ch30s03.id2866242}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch30s03/02.pv}{9}{28}
+
+\BookTerminal{code/ch30s03/03.txt}{9}{10}
+
+
+这个程序的运行过程如下图所示。
+
+
+\BookFigure{fork}{\BookImage{images/process.fork.png}{0.891}}{\BookAnchor{db.ch30s03.id2866272}}
+
+\begin{enumerate}
+
+\item 父进程初始化。
+
+\item 父进程调用\BookCode{fork}，这是一个系统调用，因此进入内核。
+
+\item 内核根据父进程复制出一个子进程，父进程和子进程的PCB信息相同，用户态代码和数据也相同。因此，\emph{子进程现在的状态看起来和父进程一样，做完了初始化，刚调用了\BookCode{fork}进入内核，还没有从内核返回}。
+
+\item 现在有两个一模一样的进程看起来都调用了\BookCode{fork}进入内核等待从内核返回（实际上\BookCode{fork}只调用了一次），此外系统中还有很多别的进程也等待从内核返回。是父进程先返回还是子进程先返回，还是这两个进程都等待，先去调度执行别的进程，这都不一定，取决于内核的调度算法。
+
+\item 如果某个时刻父进程被调度执行了，从内核返回后就从\BookCode{fork}函数返回，保存在变量\BookCode{pid}中的返回值是子进程的id，是一个大于0的整数，因此执下面的\BookCode{else}分支，然后执行\BookCode{for}循环，打印\BookCode{\BookQuoteChar{}This is the p\BookSplit{}arent\textbackslash{}n\BookQuoteChar{}}三次之后终止。
+
+\item 如果某个时刻子进程被调度执行了，从内核返回后就从\BookCode{fork}函数返回，保存在变量\BookCode{pid}中的返回值是0，因此执行下面的\BookCode{if (\BookSplit{}pid =\BookSplit{}=\BookSplit{} 0)\BookSplit{}}分支，然后执行\BookCode{for}循环，打印\BookCode{\BookQuoteChar{}This is the c\BookSplit{}hild\textbackslash{}n\BookQuoteChar{}}六次之后终止。\BookCode{fork}调用把父进程的数据复制一份给子进程，但此后二者互不影响，在这个例子中，\BookCode{fork}调用之后父进程和子进程的变量\BookCode{message}和\BookCode{n}被赋予不同的值，互不影响。
+
+\item 父进程每打印一条消息就睡眠1秒，这时内核调度别的进程执行，在1秒这么长的间隙里（对于计算机来说1秒很长了）子进程很有可能被调度到。同样地，子进程每打印一条消息就睡眠1秒，在这1秒期间父进程也很有可能被调度到。所以程序运行的结果基本上是父子进程交替打印，但这也不是一定的，取决于系统中其它进程的运行情况和内核的调度算法，如果系统中其它进程非常繁忙则有可能观察到不同的结果。另外，读者也可以把\BookCode{sleep(\BookSplit{}1)\BookSplit{};\BookSplit{}}去掉看程序的运行结果如何。
+
+\item 这个程序是在Shell下运行的，因此Shell进程是父进程的父进程。父进程运行时Shell进程处于等待状态（\hyperlink{db.ch30s03.id2867242}{第 3.\BookSplit{}3 节 “wait和waitpid函数”}会讲到这种等待是怎么实现的），当父进程终止时Shell进程认为命令执行结束了，于是打印Shell提示符，而事实上子进程这时还没结束，所以子进程的消息打印到了Shell提示符后面。最后光标停在\BookCode{This is the ch\BookSplit{}ild}的下一行，这时用户仍然可以敲命令，即使命令不是紧跟在提示符后面，Shell也能正确读取。
+\end{enumerate}
+
+
+
+
+
+
+\BookCode{fork}函数的特点概括起来就是“调用一次，返回两次”，在父进程中调用一次，在父进程和子进程中各返回一次。从上图可以看出，一开始是一个控制流程，调用\BookCode{fork}之后发生了分叉，变成两个控制流程，这也就是“fork”（分叉）这个名字的由来了。子进程中\BookCode{fork}的返回值是0，而父进程中\BookCode{fork}的返回值则是子进程的id（从根本上说\BookCode{fork}是从内核返回的，内核自有办法让父进程和子进程返回不同的值），这样当\BookCode{fork}函数返回后，程序员可以根据返回值的不同让父进程和子进程执行不同的代码。
+
+
+
+\BookCode{fork}的返回值这样规定是有道理的。\BookCode{fork}在子进程中返回0，子进程仍可以调用\BookCode{getpid}函数得到自己的进程id，也可以调用\BookCode{getppid}函数得到父进程的id。在父进程中用\BookCode{getpid}可以得到自己的进程id，然而要想得到子进程的id，只有将\BookCode{fork}的返回值记录下来，别无它法。
+
+
+
+\BookCode{fork}的另一个特性是所有由父进程打开的描述符都被复制到子进程中。父、子进程中相同编号的文件描述符在内核中指向同一个\BookCode{file}结构体，也就是说，\BookCode{file}结构体的引用计数要增加。
+
+
+
+用\BookCode{gdb}调试多进程的程序会遇到困难，\BookCode{gdb}只能跟踪一个进程（默认是跟踪父进程），而不能同时跟踪多个进程，但可以设置\BookCode{gdb}在\BookCode{fork}之后跟踪父进程还是子进程。以上面的程序为例：
+
+
+\BookTerminal{code/ch30s03/04.txt}{9}{43}
+
+
+\BookCode{set follow-\BookSplit{}fork-\BookSplit{}mode child}命令设置\BookCode{gdb}在\BookCode{fork}之后跟踪子进程（\BookCode{set follow-\BookSplit{}fork-\BookSplit{}mode parent}则是跟踪父进程），然后用\BookCode{run}命令，看到的现象是父进程一直在运行，在\BookCode{(\BookSplit{}gdb)\BookSplit{}}提示符下打印消息，而子进程被先前设的断点打断了。
+
+
+\subsection{exec函数}
+\BookAnchor{db.ch30s03.id2866732}%
+
+
+用\BookCode{fork}创建子进程后执行的是和父进程相同的程序（但有可能执行不同的代码分支），子进程往往要调用一种\BookCode{exec}函数以执行另一个程序。当进程调用一种\BookCode{exec}函数时，该进程的用户空间代码和数据完全被新程序替换，从新程序的启动例程开始执行。调用\BookCode{exec}并不创建新进程，所以调用\BookCode{exec}前后该进程的id并未改变。
+
+
+
+其实有六种以\BookCode{exec}开头的函数，统称\BookCode{exec}函数：
+
+
+\BookSource{numbers=none}{code/ch30s03/05.pv}{9}{8}
+
+
+这些函数如果调用成功则加载新的程序从启动代码开始执行，不再返回，如果调用出错则返回-1，所以\BookCode{exec}函数只有出错的返回值而没有成功的返回值。
+
+
+
+这些函数原型看起来很容易混，但只要掌握了规律就很好记。不带字母p（表示path）的\BookCode{exec}函数第一个参数必须是程序的相对路径或绝对路径，例如\BookCode{\BookQuoteChar{}/\BookSplit{}bin/\BookSplit{}ls\BookQuoteChar{}}或\BookCode{\BookQuoteChar{}.\BookSplit{}/\BookSplit{}a.\BookSplit{}out\BookQuoteChar{}}，而不能是\BookCode{\BookQuoteChar{}ls\BookQuoteChar{}}或\BookCode{\BookQuoteChar{}a.\BookSplit{}out\BookQuoteChar{}}。对于带字母p的函数：
+
+
+\begin{itemize}
+
+\item 如果参数中包含/，则将其视为路径名。
+
+\item 否则视为不带路径的程序名，在\BookCode{PATH}环境变量的目录列表中搜索这个程序。
+\end{itemize}
+
+
+带有字母l（表示list）的\BookCode{exec}函数要求将新程序的每个命令行参数都当作一个参数传给它，命令行参数的个数是可变的，因此函数原型中有\BookCode{.\BookSplit{}.\BookSplit{}.\BookSplit{}}，\BookCode{.\BookSplit{}.\BookSplit{}.\BookSplit{}}中的最后一个可变参数应该是\BookCode{NULL}，起sentinel的作用。对于带有字母v（表示vector）的函数，则应该先构造一个指向各参数的指针数组，然后将该数组的首地址当作参数传给它，数组中的最后一个指针也应该是\BookCode{NULL}，就像\BookCode{main}函数的\BookCode{argv}参数或者环境变量表一样。
+
+
+
+对于以e（表示environment）结尾的\BookCode{exec}函数，可以把一份新的环境变量表传给它，其他\BookCode{exec}函数仍使用当前的环境变量表执行新程序。
+
+
+
+\BookCode{exec}调用举例如下：
+
+
+\BookSource{numbers=none}{code/ch30s03/06.pv}{9}{8}
+
+
+事实上，只有\BookCode{execve}是真正的系统调用，其它五个函数最终都调用\BookCode{execve}，所以\BookCode{execve}在man手册第2节，其它函数在man手册第3节。这些函数之间的关系如下图所示。
+
+
+\BookFigure{exec函数族}{\BookImage{images/process.exec.png}{0.700}}{\BookAnchor{db.ch30s03.id2866985}}
+
+
+一个完整的例子：
+
+
+\BookSource{numbers=none}{code/ch30s03/07.pv}{9}{9}
+
+
+执行此程序则得到：
+
+
+\BookTerminal{code/ch30s03/08.txt}{6}{4}
+
+
+由于\BookCode{exec}函数只有错误返回值，只要返回了一定是出错了，所以不需要判断它的返回值，直接在后面调用\BookCode{perror}即可。注意在调用\BookCode{execlp}时传了两个\BookCode{\BookQuoteChar{}ps\BookQuoteChar{}}参数，第一个\BookCode{\BookQuoteChar{}ps\BookQuoteChar{}}是程序名，\BookCode{execlp}函数要在\BookCode{PATH}环境变量中找到这个程序并执行它，而第二个\BookCode{\BookQuoteChar{}ps\BookQuoteChar{}}是第一个命令行参数，\BookCode{execlp}函数并不关心它的值，只是简单地把它传给\BookCode{ps}程序，\BookCode{ps}程序可以通过\BookCode{main}函数的\BookCode{argv[\BookSplit{}0]\BookSplit{}}取到这个参数。
+
+
+
+调用\BookCode{exec}后，原来打开的文件描述符仍然是打开的\BookAnchor{db.ch30s03.id2867112}\footnote[37]{\BookAnchor{db.ch30s03.ftn.id2867112}\BookFootnoteBack{db.ch30s03.id2867112}事实上，在每个文件描述符中有一个close-on-exec标志，如果该标志为1，则调用\BookCode{exec}时关闭这个文件描述符。该标志默认为0，可以用\BookCode{fcntl}函数将它置1，本书不讨论该标志为1的情况。}。利用这一点可以实现I/\BookSplit{}O重定向。先看一个简单的例子，把标准输入转成大写然后打印到标准输出：
+
+
+\BookExampleTitle{upper}\BookAnchor{db.ch30s03.id2867135}
+
+\BookSource{numbers=none}{code/ch30s03/09.pv}{9}{11}
+
+
+运行结果如下：
+
+
+\BookTerminal{code/ch30s03/10.txt}{7}{5}
+
+
+使用Shell重定向：
+
+
+\BookTerminal{code/ch30s03/11.txt}{6}{4}
+
+
+如果希望把待转换的文件名放在命令行参数中，而不是借助于输入重定向，我们可以利用\BookCode{upper}程序的现有功能，再写一个包装程序\BookCode{wrapper}。
+
+
+\BookExampleTitle{wrapper}\BookAnchor{db.ch30s03.id2867183}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch30s03/12.pv}{9}{24}
+
+
+\BookCode{wrapper}程序将命令行参数当作文件名打开，将标准输入重定向到这个文件，然后调用\BookCode{exec}执行\BookCode{upper}程序，这时原来打开的文件描述符仍然是打开的，\BookCode{upper}程序只负责从标准输入读入字符转成大写，并不关心标准输入对应的是文件还是终端。运行结果如下：
+
+
+\BookTerminal{code/ch30s03/13.txt}{4}{2}
+
+\subsection{wait和waitpid函数}
+\BookAnchor{db.ch30s03.id2867242}%
+
+
+一个进程在终止时会关闭所有文件描述符，释放在用户空间分配的内存，但它的PCB还保留着，内核在其中保存了一些信息：如果是正常终止则保存着退出状态，如果是异常终止则保存着导致该进程终止的信号是哪个。这个进程的父进程可以调用\BookCode{wait}或\BookCode{waitpid}获取这些信息，然后彻底清除掉这个进程。我们知道一个进程的退出状态可以在Shell中用特殊变量\BookCode{\$?}查看，因为Shell是它的父进程，当它终止时Shell调用\BookCode{wait}或\BookCode{waitpid}得到它的退出状态同时彻底清除掉这个进程。
+
+
+
+如果一个进程已经终止，但是它的父进程尚未调用\BookCode{wait}或\BookCode{waitpid}对它进行清理，这时的进程状态称为僵尸（Zombie）\BookAnchor{db.ch30s03.id2867311}进程。任何进程在刚终止时都是僵尸进程，正常情况下，僵尸进程都立刻被父进程清理了，为了观察到僵尸进程，我们自己写一个不正常的程序，父进程\BookCode{fork}出子进程，子进程终止，而父进程既不终止也不调用\BookCode{wait}清理子进程：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch30s03/14.pv}{9}{16}
+
+
+在后台运行这个程序，然后用\BookCode{ps}命令查看：
+
+
+\BookTerminal{code/ch30s03/15.txt}{9}{8}
+
+
+在\BookCode{.\BookSplit{}/\BookSplit{}a.\BookSplit{}out}命令后面加个\BookCode{\&}表示后台运行，Shell不等待这个进程终止就立刻打印提示符并等待用户输命令。现在Shell是位于前台的，用户在终端的输入会被Shell读取，后台进程是读不到终端输入的。第二条命令\BookCode{ps u}是在前台运行的，在此期间Shell进程和\BookCode{.\BookSplit{}/\BookSplit{}a.\BookSplit{}out}进程都在后台运行，等到\BookCode{ps u}命令结束时Shell进程又重新回到前台。在\hyperlink{db.ch33.id2883851}{第 33 章 \emph{信号}}和\hyperlink{db.ch34.id2890980}{第 34 章 \emph{终端、作业控制与守护进程}}将会进一步解释前台（Foreground）\BookAnchor{db.ch30s03.id2867418}和后台（Backgroud）\BookAnchor{db.ch30s03.id2867425}的概念。
+
+
+
+父进程的pid是6130，子进程是僵尸进程，pid是6131，\BookCode{ps}命令显示僵尸进程的状态为\BookCode{Z}，在命令行一栏还显示\BookCode{\textless{}defunct\textgreater{}}。
+
+
+
+如果一个父进程终止，而它的子进程还存在（这些子进程或者仍在运行，或者已经是僵尸进程了），则这些子进程的父进程改为\BookCode{init}进程。\BookCode{init}是系统中的一个特殊进程，通常程序文件是\BookCode{/\BookSplit{}sbin/\BookSplit{}init}，进程id是1，在系统启动时负责启动各种系统服务，之后就负责清理子进程，只要有子进程终止，\BookCode{init}就会调用\BookCode{wait}函数清理它。
+
+
+
+僵尸进程是不能用\BookCode{kill}命令清除掉的，因为\BookCode{kill}命令只是用来终止进程的，而僵尸进程已经终止了。思考一下，用什么办法可以清除掉僵尸进程？
+
+
+
+\BookCode{wait}和\BookCode{waitpid}函数的原型是：
+
+
+\BookSource{numbers=none}{code/ch30s03/16.pv}{7}{5}
+
+
+若调用成功则返回清理掉的子进程id，若调用出错则返回-1。父进程调用\BookCode{wait}或\BookCode{waitpid}时可能会：
+
+
+\begin{itemize}
+
+\item 阻塞（如果它的所有子进程都还在运行）。
+
+\item 带子进程的终止信息立即返回（如果一个子进程已终止，正等待父进程读取其终止信息）。
+
+\item 出错立即返回（如果它没有任何子进程）。
+\end{itemize}
+
+
+这两个函数的区别是：
+
+
+\begin{itemize}
+
+\item 如果父进程的所有子进程都还在运行，调用\BookCode{wait}将使父进程阻塞，而调用\BookCode{waitpid}时如果在\BookCode{options}参数中指定\BookCode{WNOHANG}可以使父进程不阻塞而立即返回0。
+
+\item \BookCode{wait}等待第一个终止的子进程，而\BookCode{waitpid}可以通过\BookCode{pid}参数指定等待哪一个子进程。
+\end{itemize}
+
+
+可见，调用\BookCode{wait}和\BookCode{waitpid}不仅可以获得子进程的终止信息，还可以使父进程阻塞等待子进程终止，起到进程间同步的作用。如果参数\BookCode{status}不是空指针，则子进程的终止信息通过这个参数传出，如果只是为了同步而不关心子进程的终止信息，可以将\BookCode{status}参数指定为\BookCode{NULL}。
+
+
+\BookExampleTitle{waitpid}\BookAnchor{db.ch30s03.process.waitpid}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch30s03/17.pv}{9}{31}
+
+
+子进程的终止信息在一个\BookCode{int}中包含了多个字段，用宏定义可以取出其中的每个字段：如果子进程是正常终止的，\BookCode{WIFEXITED}取出的字段值非零，\BookCode{WEXITSTATUS}取出的字段值就是子进程的退出状态；如果子进程是收到信号而异常终止的，\BookCode{WIFSIGNALED}取出的字段值非零，\BookCode{WTERMSIG}取出的字段值就是信号的编号。作为练习，请读者从头文件里查一下这些宏做了什么运算，是如何取出字段值的。
+
+
+\subsubsection*{习题}
+\BookAnchor{db.ch30s03.id2867747}%
+
+
+1、请读者修改\hyperlink{db.ch30s03.process.waitpid}{例 30.\BookSplit{}6 “waitpid”}的代码和实验条件，使它产生“Child terminated abnormally”的输出。
+
+\BookNav{\hyperlink{db.ch30s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch30}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch30s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch30s04.html
+
+\section{进程间通信}
+\BookAnchor{db.ch30s04}\BookAnchor{db.ch30s04.id2867770}%
+每个进程各自有不同的用户地址空间，任何一个进程的全局变量在另一个进程中都看不到，所以进程之间要交换数据必须通过内核，在内核中开辟一块缓冲区，进程1把数据从用户空间拷到内核缓冲区，进程2再从内核缓冲区把数据读走，内核提供的这种机制称为进程间通信（IPC，InterProcess Communication）\BookAnchor{db.ch30s04.id2867790}。如下图所示。
+
+
+\BookFigure{进程间通信}{\BookImage{images/process.ipc.png}{0.420}}{\BookAnchor{db.ch30s04.id2867799}}
+
+\subsection{管道}
+\BookAnchor{db.ch30s04.id2867812}%
+
+
+管道是一种最基本的IPC机制，由\BookCode{pipe}函数创建：
+
+
+\BookSource{numbers=none}{code/ch30s04/01.pv}{5}{3}
+
+
+调用\BookCode{pipe}函数时在内核中开辟一块缓冲区（称为管道）用于通信，它有一个读端一个写端，然后通过\BookCode{filedes}参数传出给用户程序两个文件描述符，\BookCode{filedes[\BookSplit{}0]\BookSplit{}}指向管道的读端，\BookCode{filedes[\BookSplit{}1]\BookSplit{}}指向管道的写端（很好记，就像0是标准输入1是标准输出一样）。所以管道在用户程序看起来就像一个打开的文件，通过\BookCode{read(\BookSplit{}filedes[\BookSplit{}0]\BookSplit{})\BookSplit{};\BookSplit{}}或者\BookCode{write(\BookSplit{}filedes[\BookSplit{}1]\BookSplit{})\BookSplit{};\BookSplit{}}向这个文件读写数据其实是在读写内核缓冲区。\BookCode{pipe}函数调用成功返回0，调用失败返回-1。
+
+
+
+开辟了管道之后如何实现两个进程间的通信呢？比如可以按下面的步骤通信。
+
+
+\BookFigure{管道}{\BookImage{images/process.pipe.png}{0.805}}{\BookAnchor{db.ch30s04.id2867888}}
+
+\begin{enumerate}
+
+\item 父进程调用\BookCode{pipe}开辟管道，得到两个文件描述符指向管道的两端。
+
+\item 父进程调用\BookCode{fork}创建子进程，那么子进程也有两个文件描述符指向同一管道。
+
+\item 父进程关闭管道读端，子进程关闭管道写端。父进程可以往管道里写，子进程可以从管道里读，管道是用环形队列实现的，数据从写端流入从读端流出，这样就实现了进程间通信。
+\end{enumerate}
+
+\BookExampleTitle{管道}\BookAnchor{db.ch30s04.id2867940}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch30s04/02.pv}{9}{30}
+
+
+使用管道有一些限制：
+
+
+\begin{itemize}
+
+\item 两个进程通过一个管道只能实现单向通信，比如上面的例子，父进程写子进程读，如果有时候也需要子进程写父进程读，就必须另开一个管道。请读者思考，如果只开一个管道，但是父进程不关闭读端，子进程也不关闭写端，双方都有读端和写端，为什么不能实现双向通信？
+
+\item 管道的读写端通过打开的文件描述符来传递，因此要通信的两个进程必须从它们的公共祖先那里继承管道文件描述符。上面的例子是父进程把文件描述符传给子进程之后父子进程之间通信，也可以父进程\BookCode{fork}两次，把文件描述符传给两个子进程，然后两个子进程之间通信，总之需要通过\BookCode{fork}传递文件描述符使两个进程都能访问同一管道，它们才能通信。
+\end{itemize}
+
+
+使用管道需要注意以下4种特殊情况（假设都是阻塞I/\BookSplit{}O操作，没有设置\BookCode{O\_\BookSplit{}NONBLOCK}标志）：
+
+
+\begin{enumerate}
+
+\item 如果所有指向管道写端的文件描述符都关闭了（管道写端的引用计数等于0），而仍然有进程从管道的读端读数据，那么管道中剩余的数据都被读取后，再次\BookCode{read}会返回0，就像读到文件末尾一样。
+
+\item 如果有指向管道写端的文件描述符没关闭（管道写端的引用计数大于0），而持有管道写端的进程也没有向管道中写数据，这时有进程从管道读端读数据，那么管道中剩余的数据都被读取后，再次\BookCode{read}会阻塞，直到管道中有数据可读了才读取数据并返回。
+
+\item 如果所有指向管道读端的文件描述符都关闭了（管道读端的引用计数等于0），这时有进程向管道的写端\BookCode{write}，那么该进程会收到信号\BookCode{SIGPIPE}，通常会导致进程异常终止。在\hyperlink{db.ch33.id2883851}{第 33 章 \emph{信号}}会讲到怎样使\BookCode{SIGPIPE}信号不终止进程。
+
+\item 如果有指向管道读端的文件描述符没关闭（管道读端的引用计数大于0），而持有管道读端的进程也没有从管道中读数据，这时有进程向管道写端写数据，那么在管道被写满时再次\BookCode{write}会阻塞，直到管道中有空位置了才写入数据并返回。
+\end{enumerate}
+
+
+管道的这四种特殊情况具有普遍意义。在\hyperlink{db.ch37.id2902803}{第 37 章 \emph{socket编程}}要讲的TCP socket也具有管道的这些特性。
+
+
+\subsubsection*{习题}
+\BookAnchor{db.ch30s04.id2868118}%
+
+
+1、在\hyperlink{db.ch30s04.id2867940}{例 30.\BookSplit{}7 “管道”}中，父进程只用到写端，因而把读端关闭，子进程只用到读端，因而把写端关闭，然后互相通信，不使用的读端或写端必须关闭，请读者想一想如果不关闭会有什么问题。
+
+
+
+2、请读者修改\hyperlink{db.ch30s04.id2867940}{例 30.\BookSplit{}7 “管道”}的代码和实验条件，验证我上面所说的四种特殊情况。
+
+
+\subsection{其它IPC机制}
+\BookAnchor{db.ch30s04.id2868153}%
+
+
+进程间通信必须通过内核提供的通道，而且必须有一种办法在进程中标识内核提供的某个通道，上一节讲的管道是用打开的文件描述符来标识的。如果要互相通信的几个进程没有从公共祖先那里继承文件描述符，它们怎么通信呢？内核提供一条通道不成问题，问题是如何标识这条通道才能使各进程都可以访问它？文件系统中的路径名是全局的，各进程都可以访问，因此可以用文件系统中的路径名来标识一个IPC通道。
+
+
+
+FIFO和UNIX Domain Socket这两种IPC机制都是利用文件系统中的特殊文件来标识的。可以用\BookCode{mkfifo}命令创建一个FIFO文件：
+
+
+\BookTerminal{code/ch30s04/03.txt}{5}{3}
+
+
+FIFO文件在磁盘上没有数据块，仅用来标识内核中的一条通道，各进程可以打开这个文件进行\BookCode{read}/\BookCode{write}，实际上是在读写内核通道（根本原因在于这个\BookCode{file}结构体所指向的\BookCode{read}、\BookCode{write}函数和常规文件不一样），这样就实现了进程间通信。UNIX Domain Socket和FIFO的原理类似，也需要一个特殊的socket文件来标识内核中的通道，例如\BookCode{/\BookSplit{}var/\BookSplit{}run}目录下有很多系统服务的socket文件：
+
+
+\BookTerminal{code/ch30s04/04.txt}{9}{9}
+
+
+文件类型s表示socket，这些文件在磁盘上也没有数据块。UNIX Domain Socket是目前最广泛使用的IPC机制，到后面讲socket编程时再详细介绍。
+
+
+
+现在把进程之间传递信息的各种途径（包括各种IPC机制）总结如下：
+
+
+\begin{itemize}
+
+\item 父进程通过\BookCode{fork}可以将打开文件的描述符传递给子进程
+
+\item 子进程结束时，父进程调用\BookCode{wait}可以得到子进程的终止信息
+
+\item 几个进程可以在文件系统中读写某个共享文件，也可以通过给文件加锁来实现进程间同步
+
+\item 进程之间互发信号，一般使用\BookCode{SIGUSR1}和\BookCode{SIGUSR2}实现用户自定义功能
+
+\item 管道
+
+\item FIFO
+
+\item mmap函数，几个进程可以映射同一内存区
+
+\item SYS V IPC，以前的SYS V UNIX系统实现的IPC机制，包括消息队列、信号量和共享内存，现在已经基本废弃
+
+\item UNIX Domain Socket，目前最广泛使用的IPC机制
+\end{itemize}
+
+\BookNav{\hyperlink{db.ch30s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch30}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch30s05}{下一页}}
+
+
+% https://akaedu.github.io/book/ch30s05.html
+
+\section{练习：实现简单的Shell}
+\BookAnchor{db.ch30s05}\BookAnchor{db.ch30s05.id2868354}%
+用讲过的各种C函数实现一个简单的交互式Shell，要求：
+
+
+
+1、给出提示符，让用户输入一行命令，识别程序名和参数并调用适当的\BookCode{exec}函数执行程序，待执行完成后再次给出提示符。
+
+
+
+2、识别和处理以下符号：
+
+
+\begin{itemize}
+
+\item 简单的标准输入输出重定向（\textless{}和\textgreater{}）：仿照\hyperlink{db.ch30s03.id2867183}{例 30.\BookSplit{}5 “wrapper”}，先\BookCode{dup2}然后\BookCode{exec}。
+
+\item 管道（|）：Shell进程先调用\BookCode{pipe}创建一对管道描述符，然后\BookCode{fork}出两个子进程，一个子进程关闭读端，调用\BookCode{dup2}把写端赋给标准输出，另一个子进程关闭写端，调用\BookCode{dup2}把读端赋给标准输入，两个子进程分别调用\BookCode{exec}执行程序，而Shell进程把管道的两端都关闭，调用\BookCode{wait}等待两个子进程终止。
+\end{itemize}
+
+
+你的程序应该可以处理以下命令：
+
+
+\begin{BookLiteral}
+\BookLiteralLine{○ls△-l△-R○\textgreater{}○file1○}
+\BookLiteralLine{○cat○\textless{}○file1○|○wc△-c○\textgreater{}○file1○}
+\BookLiteralLine{○表示零个或多个空格，△表示一个或多个空格}
+\end{BookLiteral}
+
+\BookNav{\hyperlink{db.ch30s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch30}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch31}{下一页}}

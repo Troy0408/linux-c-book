@@ -1,0 +1,19 @@
+\BK{n+nf}{all}\BK{o}{:}\BK{+w}{ }\BK{n}{main}
+
+\BK{n+nf}{main}\BK{o}{:}\BK{+w}{ }\BK{n}{main}.\BK{n}{o} \BK{n}{stack}.\BK{n}{o} \BK{n}{maze}.\BK{n}{o}
+\BK{+w}{	}gcc\BK{+w}{ }\BKZdl{}\BKZca{}\BK{+w}{ }\BKZhy{}o\BK{+w}{ }\BK{n+nv}{\BKZdl{}@}
+
+\BK{n+nf}{clean}\BK{o}{:}
+\BK{+w}{	}\BKZhy{}rm\BK{+w}{ }main\BK{+w}{ }*.o
+
+\BK{n+nf}{.PHONY}\BK{o}{:}\BK{+w}{ }\BK{n}{clean}
+
+\BK{n+nv}{sources}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }main.c\BK{+w}{ }stack.c\BK{+w}{ }maze.c
+
+\BK{c+cp}{include \BKZdl{}(sources:.c=.d)}
+
+\BK{n+nf}{\BKZpc{}.d}\BK{o}{:}\BK{+w}{ }\BKZpc{}.\BK{n}{c}
+\BK{+w}{	}\BK{n+nb}{set}\BK{+w}{ }\BKZhy{}e\BK{p}{;}\BK{+w}{ }rm\BK{+w}{ }\BKZhy{}f\BK{+w}{ }\BK{n+nv}{\BKZdl{}@}\BK{p}{;}\BK{+w}{ }\BK{l+s+se}{\BKZbs{}}
+\BK{+w}{	}\BK{k}{\BKZdl{}(}CC\BK{k}{)}\BK{+w}{ }\BKZhy{}MM\BK{+w}{ }\BK{k}{\BKZdl{}(}CPPFLAGS\BK{k}{)}\BK{+w}{ }\BKZdl{}\BKZlt{}\BK{+w}{ }\BKZgt{}\BK{+w}{ }\BK{n+nv}{\BKZdl{}@}.\BK{n+nv}{\BKZdl{}\BKZdl{}}\BK{n+nv}{\BKZdl{}\BKZdl{}}\BK{p}{;}\BK{+w}{ }\BK{l+s+se}{\BKZbs{}}
+\BK{+w}{	}sed\BK{+w}{ }\BK{l+s+s1}{\BKZsq{}s,\BKZbs{}(\BKZdl{}*\BKZbs{})\BKZbs{}.o[ :]*,\BKZbs{}1.o \BKZdl{}@ : ,g\BKZsq{}}\BK{+w}{ }\BKZlt{}\BK{+w}{ }\BK{n+nv}{\BKZdl{}@}.\BK{n+nv}{\BKZdl{}\BKZdl{}}\BK{n+nv}{\BKZdl{}\BKZdl{}}\BK{+w}{ }\BKZgt{}\BK{+w}{ }\BK{n+nv}{\BKZdl{}@}\BK{p}{;}\BK{+w}{ }\BK{l+s+se}{\BKZbs{}}
+\BK{+w}{	}\BK{err}{r}\BK{err}{m}\BK{+w}{ }\BK{err}{\BKZhy{}}\BK{err}{f}\BK{+w}{ }\BK{k}{\BKZdl{}@}\BK{err}{.}\BK{k}{\BKZdl{}\BKZdl{}}\BK{k}{\BKZdl{}\BKZdl{}}

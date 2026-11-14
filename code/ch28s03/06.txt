@@ -1,0 +1,9 @@
+$ umask 0
+$ touch file123
+$ rm file123 a.out
+$ touch file123
+$ ls -l file123
+-rw-rw-rw- 1 akaedu akaedu 0 2009-03-08 15:09 file123
+$ gcc main.c
+$ ls -l a.out
+-rwxrwxrwx 1 akaedu akaedu 6483 2009-03-08 15:09 a.out

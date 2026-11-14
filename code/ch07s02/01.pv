@@ -1,0 +1,25 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}math.h\BKZgt{}}
+
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x}\BK{p}{,}\BK{+w}{ }\BK{n}{y}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{k+kt}{double}\BK{+w}{ }\BK{n+nf}{real\BKZus{}part}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{z}\BK{p}{.}\BK{n}{x}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{double}\BK{+w}{ }\BK{n+nf}{img\BKZus{}part}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{z}\BK{p}{.}\BK{n}{y}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{double}\BK{+w}{ }\BK{n+nf}{magnitude}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{sqrt}\BK{p}{(}\BK{n}{z}\BK{p}{.}\BK{n}{x}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{z}\BK{p}{.}\BK{n}{x}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{z}\BK{p}{.}\BK{n}{y}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{z}\BK{p}{.}\BK{n}{y}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{double}\BK{+w}{ }\BK{n+nf}{angle}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{atan2}\BK{p}{(}\BK{n}{z}\BK{p}{.}\BK{n}{y}\BK{p}{,}\BK{+w}{ }\BK{n}{z}\BK{p}{.}\BK{n}{x}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

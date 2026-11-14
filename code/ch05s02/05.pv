@@ -1,0 +1,9 @@
+\BK{k+kt}{double}\BK{+w}{ }\BK{n+nf}{distance}\BK{p}{(}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x1}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{y1}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x2}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{y2}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{dx}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{x2}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{n}{x1}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{dy}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{y2}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{n}{y1}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{dsquared}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{dx}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{dx}\BK{+w}{ }\BK{o}{+}\BK{+w}{ }\BK{n}{dy}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{dy}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{dsquared is \BKZpc{}f}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{dsquared}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mf}{0.0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

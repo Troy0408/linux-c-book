@@ -1,0 +1,60 @@
+\BK{c+cm}{/**}
+\BK{c+cm}{ *      radix\BKZus{}tree\BKZus{}insert    \BKZhy{}    insert into a radix tree}
+\BK{c+cm}{ *      @root:          radix tree root}
+\BK{c+cm}{ *      @index:         index key}
+\BK{c+cm}{ *      @item:          item to insert}
+\BK{c+cm}{ *}
+\BK{c+cm}{ *      Insert an item into the radix tree at position @index.}
+\BK{c+cm}{ */}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{radix\BKZus{}tree\BKZus{}insert}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{radix\BKZus{}tree\BKZus{}root}\BK{+w}{ }\BK{o}{*}\BK{n}{root}\BK{p}{,}
+\BK{+w}{                        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{long}\BK{+w}{ }\BK{n}{index}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{item}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{        }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{radix\BKZus{}tree\BKZus{}node}\BK{+w}{ }\BK{o}{*}\BK{n}{node}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{,}\BK{+w}{ }\BK{o}{*}\BK{n}{slot}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{height}\BK{p}{,}\BK{+w}{ }\BK{n}{shift}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{offset}\BK{p}{;}
+\BK{+w}{        }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{error}\BK{p}{;}
+
+\BK{+w}{        }\BK{c+cm}{/* Make sure the tree is high enough.  */}
+\BK{+w}{        }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{p}{(}\BK{o}{!}\BK{n}{index}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{o}{!}\BK{n}{root}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{rnode}\BK{p}{)}\BK{+w}{ }\BK{o}{|}\BK{o}{|}
+\BK{+w}{                        }\BK{n}{index}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{n}{radix\BKZus{}tree\BKZus{}maxindex}\BK{p}{(}\BK{n}{root}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{height}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{                }\BK{n}{error}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{radix\BKZus{}tree\BKZus{}extend}\BK{p}{(}\BK{n}{root}\BK{p}{,}\BK{+w}{ }\BK{n}{index}\BK{p}{)}\BK{p}{;}
+\BK{+w}{                }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{error}\BK{p}{)}
+\BK{+w}{                        }\BK{k}{return}\BK{+w}{ }\BK{n}{error}\BK{p}{;}
+\BK{+w}{        }\BK{p}{\BKZcb{}}
+
+\BK{+w}{        }\BK{n}{slot}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{root}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{rnode}\BK{p}{;}
+\BK{+w}{        }\BK{n}{height}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{root}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{height}\BK{p}{;}
+\BK{+w}{        }\BK{n}{shift}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{(}\BK{n}{height}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{n}{RADIX\BKZus{}TREE\BKZus{}MAP\BKZus{}SHIFT}\BK{p}{;}
+
+\BK{+w}{        }\BK{n}{offset}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{                     }\BK{c+cm}{/* uninitialised var warning */}
+\BK{+w}{        }\BK{k}{do}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{                }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{slot}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{                        }\BK{c+cm}{/* Have to add a child node.  */}
+\BK{+w}{                        }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{o}{!}\BK{p}{(}\BK{n}{slot}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{radix\BKZus{}tree\BKZus{}node\BKZus{}alloc}\BK{p}{(}\BK{n}{root}\BK{p}{)}\BK{p}{)}\BK{p}{)}
+\BK{+w}{                                }\BK{k}{return}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{n}{ENOMEM}\BK{p}{;}
+\BK{+w}{                        }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{node}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{                                }\BK{n}{node}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{slots}\BK{p}{[}\BK{n}{offset}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{slot}\BK{p}{;}
+\BK{+w}{                                }\BK{n}{node}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{count}\BK{o}{+}\BK{o}{+}\BK{p}{;}
+\BK{+w}{                        }\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}
+\BK{+w}{                                }\BK{n}{root}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{rnode}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{slot}\BK{p}{;}
+\BK{+w}{                }\BK{p}{\BKZcb{}}
+
+\BK{+w}{                }\BK{c+cm}{/* Go a level down */}
+\BK{+w}{                }\BK{n}{offset}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{(}\BK{n}{index}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{n}{shift}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{RADIX\BKZus{}TREE\BKZus{}MAP\BKZus{}MASK}\BK{p}{;}
+\BK{+w}{                }\BK{n}{node}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{slot}\BK{p}{;}
+\BK{+w}{                }\BK{n}{slot}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{node}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{slots}\BK{p}{[}\BK{n}{offset}\BK{p}{]}\BK{p}{;}
+\BK{+w}{                }\BK{n}{shift}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{o}{=}\BK{+w}{ }\BK{n}{RADIX\BKZus{}TREE\BKZus{}MAP\BKZus{}SHIFT}\BK{p}{;}
+\BK{+w}{                }\BK{n}{height}\BK{o}{\BKZhy{}}\BK{o}{\BKZhy{}}\BK{p}{;}
+\BK{+w}{        }\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{height}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{        }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{slot}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}
+\BK{+w}{                }\BK{k}{return}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{n}{EEXIST}\BK{p}{;}
+
+\BK{+w}{        }\BK{n}{BUG\BKZus{}ON}\BK{p}{(}\BK{o}{!}\BK{n}{node}\BK{p}{)}\BK{p}{;}
+\BK{+w}{        }\BK{n}{node}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{count}\BK{o}{+}\BK{o}{+}\BK{p}{;}
+\BK{+w}{        }\BK{n}{node}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{slots}\BK{p}{[}\BK{n}{offset}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{item}\BK{p}{;}
+\BK{+w}{        }\BK{n}{BUG\BKZus{}ON}\BK{p}{(}\BK{n}{tag\BKZus{}get}\BK{p}{(}\BK{n}{node}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{n}{offset}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{        }\BK{n}{BUG\BKZus{}ON}\BK{p}{(}\BK{n}{tag\BKZus{}get}\BK{p}{(}\BK{n}{node}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{n}{offset}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{        }\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

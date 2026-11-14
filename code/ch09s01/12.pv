@@ -1,0 +1,11 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{       }\BK{err}{→}\BK{k+kt}{int}\BK{+w}{    }\BK{err}{→}\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{p}{;}
+\BK{+w}{       }\BK{err}{→}\BK{k+kt}{double}\BK{+w}{ }\BK{err}{→}\BK{n}{c}\BK{p}{;}
+
+\BK{+w}{       }\BK{err}{→}\BK{n}{语句组1}
+
+\BK{+w}{       }\BK{err}{→}\BK{n}{语句组2}
+
+\BK{+w}{       }\BK{err}{→}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

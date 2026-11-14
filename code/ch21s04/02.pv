@@ -1,0 +1,10 @@
+\BK{c+cm}{/* xassert.c \BKZus{}Assert function */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{\BKZus{}Assert}\BK{p}{(}\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{mesg}\BK{p}{)}
+\BK{p}{\BKZob{}}\BK{+w}{		}\BK{c+cm}{/* print assertion message and abort */}
+\BK{+w}{	}\BK{n}{fputs}\BK{p}{(}\BK{n}{mesg}\BK{p}{,}\BK{+w}{ }\BK{n}{stderr}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{fputs}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{ \BKZhy{}\BKZhy{} assertion failed}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{stderr}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{abort}\BK{p}{(}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,4 @@
+$ ./a.out 
+11 and 0 hours
+$ echo $?
+4

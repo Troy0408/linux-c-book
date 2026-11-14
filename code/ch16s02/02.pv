@@ -1,0 +1,4 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{max}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{b}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{p}{(}\BK{n}{a}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{n}{b}\BK{p}{)}\BK{+w}{ }\BK{o}{?}\BK{+w}{ }\BK{n}{a}\BK{+w}{ }\BK{o}{:}\BK{+w}{ }\BK{n}{b}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,3 @@
+\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{p}{,}\BK{+w}{ }\BK{n}{mask}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mh}{0x0000ff00}\BK{p}{;}
+\BK{n}{a}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mh}{0x12345678}\BK{p}{;}
+\BK{n}{b}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{(}\BK{n}{a}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{mask}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{l+m+mi}{8}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* 0x00000056 */}

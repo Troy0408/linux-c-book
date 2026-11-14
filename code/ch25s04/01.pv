@@ -1,0 +1,5 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdlib.h\BKZgt{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{calloc}\BK{p}{(}\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{nmemb}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{size}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{realloc}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{ptr}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{size\BKZus{}t}\BK{+w}{ }\BK{n}{size}\BK{p}{)}\BK{p}{;}
+\BK{n}{返回值}\BK{err}{：}\BK{n}{成功返回所分配内存空间的首地址}\BK{err}{，}\BK{n}{出错返回NULL}

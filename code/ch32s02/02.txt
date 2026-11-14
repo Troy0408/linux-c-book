@@ -1,0 +1,4 @@
+$ egrep 'a*' testfile 
+aabc
+aad
+efg

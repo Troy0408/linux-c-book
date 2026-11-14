@@ -1,0 +1,7 @@
+(gdb) b 12
+Breakpoint 3 at 0x8048411: file main.c, line 12.
+(gdb) i breakpoints
+Num     Type           Disp Enb Address    What
+2       breakpoint     keep y   0x080483c3 in main at main.c:9
+	breakpoint already hit 1 time
+3       breakpoint     keep y   0x08048411 in main at main.c:12

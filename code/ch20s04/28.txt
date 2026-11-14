@@ -1,0 +1,4 @@
+$ sudo ldconfig
+$ ls -l libstack*
+lrwxrwxrwx 1 root    root       15 2009-01-21 17:52 libstack.so.1 -> libstack.so.1.0
+-rwxr-xr-x 1 akaedu  akaedu  10142 2009-01-21 17:49 libstack.so.1.0

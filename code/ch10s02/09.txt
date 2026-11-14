@@ -1,0 +1,4 @@
+(gdb) delete breakpoints 2
+(gdb) i breakpoints 
+Num     Type           Disp Enb Address    What
+3       breakpoint     keep y   0x08048411 in main at main.c:12

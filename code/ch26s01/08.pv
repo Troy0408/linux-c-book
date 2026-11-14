@@ -1,0 +1,4 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{node}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{item}\BK{p}{;}
+\BK{+w}{	}\BK{n}{link}\BK{+w}{ }\BK{n}{prev}\BK{p}{,}\BK{+w}{ }\BK{n}{next}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{p}{;}

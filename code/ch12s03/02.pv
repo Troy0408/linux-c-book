@@ -1,0 +1,95 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define MAX\BKZus{}ROW 5}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define MAX\BKZus{}COL 5}
+
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{point}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{row}\BK{p}{,}\BK{+w}{ }\BK{n}{col}\BK{p}{;}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{n}{stack}\BK{p}{[}\BK{l+m+mi}{512}\BK{p}{]}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{top}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{push}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{point}\BK{+w}{ }\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{stack}\BK{p}{[}\BK{n}{top}\BK{o}{+}\BK{o}{+}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{point}\BK{+w}{ }\BK{n}{pop}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{stack}\BK{p}{[}\BK{o}{\BKZhy{}}\BK{o}{\BKZhy{}}\BK{n}{top}\BK{p}{]}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{is\BKZus{}empty}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{top}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{maze}\BK{p}{[}\BK{n}{MAX\BKZus{}ROW}\BK{p}{]}\BK{p}{[}\BK{n}{MAX\BKZus{}COL}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{+w}{	}\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}
+\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{print\BKZus{}maze}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{,}\BK{+w}{ }\BK{n}{j}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{MAX\BKZus{}ROW}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{j}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}\BK{+w}{ }\BK{n}{j}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{MAX\BKZus{}COL}\BK{p}{;}\BK{+w}{ }\BK{n}{j}\BK{o}{+}\BK{o}{+}\BK{p}{)}
+\BK{+w}{			}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d }\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{maze}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{p}{[}\BK{n}{j}\BK{p}{]}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{putchar}\BK{p}{(}\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{\BKZbs{}n}\BK{l+s+sc}{\BKZsq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{*********}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{point}\BK{+w}{ }\BK{n}{predecessor}\BK{p}{[}\BK{n}{MAX\BKZus{}ROW}\BK{p}{]}\BK{p}{[}\BK{n}{MAX\BKZus{}COL}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{p}{\BKZob{}}\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{\BKZcb{}}\BK{p}{,}
+\BK{+w}{	}\BK{p}{\BKZob{}}\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{\BKZcb{}}\BK{p}{,}
+\BK{+w}{	}\BK{p}{\BKZob{}}\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{\BKZcb{}}\BK{p}{,}
+\BK{+w}{	}\BK{p}{\BKZob{}}\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{\BKZcb{}}\BK{p}{,}
+\BK{+w}{	}\BK{p}{\BKZob{}}\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{,}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{\BKZcb{}}\BK{p}{\BKZcb{}}\BK{p}{,}
+\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{visit}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{row}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{col}\BK{p}{,}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{point}\BK{+w}{ }\BK{n}{pre}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{point}\BK{+w}{ }\BK{n}{visit\BKZus{}point}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{n}{row}\BK{p}{,}\BK{+w}{ }\BK{n}{col}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}
+\BK{+w}{	}\BK{n}{maze}\BK{p}{[}\BK{n}{row}\BK{p}{]}\BK{p}{[}\BK{n}{col}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{;}
+\BK{+w}{	}\BK{n}{predecessor}\BK{p}{[}\BK{n}{row}\BK{p}{]}\BK{p}{[}\BK{n}{col}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{pre}\BK{p}{;}
+\BK{+w}{	}\BK{n}{push}\BK{p}{(}\BK{n}{visit\BKZus{}point}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{point}\BK{+w}{ }\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{p}{\BKZob{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{+w}{ }\BK{p}{\BKZcb{}}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{maze}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{p}{]}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{;}
+\BK{+w}{	}\BK{n}{push}\BK{p}{(}\BK{n}{p}\BK{p}{)}\BK{p}{;}\BK{+w}{	}
+\BK{+w}{	}
+\BK{+w}{	}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{o}{!}\BK{n}{is\BKZus{}empty}\BK{p}{(}\BK{p}{)}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{pop}\BK{p}{(}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{MAX\BKZus{}ROW}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{+w}{  }\BK{c+cm}{/* goal */}
+\BK{+w}{		    }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{MAX\BKZus{}COL}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{)}
+\BK{+w}{			}\BK{k}{break}\BK{p}{;}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{o}{+}\BK{l+m+mi}{1}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{MAX\BKZus{}COL}\BK{+w}{     }\BK{c+cm}{/* right */}
+\BK{+w}{		    }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{maze}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{p}{]}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{o}{+}\BK{l+m+mi}{1}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{			}\BK{n}{visit}\BK{p}{(}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{o}{+}\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{o}{+}\BK{l+m+mi}{1}\BK{+w}{ }\BK{o}{\BKZlt{}}\BK{+w}{ }\BK{n}{MAX\BKZus{}ROW}\BK{+w}{     }\BK{c+cm}{/* down */}
+\BK{+w}{		    }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{maze}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{o}{+}\BK{l+m+mi}{1}\BK{p}{]}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{			}\BK{n}{visit}\BK{p}{(}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{o}{+}\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{l+m+mi}{\BKZhy{}1}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{+w}{          }\BK{c+cm}{/* left */}
+\BK{+w}{		    }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{maze}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{p}{]}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{			}\BK{n}{visit}\BK{p}{(}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{l+m+mi}{\BKZhy{}1}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{+w}{          }\BK{c+cm}{/* up */}
+\BK{+w}{		    }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{maze}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{]}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{p}{]}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{			}\BK{n}{visit}\BK{p}{(}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{n}{print\BKZus{}maze}\BK{p}{(}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{MAX\BKZus{}ROW}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{o}{\BKZam{}}\BK{+w}{ }\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{MAX\BKZus{}COL}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{(\BKZpc{}d, \BKZpc{}d)}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{predecessor}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{p}{]}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{p}{]}\BK{p}{.}\BK{n}{row}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{			}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{predecessor}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{p}{]}\BK{p}{[}\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{p}{]}\BK{p}{;}
+\BK{+w}{			}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{(\BKZpc{}d, \BKZpc{}d)}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{.}\BK{n}{row}\BK{p}{,}\BK{+w}{ }\BK{n}{p}\BK{p}{.}\BK{n}{col}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{k}{else}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{No path!}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

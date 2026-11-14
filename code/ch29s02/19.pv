@@ -1,0 +1,7 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{dirent}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{ino\BKZus{}t}\BK{+w}{          }\BK{n}{d\BKZus{}ino}\BK{p}{;}\BK{+w}{       }\BK{c+cm}{/* inode number */}
+\BK{+w}{	}\BK{k+kt}{off\BKZus{}t}\BK{+w}{          }\BK{n}{d\BKZus{}off}\BK{p}{;}\BK{+w}{       }\BK{c+cm}{/* offset to the next dirent */}
+\BK{+w}{	}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{short}\BK{+w}{ }\BK{n}{d\BKZus{}reclen}\BK{p}{;}\BK{+w}{    }\BK{c+cm}{/* length of this record */}
+\BK{+w}{	}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{  }\BK{n}{d\BKZus{}type}\BK{p}{;}\BK{+w}{      }\BK{c+cm}{/* type of file */}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{           }\BK{n}{d\BKZus{}name}\BK{p}{[}\BK{l+m+mi}{256}\BK{p}{]}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* filename */}
+\BK{p}{\BKZcb{}}\BK{p}{;}

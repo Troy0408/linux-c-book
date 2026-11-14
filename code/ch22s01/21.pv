@@ -1,0 +1,6 @@
+\BK{n+nf}{clean}\BK{o}{:}
+\BK{+w}{	}@echo\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}cleanning project\BKZdq{}}
+\BK{+w}{	}\BKZhy{}rm\BK{+w}{ }main\BK{+w}{ }*.o
+\BK{+w}{	}@echo\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}clean completed\BKZdq{}}
+
+\BK{n+nf}{.PHONY}\BK{o}{:}\BK{+w}{ }\BK{n}{clean}

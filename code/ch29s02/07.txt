@@ -1,0 +1,21 @@
+$ mke2fs fs
+mke2fs 1.40.2 (12-Jul-2007)
+fs is not a block special device.
+Proceed anyway? (y,n) （输入y回车）
+Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+128 inodes, 1024 blocks
+51 blocks (4.98%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=1048576
+1 block group
+8192 blocks per group, 8192 fragments per group
+128 inodes per group
+
+Writing inode tables: done                            
+Writing superblocks and filesystem accounting information: done
+
+This filesystem will be automatically checked every 27 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.

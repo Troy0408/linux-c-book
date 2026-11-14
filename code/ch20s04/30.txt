@@ -1,0 +1,2 @@
+$ ln -s libstack.so.1.0 libstack.so
+$ gcc main.c -L. -lstack -Istack -o main

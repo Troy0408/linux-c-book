@@ -1,0 +1,2 @@
+$ gcc -c maze.c
+$ gcc main.o stack.o maze.o -o main

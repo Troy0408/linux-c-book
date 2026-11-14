@@ -1,0 +1,52 @@
+$ dumpe2fs fs
+dumpe2fs 1.40.2 (12-Jul-2007)
+Filesystem volume name:   <none>
+Last mounted on:          <not available>
+Filesystem UUID:          8e1f3b7a-4d1f-41dc-8928-526e43b2fd74
+Filesystem magic number:  0xEF53
+Filesystem revision #:    1 (dynamic)
+Filesystem features:      resize_inode dir_index filetype sparse_super
+Filesystem flags:         signed directory hash 
+Default mount options:    (none)
+Filesystem state:         clean
+Errors behavior:          Continue
+Filesystem OS type:       Linux
+Inode count:              128
+Block count:              1024
+Reserved block count:     51
+Free blocks:              986
+Free inodes:              117
+First block:              1
+Block size:               1024
+Fragment size:            1024
+Reserved GDT blocks:      3
+Blocks per group:         8192
+Fragments per group:      8192
+Inodes per group:         128
+Inode blocks per group:   16
+Filesystem created:       Sun Dec 16 14:56:59 2007
+Last mount time:          n/a
+Last write time:          Sun Dec 16 14:56:59 2007
+Mount count:              0
+Maximum mount count:      30
+Last checked:             Sun Dec 16 14:56:59 2007
+Check interval:           15552000 (6 months)
+Next check after:         Fri Jun 13 14:56:59 2008
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+First inode:              11
+Inode size:               128
+Default directory hash:   tea
+Directory Hash Seed:      6d0e58bd-b9db-41ae-92b3-4563a02a5981
+
+
+Group 0: (Blocks 1-1023)
+  Primary superblock at 1, Group descriptors at 2-2
+  Reserved GDT blocks at 3-5
+  Block bitmap at 6 (+5), Inode bitmap at 7 (+6)
+  Inode table at 8-23 (+7)
+  986 free blocks, 117 free inodes, 2 directories
+  Free blocks: 38-1023
+  Free inodes: 12-128
+
+128 inodes per group, 8 inodes per block, so: 16 blocks for inode table

@@ -1,0 +1,13 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{delete}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{link}\BK{+w}{ }\BK{n}{pre}\BK{p}{;}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{p}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{head}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{;}
+\BK{+w}{		}\BK{k}{return}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{pre}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{head}\BK{p}{;}\BK{+w}{ }\BK{n}{pre}\BK{p}{;}\BK{+w}{ }\BK{n}{pre}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{pre}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{)}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{pre}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{			}\BK{n}{pre}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{;}
+\BK{+w}{			}\BK{k}{return}\BK{p}{;}
+\BK{+w}{		}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}

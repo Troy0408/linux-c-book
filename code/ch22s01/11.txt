@@ -1,0 +1,5 @@
+$ make
+gcc -c main.c
+gcc -c stack.c
+gcc -c maze.c
+gcc main.o stack.o maze.o -o main

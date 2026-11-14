@@ -1,0 +1,11 @@
+(gdb) start
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+
+Breakpoint 2 at 0x80483ad: file main.c, line 14.
+Starting program: /home/akaedu/main 
+main () at main.c:14
+14		result[0] = add_range(1, 10);
+(gdb) s
+add_range (low=1, high=10) at main.c:6
+6		for (i = low; i <= high; i++)

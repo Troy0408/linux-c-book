@@ -1,0 +1,5 @@
+\BK{k}{typedef}\BK{+w}{ }\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{node}\BK{+w}{ }\BK{o}{*}\BK{n}{link}\BK{p}{;}
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{node}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{item}\BK{p}{;}
+\BK{+w}{	}\BK{n}{link}\BK{+w}{ }\BK{n}{l}\BK{p}{,}\BK{+w}{ }\BK{n}{r}\BK{p}{;}
+\BK{p}{\BKZcb{}}\BK{p}{;}

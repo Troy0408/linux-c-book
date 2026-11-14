@@ -1,0 +1,5 @@
+$ ps -o pid,ppid,pgrp,session,tpgid,comm | cat
+  PID  PPID  PGRP  SESS TPGID COMMAND
+ 6994  6989  6994  6994  8762 bash
+ 8762  6994  8762  6994  8762 ps
+ 8763  6994  8762  6994  8762 cat

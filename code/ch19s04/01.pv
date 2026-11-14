@@ -1,0 +1,19 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{argc}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{char}\BK{o}{*}\BK{o}{*}\BK{+w}{ }\BK{n}{argv}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{a}\BK{p}{;}
+\BK{+w}{		}\BK{k+kt}{short}\BK{+w}{ }\BK{n}{b}\BK{p}{;}
+\BK{+w}{		}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{c}\BK{p}{;}
+\BK{+w}{		}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{d}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}\BK{+w}{ }\BK{n}{s}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{s}\BK{p}{.}\BK{n}{a}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{1}\BK{p}{;}
+\BK{+w}{	}\BK{n}{s}\BK{p}{.}\BK{n}{b}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{2}\BK{p}{;}
+\BK{+w}{	}\BK{n}{s}\BK{p}{.}\BK{n}{c}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{3}\BK{p}{;}
+\BK{+w}{	}\BK{n}{s}\BK{p}{.}\BK{n}{d}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{4}\BK{p}{;}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}u}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{s}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

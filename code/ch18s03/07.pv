@@ -1,0 +1,3 @@
+\BK{n+nl}{start\BKZus{}loop:}
+\BK{+w}{ }\BK{n+nf}{cmpl}\BK{+w}{ }\BK{n+no}{\BKZdl{}0}\BK{p}{,}\BK{+w}{ }\BK{n+nv}{\BKZpc{}eax}
+\BK{+w}{ }\BK{n+nf}{je}\BK{+w}{ }\BK{n+no}{loop\BKZus{}exit}

@@ -1,0 +1,12 @@
+$ gdb main
+...
+(gdb) start
+Breakpoint 1 at 0x80484b5: file main.c, line 7.
+Starting program: /home/akaedu/somedir/main 
+main () at main.c:7
+7		push('a');
+(gdb) si
+0x080484bc	7		push('a');
+(gdb) si
+0x080483d8 in push@plt ()
+Current language:  auto; currently asm

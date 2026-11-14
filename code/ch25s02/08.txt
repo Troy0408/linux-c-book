@@ -1,0 +1,2 @@
+$ ls -l /dev/tty
+crw-rw-rw- 1 root dialout 5, 0 2009-03-20 19:31 /dev/tty

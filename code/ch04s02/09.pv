@@ -1,0 +1,6 @@
+\BK{k+kt}{double}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mf}{20.0}\BK{p}{;}
+\BK{k+kt}{double}\BK{+w}{ }\BK{n}{j}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{i}\BK{+w}{ }\BK{o}{/}\BK{+w}{ }\BK{l+m+mf}{7.0}\BK{p}{;}
+\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{j}\BK{+w}{ }\BK{o}{*}\BK{+w}{ }\BK{l+m+mf}{7.0}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{i}\BK{p}{)}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Equal.}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{k}{else}
+\BK{+w}{	}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{Unequal.}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}

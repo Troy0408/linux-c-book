@@ -1,0 +1,7 @@
+\BK{k+kt}{double}\BK{+w}{ }\BK{n+nf}{distance}\BK{p}{(}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x1}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{y1}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x2}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{y2}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{dx}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{x2}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{n}{x1}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{dy}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{y2}\BK{+w}{ }\BK{o}{\BKZhy{}}\BK{+w}{ }\BK{n}{y1}\BK{p}{;}
+\BK{+w}{	}\BK{c+cm}{/* printf(\BKZdq{}dx is \BKZpc{}f\BKZbs{}ndy is \BKZpc{}f\BKZbs{}n\BKZdq{}, dx, dy); */}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mf}{0.0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

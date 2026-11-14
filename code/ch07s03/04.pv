@@ -1,0 +1,17 @@
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{make\BKZus{}from\BKZus{}real\BKZus{}img}\BK{p}{(}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{x}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{y}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z}\BK{p}{;}
+\BK{+w}{	}\BK{n}{z}\BK{p}{.}\BK{n}{t}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{RECTANGULAR}\BK{p}{;}
+\BK{+w}{	}\BK{n}{z}\BK{p}{.}\BK{n}{a}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{x}\BK{p}{;}
+\BK{+w}{	}\BK{n}{z}\BK{p}{.}\BK{n}{b}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{y}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{z}\BK{p}{;}
+\BK{p}{\BKZcb{}}
+
+\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{make\BKZus{}from\BKZus{}mag\BKZus{}ang}\BK{p}{(}\BK{k+kt}{double}\BK{+w}{ }\BK{n}{r}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{double}\BK{+w}{ }\BK{n}{A}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{complex\BKZus{}struct}\BK{+w}{ }\BK{n}{z}\BK{p}{;}
+\BK{+w}{	}\BK{n}{z}\BK{p}{.}\BK{n}{t}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{POLAR}\BK{p}{;}
+\BK{+w}{	}\BK{n}{z}\BK{p}{.}\BK{n}{a}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{r}\BK{p}{;}
+\BK{+w}{	}\BK{n}{z}\BK{p}{.}\BK{n}{b}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{A}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{n}{z}\BK{p}{;}
+\BK{p}{\BKZcb{}}

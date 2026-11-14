@@ -1,0 +1,7 @@
+$ ./a.out 
+root
+x
+0
+root
+/root
+/bin/bash

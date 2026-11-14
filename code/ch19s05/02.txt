@@ -1,0 +1,5 @@
+__asm__(assembler template 
+	: output operands                  /* optional */
+	: input operands                   /* optional */
+	: list of clobbered registers      /* optional */
+	);

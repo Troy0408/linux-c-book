@@ -1,0 +1,8 @@
+\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{cliaddr\BKZus{}len}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{cliaddr}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{connfd}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{accept}\BK{p}{(}\BK{n}{listenfd}\BK{p}{,}\BK{+w}{ }
+\BK{+w}{			}\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{o}{\BKZam{}}\BK{n}{cliaddr}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{cliaddr\BKZus{}len}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{read}\BK{p}{(}\BK{n}{connfd}\BK{p}{,}\BK{+w}{ }\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{n}{MAXLINE}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{+w}{	}\BK{n}{close}\BK{p}{(}\BK{n}{connfd}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

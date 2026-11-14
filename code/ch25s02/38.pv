@@ -1,0 +1,8 @@
+\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{fgets}\BK{p}{(}\BK{n}{line}\BK{p}{,}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{line}\BK{p}{)}\BK{p}{,}\BK{+w}{ }\BK{n}{stdin}\BK{p}{)}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{sscanf}\BK{p}{(}\BK{n}{line}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d \BKZpc{}s \BKZpc{}d}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{day}\BK{p}{,}\BK{+w}{ }\BK{n}{monthname}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{year}\BK{p}{)}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{3}\BK{p}{)}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{valid: \BKZpc{}s}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{line}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* 25 Dec 1988 form */}
+\BK{+w}{	}\BK{k}{else}\BK{+w}{ }\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{sscanf}\BK{p}{(}\BK{n}{line}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}d/\BKZpc{}d/\BKZpc{}d}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{month}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{day}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{year}\BK{p}{)}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{3}\BK{p}{)}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{valid: \BKZpc{}s}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{line}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* mm/dd/yy form */}
+\BK{+w}{	}\BK{k}{else}
+\BK{+w}{		}\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{invalid: \BKZpc{}s}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{line}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* invalid form */}
+\BK{p}{\BKZcb{}}

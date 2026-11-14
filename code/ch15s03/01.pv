@@ -1,0 +1,2 @@
+\BK{k+kt}{char}\BK{+w}{ }\BK{n}{ch}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+s+sc}{\BKZsq{}}\BK{l+s+sc}{A}\BK{l+s+sc}{\BKZsq{}}\BK{p}{;}
+\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}c}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{ch}\BK{p}{)}\BK{p}{;}

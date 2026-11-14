@@ -1,0 +1,5 @@
+\BK{n}{link}\BK{+w}{ }\BK{n+nf}{init}\BK{p}{(}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{n}{elements}\BK{p}{[}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{n}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{pre\BKZus{}order}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{t}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{visit}\BK{p}{)}\BK{p}{(}\BK{n}{link}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{post\BKZus{}order}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{t}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{void}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{visit}\BK{p}{)}\BK{p}{(}\BK{n}{link}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{count}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{t}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{destroy}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{t}\BK{p}{)}\BK{p}{;}

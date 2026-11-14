@@ -1,0 +1,32 @@
+\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{mysleep}\BK{p}{(}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{nsecs}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sigaction}\BK{+w}{    }\BK{n}{newact}\BK{p}{,}\BK{+w}{ }\BK{n}{oldact}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{sigset\BKZus{}t}\BK{+w}{            }\BK{n}{newmask}\BK{p}{,}\BK{+w}{ }\BK{n}{oldmask}\BK{p}{,}\BK{+w}{ }\BK{n}{suspmask}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{unsigned}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{        }\BK{n}{unslept}\BK{p}{;}
+
+\BK{+w}{	}\BK{c+cm}{/* set our handler, save previous information */}
+\BK{+w}{	}\BK{n}{newact}\BK{p}{.}\BK{n}{sa\BKZus{}handler}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{sig\BKZus{}alrm}\BK{p}{;}
+\BK{+w}{	}\BK{n}{sigemptyset}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{newact}\BK{p}{.}\BK{n}{sa\BKZus{}mask}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{newact}\BK{p}{.}\BK{n}{sa\BKZus{}flags}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{+w}{	}\BK{n}{sigaction}\BK{p}{(}\BK{n}{SIGALRM}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{newact}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{oldact}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{c+cm}{/* block SIGALRM and save current signal mask */}
+\BK{+w}{	}\BK{n}{sigemptyset}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{newmask}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{sigaddset}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{newmask}\BK{p}{,}\BK{+w}{ }\BK{n}{SIGALRM}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{sigprocmask}\BK{p}{(}\BK{n}{SIG\BKZus{}BLOCK}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{newmask}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{oldmask}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{alarm}\BK{p}{(}\BK{n}{nsecs}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{suspmask}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{oldmask}\BK{p}{;}
+\BK{+w}{	}\BK{n}{sigdelset}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{suspmask}\BK{p}{,}\BK{+w}{ }\BK{n}{SIGALRM}\BK{p}{)}\BK{p}{;}\BK{+w}{    }\BK{c+cm}{/* make sure SIGALRM isn\BKZsq{}t blocked */}
+\BK{+w}{	}\BK{n}{sigsuspend}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{suspmask}\BK{p}{)}\BK{p}{;}\BK{+w}{            }\BK{c+cm}{/* wait for any signal to be caught */}
+
+\BK{+w}{	}\BK{c+cm}{/* some signal has been caught,   SIGALRM is now blocked */}
+
+\BK{+w}{	}\BK{n}{unslept}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{alarm}\BK{p}{(}\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{sigaction}\BK{p}{(}\BK{n}{SIGALRM}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{oldact}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}\BK{+w}{  }\BK{c+cm}{/* reset previous action */}
+
+\BK{+w}{	}\BK{c+cm}{/* reset signal mask, which unblocks SIGALRM */}
+\BK{+w}{	}\BK{n}{sigprocmask}\BK{p}{(}\BK{n}{SIG\BKZus{}SETMASK}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{oldmask}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{p}{(}\BK{n}{unslept}\BK{p}{)}\BK{p}{;}
+\BK{p}{\BKZcb{}}

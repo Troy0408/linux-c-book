@@ -1,0 +1,25 @@
+$ gcc -E main.c
+...（这里省略了很多行stdio.h和stdlib.h的代码）
+int a[20];
+
+void gen_random(int upper_bound)
+{
+ int i;
+ for (i = 0; i < 20; i++)
+  a[i] = rand() % upper_bound;
+}
+
+void print_random()
+{
+ int i;
+ for (i = 0; i < 20; i++)
+  printf("%d ", a[i]);
+ printf("\n");
+}
+
+int main(void)
+{
+ gen_random(10);
+ print_random();
+ return 0;
+}

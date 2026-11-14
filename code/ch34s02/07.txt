@@ -1,0 +1,14 @@
+$ ps
+  PID TTY          TIME CMD
+ 6994 pts/0    00:00:05 bash
+11022 pts/0    00:00:00 cat
+11023 pts/0    00:00:00 ps
+$ kill 11022
+$ ps
+  PID TTY          TIME CMD
+ 6994 pts/0    00:00:05 bash
+11022 pts/0    00:00:00 cat
+11024 pts/0    00:00:00 ps
+$ fg %1
+cat
+Terminated

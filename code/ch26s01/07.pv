@@ -1,0 +1,9 @@
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{delete}\BK{p}{(}\BK{n}{link}\BK{+w}{ }\BK{n}{p}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{n}{link}\BK{+w}{ }\BK{o}{*}\BK{n}{pnext}\BK{p}{;}
+\BK{+w}{	}\BK{k}{for}\BK{+w}{ }\BK{p}{(}\BK{n}{pnext}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{head}\BK{p}{;}\BK{+w}{ }\BK{o}{*}\BK{n}{pnext}\BK{p}{;}\BK{+w}{ }\BK{n}{pnext}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{p}{(}\BK{o}{*}\BK{n}{pnext}\BK{p}{)}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{)}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{o}{*}\BK{n}{pnext}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{			}\BK{o}{*}\BK{n}{pnext}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{p}\BK{o}{\BKZhy{}}\BK{o}{\BKZgt{}}\BK{n}{next}\BK{p}{;}
+\BK{+w}{			}\BK{k}{return}\BK{p}{;}
+\BK{+w}{		}\BK{p}{\BKZcb{}}
+\BK{p}{\BKZcb{}}

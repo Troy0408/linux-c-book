@@ -1,0 +1,13 @@
+\BK{c+cm}{/* main.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}redirect\BKZus{}ptr.h\BKZdq{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{firstday}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{;}
+\BK{+w}{     }\BK{k}{const}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{secondday}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{;}
+\BK{+w}{     }\BK{n}{get\BKZus{}a\BKZus{}day}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{firstday}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{n}{get\BKZus{}a\BKZus{}day}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{secondday}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{n}{printf}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{\BKZpc{}s}\BK{l+s+se}{\BKZbs{}t}\BK{l+s}{\BKZpc{}s}\BK{l+s+se}{\BKZbs{}n}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{n}{firstday}\BK{p}{,}\BK{+w}{ }\BK{n}{secondday}\BK{p}{)}\BK{p}{;}
+\BK{+w}{     }\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

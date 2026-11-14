@@ -1,0 +1,7 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}signal.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sigemptyset}\BK{p}{(}\BK{k+kt}{sigset\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{set}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sigfillset}\BK{p}{(}\BK{k+kt}{sigset\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{set}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sigaddset}\BK{p}{(}\BK{k+kt}{sigset\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{set}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{signo}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sigdelset}\BK{p}{(}\BK{k+kt}{sigset\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{set}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{signo}\BK{p}{)}\BK{p}{;}
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{sigismember}\BK{p}{(}\BK{k}{const}\BK{+w}{ }\BK{k+kt}{sigset\BKZus{}t}\BK{+w}{ }\BK{o}{*}\BK{n}{set}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{signo}\BK{p}{)}\BK{p}{;}

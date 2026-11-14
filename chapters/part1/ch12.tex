@@ -1,0 +1,213 @@
+
+% https://akaedu.github.io/book/ch12.html
+
+\chapter{栈与队列}
+\BookAnchor{db.ch12}\BookAnchor{db.ch12.id2749812}%
+
+
+\BookNav{\hyperlink{db.ch11s06}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt01}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch12s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch12s01.html
+
+\section{数据结构的概念}
+\BookAnchor{db.ch12s01}\BookAnchor{db.ch12s01.id2749824}%
+数据结构（Data Structure）\BookAnchor{db.ch12s01.id2749193}是数据的组织方式。程序中用到的数据都不是孤立的，而是有相互联系的，根据访问数据的需求不同，同样的数据可以有多种不同的组织方式。以前学过的复合类型也可以看作数据的组织方式，把同一类型的数据组织成数组，或者把描述同一对象的各成员组织成结构体。数据的组织方式包含了存储方式和访问方式这两层意思，二者是紧密联系的。例如，数组的各元素是一个挨一个存储的，并且每个元素的大小相同，因此数组可以提供按下标访问的方式，结构体的各成员也是一个挨一个存储的，但是每个成员的大小不同，所以只能用.运算符加成员名来访问，而不能按下标访问。
+
+
+
+本章主要介绍栈和队列这两种数据结构以及它们的应用。从本章的应用实例可以看出，一个问题中数据的存储方式和访问方式就决定了解决问题可以采用什么样的算法，要设计一个算法就要同时设计相应的数据结构来支持这种算法。所以Pascal语言的设计者Niklaus Wirth提出：\emph{算法+数据结构=程序}（详见\hyperlink{db.bi01.bibli.wirth}{[算法+数据结构=程序]}）。
+
+\BookNav{\hyperlink{db.ch12}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch12}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch12s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch12s02.html
+
+\section{堆栈}
+\BookAnchor{db.ch12s02}\BookAnchor{db.ch12s02.id2749855}%
+在\hyperlink{db.ch05s03.id2722951}{第 3 节 “递归”}中我们已经对堆栈这种数据结构有了初步认识。堆栈是一组元素的集合，类似于数组，不同之处在于，数组可以按下标随机访问，这次访问\BookCode{a[\BookSplit{}5]\BookSplit{}}下次可以访问\BookCode{a[\BookSplit{}1]\BookSplit{}}，但是堆栈的访问规则被限制为Push和Pop两种操作，Push（入栈或压栈）\BookAnchor{db.ch12s02.id2749888}向栈顶添加元素，Pop（出栈或弹出）\BookAnchor{db.ch12s02.id2749896}则取出当前栈顶的元素，也就是说，只能访问栈顶元素而不能访问栈中其它元素。如果所有元素的类型相同，堆栈的存储也可以用数组来实现，访问操作可以通过函数接口提供。看以下的示例程序。
+
+
+\BookExampleTitle{用堆栈实现倒序打印}\BookAnchor{db.ch12s02.id2749908}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch12s02/01.pv}{9}{32}
+
+
+运行结果是\BookCode{cba}。运行过程图示如下：
+
+
+\BookFigure{用堆栈实现倒序打印}{\BookImage{images/stackqueue.stack.png}{0.782}}{\BookAnchor{db.ch12s02.id2749936}}
+
+
+数组\BookCode{stack}是堆栈的存储空间，变量\BookCode{top}总是保存数组中栈顶的下一个元素的下标，我们说“\BookCode{top}总是指向栈顶的下一个元素”，或者把\BookCode{top}叫做栈顶指针（Pointer）\BookAnchor{db.ch12s02.id2749979}。在\hyperlink{db.ch11s02.id2745253}{第 2 节 “插入排序”}中介绍了Loop Invariant的概念，可以用它检验循环的正确性，这里的“\BookCode{top}总是指向栈顶的下一个元素”其实也是一种Invariant，Push和Pop操作总是维持这个条件不变，这种Invariant描述的对象是一个数据结构而不是一个循环，在DbC中称为Class Invariant\BookAnchor{db.ch12s02.id2750005}。Pop操作的语义是取出栈顶元素，但上例的实现其实并没有清除原来的栈顶元素，只是把\BookCode{top}指针移动了一下，原来的栈顶元素仍然存在那里，这就足够了，因为此后通过Push和Pop操作不可能再访问到已经取出的元素，下次Push操作就会覆盖它。\BookCode{putchar}函数的作用是把一个字符打印到屏幕上，和\BookCode{printf}的\BookCode{\%c}作用相同。布尔函数\BookCode{is\_\BookSplit{}empty}的作用是防止Pop操作访问越界。这里我们预留了足够大的栈空间（512个元素），其实严格来说Push操作之前也应该检查栈是否满了。
+
+
+
+在\BookCode{main}函数中，入栈的顺序是\BookCode{'a'}、\BookCode{'b'}、\BookCode{'c'}，而出栈打印的顺序却是\BookCode{'c'}、\BookCode{'b'}、\BookCode{'a'}，最后入栈的\BookCode{'c'}最早出来，因此堆栈这种数据结构的特点可以概括为LIFO（Last In First Out，后进先出）\BookAnchor{db.ch12s02.id2750103}。我们也可以写一个递归函数做倒序打印，利用函数调用的栈帧实现后进先出：
+
+
+\BookExampleTitle{用递归实现倒序打印}\BookAnchor{db.ch12s02.id2750113}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch12s02/02.pv}{9}{20}
+
+
+也许你会说，又是堆栈又是递归的，倒序打印一个数组犯得着这么大动干戈吗？写一个简单的循环不就行了：
+
+
+\BookSource{numbers=none}{code/ch12s02/03.pv}{4}{2}
+
+
+对于数组来说确实没必要搞这么复杂，因为数组既可以从前向后访问也可以从后向前访问，甚至可以随机访问，但有些数据结构的访问并没有这么自由，下一节你就会看到这样的数据结构。
+
+\BookNav{\hyperlink{db.ch12s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch12}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch12s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch12s03.html
+
+\section{深度优先搜索}
+\BookAnchor{db.ch12s03}\BookAnchor{db.ch12s03.id2750145}%
+现在我们用堆栈解决一个有意思的问题，定义一个二维数组：
+
+
+\BookSource{numbers=none}{code/ch12s03/01.pv}{9}{7}
+
+
+它表示一个迷宫，其中的1表示墙壁，0表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的路线。程序如下：
+
+
+\BookExampleTitle{用深度优先搜索解迷宫问题}\BookAnchor{db.ch12s03.id2750166}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch12s03/02.pv}{9}{95}
+
+
+运行结果如下：
+
+
+\BookTerminal{code/ch12s03/03.txt}{9}{109}
+
+
+这次堆栈里的元素是结构体类型的，用来表示迷宫中一个点的x和y座标。我们用一个新的数据结构保存走迷宫的路线，每个走过的点都有一个前趋（Predecessor）\BookAnchor{db.ch12s03.id2750190}点，表示是从哪儿走到当前点的，比如\BookCode{predecessor[\BookSplit{}4]\BookSplit{}[\BookSplit{}4]\BookSplit{}}是座标为(3, 4)的点，就表示从(3, 4)走到了(4, 4)，一开始\BookCode{predecessor}的各元素初始化为无效座标(-1, -1)。在迷宫中探索路线的同时就把路线保存在\BookCode{predecessor}数组中，已经走过的点在\BookCode{maze}数组中记为2防止重复走，最后找到终点时就根据\BookCode{predecessor}数组保存的路线从终点打印到起点。为了帮助理解，我把这个算法改写成伪代码（Pseudocode）\BookAnchor{db.ch12s03.id2749807}如下：
+
+
+\BookPlain{code/ch12s03/04.txt}{9}{17}
+
+
+我在\BookCode{while}循环的末尾插了打印语句，每探索一步都打印出当前迷宫的状态（标记了哪些点），从打印结果可以看出这种搜索算法的特点是：每次探索完各个方向相邻的点之后，取其中一个相邻的点走下去，一直走到无路可走了再退回来，取另一个相邻的点再走下去。这称为深度优先搜索（DFS，Depth First Search）\BookAnchor{db.ch12s03.id2749689}。探索迷宫和堆栈变化的过程如下图所示。
+
+
+\BookFigure{深度优先搜索}{\BookImage{images/stackqueue.dfs.png}{0.373}}{\BookAnchor{db.ch12s03.id2749722}}
+
+
+图中各点的编号表示探索顺序，堆栈中保存的应该是座标，我在画图时为了直观就把各点的编号写在堆栈里了。可见正是堆栈后进先出的性质使这个算法具有了深度优先的特点。如果在探索问题的解时走进了死胡同，则需要退回来从另一条路继续探索，这种思想称为回溯（Backtrack），一个典型的例子是很多编程书上都会讲的八皇后问题。
+
+
+
+最后我们打印终点的座标并通过\BookCode{predecessor}数据结构找到它的前趋，这样顺藤摸瓜一直打印到起点。那么能不能从起点到终点正向打印路线呢？在上一节我们看到，数组支持随机访问也支持顺序访问，如果在一个循环里打印数组，既可以正向打印也可以反向打印。但\BookCode{predecessor}这种数据结构却有很多限制：
+
+
+\begin{enumerate}
+
+\item 不能随机访问一条路线上的任意点，只能通过一个点找到另一个点，通过另一个点再找第三个点，因此只能顺序访问。
+
+\item 每个点只知道它的前趋是谁，而不知道它的后继（Successor）\BookAnchor{db.ch12s03.id2750541}是谁，所以只能反向顺序访问。
+\end{enumerate}
+
+
+可见，\emph{有什么样的数据结构就决定了可以用什么样的算法}。那为什么不再建一个\BookCode{successor}数组来保存每个点的后继呢？从DFS算法的过程可以看出，虽然每个点的前趋只有一个，后继却不止一个，如果我们为每个点只保存一个后继，则无法保证这个后继指向正确的路线。由此可见，\emph{有什么样的算法就决定了可以用什么样的数据结构}。设计算法和设计数据结构这两件工作是紧密联系的。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch12s03.id2750575}%
+
+
+1、修改本节的程序，要求从起点到终点正向打印路线。你能想到几种办法？
+
+
+
+2、本节程序中\BookCode{predecessor}这个数据结构占用的存储空间太多了，改变它的存储方式可以节省空间，想想该怎么改。
+
+
+
+3、上一节我们实现了一个基于堆栈的程序，然后改写成递归程序，用函数调用的栈帧替代自己实现的堆栈。本节的DFS算法也是基于堆栈的，请把它改写成递归程序，这样改写可以避免使用\BookCode{predecessor}数据结构，想想该怎么做。
+
+\BookNav{\hyperlink{db.ch12s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch12}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch12s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch12s04.html
+
+\section{队列与广度优先搜索}
+\BookAnchor{db.ch12s04}\BookAnchor{db.ch12s04.id2750621}%
+队列也是一组元素的集合，也提供两种基本操作：Enqueue（入队）\BookAnchor{db.ch12s04.id2750629}将元素添加到队尾，Dequeue（出队）\BookAnchor{db.ch12s04.id2750637}从队头取出元素并返回。就像排队买票一样，先来先服务，先入队的人也是先出队的，这种方式称为FIFO（First In First Out，先进先出）\BookAnchor{db.ch12s04.id2750647}，有时候队列本身也被称为FIFO。
+
+
+
+下面我们用队列解决迷宫问题。程序如下：
+
+
+\BookExampleTitle{用广度优先搜索解迷宫问题}\BookAnchor{db.ch12s04.id2750660}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch12s04/01.pv}{9}{86}
+
+
+运行结果如下：
+
+
+\BookTerminal{code/ch12s04/02.txt}{9}{105}
+
+
+其实仍然可以像\hyperlink{db.ch12s03.id2750166}{例 12.\BookSplit{}3 “用深度优先搜索解迷宫问题”}一样用\BookCode{predecessor}数组表示每个点的前趋，但我想换一种更方便的数据结构，直接在每个点的结构体中加一个成员表示前趋：
+
+
+\BookSource{numbers=none}{code/ch12s04/03.pv}{4}{2}
+
+
+变量\BookCode{head}和\BookCode{tail}是队头和队尾指针，\BookCode{head}总是指向队头，\BookCode{tail}总是指向队尾的下一个元素。每个点的\BookCode{predecessor}成员也是一个指针，指向它的前趋在\BookCode{queue}数组中的位置。如下图所示：
+
+
+\BookFigure{广度优先搜索的队列数据结构}{\BookImage{images/stackqueue.bfsqueue.png}{0.452}}{\BookAnchor{db.ch12s04.stackqueue.bfsqueue}}
+
+
+为了帮助理解，我把这个算法改写成伪代码如下：
+
+
+\BookPlain{code/ch12s04/04.txt}{9}{17}
+
+
+从打印的搜索过程可以看出，这个算法的特点是沿各个方向同时展开搜索，每个可以走通的方向轮流往前走一步，这称为广度优先搜索（BFS，Breadth First Search）\BookAnchor{db.ch12s04.id2750820}。探索迷宫和队列变化的过程如下图所示。
+
+
+\BookFigure{广度优先搜索}{\BookImage{images/stackqueue.bfs.png}{0.371}}{\BookAnchor{db.ch12s04.id2750839}}
+
+
+广度优先是一种步步为营的策略，每次都从各个方向探索一步，将前线推进一步，图中的虚线就表示这个前线，队列中的元素总是由前线的点组成的，可见正是队列先进先出的性质使这个算法具有了广度优先的特点。广度优先搜索还有一个特点是可以找到从起点到终点的最短路径，而深度优先搜索找到的不一定是最短路径，比较本节和上一节程序的运行结果可以看出这一点，想一想为什么。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch12s04.id2750872}%
+
+
+1、本节的例子直接在队列元素中加一个指针成员表示前趋，想一想为什么上一节的\hyperlink{db.ch12s03.id2750166}{例 12.\BookSplit{}3 “用深度优先搜索解迷宫问题”}不能采用这种方法表示前趋？
+
+
+
+2、本节例子中给队列分配的存储空间是512个元素，其实没必要这么多，那么解决这个问题至少要分配多少个元素的队列空间呢？跟什么因素有关？
+
+\BookNav{\hyperlink{db.ch12s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch12}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch12s05}{下一页}}
+
+
+% https://akaedu.github.io/book/ch12s05.html
+
+\section{环形队列}
+\BookAnchor{db.ch12s05}\BookAnchor{db.ch12s05.id2750902}%
+比较\hyperlink{db.ch12s03.id2750166}{例 12.\BookSplit{}3 “用深度优先搜索解迷宫问题”}的栈操作和\hyperlink{db.ch12s04.id2750660}{例 12.\BookSplit{}4 “用广度优先搜索解迷宫问题”}的队列操作可以发现，栈操作的\BookCode{top}指针在Push时增大而在Pop时减小，栈空间是可以重复利用的，而队列的\BookCode{head}、\BookCode{tail}指针都在一直增大，虽然前面的元素已经出队了，但它所占的存储空间却不能重复利用。在\hyperlink{db.ch12s04.id2750660}{例 12.\BookSplit{}4 “用广度优先搜索解迷宫问题”}的解法中，出队的元素仍然有用，保存着走过的路径和每个点的前趋，但大多数程序并不是这样使用队列的，一般情况下出队的元素就不再有保存价值了，这些元素的存储空间应该回收利用，由此想到把队列改造成环形队列（Circular Queue）\BookAnchor{db.ch12s05.id2750963}：把\BookCode{queue}数组想像成一个圈，\BookCode{head}和\BookCode{tail}指针仍然是一直增大的，当指到数组末尾时就自动回到数组开头，就像两个人围着操场赛跑，沿着它们跑的方向看，从\BookCode{head}到\BookCode{tail}之间是队列的有效元素，从\BookCode{tail}到\BookCode{head}之间是空的存储位置，如果\BookCode{head}追上\BookCode{tail}就表示队列空了，如果\BookCode{tail}追上\BookCode{head}就表示队列的存储空间满了。如下图所示：
+
+
+\BookFigure{环形队列}{\BookImage{images/stackqueue.circular.png}{0.482}}{\BookAnchor{db.ch12s05.id2751042}}
+
+\subsection*{习题}
+\BookAnchor{db.ch12s05.id2751055}%
+
+
+1、现在把迷宫问题的要求改一下，只要求程序给出最后结论就可以了，回答“有路能到达终点”或者“没有路能到达终点”，而不需要把路径打印出来。请把\hyperlink{db.ch12s04.id2750660}{例 12.\BookSplit{}4 “用广度优先搜索解迷宫问题”}改用环形队列实现，然后试验一下解决这个问题至少需要分配多少个元素的队列空间。
+
+\BookNav{\hyperlink{db.ch12s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch12}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch13}{下一页}}

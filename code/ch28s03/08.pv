@@ -1,0 +1,4 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{close}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{fd}\BK{p}{)}\BK{p}{;}
+\BK{n}{返回值}\BK{err}{：}\BK{n}{成功返回0}\BK{err}{，}\BK{n}{出错返回}\BK{l+m+mi}{\BKZhy{}1}\BK{n}{并设置errno}

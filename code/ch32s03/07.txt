@@ -1,0 +1,4 @@
+$ sed 's/bc/-&-/' testfile
+123
+a-bc-
+456

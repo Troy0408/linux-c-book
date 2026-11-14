@@ -1,0 +1,4 @@
+\BK{c+ch}{\BKZsh{}!/bin/sh}
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}Content\BKZhy{}Type: text/html\BKZdq{}}
+\BK{n+nb}{echo}
+\BK{n+nb}{echo}\BK{+w}{ }\BK{l+s+s2}{\BKZdq{}\BKZlt{}html\BKZgt{}\BKZlt{}body\BKZgt{}Hello world!\BKZlt{}/body\BKZgt{}\BKZlt{}/html\BKZgt{}\BKZdq{}}

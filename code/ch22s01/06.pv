@@ -1,0 +1,10 @@
+\BK{c+cm}{/* maze.h */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{ifndef MAZE\BKZus{}H}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define MAZE\BKZus{}H}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}main.h\BKZdq{}}\BK{c+c1}{ /* provides defintion for MAX\BKZus{}ROW and MAX\BKZus{}COL */}
+
+\BK{k}{extern}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{maze}\BK{p}{[}\BK{n}{MAX\BKZus{}ROW}\BK{p}{]}\BK{p}{[}\BK{n}{MAX\BKZus{}COL}\BK{p}{]}\BK{p}{;}
+\BK{k+kt}{void}\BK{+w}{ }\BK{n+nf}{print\BKZus{}maze}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}\BK{p}{;}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{endif}

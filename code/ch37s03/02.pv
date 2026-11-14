@@ -1,0 +1,40 @@
+\BK{c+cm}{/* client.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}stdio.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}string.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}unistd.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZlt{}netinet/in.h\BKZgt{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}wrap.h\BKZdq{}}
+
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define MAXLINE 80}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define SERV\BKZus{}PORT 8000}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{argc}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{char}\BK{+w}{ }\BK{o}{*}\BK{n}{argv}\BK{p}{[}\BK{p}{]}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr\BKZus{}in}\BK{+w}{ }\BK{n}{servaddr}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{int}\BK{+w}{ }\BK{n}{sockfd}\BK{p}{,}\BK{+w}{ }\BK{n}{n}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{buf}\BK{p}{[}\BK{n}{MAXLINE}\BK{p}{]}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{char}\BK{+w}{ }\BK{n}{str}\BK{p}{[}\BK{n}{INET\BKZus{}ADDRSTRLEN}\BK{p}{]}\BK{p}{;}
+\BK{+w}{	}\BK{k+kt}{socklen\BKZus{}t}\BK{+w}{ }\BK{n}{servaddr\BKZus{}len}\BK{p}{;}
+\BK{+w}{    }
+\BK{+w}{	}\BK{n}{sockfd}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{Socket}\BK{p}{(}\BK{n}{AF\BKZus{}INET}\BK{p}{,}\BK{+w}{ }\BK{n}{SOCK\BKZus{}DGRAM}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{n}{bzero}\BK{p}{(}\BK{o}{\BKZam{}}\BK{n}{servaddr}\BK{p}{,}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{servaddr}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{servaddr}\BK{p}{.}\BK{n}{sin\BKZus{}family}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{AF\BKZus{}INET}\BK{p}{;}
+\BK{+w}{	}\BK{n}{inet\BKZus{}pton}\BK{p}{(}\BK{n}{AF\BKZus{}INET}\BK{p}{,}\BK{+w}{ }\BK{l+s}{\BKZdq{}}\BK{l+s}{127.0.0.1}\BK{l+s}{\BKZdq{}}\BK{p}{,}\BK{+w}{ }\BK{o}{\BKZam{}}\BK{n}{servaddr}\BK{p}{.}\BK{n}{sin\BKZus{}addr}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{servaddr}\BK{p}{.}\BK{n}{sin\BKZus{}port}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{htons}\BK{p}{(}\BK{n}{SERV\BKZus{}PORT}\BK{p}{)}\BK{p}{;}
+\BK{+w}{    }
+\BK{+w}{	}\BK{k}{while}\BK{+w}{ }\BK{p}{(}\BK{n}{fgets}\BK{p}{(}\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{n}{MAXLINE}\BK{p}{,}\BK{+w}{ }\BK{n}{stdin}\BK{p}{)}\BK{+w}{ }\BK{o}{!}\BK{o}{=}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{		}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{sendto}\BK{p}{(}\BK{n}{sockfd}\BK{p}{,}\BK{+w}{ }\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{n}{strlen}\BK{p}{(}\BK{n}{buf}\BK{p}{)}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{p}{(}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{sockaddr}\BK{+w}{ }\BK{o}{*}\BK{p}{)}\BK{o}{\BKZam{}}\BK{n}{servaddr}\BK{p}{,}\BK{+w}{ }\BK{k}{sizeof}\BK{p}{(}\BK{n}{servaddr}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}
+\BK{+w}{			}\BK{n}{perr\BKZus{}exit}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{sendto error}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{		}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{recvfrom}\BK{p}{(}\BK{n}{sockfd}\BK{p}{,}\BK{+w}{ }\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{n}{MAXLINE}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{,}\BK{+w}{ }\BK{n+nb}{NULL}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}\BK{p}{;}
+\BK{+w}{		}\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{n}\BK{+w}{ }\BK{o}{=}\BK{o}{=}\BK{+w}{ }\BK{l+m+mi}{\BKZhy{}1}\BK{p}{)}
+\BK{+w}{			}\BK{n}{perr\BKZus{}exit}\BK{p}{(}\BK{l+s}{\BKZdq{}}\BK{l+s}{recvfrom error}\BK{l+s}{\BKZdq{}}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	  }
+\BK{+w}{		}\BK{n}{Write}\BK{p}{(}\BK{n}{STDOUT\BKZus{}FILENO}\BK{p}{,}\BK{+w}{ }\BK{n}{buf}\BK{p}{,}\BK{+w}{ }\BK{n}{n}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{p}{\BKZcb{}}
+
+\BK{+w}{	}\BK{n}{Close}\BK{p}{(}\BK{n}{sockfd}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

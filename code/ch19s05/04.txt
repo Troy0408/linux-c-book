@@ -1,0 +1,10 @@
+        __asm__("movl %1, %%eax\n\t"
+ 80483dc:       8b 55 f8                mov    -0x8(%ebp),%edx
+ 80483df:       89 d0                   mov    %edx,%eax
+ 80483e1:       89 c2                   mov    %eax,%edx
+ 80483e3:       89 55 f4                mov    %edx,-0xc(%ebp)
+                "movl %%eax, %0\n\t"
+                :"=r"(b)        /* output */
+                :"r"(a)         /* input */
+                :"%eax"         /* clobbered register */
+                );

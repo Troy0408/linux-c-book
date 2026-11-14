@@ -1,0 +1,1 @@
+$ as hello.s -o hello.o

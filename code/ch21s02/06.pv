@@ -1,0 +1,8 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define device\BKZus{}init\BKZus{}wakeup(dev,val) \BKZbs{}}
+\BK{c+cp}{                \BKZob{} device\BKZus{}can\BKZus{}wakeup(dev) = !!(val); \BKZbs{}}
+\BK{c+cp}{                device\BKZus{}set\BKZus{}wakeup\BKZus{}enable(dev,val); \BKZcb{}}
+
+\BK{k}{if}\BK{+w}{ }\BK{p}{(}\BK{n}{n}\BK{+w}{ }\BK{o}{\BKZgt{}}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{	}\BK{n}{device\BKZus{}init\BKZus{}wakeup}\BK{p}{(}\BK{n}{d}\BK{p}{,}\BK{+w}{ }\BK{n}{v}\BK{p}{)}\BK{p}{;}
+\BK{k}{else}
+\BK{+w}{	}\BK{k}{continue}\BK{p}{;}

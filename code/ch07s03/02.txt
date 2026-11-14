@@ -1,0 +1,1 @@
+enum coordinate_type { RECTANGULAR = 1, POLAR };

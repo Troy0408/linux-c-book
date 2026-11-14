@@ -1,0 +1,8 @@
+        s.a = 1;
+ 80483d5:       c6 45 f0 01             movb   $0x1,-0x10(%ebp)
+        s.b = 2;
+ 80483d9:       66 c7 45 f2 02 00       movw   $0x2,-0xe(%ebp)
+        s.c = 3;
+ 80483df:       c7 45 f4 03 00 00 00    movl   $0x3,-0xc(%ebp)
+        s.d = 4;
+ 80483e6:       c6 45 f8 04             movb   $0x4,-0x8(%ebp)

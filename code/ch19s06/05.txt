@@ -1,0 +1,18 @@
+        buf[0] = recv;
+ 80483a2:       0f b6 05 19 a0 04 08    movzbl 0x804a019,%eax
+ 80483a9:       a2 1a a0 04 08          mov    %al,0x804a01a
+        buf[1] = recv;
+ 80483ae:       0f b6 15 19 a0 04 08    movzbl 0x804a019,%edx
+ 80483b5:       88 15 1b a0 04 08       mov    %dl,0x804a01b
+        buf[2] = recv;
+ 80483bb:       0f b6 0d 19 a0 04 08    movzbl 0x804a019,%ecx
+ 80483c2:       88 0d 1c a0 04 08       mov    %cl,0x804a01c
+        send = ~buf[0];
+ 80483c8:       f7 d0                   not    %eax
+ 80483ca:       a2 18 a0 04 08          mov    %al,0x804a018
+        send = ~buf[1];
+ 80483cf:       f7 d2                   not    %edx
+ 80483d1:       88 15 18 a0 04 08       mov    %dl,0x804a018
+        send = ~buf[2];
+ 80483d7:       f7 d1                   not    %ecx
+ 80483d9:       88 0d 18 a0 04 08       mov    %cl,0x804a018

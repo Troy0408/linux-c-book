@@ -1,0 +1,7 @@
+\BK{p}{.}\BK{p}{.}\BK{p}{.}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}stack.h\BKZdq{}}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}stack.h\BKZdq{}}
+
+\BK{k+kt}{int}\BK{+w}{ }\BK{n}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{p}{.}\BK{p}{.}\BK{p}{.}

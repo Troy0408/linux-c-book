@@ -1,0 +1,1 @@
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{define offsetof(TYPE, MEMBER) ((int)\BKZam{}((TYPE *)0)\BKZhy{}\BKZgt{}MEMBER)}

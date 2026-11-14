@@ -1,0 +1,11 @@
+\BK{k+kt}{int}\BK{+w}{ }\BK{n+nf}{main}\BK{p}{(}\BK{k+kt}{void}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{rational}\BK{+w}{ }\BK{n}{a}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{make\BKZus{}rational}\BK{p}{(}\BK{l+m+mi}{1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{8}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* a=1/8 */}
+\BK{+w}{	}\BK{k}{struct}\BK{+w}{ }\BK{n+nc}{rational}\BK{+w}{ }\BK{n}{b}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{make\BKZus{}rational}\BK{p}{(}\BK{l+m+mi}{\BKZhy{}1}\BK{p}{,}\BK{+w}{ }\BK{l+m+mi}{8}\BK{p}{)}\BK{p}{;}\BK{+w}{ }\BK{c+cm}{/* b=\BKZhy{}1/8 */}
+\BK{+w}{	}\BK{n}{print\BKZus{}rational}\BK{p}{(}\BK{n}{add\BKZus{}rational}\BK{p}{(}\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{print\BKZus{}rational}\BK{p}{(}\BK{n}{sub\BKZus{}rational}\BK{p}{(}\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{print\BKZus{}rational}\BK{p}{(}\BK{n}{mul\BKZus{}rational}\BK{p}{(}\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+\BK{+w}{	}\BK{n}{print\BKZus{}rational}\BK{p}{(}\BK{n}{div\BKZus{}rational}\BK{p}{(}\BK{n}{a}\BK{p}{,}\BK{+w}{ }\BK{n}{b}\BK{p}{)}\BK{p}{)}\BK{p}{;}
+
+\BK{+w}{	}\BK{k}{return}\BK{+w}{ }\BK{l+m+mi}{0}\BK{p}{;}
+\BK{p}{\BKZcb{}}

@@ -1,0 +1,301 @@
+
+% https://akaedu.github.io/book/ch06.html
+
+\chapter{循环语句}
+\BookAnchor{db.ch06}\BookAnchor{db.ch06.id2726092}%
+
+
+\BookNav{\hyperlink{db.ch05s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.pt01}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06s01}{下一页}}
+
+
+% https://akaedu.github.io/book/ch06s01.html
+
+\section{while语句}
+\BookAnchor{db.ch06s01}\BookAnchor{db.ch06s01.id2726104}%
+在\hyperlink{db.ch05s03.id2722951}{第 3 节 “递归”}中，我们介绍了用递归求n!的方法，其实每次递归调用都在重复做同样一件事，就是把n乘到(n-1)!上然后把结果返回。虽说是重复，但每次做都稍微有一点区别（\BookCode{n}的值不一样），这种每次都有一点区别的重复工作称为迭代（Iteration）\BookAnchor{db.ch06s01.id2725493}。我们使用计算机的主要目的之一就是让它做重复迭代的工作，因为把一件工作重复做成千上万次而不出错正是计算机最擅长的，也是人类最不擅长的。虽然迭代用递归来做就够了，但C语言提供了循环语句使迭代程序写起来更方便。例如\BookCode{factorial}用\BookCode{while}语句可以写成：
+
+
+\BookSource{numbers=none}{code/ch06s01/01.pv}{9}{9}
+
+
+和\BookCode{if}语句类似，\BookCode{while}语句由一个控制表达式和一个子语句组成，子语句可以是由若干条语句组成的语句块。
+
+
+\begin{BookLiteral}
+\BookLiteralLine{语句 \BookSymbol{→} while (控制表达式) 语句}
+\end{BookLiteral}
+
+
+如果控制表达式的值为真，子语句就被执行，然后再次测试控制表达式的值，如果还是真，就把子语句再执行一遍，再测试控制表达式的值……这种控制流程称为循环（Loop）\BookAnchor{db.ch06s01.id2726166}，子语句称为循环体。如果某次测试控制表达式的值为假，就跳出循环执行后面的\BookCode{return}语句，如果第一次测试控制表达式的值就是假，那么直接跳到\BookCode{return}语句，循环体一次都不执行。
+
+
+
+变量\BookCode{result}在这个循环中的作用是累加器（Accumulator）\BookAnchor{db.ch06s01.id2726198}，把每次循环的中间结果累积起来，循环结束后得到的累积值就是最终结果，由于这个例子是用乘法来累积的，所以\BookCode{result}的初值是1，如果用加法累积则\BookCode{result}的初值应该是0。变量\BookCode{n}是循环变量（Loop Variable）\BookAnchor{db.ch06s01.id2726227}，每次循环要改变它的值，在控制表达式中要测试它的值，这两点合起来起到控制循环次数的作用，在这个例子中\BookCode{n}的值是递减的，也有些循环采用递增的循环变量。这个例子具有一定的典型性，累加器和循环变量这两种模式在循环中都很常见。
+
+
+
+可见，递归能解决的问题用循环也能解决，但解决问题的思路不一样。用递归解决这个问题靠的是递推关系n!=n·(n-1)!，用循环解决这个问题则更像是把这个公式展开了：n!=n·(n-1)·(n-2)·…·3·2·1。把公式展开了理解会更直观一些，所以有些时候循环程序比递归程序更容易理解。但也有一些公式要展开是非常复杂的甚至是不可能的，反倒是递推关系更直观一些，这种情况下递归程序比循环程序更容易理解。此外还有一点不同：看\hyperlink{db.ch05s03.id2723116}{图 5.\BookSplit{}2 “factorial(3)的调用过程”}，在整个递归调用过程中，虽然分配和释放了很多变量，但所有变量都只在初始化时赋值，没有任何变量的值发生过改变，而上面的循环程序则通过对\BookCode{n}和\BookCode{result}这两个变量多次赋值来达到同样的目的。前一种思路称为函数式编程（Functional Programming）\BookAnchor{db.ch06s01.id2726291}，而后一种思路称为命令式编程（Imperative Programming）\BookAnchor{db.ch06s01.id2726299}，这个区别类似于\hyperlink{db.intro.program}{第 1 节 “程序和编程语言”}讲的Declarative和Imperative的区别。函数式编程的“函数”类似于数学函数的概念，回顾一下\hyperlink{db.ch03s01.id2712397}{第 1 节 “数学函数”}所讲的，数学函数是没有Side Effect的，而C语言的函数可以有Side Effect，比如在一个函数中修改某个全局变量的值就是一种Side Effect。\hyperlink{db.ch03s04.id2714471}{第 4 节 “全局变量、局部变量和作用域”}指出，全局变量被多次赋值会给调试带来麻烦，如果一个函数体很长，控制流程很复杂，那么局部变量被多次赋值也会有同样的问题。因此，不要以为“变量可以多次赋值”是天经地义的，有很多编程语言可以完全采用函数式编程的模式，避免Side Effect，例如LISP、Haskell、Erlang等。用C语言编程主要还是采用Imperative的模式，但要记住，\emph{给变量多次赋值时要格外小心，在代码中多次读写同一变量应该以一种一致的方式进行}。所谓“一致的方式”是说应该有一套统一的规则，规定在一段代码中哪里会对某个变量赋值、哪里会读取它的值，比如在\hyperlink{db.ch25s02.id2830807}{第 2.\BookSplit{}4 节 “errno与perror函数”}会讲到访问\BookCode{errno}的规则。
+
+
+
+递归函数如果写得不小心就会变成无穷递归，同样道理，循环如果写得不小心就会变成无限循环（Infinite Loop）\BookAnchor{db.ch06s01.id2726376}或者叫死循环。如果\BookCode{while}语句的控制表达式永远为真就成了一个死循环，例如\BookCode{while (\BookSplit{}1)\BookSplit{} \{.\BookSplit{}.\BookSplit{}.\BookSplit{}\}}。在写循环时要小心检查你写的控制表达式有没有可能取值为假，除非你故意写死循环（有的时候这是必要的）。在上面的例子中，不管\BookCode{n}一开始是几，每次循环都会把\BookCode{n}减掉1，\BookCode{n}越来越小最后必然等于0，所以控制表达式最后必然取值为假，但如果把\BookCode{n =\BookSplit{} n -\BookSplit{} 1;\BookSplit{}}这句漏掉就成了死循环。有的时候是不是死循环并不是那么一目了然：
+
+
+\BookPlain{code/ch06s01/02.txt}{9}{7}
+
+
+如果\BookCode{n}为正整数，这个循环能跳出来吗？循环体所做的事情是：如果\BookCode{n}是偶数，就把\BookCode{n}除以2，如果\BookCode{n}是奇数，就把\BookCode{n}乘3加1。一般来说循环变量要么递增要么递减，可是这个例子中的\BookCode{n}一会儿变大一会儿变小，最终会不会变成1呢？可以找个数试试，例如一开始\BookCode{n}等于7，每次循环后\BookCode{n}的值依次是：7、22、11、34、17、52、26、13、40、20、10、5、16、8、4、2、1。最后\BookCode{n}确实等于1了。读者可以再试几个数都是如此，但无论试多少个数也不能代替证明，这个循环有没有可能对某些正整数\BookCode{n}是死循环呢？其实这个例子只是给读者提提兴趣，同时提醒读者写循环时要有意识地检查控制表达式。至于这个循环有没有可能是死循环，这是著名的3x+\BookSplit{}1问题，目前世界上还无人能证明。许多世界难题都是这样的：描述无比简单，连小学生都能看懂，但证明却无比困难。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch06s01.id2726515}%
+
+
+1、用循环解决\hyperlink{db.ch05s03.id2722951}{第 3 节 “递归”}的所有习题，体会递归和循环这两种不同的思路。
+
+
+
+2、编写程序数一下1到100的所有整数中出现多少次数字9。在写程序之前先把这些问题考虑清楚：
+
+
+\begin{enumerate}
+
+\item 这个问题中的循环变量是什么？
+
+\item 这个问题中的累加器是什么？用加法还是用乘法累积？
+
+\item 在\hyperlink{db.ch04s02.id2718511}{第 2 节 “if/\BookSplit{}else语句”}的习题1写过取一个整数的个位和十位的表达式，这两个表达式怎样用到程序中？
+\end{enumerate}
+
+\BookNav{\hyperlink{db.ch06}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06s02}{下一页}}
+
+
+% https://akaedu.github.io/book/ch06s02.html
+
+\section{do/while语句}
+\BookAnchor{db.ch06s02}\BookAnchor{db.ch06s02.id2726570}%
+\BookCode{do/\BookSplit{}while}语句的语法是：
+
+
+\begin{BookLiteral}
+\BookLiteralLine{语句 \BookSymbol{→} do 语句 while (控制表达式);}
+\end{BookLiteral}
+
+
+\BookCode{while}语句先测试控制表达式的值再执行循环体，而\BookCode{do/\BookSplit{}while}语句先执行循环体再测试控制表达式的值。如果控制表达式的值一开始就是假，\BookCode{while}语句的循环体一次都不执行，而\BookCode{do/\BookSplit{}while}语句的循环体仍然要执行一次再跳出循环。其实只要有\BookCode{while}循环就足够了，\BookCode{do/\BookSplit{}while}循环和后面要讲的\BookCode{for}循环都可以改写成\BookCode{while}循环，只不过有些情况下用\BookCode{do/\BookSplit{}while}或\BookCode{for}循环写起来更简便，代码更易读。上面的\BookCode{factorial}也可以改用\BookCode{do/\BookSplit{}while}循环来写：
+
+
+\BookSource{numbers=none}{code/ch06s02/01.pv}{9}{11}
+
+
+写循环一定要注意循环即将结束时控制表达式的临界条件是否准确，上面的循环结束条件如果写成\BookCode{i \textless{} n}就错了，当\BookCode{i =\BookSplit{}=\BookSplit{} n}时跳出循环，最后的结果中就少乘了一个\BookCode{n}。虽然变量名应该尽可能起得有意义一些，不过用\BookCode{i}、\BookCode{j}、\BookCode{k}给循环变量起名是很常见的。
+
+\BookNav{\hyperlink{db.ch06s01}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06s03}{下一页}}
+
+
+% https://akaedu.github.io/book/ch06s03.html
+
+\section{for语句}
+\BookAnchor{db.ch06s03}\BookAnchor{db.ch06s03.id2726720}%
+前两节我们在\BookCode{while}和\BookCode{do/\BookSplit{}while}循环中使用循环变量，其实使用循环变量最见的是\BookCode{for}循环这种形式。\BookCode{for}语句的语法是：
+
+
+\begin{BookLiteral}
+\BookLiteralLine{for (控制表达式1; 控制表达式2; 控制表达式3) 语句}
+\end{BookLiteral}
+
+
+如果不考虑循环体中包含\BookCode{continue}语句的情况（稍后介绍\BookCode{continue}语句），这个\BookCode{for}循环等价于下面的\BookCode{while}循环：
+
+
+\BookPlain{code/ch06s03/01.txt}{7}{5}
+
+
+从这种等价形式来看，控制表达式1和3都可以为空，但控制表达式2是必不可少的，例如\BookCode{for (\BookSplit{};\BookSplit{}1;\BookSplit{})\BookSplit{} \{.\BookSplit{}.\BookSplit{}.\BookSplit{}\}}等价于\BookCode{while (\BookSplit{}1)\BookSplit{} \{.\BookSplit{}.\BookSplit{}.\BookSplit{}\}}死循环。C语言规定，如果控制表达式2为空，则认为控制表达式2的值为真，因此死循环也可以写成\BookCode{for (\BookSplit{};\BookSplit{};\BookSplit{})\BookSplit{} \{.\BookSplit{}.\BookSplit{}.\BookSplit{}\}}。
+
+
+
+上一节\BookCode{do/\BookSplit{}while}循环的例子可以改写成\BookCode{for}循环：
+
+
+\BookSource{numbers=none}{code/ch06s03/02.pv}{9}{8}
+
+
+其中\BookCode{+\BookSplit{}+\BookSplit{}i}这个表达式相当于\BookCode{i =\BookSplit{} i +\BookSplit{} 1}\BookAnchor{db.ch06s03.id2726856}\footnote[9]{\BookAnchor{db.ch06s03.ftn.id2726856}\BookFootnoteBack{db.ch06s03.id2726856}这两种写法在语义上稍有区别，详见\hyperlink{db.ch16s02.id2762352}{第 2.\BookSplit{}1 节 “复合赋值运算符”}。}，++称为前缀自增运算符（Prefix Increment Operator）\BookAnchor{db.ch06s03.id2726869}，类似地，--称为前缀自减运算符（Prefix Decrement Operator）\BookAnchor{db.ch06s03.id2726877}\BookAnchor{db.ch06s03.id2726883}\footnote[10]{\BookAnchor{db.ch06s03.ftn.id2726883}\BookFootnoteBack{db.ch06s03.id2726883}increment和decrement这两个词很有意思，大多数字典都说它们是名词，但经常被当成动词用，在计算机术语中，它们当动词用应该理解为increase by one和decrease by one。现代英语中很多原本是名词的都被当成动词用，字典都跟不上时代了，再比如transition也是如此。}，\BookCode{-\BookSplit{}-\BookSplit{}i}相当于\BookCode{i =\BookSplit{} i -\BookSplit{} 1}。如果把\BookCode{+\BookSplit{}+\BookSplit{}i}这个表达式看作一个函数调用，除了传入一个参数返回一个值（等于参数值加1）之外，还产生一个Side Effect，就是把变量\BookCode{i}的值增加了1。
+
+
+
+\BookCode{+\BookSplit{}+\BookSplit{}}和\BookCode{-\BookSplit{}-\BookSplit{}}运算符也可以用在变量后面，例如\BookCode{i+\BookSplit{}+\BookSplit{}}和\BookCode{i-\BookSplit{}-\BookSplit{}}，为了和前缀运算符区别，这两个运算符称为后缀自增运算符（Postfix Increment Operator）\BookAnchor{db.ch06s03.id2726952}和后缀自减运算符（Postfix Decrement Operator）\BookAnchor{db.ch06s03.id2726960}。如果把\BookCode{i+\BookSplit{}+\BookSplit{}}这个表达式看作一个函数调用，传入一个参数返回一个值，返回值就等于参数值（而不是参数值加1），此外也产生一个Side Effect，就是把变量\BookCode{i}的值增加了1，它和\BookCode{+\BookSplit{}+\BookSplit{}i}的区别就在于返回值不同。同理，\BookCode{-\BookSplit{}-\BookSplit{}i}返回减1之后的值，而\BookCode{i-\BookSplit{}-\BookSplit{}}返回减1之前的值，但这两个表达式都产生同样的Side Effect，就是把变量\BookCode{i}的值减了1。
+
+
+
+使用++、--运算符会使程序更加简洁，但也会影响程序的可读性，\hyperlink{db.bi01.bibli.kr}{[K\&R]}中的示例代码大量运用++、--和其它表达式的组合使得代码非常简洁。为了让初学者循序渐进，在接下来的几章中++、--运算符总是单独组成一个表达式而不跟其它表达式组合，从\hyperlink{db.ch11.id2745173}{第 11 章 \emph{排序与查找}}开始将采用\hyperlink{db.bi01.bibli.kr}{[K\&R]}的简洁风格。
+
+
+
+我们看一个有意思的问题：\BookCode{a+\BookSplit{}+\BookSplit{}+\BookSplit{}+\BookSplit{}+\BookSplit{}b}这个表达式如何理解？应该理解成\BookCode{a+\BookSplit{}+\BookSplit{} +\BookSplit{}+\BookSplit{} +\BookSplit{}b}还是\BookCode{a+\BookSplit{}+\BookSplit{} +\BookSplit{} +\BookSplit{}+\BookSplit{}b}，还是\BookCode{a +\BookSplit{} +\BookSplit{}+\BookSplit{} +\BookSplit{}+\BookSplit{}b}呢？应该按第一种方式理解。编译的过程分为词法解析和语法解析两个阶段，在词法解析阶段，编译器总是从前到后找最长的合法Token。把这个表达式从前到后解析，变量名\BookCode{a}是一个Token，\BookCode{a}后面有两个以上的+号，在C语言中一个+号是合法的Token（可以是加法运算符或正号），两个+号也是合法的Token（可以是自增运算符），根据最长匹配原则，编译器绝不会止步于一个+号，而一定会把两个+号当作一个Token。再往后解析仍然有两个以上的+号，所以又是一个++运算符。再往后解析只剩一个+号了，是加法运算符。再往后解析是变量名\BookCode{b}。词法解析之后进入下一阶段语法解析，\BookCode{a}是一个表达式，表达式++还是表达式，表达式再++还是表达式，表达式再+b还是表达式，语法上没有问题。最后编译器会做一些基本的语义分析，这时就有问题了，++运算符要求操作数能做左值，\BookCode{a}能做左值所以\BookCode{a+\BookSplit{}+\BookSplit{}}没问题，但表达式\BookCode{a+\BookSplit{}+\BookSplit{}}的值只能做右值，不能再++了，所以最终编译器会报错。
+
+
+
+C99规定了一种新的\BookCode{for}循环语法，在控制表达式1的位置可以有变量定义。例如上例的循环变量\BookCode{i}可以只在\BookCode{for}循环中定义：
+
+
+\BookSource{numbers=none}{code/ch06s03/03.pv}{9}{7}
+
+
+如果这样定义，那么变量\BookCode{i}只是\BookCode{for}循环中的局部变量而不是整个函数的局部变量，相当于\hyperlink{db.ch04s01.id2718043}{第 1 节 “if语句”}讲过的语句块中的局部变量，在循环结束后就不能再使用\BookCode{i}这个变量了。这个程序用\BookCode{gcc}编译要加上选项\BookCode{-\BookSplit{}std=\BookSplit{}c99}。这种语法也是从C+\BookSplit{}+\BookSplit{}借鉴的，考虑到兼容性不建议使用这种写法。
+
+\BookNav{\hyperlink{db.ch06s02}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06s04}{下一页}}
+
+
+% https://akaedu.github.io/book/ch06s04.html
+
+\section{break和continue语句}
+\BookAnchor{db.ch06s04}\BookAnchor{db.ch06s04.id2727201}%
+在\hyperlink{db.ch04s04.id2719538}{第 4 节 “switch语句”}中我们见到了\BookCode{break}语句的一种用法，用来跳出\BookCode{switch}语句块，这个语句也可以用来跳出循环体。\BookCode{continue}语句也会终止当前循环，和\BookCode{break}语句不同的是，\BookCode{continue}语句终止当前循环后又回到循环体的开头准备执行下一次循环。对于\BookCode{while}循环和\BookCode{do/\BookSplit{}while}循环，执行\BookCode{continue}语句之后测试控制表达式，如果值为真则继续执行下一次循环；对于\BookCode{for}循环，执行\BookCode{continue}语句之后首先计算控制表达式3，然后测试控制表达式2，如果值为真则继续执行下一次循环。例如下面的代码打印1到100之间的素数：
+
+
+\BookExampleTitle{求1-100的素数}\BookAnchor{db.ch06s04.id2727284}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch06s04/01.pv}{9}{25}
+
+
+\BookCode{is\_\BookSplit{}prime}函数从2到\BookCode{n-\BookSplit{}1}依次检查有没有能被\BookCode{n}整除的数，如果有就说明\BookCode{n}不是素数，立刻跳出循环而不执行\BookCode{i+\BookSplit{}+\BookSplit{}}。因此，如果\BookCode{n}不是素数，则循环结束后\BookCode{i}一定小于\BookCode{n}，如果\BookCode{n}是素数，则循环结束后\BookCode{i}一定等于\BookCode{n}。注意检查临界条件：2应该是素数，如果\BookCode{n}是2，则循环体一次也不执行，但\BookCode{i}的初值就是2，也等于\BookCode{n}，在程序中也判定为素数。其实没有必要从2一直检查到\BookCode{n-\BookSplit{}1}，只要从2检查到\BookSymbol{⌊}sqrt(n)\BookSymbol{⌋}，如果全都不能整除就足以证明\BookCode{n}是素数了，请读者想一想为什么。
+
+
+
+在主程序中，从1到100依次检查每个数是不是素数，如果不是素数，并不直接跳出循环，而是\BookCode{i+\BookSplit{}+\BookSplit{}}后继续执行下一次循环，因此用\BookCode{continue}语句。注意主程序的局部变量\BookCode{i}和\BookCode{is\_\BookSplit{}prime}中的局部变量\BookCode{i}是不同的两个变量，其实在调用\BookCode{is\_\BookSplit{}prime}函数时主程序的局部变量\BookCode{i}和参数\BookCode{n}的值相等。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch06s04.id2727458}%
+
+
+1、求素数这个程序只是为了说明\BookCode{break}和\BookCode{continue}的用法才这么写的，其实完全可以不用\BookCode{break}和\BookCode{continue}，请读者修改一下控制流程，去掉\BookCode{break}和\BookCode{continue}而保持功能不变。
+
+
+
+2、上一节讲过怎样把\BookCode{for}循环改写成等价的\BookCode{while}循环，但也提到如果循环体中有\BookCode{continue}语句这两种形式就不等价了，想一想为什么不等价了？
+
+\BookNav{\hyperlink{db.ch06s03}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06s05}{下一页}}
+
+
+% https://akaedu.github.io/book/ch06s05.html
+
+\section{嵌套循环}
+\BookAnchor{db.ch06s05}\BookAnchor{db.ch06s05.id2727530}%
+上一节求素数的例子在循环中调用一个函数，而那个函数里面又有一个循环，这其实是一种嵌套循环。如果把那个函数的代码拿出来写就更清楚了：
+
+
+\BookExampleTitle{用嵌套循环求1-100的素数}\BookAnchor{db.ch06s05.id2727541}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch06s05/01.pv}{9}{14}
+
+
+现在内循环的循环变量就不能再用\BookCode{i}了，而是改用\BookCode{j}，原来程序中\BookCode{is\_\BookSplit{}prime}函数的参数\BookCode{n}现在直接用\BookCode{i}代替。在有多层循环或\BookCode{switch}嵌套的情况下，\BookCode{break}只能跳出最内层的循环或\BookCode{switch}，\BookCode{continue}也只能终止最内层循环并回到该循环的开头。
+
+
+
+用循环也可以打印表格式的数据，比如打印小九九乘法表：
+
+
+\BookExampleTitle{打印小九九}\BookAnchor{db.ch06s05.id2727617}
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch06s05/02.pv}{9}{12}
+
+
+内循环每次打印一个数，数与数之间用两个空格隔开，外循环每次打印一行。结果如下：
+
+
+\BookTerminal{code/ch06s05/03.txt}{9}{9}
+
+
+结果有一位数的有两位数的，这个表格很不整齐，如果把打印语句改为\BookCode{printf(\BookSplit{}\BookQuoteChar{}\%d\textbackslash{}t\BookQuoteChar{},\BookSplit{} i*j)\BookSplit{};\BookSplit{}}就整齐了，所以Tab字符称为制表符。
+
+
+\subsection*{习题}
+\BookAnchor{db.ch06s05.id2727653}%
+
+
+1、上面打印的小九九有一半数据是重复的，因为8*\BookSplit{}9和9*\BookSplit{}8的结果一样。请修改程序打印这样的小九九：
+
+
+\BookTerminal{code/ch06s05/04.txt}{9}{9}
+
+
+2、编写函数\BookCode{diamond}打印一个菱形。如果调用\BookCode{diamond(\BookSplit{}3,\BookSplit{} '*')\BookSplit{}}则打印：
+
+
+\BookTerminal{code/ch06s05/05.txt}{5}{3}
+
+
+如果调用\BookCode{diamond(\BookSplit{}5,\BookSplit{} '+\BookSplit{}')\BookSplit{}}则打印：
+
+
+\BookTerminal{code/ch06s05/06.txt}{7}{5}
+
+
+如果用偶数做参数则打印错误提示。
+
+\BookNav{\hyperlink{db.ch06s04}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06s06}{下一页}}
+
+
+% https://akaedu.github.io/book/ch06s06.html
+
+\section{goto语句和标号}
+\BookAnchor{db.ch06s06}\BookAnchor{db.ch06s06.id2727710}%
+分支、循环都讲完了，现在只剩下最后一种影响控制流程的语句了，就是\BookCode{goto}语句，实现无条件跳转。我们知道\BookCode{break}只能跳出最内层的循环，如果在一个嵌套循环中遇到某个错误条件需要立即跳出最外层循环做出错处理，就可以用\BookCode{goto}语句，例如：
+
+
+\BookSource{numbers=none}{code/ch06s06/01.pv}{9}{8}
+
+
+这里的\BookCode{error:\BookSplit{}}叫做标号（Label）\BookAnchor{db.ch06s06.id2727755}，任何语句前面都可以加若干个标号，每个标号的命名也要遵循标识符的命名规则。
+
+
+
+\BookCode{goto}语句过于强大了，从程序中的任何地方都可以无条件跳转到任何其它地方，只要在那个地方定义一个标号就行，唯一的限制是\BookCode{goto}只能跳转到同一个函数中的某个标号处，而不能跳到别的函数中\BookAnchor{db.ch06s06.id2727782}\footnote[11]{\BookAnchor{db.ch06s06.ftn.id2727782}\BookFootnoteBack{db.ch06s06.id2727782}C标准库函数\BookCode{setjmp}和\BookCode{longjmp}配合起来可以实现函数间的跳转，但只能从被调用的函数跳回到它的直接或间接调用者（同时从栈空间弹出一个或多个栈帧），而不能从一个函数跳转到另一个和它毫不相干的函数中。\BookCode{setjmp/\BookSplit{}longjmp}函数主要也是用于出错处理，比如函数\BookCode{A}调用函数\BookCode{B}，函数\BookCode{B}调用函数\BookCode{C}，如果在\BookCode{C}中出现某个错误条件，使得函数\BookCode{B}和\BookCode{C}继续执行下去都没有意义了，可以利用\BookCode{setjmp/\BookSplit{}longjmp}机制快速返回到函数\BookCode{A}做出错处理，本书不详细介绍这种机制，有兴趣的读者可参考\hyperlink{db.bi01.bibli.apue}{[APUE2e]}。}。\emph{滥用\BookCode{goto}语句会使程序的控制流程非常复杂，可读性很差}。著名的计算机科学家Edsger W.\BookSplit{} Dijkstra最早指出编程语言中\BookCode{goto}语句的危害，提倡取消\BookCode{goto}语句。\BookCode{goto}语句不是必须存在的，显然可以用别的办法替代，比如上面的代码段可以改写为：
+
+
+\BookSource{numbers=left,xleftmargin=19pt}{code/ch06s06/02.pv}{9}{14}
+
+
+通常\BookCode{goto}语句只用于这种场合，一个函数中任何地方出现了错误条件都可以立即跳转到函数末尾做出错处理（例如释放先前分配的资源、恢复先前改动过的全局变量等），处理完之后函数返回。比较用\BookCode{goto}和不用\BookCode{goto}的两种写法，用\BookCode{goto}语句还是方便很多。但是除此之外，在任何其它场合都不要轻易考虑使用\BookCode{goto}语句。有些编程语言（如C+\BookSplit{}+\BookSplit{}）中有异常（Exception）\BookAnchor{db.ch06s06.id2727950}处理的语法，可以代替\BookCode{goto}和\BookCode{setjmp/\BookSplit{}longjmp}的这种用法。
+
+
+
+回想一下，我们在\hyperlink{db.ch04s04.id2719538}{第 4 节 “switch语句”}学过\BookCode{case}和\BookCode{default}后面也要跟冒号（:号，Colon）\BookAnchor{db.ch06s06.id2727991}，事实上它们是两种特殊的标号。和标号有关的语法规则如下：
+
+
+\begin{BookLiteral}
+\BookLiteralLine{语句 \BookSymbol{→} 标识符: 语句}
+\BookLiteralLine{语句 \BookSymbol{→} case 常量表达式: 语句}
+\BookLiteralLine{语句 \BookSymbol{→} default: 语句}
+\end{BookLiteral}
+
+
+反复应用这些语法规则进行组合可以在一条语句前面添加多个标号，例如在\hyperlink{db.ch04s04.id2719735}{例 4.\BookSplit{}2 “缺break的switch语句”}的代码中，有些语句前面有多个\BookCode{case}标号。现在我们再看\BookCode{switch}语句的格式：
+
+
+\begin{BookLiteral}
+\BookLiteralLine{switch (控制表达式) \{}
+\BookLiteralLine{case 常量表达式： 语句列表}
+\BookLiteralLine{case 常量表达式： 语句列表}
+\BookLiteralLine{...}
+\BookLiteralLine{default： 语句列表}
+\BookLiteralLine{\}}
+\end{BookLiteral}
+
+
+\{\}里面是一组语句列表，其中每个分支的第一条语句带有\BookCode{case}或\BookCode{default}标号，从语法上来说，\BookCode{switch}的语句块和其它分支、循环结构的语句块没有本质区别：
+
+
+\begin{BookLiteral}
+\BookLiteralLine{语句 \BookSymbol{→} switch (控制表达式) 语句}
+\BookLiteralLine{语句 \BookSymbol{→} \{ 语句列表 \}}
+\end{BookLiteral}
+
+
+有兴趣的读者可以在网上查找有关Duff's Device\BookAnchor{db.ch06s06.id2728083}的资料，Duff's Device是一段很有意思的代码，正是利用“\BookCode{switch}的语句块和循环结构的语句块没有本质区别”这一点实现了一个巧妙的代码优化。
+
+\BookNav{\hyperlink{db.ch06s05}{上一页}\enspace\textperiodcentered\enspace \hyperlink{db.ch06}{上一级}\enspace\textperiodcentered\enspace \hyperlink{db.index}{起始页}\enspace\textperiodcentered\enspace \hyperlink{db.ch07}{下一页}}

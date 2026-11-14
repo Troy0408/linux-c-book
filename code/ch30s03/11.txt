@@ -1,0 +1,4 @@
+$ cat file.txt
+this is the file, file.txt, it is all lower case.
+$ ./upper < file.txt
+THIS IS THE FILE, FILE.TXT, IT IS ALL LOWER CASE.

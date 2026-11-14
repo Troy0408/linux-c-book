@@ -1,0 +1,13 @@
+\BK{c+cm}{/* generics.c */}
+\BK{c+cp}{\BKZsh{}}\BK{c+cp}{include}\BK{+w}{ }\BK{c+cpf}{\BKZdq{}generics.h\BKZdq{}}
+
+\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n+nf}{max}\BK{p}{(}\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{data}\BK{p}{[}\BK{p}{]}\BK{p}{,}\BK{+w}{ }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{num}\BK{p}{,}\BK{+w}{ }\BK{n}{cmp\BKZus{}t}\BK{+w}{ }\BK{n}{cmp}\BK{p}{)}
+\BK{p}{\BKZob{}}
+\BK{+w}{     }\BK{k+kt}{int}\BK{+w}{ }\BK{n}{i}\BK{p}{;}
+\BK{+w}{     }\BK{k+kt}{void}\BK{+w}{ }\BK{o}{*}\BK{n}{temp}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{data}\BK{p}{[}\BK{l+m+mi}{0}\BK{p}{]}\BK{p}{;}
+\BK{+w}{     }\BK{k}{for}\BK{p}{(}\BK{n}{i}\BK{o}{=}\BK{l+m+mi}{1}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{\BKZlt{}}\BK{n}{num}\BK{p}{;}\BK{+w}{ }\BK{n}{i}\BK{o}{+}\BK{o}{+}\BK{p}{)}\BK{+w}{ }\BK{p}{\BKZob{}}
+\BK{+w}{	  }\BK{k}{if}\BK{p}{(}\BK{n}{cmp}\BK{p}{(}\BK{n}{temp}\BK{p}{,}\BK{+w}{ }\BK{n}{data}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{p}{)}\BK{o}{\BKZlt{}}\BK{l+m+mi}{0}\BK{p}{)}
+\BK{+w}{	       }\BK{n}{temp}\BK{+w}{ }\BK{o}{=}\BK{+w}{ }\BK{n}{data}\BK{p}{[}\BK{n}{i}\BK{p}{]}\BK{p}{;}
+\BK{+w}{     }\BK{p}{\BKZcb{}}
+\BK{+w}{     }\BK{k}{return}\BK{+w}{ }\BK{n}{temp}\BK{p}{;}
+\BK{p}{\BKZcb{}}

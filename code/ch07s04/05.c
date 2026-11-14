@@ -1,0 +1,1 @@
+struct segment s = { .start.x = 1.0, .end.x = 2.0 };

@@ -1,0 +1,15 @@
+$ nm /usr/lib/crt1.o 
+00000000 R _IO_stdin_used
+00000000 D __data_start
+         U __libc_csu_fini
+         U __libc_csu_init
+         U __libc_start_main
+00000000 R _fp_hw
+00000000 T _start
+00000000 W data_start
+         U main
+$ nm /usr/lib/crti.o
+         U _GLOBAL_OFFSET_TABLE_
+         w __gmon_start__
+00000000 T _fini
+00000000 T _init
