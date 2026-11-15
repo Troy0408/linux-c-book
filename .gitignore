@@ -1,5 +1,6 @@
 __pycache__/
 .venv/
+/source-html/
 output/.build/
 main.aux
 main.fdb_latexmk
